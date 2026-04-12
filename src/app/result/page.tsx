@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   PawPrimaryLink,
   PawSplitRow,
@@ -10,6 +10,7 @@ import {
 import { WizardBottomBar } from "@/components/design/WizardBottomBar";
 import { WizardHeader } from "@/components/design/WizardHeader";
 import { WizardPageBackground } from "@/components/design/WizardPageBackground";
+import { FEED_CATALOG_PREFETCH_KEY } from "@/lib/feedCatalogPrefetch";
 import {
   computeCaloriesWithWizard,
   formatKcal,
@@ -66,8 +67,29 @@ export default function ResultPage() {
   const [loadError, setLoadError] = useState<string | null>(null);
   const [output, setOutput] = useState<CalculatorOutput | null>(null);
   const [warnings, setWarnings] = useState<string[]>([]);
+  const usedPrefetchRef = useRef(false);
+
+  useLayoutEffect(() => {
+    const raw = sessionStorage.getItem(FEED_CATALOG_PREFETCH_KEY);
+    if (!raw) return;
+    try {
+      const data = JSON.parse(raw) as { items?: FeedCatalogItem[] };
+      sessionStorage.removeItem(FEED_CATALOG_PREFETCH_KEY);
+      const items = data.items ?? [];
+      const { output: out, warnings: w } = computeCaloriesWithWizard(items);
+      setOutput(out);
+      setWarnings(w);
+      usedPrefetchRef.current = true;
+    } catch {
+      sessionStorage.removeItem(FEED_CATALOG_PREFETCH_KEY);
+    }
+  }, []);
 
   useEffect(() => {
+    if (usedPrefetchRef.current) {
+      return;
+    }
+
     let cancelled = false;
     setLoadError(null);
 
@@ -123,15 +145,6 @@ export default function ResultPage() {
           <p className="text-center text-sm text-red-600" role="alert">
             {loadError}
           </p>
-        ) : null}
-
-        {!loadError && output === null ? (
-          <div className="flex flex-col items-center gap-4 py-16">
-            <span className="text-7xl" aria-hidden>
-              🐱
-            </span>
-            <p className="text-base text-[#555]">계산 중…</p>
-          </div>
         ) : null}
 
         {errMsg && output !== null ? (

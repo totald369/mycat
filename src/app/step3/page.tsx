@@ -22,6 +22,7 @@ import {
 import { FeedSearchModal } from "@/components/wireframe/FeedSearchModal";
 import { IconClose, IconPlus, IconSearch } from "@/components/wireframe/icons";
 import { CALCULATING_OVERLAY_VIDEOS } from "@/constants/calculatingOverlayVideos";
+import { prefetchFeedCatalogForResult } from "@/lib/feedCatalogPrefetch";
 import { validateWizardBeforeResult } from "@/lib/wizardCalories";
 import { patchWizardState, readWizardState } from "@/lib/wizardStorage";
 
@@ -58,6 +59,7 @@ export default function Step3Page() {
     null,
   );
   const overlayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const feedPrefetchRef = useRef<Promise<void> | null>(null);
 
   useEffect(() => {
     const s = readWizardState().step3;
@@ -132,9 +134,20 @@ export default function Step3Page() {
         nextTone,
       },
     });
+    feedPrefetchRef.current = prefetchFeedCatalogForResult().catch(() => {
+      /* 실패 시 결과 페이지에서 /api/feeds 재요청 */
+    });
+
     const list = CALCULATING_OVERLAY_VIDEOS;
     if (list.length === 0) {
-      router.push("/result");
+      void (async () => {
+        try {
+          await feedPrefetchRef.current;
+        } catch {
+          /* */
+        }
+        router.push("/result");
+      })();
       return;
     }
     const pick = list[Math.floor(Math.random() * list.length)] ?? list[0];
@@ -153,9 +166,16 @@ export default function Step3Page() {
   useEffect(() => {
     if (!showCalculating) return;
     overlayTimerRef.current = setTimeout(() => {
-      setShowCalculating(false);
-      setCalculatingVideoSrc(null);
-      router.push("/result");
+      void (async () => {
+        try {
+          await feedPrefetchRef.current;
+        } catch {
+          /* */
+        }
+        setShowCalculating(false);
+        setCalculatingVideoSrc(null);
+        router.push("/result");
+      })();
     }, CALCULATING_OVERLAY_MS);
     return () => {
       if (overlayTimerRef.current) clearTimeout(overlayTimerRef.current);
