@@ -24,6 +24,7 @@ import {
 } from "@/lib/wizardCalories";
 import type { CalculatorOutput } from "@/lib/calculator";
 import type { CalculatorSuccess } from "@/lib/calculator";
+import { CheckCatLottie } from "@/components/design/CheckCatLottie";
 import { RESULT_HERO_IMAGE } from "@/constants/resultHeroImages";
 
 function kcalBig(value: number, accent?: boolean) {
@@ -195,6 +196,7 @@ export default function ResultPage() {
         {success ? (
           <>
             <div className="flex flex-col items-center gap-6">
+              <CheckCatLottie className="pointer-events-none h-[120px] w-[120px] shrink-0" />
               <div className="relative h-[219px] w-[176px] shrink-0">
                 <Image
                   src={RESULT_HERO_IMAGE[success.status]}
