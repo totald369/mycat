@@ -25,6 +25,13 @@ const GENDER_OPTIONS = [
   "여(중성화)",
 ] as const;
 
+function formatBirthDisplay(iso: string): string {
+  if (!iso) return "";
+  const [y, m, d] = iso.split("-");
+  if (!y || !m || !d) return iso;
+  return `${y}년 ${Number(m)}월 ${Number(d)}일`;
+}
+
 export default function Step1Page() {
   const router = useRouter();
   const birthInputRef = useRef<HTMLInputElement>(null);
@@ -154,16 +161,32 @@ export default function Step1Page() {
                     min={minBirthDate}
                     max={maxBirthDate}
                     onChange={(e) => setBirthDate(e.target.value)}
-                    onClick={openBirthPicker}
-                    className={`wf-input-date ${wizardInputClass} appearance-none pr-12 [color-scheme:light]`}
+                    tabIndex={-1}
+                    aria-hidden="true"
+                    className="wf-birth-date-native [color-scheme:light]"
                   />
                   <button
                     type="button"
-                    aria-label="날짜 선택 창 열기"
-                    className="absolute right-4 top-1/2 z-10 -translate-y-1/2 text-[#555]"
+                    className={`${wizardInputClass} flex w-full items-center justify-between gap-3 text-left [color-scheme:light]`}
                     onClick={openBirthPicker}
+                    aria-label={
+                      birthDate
+                        ? `생년월일 ${formatBirthDisplay(birthDate)}`
+                        : "생년월일 선택"
+                    }
                   >
-                    <IconCalendar className="size-6" />
+                    <span
+                      className={
+                        birthDate
+                          ? "min-w-0 truncate text-[#111]"
+                          : "text-[#afb4a6]"
+                      }
+                    >
+                      {birthDate
+                        ? formatBirthDisplay(birthDate)
+                        : "연도·월·일"}
+                    </span>
+                    <IconCalendar className="size-6 shrink-0 text-[#555]" />
                   </button>
                 </div>
               </div>

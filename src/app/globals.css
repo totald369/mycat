@@ -28,33 +28,21 @@ body {
     sans-serif;
 }
 
-/* 생년월일: 모바일 WebKit·Chrome 네이티브 달력·화살표 숨김 — 커스텀 달력 버튼만 사용 */
-.wf-input-date {
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.wf-input-date::-webkit-calendar-picker-indicator {
-  -webkit-appearance: none;
-  appearance: none;
-  display: block;
-  opacity: 0;
-  width: 0;
-  height: 0;
+/* 생년월일: 실제 type=date 입력은 화면 밖 — 보이는 줄은 버튼으로만 구성(모바일 네이티브 아이콘 제거) */
+.wf-birth-date-native {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+  opacity: 0;
   pointer-events: none;
-  position: absolute;
-}
-
-.wf-input-date::-webkit-clear-button,
-.wf-input-date::-webkit-inner-spin-button {
-  display: none;
-  -webkit-appearance: none;
-}
-
-.wf-input-date::-moz-calendar-picker-indicator {
-  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
