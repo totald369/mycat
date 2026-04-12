@@ -29,7 +29,7 @@ function formatBirthDisplay(iso: string): string {
   if (!iso) return "";
   const [y, m, d] = iso.split("-");
   if (!y || !m || !d) return iso;
-  return `${y}년 ${Number(m)}월 ${Number(d)}일`;
+  return `${y}.${m}.${d}`;
 }
 
 export default function Step1Page() {
@@ -184,7 +184,7 @@ export default function Step1Page() {
                     >
                       {birthDate
                         ? formatBirthDisplay(birthDate)
-                        : "연도·월·일"}
+                        : "YYYY.MM.DD"}
                     </span>
                     <IconCalendar className="size-6 shrink-0 text-[#555]" />
                   </button>
