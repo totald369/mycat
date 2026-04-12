@@ -189,7 +189,7 @@ export default function Step3Page() {
     <>
       {showCalculating && calculatingVideoSrc ? (
         <div
-          className="fixed inset-0 z-[60] overflow-hidden"
+          className="fixed inset-0 isolate z-[200] min-h-[100dvh] w-full overflow-hidden bg-[#fffcf9]"
           role="status"
           aria-live="polite"
           aria-busy="true"
