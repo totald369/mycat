@@ -12,6 +12,11 @@ import { WizardHeader } from "@/components/design/WizardHeader";
 import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { FEED_CATALOG_PREFETCH_KEY } from "@/lib/feedCatalogPrefetch";
 import {
+  decodeShareResultPayload,
+  encodeShareResultPayload,
+  sharePayloadToCalculatorSuccess,
+} from "@/lib/shareResultPayload";
+import {
   computeCaloriesWithWizard,
   formatKcal,
   statusHeadline,
@@ -70,6 +75,20 @@ export default function ResultPage() {
   const usedPrefetchRef = useRef(false);
 
   useLayoutEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const params = new URLSearchParams(window.location.search);
+    const share = params.get("s");
+    if (share) {
+      const decoded = decodeShareResultPayload(share);
+      if (decoded.ok) {
+        setOutput(sharePayloadToCalculatorSuccess(decoded.value));
+        setWarnings([]);
+        usedPrefetchRef.current = true;
+        return;
+      }
+    }
+
     const raw = sessionStorage.getItem(FEED_CATALOG_PREFETCH_KEY);
     if (!raw) return;
     try {
@@ -124,16 +143,30 @@ export default function ResultPage() {
     loadError ?? (output?.ok === false ? output.error : null);
 
   const handleShare = useCallback(async () => {
-    if (typeof navigator === "undefined" || !navigator.share) return;
-    try {
-      await navigator.share({
-        title: document.title,
-        url: window.location.href,
-      });
-    } catch {
-      /* 사용자 취소 등 */
+    if (!success || typeof window === "undefined") return;
+    const encoded = encodeShareResultPayload(success);
+    const url = new URL(`${window.location.origin}${window.location.pathname}`);
+    url.searchParams.set("s", encoded);
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: document.title,
+          text: "우리 냥이 칼로리 계산 결과를 확인해 보세요.",
+          url: url.toString(),
+        });
+      } catch {
+        /* 사용자 취소 등 */
+      }
+      return;
     }
-  }, []);
+
+    try {
+      await navigator.clipboard.writeText(url.toString());
+    } catch {
+      /* */
+    }
+  }, [success]);
 
   return (
     <div className="relative z-10 mx-auto min-h-screen w-full max-w-[375px] overflow-x-hidden overflow-y-visible bg-transparent">
