@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Breed {
+  id           String   @id @default(cuid())
+  apiId        String   @unique
+  nameEn       String
+  nameKo       String?
+  origin       String?
+  temperament  String?
+  description  String?
+  lifeSpan     String?
+  wikipediaUrl String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+/// 급여(사료) 카탈로그 — OPFF 시드 또는 prisma/cat_food.csv 수동 임포트
+model FeedProduct {
+  id           String   @id @default(cuid())
+  apiId        String   @unique
+  feedKind     String
+  brand        String?
+  name         String
+  nameKo       String?
+  displayLabel String
+  sourceUrl    String?
+  lifeStage    String?
+  kcalPer100g  Float?
+  /// 습식 1캔(1팩) 기준 무게(g). 건식은 null
+  servingGrams Float?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

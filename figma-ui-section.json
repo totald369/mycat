@@ -1,0 +1,20 @@
+{
+  "fileKey": "xYm8i5QKVjyWWWlA6nLfIW",
+  "sectionNodeId": "1:1286",
+  "sectionName": "UI",
+  "devModeBase": "https://www.figma.com/design/xYm8i5QKVjyWWWlA6nLfIW/%EC%9A%B0%EB%A6%AC%EB%83%A5%EC%9D%B4-%EB%A7%98%EB%A7%88-%EA%B3%84%EC%82%B0%EA%B8%B0",
+  "frames": [
+    { "nodeId": "1:5", "name": "Home", "urlSuffix": "node-id=1-5" },
+    { "nodeId": "1:222", "name": "Step-1", "urlSuffix": "node-id=1-222" },
+    { "nodeId": "1:396", "name": "Step-2", "urlSuffix": "node-id=1-396" },
+    { "nodeId": "1:617", "name": "Step-2", "urlSuffix": "node-id=1-617" },
+    { "nodeId": "1:792", "name": "Step-2", "urlSuffix": "node-id=1-792" },
+    { "nodeId": "1:981", "name": "Step-2", "urlSuffix": "node-id=1-981" },
+    { "nodeId": "1:1035", "name": "Step-2", "urlSuffix": "node-id=1-1035" },
+    { "nodeId": "1:1089", "name": "계산완료", "urlSuffix": "node-id=1-1089" },
+    { "nodeId": "1:1104", "name": "계산결과-1", "urlSuffix": "node-id=1-1104" },
+    { "nodeId": "1:1163", "name": "계산결과-2", "urlSuffix": "node-id=1-1163" },
+    { "nodeId": "1:1222", "name": "계산결과-3", "urlSuffix": "node-id=1-1222" }
+  ],
+  "mcpNote": "섹션 1:1286 전체는 sparse 메타만 반환됨. 코드/스타일 추출은 각 frame의 nodeId로 get_design_context 호출."
+}

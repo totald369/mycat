@@ -1,0 +1,90 @@
+id,brand,name,type,life_stage,kcal_per_100g,serving_g,category,condition
+1,로얄캐닌,마더 앤 베이비캣,dry,kitten_0_4m,443,,general,none
+2,로얄캐닌,키튼,dry,kitten_4_12m,406,,general,none
+3,로얄캐닌,키튼 스테럴라이즈드,dry,kitten_6_12m_neutered,348,,general,none
+4,로얄캐닌,인도어,dry,adult_1_7y,374,,general,none
+5,로얄캐닌,스테럴라이즈드 37,dry,adult_1_7y_neutered,360,,general,none
+6,로얄캐닌,헤어볼 케어,dry,adult_1y_plus,390,,general,none
+7,로얄캐닌,라이트 웨이트 케어,dry,weight_control,338,,general,none
+8,로얄캐닌,인도어 7+,dry,senior_7y_plus,374,,general,none
+9,로얄캐닌,마더 앤 베이비캣 무스,wet,kitten_0_4m,95,100,general,none
+10,로얄캐닌,스테럴라이즈드 파우치,wet,adult_1y_plus,80,85,general,none
+11,힐스,키튼,dry,kitten_0_12m,408,,general,none
+12,힐스,어덜트,dry,adult_1_6y,386,,general,none
+13,힐스,어덜트 7+,dry,senior_7y_plus,371,,general,none
+14,힐스,퍼펙트 웨이트,dry,weight_control,307,,general,none
+15,힐스,인도어,dry,adult_indoor,374,,general,none
+16,힐스,헤어볼 컨트롤,dry,adult_1y_plus,379,,general,none
+17,힐스,센서티브 스토막,dry,adult_sensitive,394,,general,none
+18,힐스,키튼 파테,wet,kitten_0_12m,95,82,general,none
+19,힐스,어덜트 파테,wet,adult_1_6y,90,82,general,none
+20,힐스,참치 파우치,wet,adult_1_6y,85,85,general,none
+21,아카나,퍼스트 피스트,dry,kitten_0_12m,405,,general,none
+22,아카나,와일드 프레리,dry,all_life_stage,393,,general,none
+23,아카나,그래스랜드,dry,all_life_stage,381,,general,none
+24,아카나,퍼시피카,dry,all_life_stage,385,,general,none
+25,아카나,인도어 엔트리,dry,adult_indoor,349,,general,none
+26,아카나,라이트 앤 피트,dry,weight_control,307,,general,none
+27,아카나,시니어,dry,senior_7y_plus,332,,general,none
+28,아카나,치킨 파테,wet,adult_1y_plus,92,85,general,none
+29,아카나,연어 파테,wet,adult_1y_plus,95,85,general,none
+30,로우즈,치킨 파테,wet,all_life_stage,96,79,general,none
+31,로우즈,연어 파테,wet,all_life_stage,95,79,general,none
+32,로우즈,터키 파테,wet,all_life_stage,97,79,general,none
+33,로우즈,오리 파테,wet,all_life_stage,102,79,general,none
+34,로우즈,치킨 슈레드,wet,all_life_stage,90,79,general,none
+35,로우즈,참치 슈레드,wet,all_life_stage,88,79,general,none
+36,퓨리나,원 캣 키튼,dry,kitten_0_12m,405,,general,none
+37,퓨리나,원 캣 어덜트,dry,adult_1_7y,380,,general,none
+38,퓨리나,원 캣 인도어,dry,adult_indoor,360,,general,none
+39,퓨리나,원 캣 체중관리,dry,weight_control,330,,general,none
+40,퓨리나,팬시피스트 치킨,wet,adult_1y_plus,85,85,general,none
+41,퓨리나,팬시피스트 참치,wet,adult_1y_plus,82,85,general,none
+42,퓨리나,팬시피스트 파테,wet,adult_1y_plus,95,85,general,none
+43,퓨리나,프리스키 파테,wet,adult_1y_plus,100,85,general,none
+44,퓨리나,프리스키 슈레드,wet,adult_1y_plus,88,85,general,none
+45,알모네이처,HFC 참치,wet,all_life_stage,70,55,general,none
+46,알모네이처,HFC 닭가슴살,wet,all_life_stage,75,55,general,none
+47,알모네이처,HFC 치킨햄,wet,all_life_stage,78,55,general,none
+48,알모네이처,데일리 파테 치킨,wet,adult_1y_plus,95,70,general,none
+49,알모네이처,데일리 파테 참치,wet,adult_1y_plus,97,70,general,none
+50,알모네이처,홀리스틱 닭고기,dry,adult_1y_plus,370,,general,none
+51,오리젠,캣 & 키튼,dry,all_life_stage,416,,general,none
+52,오리젠,식스 피쉬,dry,all_life_stage,412,,general,none
+53,오리젠,피트 & 트림,dry,weight_control,371,,general,none
+54,오리젠,가디언 8,dry,adult_1y_plus,398,,general,none
+55,오리젠,파테 치킨,wet,adult_1y_plus,100,85,general,none
+56,퍼시캣,치킨 & 터키,dry,adult_1y_plus,380,,general,none
+57,퍼시캣,연어,dry,adult_1y_plus,385,,general,none
+58,퍼시캣,인도어,dry,adult_indoor,360,,general,none
+59,퍼시캣,체중관리,dry,weight_control,330,,general,none
+60,퍼시캣,치킨 파테,wet,adult_1y_plus,95,70,general,none
+61,힐스,k/d Kidney Care,dry,adult_1y_plus,390,,prescription,kidney
+62,힐스,k/d 캔,wet,adult_1y_plus,95,156,prescription,kidney
+63,힐스,i/d Digestive,dry,adult_1y_plus,385,,prescription,digestive
+64,힐스,i/d 캔,wet,adult_1y_plus,100,156,prescription,digestive
+65,힐스,c/d Multicare,dry,adult_1y_plus,380,,prescription,urinary
+66,힐스,c/d 캔,wet,adult_1y_plus,95,156,prescription,urinary
+67,힐스,z/d,dry,adult_1y_plus,375,,prescription,allergy
+68,힐스,z/d 캔,wet,adult_1y_plus,90,156,prescription,allergy
+69,힐스,w/d,dry,adult_1y_plus,320,,prescription,weight
+70,힐스,t/d,dry,adult_1y_plus,350,,prescription,dental
+71,힐스,a/d,wet,all_life_stage,120,156,prescription,recovery
+72,힐스,GI Biome,dry,adult_1y_plus,380,,prescription,digestive
+73,로얄캐닌,레날 스페셜,dry,adult_1y_plus,380,,prescription,kidney
+74,로얄캐닌,레날 셀렉트,dry,adult_1y_plus,385,,prescription,kidney
+75,로얄캐닌,얼리 레날,dry,adult_1y_plus,390,,prescription,kidney
+76,로얄캐닌,레날 파우치,wet,adult_1y_plus,95,85,prescription,kidney
+77,로얄캐닌,유리너리 S/O,dry,adult_1y_plus,380,,prescription,urinary
+78,로얄캐닌,유리너리 S/O 모더레이트,dry,adult_1y_plus,350,,prescription,urinary
+79,로얄캐닌,유리너리 파우치,wet,adult_1y_plus,90,85,prescription,urinary
+80,로얄캐닌,가스트로인테스티널,dry,adult_1y_plus,400,,prescription,digestive
+81,로얄캐닌,가스트로인테스티널 모더레이트,dry,adult_1y_plus,360,,prescription,digestive
+82,로얄캐닌,가스트로인테스티널 파이버,dry,adult_1y_plus,370,,prescription,digestive
+83,로얄캐닌,가스트로 파우치,wet,adult_1y_plus,100,85,prescription,digestive
+84,로얄캐닌,하이포알러제닉,dry,adult_1y_plus,375,,prescription,allergy
+85,로얄캐닌,아날러제닉,dry,adult_1y_plus,380,,prescription,allergy
+86,로얄캐닌,세타이어티,dry,adult_1y_plus,320,,prescription,weight
+87,로얄캐닌,세타이어티 밸런스,dry,adult_1y_plus,330,,prescription,weight
+88,로얄캐닌,다이아베틱,dry,adult_1y_plus,350,,prescription,diabetes
+89,로얄캐닌,헤파틱,dry,adult_1y_plus,360,,prescription,liver
