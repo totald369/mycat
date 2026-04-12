@@ -49,14 +49,22 @@ const notoSansKr = Noto_Sans_KR({
   adjustFontFallback: true,
 });
 
-/** 피그마 디스플레이체 — `src/fonts/MemomentKkukkukk.woff` */
+/** Memoment Kkukkukk(꾹꾹체) — 피그마 디스플레이체 woff2 */
 const memomentKkukkukk = localFont({
-  src: "../fonts/MemomentKkukkukk.woff",
+  src: "../fonts/MemomentKkukkukk.woff2",
   variable: "--font-display",
   weight: "400",
   style: "normal",
   display: "swap",
-  adjustFontFallback: false,
+  preload: true,
+  fallback: [
+    "system-ui",
+    "-apple-system",
+    "Apple SD Gothic Neo",
+    "Malgun Gothic",
+    "sans-serif",
+  ],
+  adjustFontFallback: "Arial",
 });
 
 export const metadata: Metadata = {
