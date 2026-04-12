@@ -57,7 +57,7 @@ export default function Step2Page() {
         className={`relative flex w-full flex-col items-center overflow-hidden rounded-xl ${
           selected
             ? "text-white"
-            : `${wizardChoiceClass} border-solid`
+            : "border border-solid border-[#dedee0] bg-white text-center text-base font-medium text-[#111] transition"
         }`}
       >
         {selected ? <WizardSelectedChoiceLayers /> : null}
