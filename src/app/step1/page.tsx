@@ -155,7 +155,7 @@ export default function Step1Page() {
                     max={maxBirthDate}
                     onChange={(e) => setBirthDate(e.target.value)}
                     onClick={openBirthPicker}
-                    className={`wf-input-date ${wizardInputClass} pr-12 [color-scheme:light]`}
+                    className={`wf-input-date ${wizardInputClass} appearance-none pr-12 [color-scheme:light]`}
                   />
                   <button
                     type="button"

@@ -28,10 +28,33 @@ body {
     sans-serif;
 }
 
-/* 생년월일: 네이티브 달력 글리프 숨김 — 우측 버튼 아이콘만 사용 */
+/* 생년월일: 모바일 WebKit·Chrome 네이티브 달력·화살표 숨김 — 커스텀 달력 버튼만 사용 */
+.wf-input-date {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 .wf-input-date::-webkit-calendar-picker-indicator {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.wf-input-date::-webkit-clear-button,
+.wf-input-date::-webkit-inner-spin-button {
   display: none;
   -webkit-appearance: none;
+}
+
+.wf-input-date::-moz-calendar-picker-indicator {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
