@@ -104,12 +104,14 @@ export default function Step3Page() {
 
   const onFeedSelect = useCallback((item: CatalogItem) => {
     setSearch(item.label);
-    if (
-      isWetFeedKind(item.feedKind) &&
-      item.servingGrams != null &&
-      Number.isFinite(item.servingGrams)
-    ) {
-      setGrams(formatGramsForInput(item.servingGrams));
+    if (isWetFeedKind(item.feedKind)) {
+      setTimes("1");
+      if (
+        item.servingGrams != null &&
+        Number.isFinite(item.servingGrams)
+      ) {
+        setGrams(formatGramsForInput(item.servingGrams));
+      }
     }
   }, []);
 

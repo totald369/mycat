@@ -10,7 +10,7 @@ export function HomeCardCarousel() {
       cardWidth={220}
       gap={16}
       durationSec={15}
-      className="px-6"
+      className="w-full"
       renderItem={(c) => (
         <article
           className={`flex h-[245px] w-full flex-col justify-between gap-3 overflow-hidden rounded-[24px] px-6 py-5 ${c.className}`}

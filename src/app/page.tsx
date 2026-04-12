@@ -12,11 +12,11 @@ export default function IntroPage() {
   const catLogicalH = ih / 3;
 
   return (
-    <div className="relative z-10 mx-auto min-h-screen w-full max-w-[375px] overflow-x-hidden overflow-y-visible bg-transparent">
+    <div className="relative z-10 mx-auto h-[100dvh] max-h-[100dvh] w-full max-w-[375px] overflow-hidden bg-transparent">
       <WizardPageBackground />
 
-      <div className="relative flex min-h-screen flex-col items-center pb-32 pt-12">
-        <div className="flex w-full flex-col items-center px-6">
+      <div className="relative flex h-full min-h-0 flex-col items-center overflow-hidden pt-12 pb-[calc(7.5rem+env(safe-area-inset-bottom,0px))]">
+        <div className="flex w-full shrink-0 flex-col items-center px-6">
           {/* 피그마: 헤더 없음 — 로고만 타이틀 위 4px 간격·가운데 정렬 */}
           <div className="mb-1 flex w-full justify-center">
             <AppLogo />
@@ -52,7 +52,7 @@ export default function IntroPage() {
           </p>
         </div>
 
-        <div className="mt-[48px] w-full flex-1 pb-6">
+        <div className="mt-6 flex min-h-0 w-full flex-1 flex-col justify-center">
           <HomeCardCarousel />
         </div>
       </div>

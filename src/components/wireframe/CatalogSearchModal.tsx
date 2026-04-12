@@ -105,91 +105,89 @@ export function CatalogSearchModal({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex justify-center bg-black/40 backdrop-blur-[2px]"
+      className="fixed inset-0 z-[100] flex min-h-[100dvh] w-full flex-col bg-[#fffcf9]"
       role="dialog"
       aria-modal="true"
       aria-labelledby={titleId}
     >
-      <div className="flex h-full w-full max-w-[375px] flex-col bg-[#fffcf9]">
-        <header className="relative flex shrink-0 items-center justify-center border-b border-[#dedee0] py-3.5 pr-4 pl-4">
+      <header className="relative flex shrink-0 items-center justify-center border-b border-[#dedee0] px-4 pb-3.5 pt-[max(0.875rem,env(safe-area-inset-top))]">
+        <button
+          type="button"
+          aria-label="닫기"
+          className="absolute left-4 top-1/2 -translate-y-1/2 text-[#555]"
+          onClick={onClose}
+        >
+          <IconClose />
+        </button>
+        <h2
+          id={titleId}
+          className="font-display text-lg font-normal text-[#111]"
+        >
+          {title}
+        </h2>
+      </header>
+
+      <div className="shrink-0 px-4 pt-4">
+        <div className="relative">
+          <input
+            type="text"
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                runSearch();
+              }
+            }}
+            placeholder={placeholder}
+            className="w-full rounded-xl border-0 bg-[#f5f1ed] py-3.5 pl-4 pr-11 text-base text-[#111] placeholder:text-[#afb4a6] focus:outline-none focus:ring-2 focus:ring-[#f8620c]/35"
+          />
           <button
             type="button"
-            aria-label="닫기"
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-[#555]"
-            onClick={onClose}
+            aria-label="검색"
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-[#555]"
+            onClick={runSearch}
           >
-            <IconClose />
+            <IconSearch className="size-6" />
           </button>
-          <h2
-            id={titleId}
-            className="font-display text-lg font-normal text-[#111]"
-          >
-            {title}
-          </h2>
-        </header>
-
-        <div className="px-4 pt-4">
-          <div className="relative">
-            <input
-              type="text"
-              value={draft}
-              onChange={(e) => setDraft(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault();
-                  runSearch();
-                }
-              }}
-              placeholder={placeholder}
-              className="w-full rounded-xl border-0 bg-[#f5f1ed] py-3.5 pl-4 pr-11 text-base text-[#111] placeholder:text-[#afb4a6] focus:outline-none focus:ring-2 focus:ring-[#f8620c]/35"
-            />
-            <button
-              type="button"
-              aria-label="검색"
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-[#555]"
-              onClick={runSearch}
-            >
-              <IconSearch className="size-6" />
-            </button>
-          </div>
         </div>
+      </div>
 
-        <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-8 pt-4">
-          {loadError ? (
-            <p className="text-sm text-red-600" role="alert">
-              {loadError}
+      <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-[max(2rem,env(safe-area-inset-bottom))] pt-4">
+        {loadError ? (
+          <p className="text-sm text-red-600" role="alert">
+            {loadError}
+          </p>
+        ) : null}
+        {loading ? (
+          <p className="text-sm text-neutral-500">불러오는 중…</p>
+        ) : null}
+        {!loading && !loadError && catalog.length === 0 ? (
+          <p className="mt-2 text-sm text-neutral-500">{emptyDbHint}</p>
+        ) : null}
+        {searched && !loading ? (
+          <>
+            <p className="text-sm font-semibold text-[#111]">
+              검색결과 ({results.length})
             </p>
-          ) : null}
-          {loading ? (
-            <p className="text-sm text-neutral-500">불러오는 중…</p>
-          ) : null}
-          {!loading && !loadError && catalog.length === 0 ? (
-            <p className="mt-2 text-sm text-neutral-500">{emptyDbHint}</p>
-          ) : null}
-          {searched && !loading ? (
-            <>
-              <p className="text-sm font-semibold text-[#111]">
-                검색결과 ({results.length})
-              </p>
-              <ul className="mt-3 space-y-0 divide-y divide-[#dedee0] border-t border-[#dedee0]">
-                {results.map((row) => (
-                  <li key={row.id}>
-                    <button
-                      type="button"
-                      className="w-full py-3.5 text-left text-sm font-normal text-[#111] active:bg-[#f5f1ed]"
-                      onClick={() => {
-                        onSelect(row);
-                        onClose();
-                      }}
-                    >
-                      {row.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </>
-          ) : null}
-        </div>
+            <ul className="mt-3 space-y-0 divide-y divide-[#dedee0] border-t border-[#dedee0]">
+              {results.map((row) => (
+                <li key={row.id}>
+                  <button
+                    type="button"
+                    className="w-full py-3.5 text-left text-sm font-normal text-[#111] active:bg-[#f5f1ed]"
+                    onClick={() => {
+                      onSelect(row);
+                      onClose();
+                    }}
+                  >
+                    {row.label}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : null}
       </div>
     </div>
   );
