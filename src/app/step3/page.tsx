@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
@@ -13,7 +14,9 @@ import { WizardBottomBar } from "@/components/design/WizardBottomBar";
 import { WizardHeader } from "@/components/design/WizardHeader";
 import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { WizardSelectedChoiceLayers } from "@/components/design/WizardSelectedChoiceLayers";
+import { CalculatingPawsPetLottie } from "@/components/design/CalculatingPawsPetLottie";
 import { WizardProgress } from "@/components/design/WizardProgress";
+import { homeFigma } from "@/components/design/homeFigmaPaths";
 import {
   wizardChoiceClass,
   wizardChoiceSelectedClass,
@@ -186,21 +189,34 @@ export default function Step3Page() {
     <>
       {showCalculating && calculatingVideoSrc ? (
         <div
-          className="fixed inset-0 z-[60] flex flex-col items-center justify-center gap-4 bg-white/95 px-6 backdrop-blur-sm"
+          className="fixed inset-0 z-[60] overflow-hidden"
           role="status"
           aria-live="polite"
           aria-busy="true"
         >
-          <p className="font-display text-xl text-[#111]">계산하는 중…</p>
-          <video
-            key={calculatingVideoSrc}
-            className="max-h-[50vh] w-full max-w-[320px] rounded-2xl object-contain"
-            src={calculatingVideoSrc}
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
+          <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
+            <Image
+              src={homeFigma.backgroundPng}
+              alt=""
+              fill
+              className="object-cover object-center"
+              sizes="100vw"
+              priority
+            />
+          </div>
+          <CalculatingPawsPetLottie />
+          <div className="relative z-10 flex h-full min-h-0 flex-col items-center justify-center gap-4 px-6">
+            <p className="font-display text-xl text-[#111]">계산하는 중…</p>
+            <video
+              key={calculatingVideoSrc}
+              className="max-h-[50vh] w-full max-w-[320px] rounded-2xl object-contain"
+              src={calculatingVideoSrc}
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+          </div>
         </div>
       ) : null}
 
