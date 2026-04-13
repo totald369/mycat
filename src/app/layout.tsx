@@ -58,8 +58,8 @@ const memomentKkukkukk = localFont({
   variable: "--font-display",
   weight: "400",
   style: "normal",
-  display: "swap",
-  preload: true,
+  display: "optional",
+  preload: false,
   fallback: [
     "system-ui",
     "-apple-system",
