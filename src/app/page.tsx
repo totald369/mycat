@@ -1,9 +1,16 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 import { AppLogo } from "@/components/design/AppLogo";
 import { HomeCardCarousel } from "@/components/design/HomeCardCarousel";
 import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { DESIGN_RESOURCE_PX, designResource } from "@/components/design/designResourcePaths";
 import { PawPrimaryLink } from "@/components/design/PawButton";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function IntroPage() {
   const { w: iw, h: ih } = DESIGN_RESOURCE_PX.catImg;
