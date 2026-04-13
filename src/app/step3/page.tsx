@@ -16,6 +16,7 @@ import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { WizardSelectedChoiceLayers } from "@/components/design/WizardSelectedChoiceLayers";
 import { CalculatingPawsPetLottie } from "@/components/design/CalculatingPawsPetLottie";
 import { WizardProgress } from "@/components/design/WizardProgress";
+import { ValidationToast } from "@/components/design/ValidationToast";
 import { designResource } from "@/components/design/designResourcePaths";
 import {
   wizardChoiceClass,
@@ -197,8 +198,15 @@ export default function Step3Page() {
     };
   }, [showCalculating, router]);
 
+  useEffect(() => {
+    if (!resultError) return;
+    const timer = setTimeout(() => setResultError(null), 2200);
+    return () => clearTimeout(timer);
+  }, [resultError]);
+
   return (
     <>
+      {resultError ? <ValidationToast message={resultError} /> : null}
       {showCalculating && calculatingVideoSrc ? (
         <div
           className="fixed inset-0 isolate z-[200] min-h-[100dvh] w-full overflow-hidden bg-[#fffcf9]"
@@ -394,11 +402,6 @@ export default function Step3Page() {
       </div>
 
       <WizardBottomBar>
-        {resultError ? (
-          <p className="mb-2 text-center text-xs text-red-600" role="alert">
-            {resultError}
-          </p>
-        ) : null}
         <PawSplitRow
           left={
             <PawWoodLink href="/step2" className="text-center">

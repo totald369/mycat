@@ -9,6 +9,7 @@ import { WizardHeader } from "@/components/design/WizardHeader";
 import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { WizardSelectedChoiceLayers } from "@/components/design/WizardSelectedChoiceLayers";
 import { WizardProgress } from "@/components/design/WizardProgress";
+import { ValidationToast } from "@/components/design/ValidationToast";
 import {
   wizardChoiceClass,
   wizardChoiceSelectedClass,
@@ -77,6 +78,12 @@ export default function Step1Page() {
     breed,
   ]);
 
+  useEffect(() => {
+    if (!error) return;
+    const timer = setTimeout(() => setError(null), 2200);
+    return () => clearTimeout(timer);
+  }, [error]);
+
   const { maxBirthDate, minBirthDate } = useMemo(() => {
     const ymd = (d: Date) => {
       const y = d.getFullYear();
@@ -109,6 +116,7 @@ export default function Step1Page() {
 
   return (
     <>
+      {error ? <ValidationToast message={error} /> : null}
       <div className="relative z-10 mx-auto min-h-screen w-full max-w-[375px] overflow-x-hidden bg-transparent">
         <WizardPageBackground />
         <div className="relative flex min-h-screen w-full flex-col items-center gap-8 px-6 pb-36 pt-20">
@@ -234,11 +242,6 @@ export default function Step1Page() {
       </div>
 
       <WizardBottomBar>
-        {error ? (
-          <p className="mb-2 text-center text-xs text-red-600" role="alert">
-            {error}
-          </p>
-        ) : null}
         <PawPrimaryButton onClick={goNext}>다음 ♧</PawPrimaryButton>
       </WizardBottomBar>
 
