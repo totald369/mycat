@@ -88,3 +88,86 @@ id,brand,name,type,life_stage,kcal_per_100g,serving_g,category,condition
 87,로얄캐닌,세타이어티 밸런스,dry,adult_1y_plus,330,,prescription,weight
 88,로얄캐닌,다이아베틱,dry,adult_1y_plus,350,,prescription,diabetes
 89,로얄캐닌,헤파틱,dry,adult_1y_plus,360,,prescription,liver
+90,지위픽,에어드라이 치킨,dry,all_life_stage,470,30,general,none
+91,지위픽,에어드라이 비프,dry,all_life_stage,490,30,general,none
+92,지위픽,에어드라이 램,dry,all_life_stage,495,30,general,none
+93,지위픽,에어드라이 베니슨,dry,all_life_stage,470,30,general,none
+94,지위픽,에어드라이 마커럴&램,dry,all_life_stage,465,30,general,none
+95,지위픽,캔 치킨,wet,all_life_stage,105,170,general,none
+96,지위픽,캔 비프,wet,all_life_stage,105,170,general,none
+97,지위픽,캔 램,wet,all_life_stage,102,170,general,none
+98,지위픽,캔 베니슨,wet,all_life_stage,102,170,general,none
+99,지위픽,캔 고등어&양고기,wet,all_life_stage,100,170,general,none
+100,로우즈,치킨 & 치킨간 파테,wet,all_life_stage,97,170,general,none
+101,로우즈,터키 & 터키간 파테,wet,all_life_stage,99,170,general,none
+102,로우즈,비프 & 비프간 파테,wet,all_life_stage,105,170,general,none
+103,로우즈,연어 & 연어간 파테,wet,all_life_stage,98,170,general,none
+104,로우즈,치킨 슈레드,wet,all_life_stage,90,170,general,none
+105,로우즈,참치 슈레드,wet,all_life_stage,88,170,general,none
+106,로우즈,참치 & 연어 슈레드,wet,all_life_stage,92,170,general,none
+107,로우즈,참치 & 치킨 슈레드,wet,all_life_stage,94,170,general,none
+108,로우즈,인도어 치킨 파테,wet,adult_indoor,95,170,general,none
+109,로우즈,키튼 치킨 파테,wet,kitten_0_12m,100,170,general,none
+110,로우즈,시니어 치킨 파테,wet,senior_7y_plus,92,170,general,none
+120,알모네이처,HFC 스테럴라이즈드 참치,wet,adult_1y_plus,80,180,general,weight
+121,알모네이처,HFC 스테럴라이즈드 닭고기,wet,adult_1y_plus,85,180,general,weight
+122,알모네이처,HFC 롱제비티 농어&도미,wet,senior_7y_plus,78,180,general,none
+123,알모네이처,HFC 롱제비티 돼지고기,wet,senior_7y_plus,82,180,general,none
+124,알모네이처,컴플리트 치킨 파테,wet,adult_1y_plus,95,170,general,none
+125,알모네이처,컴플리트 연어 파테,wet,adult_1y_plus,98,170,general,none
+126,알모네이처,컴플리트 비프 파테,wet,adult_1y_plus,102,170,general,none
+127,알모네이처,레전드 참치&연어,wet,all_life_stage,75,180,general,none
+128,알모네이처,레전드 참치&닭고기,wet,all_life_stage,78,180,general,none
+129,알모네이처,레전드 닭고기&햄,wet,all_life_stage,80,180,general,none
+130,알모네이처,데일리 치킨 파우치,wet,adult_1y_plus,85,180,general,none
+131,알모네이처,데일리 참치 파우치,wet,adult_1y_plus,82,180,general,none
+132,프린세스,치킨브레스트 헤어볼 컨트롤,wet,adult_1y_plus,80,180,general,none
+133,프린세스,치킨 튜나&쉬림프,wet,adult_1y_plus,82,180,general,none
+134,프린세스,퍼시픽 튜나,wet,adult_1y_plus,78,180,general,none
+135,프린세스,치킨브레스트&터키,wet,adult_1y_plus,85,180,general,none
+136,프린세스,치킨 튜나&살몬,wet,adult_1y_plus,84,180,general,none
+137,프린세스,치킨 튜나&흰살생선,wet,adult_1y_plus,82,180,general,none
+138,프린세스,치킨튜나&알로에베라,wet,adult_1y_plus,80,180,general,none
+139,프린세스,치킨 튜나&펌킨,wet,adult_1y_plus,83,180,general,none
+140,레오나르도,리치 인 피쉬 캔,wet,adult_1y_plus,95,170,general,none
+141,레오나르도,치킨 캔,wet,adult_1y_plus,100,170,general,none
+142,레오나르도,비프 캔,wet,adult_1y_plus,102,170,general,none
+143,레오나르도,치킨 & 연어 캔,wet,adult_1y_plus,98,170,general,none
+144,레오나르도,치킨 & 토끼 캔,wet,adult_1y_plus,101,170,general,none
+145,레오나르도,치킨 & 오리 캔,wet,adult_1y_plus,100,170,general,none
+146,레오나르도,센서티브 치킨 캔,wet,adult_sensitive,97,170,general,allergy
+147,요라,인섹트 프로틴 어덜트 캣,dry,adult_1y_plus,390,50,general,none
+148,퓨리나,원 캣 키튼 파우치,wet,kitten_0_12m,95,170,general,none
+149,SUMMIT,레인지 로티세리 치킨 & 칠면조,dry,adult_1y_plus,380,50,general,none
+150,SUMMIT,미도우 로스트 치킨 & 오리,dry,adult_1y_plus,370,50,general,none
+151,캐츠랑,전연령 고양이,dry,all_life_stage,360,60,general,none
+152,캐츠랑,어덜트,dry,adult_1y_plus,350,60,general,none
+153,캐츠랑,키튼,dry,kitten_0_12m,380,60,general,none
+154,캐츠랑,인도어,dry,adult_indoor,340,60,general,none
+155,캐츠랑,체중관리,dry,weight_control,320,60,general,weight
+156,캐츠랑,시니어,dry,senior_7y_plus,330,60,general,none
+157,캐츠랑,참치 파우치,wet,adult_1y_plus,80,180,general,none
+158,캐츠랑,치킨 파우치,wet,adult_1y_plus,85,180,general,none
+159,캐츠랑,연어 파우치,wet,adult_1y_plus,82,180,general,none
+160,캐츠랑,혼합육 파우치,wet,adult_1y_plus,88,180,general,none
+161,캐츠랑,키튼 파우치,wet,kitten_0_12m,90,180,general,none
+162,캐츠랑,시니어 파우치,wet,senior_7y_plus,78,180,general,none
+163,밥이보약,탄탄한 성장,dry,kitten_0_12m,390,60,general,none
+164,밥이보약,알맞은 체중,dry,adult_1y_plus,310,60,general,weight
+165,밥이보약,빛나는 피모,dry,adult_1y_plus,350,55,general,none
+166,밥이보약,걱정없는 헤어볼,dry,adult_1y_plus,340,55,general,none
+167,밥이보약,NO스트레스,dry,adult_1y_plus,345,55,general,none
+168,밥이보약,활기찬 노후,dry,senior_7y_plus,330,55,general,none
+169,밥이보약,연어 어덜트,dry,adult_1y_plus,360,55,general,none
+170,밥이보약,오리 어덜트,dry,adult_1y_plus,355,55,general,none
+171,밥이보약,참치 어덜트,dry,adult_1y_plus,350,55,general,none
+172,밥이보약,대구 어덜트,dry,adult_1y_plus,345,55,general,none
+173,아미오,자연담은식단 바르게기른닭,dry,adult_1y_plus,350,55,general,none
+174,아미오,자연담은식단 힘찬연어,dry,adult_1y_plus,360,55,general,none
+175,아미오,건강담은식단 체중케어,dry,adult_1y_plus,300,60,general,weight
+176,아미오,건강담은식단 전연령,dry,all_life_stage,340,55,general,none
+177,아미오,그레인프리 슬림업,dry,adult_1y_plus,310,60,general,weight
+178,아미오,그레인프리 유리너리,dry,adult_1y_plus,330,55,general,urinary
+179,아미오,키튼 닭고기,dry,kitten_0_12m,380,60,general,none
+180,아미오,인도어 닭고기,dry,adult_indoor,330,55,general,none
+181,아미오,시니어 닭고기,dry,senior_7y_plus,320,55,general,none

@@ -5,11 +5,15 @@ import { join } from "node:path";
 export type FeedCatalogItem = {
   id: string;
   apiId: string;
+  brand: string;
+  name: string;
   displayLabel: string;
   label: string;
   kcalPer100g: number;
   feedKind: string;
   servingGrams: number | null;
+  category?: string | null;
+  feedCondition?: string | null;
 };
 
 function resolveCsvPath(): string {
@@ -119,6 +123,9 @@ export function loadFeedCatalogFromCatFoodCsv(): FeedCatalogItem[] {
     .map((k) => headerCells.indexOf(k))
     .find((i) => i >= 0) ?? -1;
 
+  const categoryI = idx("category");
+  const conditionI = idx("condition");
+
   const out: FeedCatalogItem[] = [];
 
   for (let r = 1; r < rows.length; r++) {
@@ -154,14 +161,23 @@ export function loadFeedCatalogFromCatFoodCsv(): FeedCatalogItem[] {
 
     const displayLabel = buildDisplayLabel(feedKind, brand, name);
 
+    const category =
+      categoryI >= 0 ? (cells[categoryI] ?? "").trim() || null : null;
+    const feedCondition =
+      conditionI >= 0 ? (cells[conditionI] ?? "").trim() || null : null;
+
     out.push({
       id: `csv-${apiId}`,
       apiId,
+      brand,
+      name,
       displayLabel,
       label: displayLabel,
       kcalPer100g,
       feedKind,
       servingGrams,
+      category,
+      feedCondition,
     });
   }
 

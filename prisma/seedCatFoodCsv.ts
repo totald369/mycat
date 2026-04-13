@@ -109,6 +109,9 @@ async function main() {
     .map((k) => headerCells.indexOf(k))
     .find((i) => i >= 0) ?? -1;
 
+  const categoryI = headerCells.indexOf("category");
+  const conditionI = headerCells.indexOf("condition");
+
   const I = {
     id: idx("id"),
     brand: idx("brand"),
@@ -158,6 +161,11 @@ async function main() {
 
     const displayLabel = buildDisplayLabel(feedKind, brand, name);
 
+    const category =
+      categoryI >= 0 ? (cells[categoryI] ?? "").trim() || null : null;
+    const feedCondition =
+      conditionI >= 0 ? (cells[conditionI] ?? "").trim() || null : null;
+
     await prisma.feedProduct.upsert({
       where: { apiId },
       create: {
@@ -171,6 +179,8 @@ async function main() {
         lifeStage,
         kcalPer100g,
         servingGrams,
+        category,
+        feedCondition,
       },
       update: {
         feedKind,
@@ -181,6 +191,8 @@ async function main() {
         lifeStage,
         kcalPer100g,
         servingGrams,
+        category,
+        feedCondition,
       },
     });
     n += 1;

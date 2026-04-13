@@ -15,22 +15,31 @@ async function feedsFromDb() {
     select: {
       id: true,
       apiId: true,
+      brand: true,
+      name: true,
       displayLabel: true,
       nameKo: true,
       kcalPer100g: true,
       feedKind: true,
       servingGrams: true,
+      category: true,
+      feedCondition: true,
     },
   });
 
   return rows.map((r) => ({
     id: r.id,
     apiId: r.apiId,
+    brand: r.brand,
+    name: r.name,
     displayLabel: r.displayLabel,
+    nameKo: r.nameKo,
     label: feedListLabel(r.displayLabel, r.nameKo),
     kcalPer100g: r.kcalPer100g,
     feedKind: r.feedKind,
     servingGrams: r.servingGrams,
+    category: r.category,
+    feedCondition: r.feedCondition,
   }));
 }
 

@@ -35,6 +35,10 @@ model FeedProduct {
   kcalPer100g  Float?
   /// 습식 1캔(1팩) 기준 무게(g). 건식은 null
   servingGrams Float?
+  /// cat_food.csv `category` (예: general)
+  category      String?
+  /// cat_food.csv `condition` (예: none, urinary, weight)
+  feedCondition String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }

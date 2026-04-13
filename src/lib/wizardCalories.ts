@@ -22,6 +22,12 @@ export type FeedCatalogItem = {
   kcalPer100g: number | null;
   feedKind?: string;
   servingGrams?: number | null;
+  /** 검색·표시용 (API/CSV와 동기, 없으면 생략) */
+  brand?: string | null;
+  name?: string | null;
+  nameKo?: string | null;
+  category?: string | null;
+  feedCondition?: string | null;
 };
 
 export function findKcalPer100gForFeedLabel(

@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { IconClose, IconSearch } from "@/components/wireframe/icons";
+import { canonicalizeKoreanSearchSpelling } from "@/lib/koreanSearchNormalize";
 
 export type CatalogItem = {
   id: string;
@@ -11,7 +12,39 @@ export type CatalogItem = {
   kcalPer100g?: number | null;
   /** 습식 1캔(1팩) g */
   servingGrams?: number | null;
+  /** 품종 API 등 — 영·한 별도 필드 (라벨에 없어도 검색에 사용) */
+  nameEn?: string | null;
+  nameKo?: string | null;
+  /** 사료 표시용 원문(영문 브랜드·제품명 등) */
+  displayLabel?: string | null;
+  brand?: string | null;
+  name?: string | null;
+  category?: string | null;
+  feedCondition?: string | null;
 };
+
+/** 공백·하이픈·슬래시 등 제거 후 소문자 (영문 연속 입력·기호 혼용 대응) */
+function compactForSearch(s: string): string {
+  return canonicalizeKoreanSearchSpelling(s)
+    .normalize("NFC")
+    .toLowerCase()
+    .replace(/[\s\-_/·.,]+/gu, "");
+}
+
+function catalogSearchBlob(row: CatalogItem): string {
+  return [
+    row.label,
+    row.nameEn,
+    row.nameKo,
+    row.displayLabel,
+    row.brand,
+    row.name,
+    row.category,
+    row.feedCondition,
+  ]
+    .filter((x): x is string => typeof x === "string" && x.trim() !== "")
+    .join(" ");
+}
 
 type Props = {
   open: boolean;
@@ -96,9 +129,11 @@ export function CatalogSearchModal({
 
   const results = useMemo(() => {
     if (!searched) return [];
-    const q = activeQuery.toLowerCase();
-    if (!q) return [];
-    return catalog.filter((row) => row.label.toLowerCase().includes(q));
+    const needle = compactForSearch(activeQuery);
+    if (!needle) return [];
+    return catalog.filter((row) =>
+      compactForSearch(catalogSearchBlob(row)).includes(needle),
+    );
   }, [searched, activeQuery, catalog]);
 
   if (!open) return null;
