@@ -2,11 +2,11 @@ import Image from "next/image";
 import { AppLogo } from "@/components/design/AppLogo";
 import { HomeCardCarousel } from "@/components/design/HomeCardCarousel";
 import { WizardPageBackground } from "@/components/design/WizardPageBackground";
-import { HOME_PX, homeFigma } from "@/components/design/homeFigmaPaths";
+import { DESIGN_RESOURCE_PX, designResource } from "@/components/design/designResourcePaths";
 import { PawPrimaryLink } from "@/components/design/PawButton";
 
 export default function IntroPage() {
-  const { w: iw, h: ih } = HOME_PX.catImg;
+  const { w: iw, h: ih } = DESIGN_RESOURCE_PX.catImg;
   /** @3x 에셋 → 피그마 1x 논리 크기 */
   const catLogicalW = iw / 3;
   const catLogicalH = ih / 3;
@@ -27,7 +27,7 @@ export default function IntroPage() {
               <span>우리</span>
               <span className="inline-flex shrink-0 items-end leading-none">
                 <Image
-                  src={homeFigma.catImgPng}
+                  src={designResource.catImg}
                   alt="우리 냥이"
                   width={iw}
                   height={ih}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { homeFigma } from "@/components/design/homeFigmaPaths";
+import { designResource } from "@/components/design/designResourcePaths";
 
 /** 피그마 로고 SVG 96×24 — 로컬 SVG는 `<img>`로 안정 표시 */
 export function AppLogo() {
@@ -10,7 +10,7 @@ export function AppLogo() {
       aria-label="홈으로 이동"
     >
       <img
-        src={homeFigma.logoSvg}
+        src={designResource.logo}
         alt=""
         width={96}
         height={24}

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { homeFigma } from "@/components/design/homeFigmaPaths";
+import { designResource } from "@/components/design/designResourcePaths";
 
 /**
  * 풀스크린 배경(WebP). 위저드·홈 공통 LCP 후보이므로 기본 `priority`로 조기 로드.
@@ -15,7 +15,7 @@ export function WizardPageBackground({
       aria-hidden
     >
       <Image
-        src={homeFigma.backgroundPng}
+        src={designResource.background}
         alt=""
         fill
         className="object-cover object-center"

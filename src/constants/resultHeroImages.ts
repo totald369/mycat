@@ -1,6 +1,5 @@
 import type { CalculatorSuccess } from "@/lib/calculator";
-
-const BASE = "/figma/home";
+import { DESIGN_RESOURCE_IMG } from "@/components/design/designResourcePaths";
 
 /**
  * 계산 결과 상태별 일러스트 (@3x 528×657 → 표시 약 176×219)
@@ -9,9 +8,9 @@ const BASE = "/figma/home";
  * - full: 권장보다 많은 편(그릇이 차 있음)
  */
 export const RESULT_HERO_IMAGE: Record<CalculatorSuccess["status"], string> = {
-  balanced: `${BASE}/Img_Cat_great_meal.webp`,
-  slightly_high: `${BASE}/Img_Cat_full.webp`,
-  high: `${BASE}/Img_Cat_full.webp`,
-  slightly_low: `${BASE}/Img_Cat_hungry.webp`,
-  low: `${BASE}/Img_Cat_hungry.webp`,
+  balanced: `${DESIGN_RESOURCE_IMG}/Img_Cat_great_meal.webp`,
+  slightly_high: `${DESIGN_RESOURCE_IMG}/Img_Cat_full.webp`,
+  high: `${DESIGN_RESOURCE_IMG}/Img_Cat_full.webp`,
+  slightly_low: `${DESIGN_RESOURCE_IMG}/Img_Cat_hungry.webp`,
+  low: `${DESIGN_RESOURCE_IMG}/Img_Cat_hungry.webp`,
 };

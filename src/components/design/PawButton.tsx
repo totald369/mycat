@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
-import { homeFigma } from "@/components/design/homeFigmaPaths";
+import { designResource } from "@/components/design/designResourcePaths";
 
 /** `none`: 가로 전체(주황 PP100 / 보조는 SP 좌·우 합성). `leading`|`trailing`: 분할 행 한 칸. */
 export type PawHalf = "none" | "leading" | "trailing";
@@ -41,7 +41,7 @@ function FigmaPaw({
   if (scheme === "primary" && half === "none") {
     return (
       <img
-        src={homeFigma.pawBtn100}
+        src={designResource.pawPrimaryFull}
         alt=""
         aria-hidden
         draggable={false}
@@ -53,7 +53,7 @@ function FigmaPaw({
   if (scheme === "primary" && half === "leading") {
     return (
       <img
-        src={homeFigma.pawBtn50L_PP}
+        src={designResource.pawPrimaryLeading}
         alt=""
         aria-hidden
         draggable={false}
@@ -65,7 +65,7 @@ function FigmaPaw({
   if (scheme === "primary" && half === "trailing") {
     return (
       <img
-        src={homeFigma.pawBtn50R_PP}
+        src={designResource.pawPrimaryTrailing}
         alt=""
         aria-hidden
         draggable={false}
@@ -77,7 +77,7 @@ function FigmaPaw({
   if (scheme === "secondary" && half === "leading") {
     return (
       <img
-        src={homeFigma.pawBtn50L_SP}
+        src={designResource.pawSecondaryLeading}
         alt=""
         aria-hidden
         draggable={false}
@@ -89,7 +89,7 @@ function FigmaPaw({
   if (scheme === "secondary" && half === "trailing") {
     return (
       <img
-        src={homeFigma.pawBtn50R_SP}
+        src={designResource.pawSecondaryTrailing}
         alt=""
         aria-hidden
         draggable={false}
@@ -102,14 +102,14 @@ function FigmaPaw({
   return (
     <div className="absolute inset-0 flex w-full overflow-visible">
       <img
-        src={homeFigma.pawBtn50L_SP}
+        src={designResource.pawSecondaryLeading}
         alt=""
         aria-hidden
         draggable={false}
         className={`${base} h-full min-h-0 w-1/2 object-contain object-right`}
       />
       <img
-        src={homeFigma.pawBtn50R_SP}
+        src={designResource.pawSecondaryTrailing}
         alt=""
         aria-hidden
         draggable={false}

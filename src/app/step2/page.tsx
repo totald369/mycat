@@ -12,7 +12,7 @@ import { WizardHeader } from "@/components/design/WizardHeader";
 import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { WizardSelectedChoiceLayers } from "@/components/design/WizardSelectedChoiceLayers";
 import { WizardProgress } from "@/components/design/WizardProgress";
-import { BCS_LABEL_TO_ICON } from "@/components/design/homeFigmaPaths";
+import { BCS_LABEL_TO_ICON } from "@/components/design/designResourcePaths";
 import { wizardChoiceClass } from "@/components/design/wizardFieldClasses";
 import { patchWizardState, readWizardState } from "@/lib/wizardStorage";
 

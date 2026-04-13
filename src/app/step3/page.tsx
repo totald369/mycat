@@ -16,7 +16,7 @@ import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { WizardSelectedChoiceLayers } from "@/components/design/WizardSelectedChoiceLayers";
 import { CalculatingPawsPetLottie } from "@/components/design/CalculatingPawsPetLottie";
 import { WizardProgress } from "@/components/design/WizardProgress";
-import { homeFigma } from "@/components/design/homeFigmaPaths";
+import { designResource } from "@/components/design/designResourcePaths";
 import {
   wizardChoiceClass,
   wizardChoiceSelectedClass,
@@ -198,7 +198,7 @@ export default function Step3Page() {
         >
           <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
             <Image
-              src={homeFigma.backgroundPng}
+              src={designResource.background}
               alt=""
               fill
               className="object-cover object-center"
@@ -308,21 +308,38 @@ export default function Step3Page() {
                 </div>
 
                 {chips.length > 0 && (
-                  <div className="mt-3 flex flex-col gap-2">
+                  <div className="mt-3 flex flex-col gap-1">
                     {chips.map((c) => (
                       <div
                         key={c.id}
-                        className={`flex items-center justify-between rounded-xl px-3 py-2.5 text-sm ${
-                          c.tone === "purple"
-                            ? "bg-[#e9e3ff] text-[#111]"
-                            : "bg-[#ffe8d5] text-[#111]"
-                        }`}
+                        className="relative flex items-center justify-between gap-2 overflow-hidden rounded-lg py-1 pl-4 pr-2 font-display text-sm leading-[1.4] text-white"
                       >
-                        <span className="pr-2">{c.text}</span>
+                        <span
+                          aria-hidden
+                          className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-lg"
+                        >
+                          <span
+                            className={
+                              c.tone === "purple"
+                                ? "absolute inset-0 rounded-lg bg-[#6f4425]"
+                                : "absolute inset-0 rounded-lg bg-[#884413]"
+                            }
+                          />
+                          <Image
+                            src={designResource.selectedChoiceTexture}
+                            alt=""
+                            fill
+                            className="rounded-lg object-cover opacity-20"
+                            sizes="300px"
+                          />
+                        </span>
+                        <span className="relative z-10 min-w-0 flex-1 pr-1">
+                          {c.text}
+                        </span>
                         <button
                           type="button"
                           aria-label="삭제"
-                          className="shrink-0 text-[#555]"
+                          className="relative z-10 shrink-0 text-white/85 hover:text-white"
                           onClick={() => removeChip(c.id)}
                         >
                           <IconClose />
