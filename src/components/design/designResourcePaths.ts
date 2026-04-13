@@ -24,6 +24,7 @@ export const designResource = {
   iconCatFood: `${DESIGN_RESOURCE_ICON}/Ic_catfood.svg`,
   iconCatScale: `${DESIGN_RESOURCE_ICON}/ic_catscale.svg`,
   iconCatActive: `${DESIGN_RESOURCE_ICON}/Ic_catactive.svg`,
+  iconCalendar: `${DESIGN_RESOURCE_ICON}/Ic_Calendar.svg`,
   /** 위저드 선택 칩 브라운 레이어 텍스처 */
   selectedChoiceTexture: `${DESIGN_RESOURCE_IMG}/Selected_Button_texture.webp`,
 } as const;
