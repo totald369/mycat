@@ -72,8 +72,29 @@ const memomentKkukkukk = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://meowdiet.com"),
-  title: "냥이 칼로리 계산",
-  description: "우리 냥이에게 딱 맞는 칼로리를 계산해보세요",
+  title: {
+    default: "고양이 칼로리 계산기 | 고양이 사료 급여량·하루 사료 양 계산 - 우리냥이",
+    template: "%s | 우리냥이",
+  },
+  description:
+    "고양이 사료 급여량과 고양이 하루 사료 양을 체중, 활동량, 중성화 여부에 맞춰 계산해보세요. 고양이 칼로리 계산으로 우리 아이 적정 급여량을 쉽게 확인할 수 있습니다.",
+  keywords: [
+    "고양이 사료 급여량",
+    "고양이 하루 사료 양",
+    "고양이 칼로리 계산",
+    "고양이 적정 급여량",
+    "고양이 급여량 계산기",
+    "고양이 칼로리 계산기",
+  ],
+  openGraph: {
+    title: "고양이 칼로리 계산기 | 고양이 사료 급여량·하루 사료 양 계산",
+    description:
+      "체중, 활동량, 중성화 여부를 기반으로 고양이 적정 급여량을 빠르게 계산하세요.",
+    url: "https://meowdiet.com",
+    siteName: "우리냥이",
+    locale: "ko_KR",
+    type: "website",
+  },
   verification: {
     google: "8M9JJaFTVZbs-ZQzd7cpmI2luczjidpKkuS5sTO8nMg",
   },
