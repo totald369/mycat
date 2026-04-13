@@ -32,18 +32,27 @@ body {
 .wf-birth-date-field {
   color-scheme: light;
   color: #111;
+  position: relative;
+  -webkit-appearance: none;
+  appearance: none;
   padding-right: 52px;
   background-image: url("/design-resource/icon/Ic_Calendar.svg");
   background-repeat: no-repeat;
   background-position: right 16px center;
   background-size: 24px 24px;
 }
+.wf-birth-date-field::-webkit-clear-button,
+.wf-birth-date-field::-webkit-inner-spin-button {
+  display: none;
+}
 .wf-birth-date-field::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 16px;
   cursor: pointer;
   opacity: 0;
   width: 24px;
   height: 24px;
-  margin-right: -2px;
+  margin: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
