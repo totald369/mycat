@@ -101,6 +101,8 @@ export default function Step3Page() {
     ]);
     setNextTone(nextTone === "purple" ? "peach" : "purple");
     setSearch("");
+    setGrams("10");
+    setTimes("1");
   };
 
   const removeChip = (id: string) => {
