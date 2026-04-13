@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Noto_Sans_KR } from "next/font/google";
 import Script from "next/script";
 import { GA_MEASUREMENT_ID } from "@/constants/googleAnalytics";
+import { CLARITY_PROJECT_ID } from "@/constants/microsoftClarity";
 import "./globals.css";
 
 /** Pretendard subset woff2 — UI에 쓰는 굵기만 (피그마와 동일 스택, next/font로 FOIT 완화) */
@@ -100,6 +101,15 @@ export default function RootLayout({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+        <Script id="clarity-init" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "${CLARITY_PROJECT_ID}");
           `}
         </Script>
       </body>
