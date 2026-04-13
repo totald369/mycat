@@ -70,6 +70,7 @@ const memomentKkukkukk = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://meowdiet.com"),
   title: "냥이 칼로리 계산",
   description: "우리 냥이에게 딱 맞는 칼로리를 계산해보세요",
   verification: {
