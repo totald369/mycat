@@ -1,7 +1,14 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { FieldLabel } from "@/components/design/FieldLabel";
 import { PawPrimaryButton } from "@/components/design/PawButton";
 import { WizardBottomBar } from "@/components/design/WizardBottomBar";
@@ -44,6 +51,20 @@ export default function Step1Page() {
   const [breedModalOpen, setBreedModalOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hydrated, setHydrated] = useState(false);
+  /**
+   * true: 정밀 포인터(마우스·트랙패드) — 투명 date 입력 히트레이어로 직접 피커.
+   * false: 주로 터치 — 입력은 화면 밖 + 버튼 showPicker (모바일 네이티브 쉐브론 회피).
+   * hover 조건을 넣으면 (hover:none) 데스크톱에서 레이어가 꺼져 달력이 안 뜰 수 있음.
+   */
+  const [birthHitLayer, setBirthHitLayer] = useState(false);
+
+  useLayoutEffect(() => {
+    const mq = window.matchMedia("(pointer: fine)");
+    const sync = () => setBirthHitLayer(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   useEffect(() => {
     const s = readWizardState().step1;
@@ -161,18 +182,23 @@ export default function Step1Page() {
                     min={minBirthDate}
                     max={maxBirthDate}
                     onChange={(e) => setBirthDate(e.target.value)}
-                    tabIndex={-1}
-                    aria-hidden="true"
-                    className="wf-birth-date-native [color-scheme:light]"
+                    tabIndex={birthHitLayer ? undefined : -1}
+                    aria-hidden={birthHitLayer ? undefined : true}
+                    aria-label={birthHitLayer ? "생년월일" : undefined}
+                    className={`wf-birth-date-native [color-scheme:light]${birthHitLayer ? " wf-birth-date-native--hitlayer" : ""}`}
                   />
                   <button
                     type="button"
-                    className={`${wizardInputClass} flex w-full items-center justify-between gap-3 text-left [color-scheme:light]`}
-                    onClick={openBirthPicker}
+                    tabIndex={birthHitLayer ? -1 : undefined}
+                    aria-hidden={birthHitLayer ? true : undefined}
+                    className={`${wizardInputClass} relative flex w-full items-center justify-between gap-3 text-left [color-scheme:light] ${birthHitLayer ? "z-0 pointer-events-none" : "z-10"}`}
+                    onClick={birthHitLayer ? undefined : openBirthPicker}
                     aria-label={
-                      birthDate
-                        ? `생년월일 ${formatBirthDisplay(birthDate)}`
-                        : "생년월일 선택"
+                      birthHitLayer
+                        ? undefined
+                        : birthDate
+                          ? `생년월일 ${formatBirthDisplay(birthDate)}`
+                          : "생년월일 선택"
                     }
                   >
                     <span
