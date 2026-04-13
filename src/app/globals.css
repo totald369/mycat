@@ -28,43 +28,14 @@ body {
     system-ui, sans-serif;
 }
 
-/* 생년월일: 기본은 화면 밖 — 터치형 UI에서 버튼+showPicker만 사용(JS와 함께 쓰임) */
-.wf-birth-date-native {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border: 0;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 0;
+/* 생년월일: 보이는 네이티브 date — 투명 오버레이는 PC에서 달력 미표시 이슈가 있어 사용하지 않음 */
+.wf-birth-date-field {
+  color-scheme: light;
+  color: #111;
 }
-
-/*
- * 정밀 포인터 환경 전용 — JS matchMedia "(pointer: fine)" 와 함께 붙임.
- */
-.wf-birth-date-native.wf-birth-date-native--hitlayer {
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  clip: auto;
-  clip-path: none;
-  white-space: normal;
-  /* WebKit 일부에서 opacity:0이 히트/피커에 영향을 줄 수 있어 극소만 남김 */
-  opacity: 0.001;
-  pointer-events: auto;
+.wf-birth-date-field::-webkit-calendar-picker-indicator {
   cursor: pointer;
-  z-index: 2;
+  opacity: 0.85;
 }
 
 @media (prefers-reduced-motion: reduce) {

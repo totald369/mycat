@@ -2,10 +2,13 @@ import Image from "next/image";
 import { homeFigma } from "@/components/design/homeFigmaPaths";
 
 /**
- * `Background.png`를 뷰포트 전체에 깔고, 콘텐츠는 상위 `relative z-10` 컬럼이 덮습니다.
- * PNG 알파·명도는 건드리지 않음.
+ * 풀스크린 배경(WebP). 위저드·홈 공통 LCP 후보이므로 기본 `priority`로 조기 로드.
  */
-export function WizardPageBackground() {
+export function WizardPageBackground({
+  priority = true,
+}: {
+  priority?: boolean;
+} = {}) {
   return (
     <div
       className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
@@ -17,7 +20,8 @@ export function WizardPageBackground() {
         fill
         className="object-cover object-center"
         sizes="100vw"
-        priority={false}
+        priority={priority}
+        fetchPriority={priority ? "high" : undefined}
       />
     </div>
   );

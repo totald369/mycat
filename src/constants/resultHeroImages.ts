@@ -9,9 +9,9 @@ const BASE = "/figma/home";
  * - full: 권장보다 많은 편(그릇이 차 있음)
  */
 export const RESULT_HERO_IMAGE: Record<CalculatorSuccess["status"], string> = {
-  balanced: `${BASE}/Img_Cat_great_meal.png`,
-  slightly_high: `${BASE}/Img_Cat_full.png`,
-  high: `${BASE}/Img_Cat_full.png`,
-  slightly_low: `${BASE}/Img_Cat_hungry.png`,
-  low: `${BASE}/Img_Cat_hungry.png`,
+  balanced: `${BASE}/Img_Cat_great_meal.webp`,
+  slightly_high: `${BASE}/Img_Cat_full.webp`,
+  high: `${BASE}/Img_Cat_full.webp`,
+  slightly_low: `${BASE}/Img_Cat_hungry.webp`,
+  low: `${BASE}/Img_Cat_hungry.webp`,
 };

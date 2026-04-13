@@ -2,12 +2,12 @@
 export const HOME_FIGMA = "/figma/home";
 
 export const homeFigma = {
-  /** @3x 3402² → 논리 1134×1134px 표시 */
-  backgroundPng: `${HOME_FIGMA}/Background.png`,
+  /** 풀스크린 배경 — 1280 WebP(구 3402² PNG ~2.5MB 대비 대역폭 절감) */
+  backgroundPng: `${HOME_FIGMA}/Background.webp`,
   /** 파일 528×657px = 피그마 176×219 @3x */
-  catTitlePng: `${HOME_FIGMA}/Img_Cat_full.png`,
-  /** 홈 타이틀 “우리 ○○에게” 삽화 — `cat_img.png` 원본 그대로 */
-  catImgPng: `${HOME_FIGMA}/cat_img.png`,
+  catTitlePng: `${HOME_FIGMA}/Img_Cat_full.webp`,
+  /** 홈 타이틀 “우리 ○○에게” 삽화 */
+  catImgPng: `${HOME_FIGMA}/cat_img.webp`,
   logoSvg: `${HOME_FIGMA}/Logo.svg`,
   pawBtn100: `${HOME_FIGMA}/PP_BTN_Container_100.svg`,
   pawBtn50L_PP: `${HOME_FIGMA}/PP_BTN_Container_50_L.svg`,
@@ -18,7 +18,7 @@ export const homeFigma = {
   icCatscale: `${HOME_FIGMA}/ic_catscale.svg`,
   icCatactive: `${HOME_FIGMA}/Ic_catactive.svg`,
   /** 선택된 위저드 초이스 버튼 — 브라운 위 오버레이 */
-  selectedButtonTexturePng: `${HOME_FIGMA}/Selected_Button_texture.png`,
+  selectedButtonTexturePng: `${HOME_FIGMA}/Selected_Button_texture.webp`,
 } as const;
 
 /** UI 라벨 → BCS 일러스트 SVG (calculator `BCS_TO_BODY`와 동일 키) */

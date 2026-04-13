@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { InfiniteMarquee } from "@/components/ui/InfiniteMarquee";
 import { HOME_FEATURE_CARDS } from "@/data/homeFeatureCards";
 
@@ -19,13 +20,16 @@ export function HomeCardCarousel() {
             className="mx-auto flex size-16 shrink-0 items-center justify-center"
             aria-hidden
           >
-            <img
+            <Image
               src={c.icon}
               alt=""
               width={64}
               height={64}
               className="h-16 w-16 object-contain"
               draggable={false}
+              unoptimized
+              sizes="64px"
+              decoding="async"
             />
           </div>
           <div className="flex min-h-0 flex-1 flex-col gap-2 text-center">

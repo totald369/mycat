@@ -1,14 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FieldLabel } from "@/components/design/FieldLabel";
 import { PawPrimaryButton } from "@/components/design/PawButton";
 import { WizardBottomBar } from "@/components/design/WizardBottomBar";
@@ -22,7 +15,7 @@ import {
   wizardInputClass,
 } from "@/components/design/wizardFieldClasses";
 import { BreedSearchModal } from "@/components/wireframe/BreedSearchModal";
-import { IconCalendar, IconSearch } from "@/components/wireframe/icons";
+import { IconSearch } from "@/components/wireframe/icons";
 import { patchWizardState, readWizardState } from "@/lib/wizardStorage";
 
 const GENDER_OPTIONS = [
@@ -41,7 +34,6 @@ function formatBirthDisplay(iso: string): string {
 
 export default function Step1Page() {
   const router = useRouter();
-  const birthInputRef = useRef<HTMLInputElement>(null);
   const [name, setName] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [gender, setGender] = useState<string | null>(null);
@@ -51,20 +43,6 @@ export default function Step1Page() {
   const [breedModalOpen, setBreedModalOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hydrated, setHydrated] = useState(false);
-  /**
-   * true: 정밀 포인터(마우스·트랙패드) — 투명 date 입력 히트레이어로 직접 피커.
-   * false: 주로 터치 — 입력은 화면 밖 + 버튼 showPicker (모바일 네이티브 쉐브론 회피).
-   * hover 조건을 넣으면 (hover:none) 데스크톱에서 레이어가 꺼져 달력이 안 뜰 수 있음.
-   */
-  const [birthHitLayer, setBirthHitLayer] = useState(false);
-
-  useLayoutEffect(() => {
-    const mq = window.matchMedia("(pointer: fine)");
-    const sync = () => setBirthHitLayer(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
 
   useEffect(() => {
     const s = readWizardState().step1;
@@ -110,17 +88,6 @@ export default function Step1Page() {
     const oldest = new Date(today);
     oldest.setFullYear(oldest.getFullYear() - 40);
     return { maxBirthDate: ymd(today), minBirthDate: ymd(oldest) };
-  }, []);
-
-  const openBirthPicker = useCallback(() => {
-    const el = birthInputRef.current;
-    if (!el) return;
-    try {
-      el.showPicker?.();
-    } catch {
-      el.focus();
-      el.click();
-    }
   }, []);
 
   const goNext = () => {
@@ -173,48 +140,20 @@ export default function Step1Page() {
 
               <div>
                 <FieldLabel>생년월일</FieldLabel>
-                <div className="relative">
-                  <input
-                    ref={birthInputRef}
-                    id="birth-date"
-                    type="date"
-                    value={birthDate}
-                    min={minBirthDate}
-                    max={maxBirthDate}
-                    onChange={(e) => setBirthDate(e.target.value)}
-                    tabIndex={birthHitLayer ? undefined : -1}
-                    aria-hidden={birthHitLayer ? undefined : true}
-                    aria-label={birthHitLayer ? "생년월일" : undefined}
-                    className={`wf-birth-date-native [color-scheme:light]${birthHitLayer ? " wf-birth-date-native--hitlayer" : ""}`}
-                  />
-                  <button
-                    type="button"
-                    tabIndex={birthHitLayer ? -1 : undefined}
-                    aria-hidden={birthHitLayer ? true : undefined}
-                    className={`${wizardInputClass} relative flex w-full items-center justify-between gap-3 text-left [color-scheme:light] ${birthHitLayer ? "z-0 pointer-events-none" : "z-10"}`}
-                    onClick={birthHitLayer ? undefined : openBirthPicker}
-                    aria-label={
-                      birthHitLayer
-                        ? undefined
-                        : birthDate
-                          ? `생년월일 ${formatBirthDisplay(birthDate)}`
-                          : "생년월일 선택"
-                    }
-                  >
-                    <span
-                      className={
-                        birthDate
-                          ? "min-w-0 truncate text-[#111]"
-                          : "text-[#afb4a6]"
-                      }
-                    >
-                      {birthDate
-                        ? formatBirthDisplay(birthDate)
-                        : "YYYY.MM.DD"}
-                    </span>
-                    <IconCalendar className="size-6 shrink-0 text-[#555]" />
-                  </button>
-                </div>
+                <input
+                  id="birth-date"
+                  type="date"
+                  value={birthDate}
+                  min={minBirthDate}
+                  max={maxBirthDate}
+                  onChange={(e) => setBirthDate(e.target.value)}
+                  aria-label={
+                    birthDate
+                      ? `생년월일 ${formatBirthDisplay(birthDate)}`
+                      : "생년월일 선택"
+                  }
+                  className={`${wizardInputClass} wf-birth-date-field block w-full`}
+                />
               </div>
 
               <div>

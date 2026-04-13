@@ -16,6 +16,8 @@ export function AppLogo() {
         height={24}
         className="h-6 w-[96px] object-contain object-center"
         draggable={false}
+        decoding="async"
+        fetchPriority="high"
         aria-hidden
       />
     </Link>
