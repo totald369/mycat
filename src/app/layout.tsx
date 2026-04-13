@@ -72,28 +72,35 @@ const memomentKkukkukk = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://meowdiet.com"),
-  title: {
-    default: "고양이 칼로리 계산기 | 고양이 사료 급여량·하루 사료 양 계산 - 우리냥이",
-    template: "%s | 우리냥이",
-  },
+  title: "우리냥이 | 고양이 사료 급여량 계산기",
   description:
-    "고양이 사료 급여량과 고양이 하루 사료 양을 체중, 활동량, 중성화 여부에 맞춰 계산해보세요. 고양이 칼로리 계산으로 우리 아이 적정 급여량을 쉽게 확인할 수 있습니다.",
+    "고양이 체중, 활동량, 체형, 사료 정보를 바탕으로 하루 적정 급여량과 칼로리를 계산해보세요.",
   keywords: [
     "고양이 사료 급여량",
     "고양이 하루 사료 양",
     "고양이 칼로리 계산",
-    "고양이 적정 급여량",
     "고양이 급여량 계산기",
-    "고양이 칼로리 계산기",
   ],
   openGraph: {
-    title: "고양이 칼로리 계산기 | 고양이 사료 급여량·하루 사료 양 계산",
-    description:
-      "체중, 활동량, 중성화 여부를 기반으로 고양이 적정 급여량을 빠르게 계산하세요.",
+    title: "우리냥이 | 고양이 사료 급여량 계산기",
+    description: "고양이 체중 기반 사료 급여량 계산 서비스",
     url: "https://meowdiet.com",
     siteName: "우리냥이",
+    images: [
+      {
+        url: "/og-image-our-cat.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
     locale: "ko_KR",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "우리냥이 | 고양이 사료 급여량 계산기",
+    description: "고양이 체중 기반 사료 급여량 계산",
+    images: ["/og-image-our-cat.png"],
   },
   verification: {
     google: "8M9JJaFTVZbs-ZQzd7cpmI2luczjidpKkuS5sTO8nMg",
