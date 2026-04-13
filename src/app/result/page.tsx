@@ -315,12 +315,49 @@ export default function ResultPage() {
               </p>
               <ul className="mt-1 list-disc space-y-1 pl-5 text-[rgba(23,23,23,0.8)]">
                 <li>
-                  <span className="font-semibold text-[#f8620c]">
+                  <span
+                    className={
+                      success.diffPercent < 0
+                        ? "font-semibold text-[#f8620c]"
+                        : undefined
+                    }
+                  >
+                    0% 미만: 급여량 추가가 필요해요.
+                  </span>
+                </li>
+                <li>
+                  <span
+                    className={
+                      success.diffPercent >= 0 && success.diffPercent <= 5
+                        ? "font-semibold text-[#f8620c]"
+                        : undefined
+                    }
+                  >
                     5% 이내: 현재 급여량을 유지해 보세요.
                   </span>
                 </li>
-                <li>5~15% 차이: 조금씩 조정해 보세요.</li>
-                <li>15% 이상 차이: 급여량 조정이 필요해 보여요.</li>
+                <li>
+                  <span
+                    className={
+                      success.diffPercent > 5 && success.diffPercent < 15
+                        ? "font-semibold text-[#f8620c]"
+                        : undefined
+                    }
+                  >
+                    5~15% 차이: 조금씩 조정해 보세요.
+                  </span>
+                </li>
+                <li>
+                  <span
+                    className={
+                      success.diffPercent >= 15
+                        ? "font-semibold text-[#f8620c]"
+                        : undefined
+                    }
+                  >
+                    15% 이상 차이: 급여량 조정이 필요해 보여요.
+                  </span>
+                </li>
               </ul>
             </div>
           </>
