@@ -88,7 +88,7 @@ export const metadata: Metadata = {
     siteName: "우리냥이",
     images: [
       {
-        url: "/og-image-our-cat.png",
+        url: "/og-brown.png",
         width: 1200,
         height: 630,
       },
@@ -100,7 +100,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "우리냥이 | 고양이 사료 급여량 계산기",
     description: "고양이 체중 기반 사료 급여량 계산",
-    images: ["/og-image-our-cat.png"],
+    images: ["/og-brown.png"],
   },
   verification: {
     google: "8M9JJaFTVZbs-ZQzd7cpmI2luczjidpKkuS5sTO8nMg",
