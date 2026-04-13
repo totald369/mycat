@@ -96,6 +96,27 @@ export default function ResultPage() {
     if (typeof window === "undefined") return;
 
     const params = new URLSearchParams(window.location.search);
+    const shortId = params.get("sid");
+    if (shortId) {
+      void (async () => {
+        try {
+          const res = await fetch(`/api/share/${encodeURIComponent(shortId)}`);
+          if (!res.ok) return;
+          const data = (await res.json()) as { encoded?: string };
+          const encoded = (data.encoded ?? "").trim();
+          if (!encoded) return;
+          const decoded = decodeShareResultPayload(encoded);
+          if (!decoded.ok) return;
+          setOutput(sharePayloadToCalculatorSuccess(decoded.value));
+          setWarnings([]);
+          usedPrefetchRef.current = true;
+        } catch {
+          /* */
+        }
+      })();
+      return;
+    }
+
     const share = params.get("s");
     if (share) {
       const decoded = decodeShareResultPayload(share);
@@ -164,7 +185,7 @@ export default function ResultPage() {
     if (!success) return;
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
-    if (params.has("s")) {
+    if (params.has("s") || params.has("sid")) {
       setShowCompleteSplash(false);
       return;
     }
@@ -191,15 +212,32 @@ export default function ResultPage() {
   const handleShare = useCallback(async () => {
     if (!success || typeof window === "undefined") return;
     const encoded = encodeShareResultPayload(success);
-    const url = new URL(`${window.location.origin}${window.location.pathname}`);
-    url.searchParams.set("s", encoded);
+    const fallbackUrl = new URL(`${window.location.origin}${window.location.pathname}`);
+    fallbackUrl.searchParams.set("s", encoded);
+    let shareUrl = fallbackUrl.toString();
+
+    try {
+      const res = await fetch("/api/share", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ encoded }),
+      });
+      if (res.ok) {
+        const data = (await res.json()) as { id?: string };
+        if (data.id) {
+          shareUrl = `${window.location.origin}/r/${encodeURIComponent(data.id)}`;
+        }
+      }
+    } catch {
+      /* 실패 시 fallbackUrl 사용 */
+    }
 
     if (navigator.share) {
       try {
         await navigator.share({
           title: document.title,
           text: "우리 냥이 칼로리 계산 결과를 확인해 보세요.",
-          url: url.toString(),
+          url: shareUrl,
         });
       } catch {
         /* 사용자 취소 등 */
@@ -208,7 +246,7 @@ export default function ResultPage() {
     }
 
     try {
-      await navigator.clipboard.writeText(url.toString());
+      await navigator.clipboard.writeText(shareUrl);
     } catch {
       /* */
     }

@@ -42,3 +42,11 @@ model FeedProduct {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
+
+/// 공유 결과 단축 링크 저장소
+model SharedResult {
+  id        String   @id @default(cuid())
+  shortId   String   @unique
+  payload   String
+  createdAt DateTime @default(now())
+}
