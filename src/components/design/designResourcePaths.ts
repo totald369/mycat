@@ -1,6 +1,7 @@
 /**
  * 디자인 정적 에셋 — `public/design-resource/`
- * (`icon/`, `img/`, 로고·발바닥 SVG 등)
+ * - `icon/`: SVG
+ * - `img/`: WebP
  */
 export const DESIGN_RESOURCE = "/design-resource";
 export const DESIGN_RESOURCE_ICON = `${DESIGN_RESOURCE}/icon`;
@@ -14,12 +15,12 @@ export const designResource = {
   catTitle: `${DESIGN_RESOURCE_IMG}/Img_Cat_full.webp`,
   /** 홈 타이틀 “우리 ○○에게” 삽화 */
   catImg: `${DESIGN_RESOURCE_IMG}/cat_img.webp`,
-  logo: `${DESIGN_RESOURCE}/Logo.svg`,
-  pawPrimaryFull: `${DESIGN_RESOURCE}/PP_BTN_Container_100.svg`,
-  pawPrimaryLeading: `${DESIGN_RESOURCE}/PP_BTN_Container_50_L.svg`,
-  pawPrimaryTrailing: `${DESIGN_RESOURCE}/PP_BTN_Container_50_R.svg`,
-  pawSecondaryLeading: `${DESIGN_RESOURCE}/SP_BTN_Container_50_L.svg`,
-  pawSecondaryTrailing: `${DESIGN_RESOURCE}/SP_BTN_Container_50_R.svg`,
+  logo: `${DESIGN_RESOURCE_ICON}/Logo.svg`,
+  pawPrimaryFull: `${DESIGN_RESOURCE_ICON}/PP_BTN_Container_100.svg`,
+  pawPrimaryLeading: `${DESIGN_RESOURCE_ICON}/PP_BTN_Container_50_L.svg`,
+  pawPrimaryTrailing: `${DESIGN_RESOURCE_ICON}/PP_BTN_Container_50_R.svg`,
+  pawSecondaryLeading: `${DESIGN_RESOURCE_ICON}/SP_BTN_Container_50_L.svg`,
+  pawSecondaryTrailing: `${DESIGN_RESOURCE_ICON}/SP_BTN_Container_50_R.svg`,
   iconCatFood: `${DESIGN_RESOURCE_ICON}/Ic_catfood.svg`,
   iconCatScale: `${DESIGN_RESOURCE_ICON}/ic_catscale.svg`,
   iconCatActive: `${DESIGN_RESOURCE_ICON}/Ic_catactive.svg`,
