@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { toPng } from "html-to-image";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   PawPrimaryLink,
@@ -78,6 +79,8 @@ export default function ResultPage() {
   /** 위저드에서 온 경우에만 true → 계산 완료 Lottie 후 결과 본문 */
   const [showCompleteSplash, setShowCompleteSplash] = useState(false);
   const splashTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const resultCaptureRef = useRef<HTMLDivElement | null>(null);
+  const [saveMessage, setSaveMessage] = useState<string | null>(null);
 
   const finishCompleteSplash = useCallback(() => {
     try {
@@ -252,6 +255,30 @@ export default function ResultPage() {
     }
   }, [success]);
 
+  const handleSaveImage = useCallback(async () => {
+    if (!resultCaptureRef.current) return;
+    try {
+      const dataUrl = await toPng(resultCaptureRef.current, {
+        cacheBust: true,
+        pixelRatio: 2,
+        backgroundColor: "#fffcf9",
+      });
+      const link = document.createElement("a");
+      link.href = dataUrl;
+      link.download = "our-cat-calorie-result.png";
+      link.click();
+      setSaveMessage("이미지를 저장했어요.");
+    } catch {
+      setSaveMessage("이미지 저장에 실패했어요. 다시 시도해 주세요.");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!saveMessage) return;
+    const timer = setTimeout(() => setSaveMessage(null), 2000);
+    return () => clearTimeout(timer);
+  }, [saveMessage]);
+
   return (
     <div className="relative z-10 mx-auto min-h-screen w-full max-w-[375px] overflow-x-hidden overflow-y-visible bg-transparent">
       <WizardPageBackground />
@@ -294,7 +321,7 @@ export default function ResultPage() {
         ) : null}
 
         {success && !showCompleteSplash ? (
-          <>
+          <div ref={resultCaptureRef} className="contents">
             <div className="flex flex-col items-center gap-6">
               <div className="relative h-[219px] w-[176px] shrink-0">
                 <Image
@@ -398,12 +425,17 @@ export default function ResultPage() {
                 </li>
               </ul>
             </div>
-          </>
+          </div>
         ) : null}
       </div>
 
       {success && !showCompleteSplash ? (
         <WizardBottomBar>
+          {saveMessage ? (
+            <p className="mb-2 text-center text-xs text-[#6f4425]" role="status">
+              {saveMessage}
+            </p>
+          ) : null}
           <PawSplitRow
             left={
               <PawPrimaryLink
@@ -425,6 +457,13 @@ export default function ResultPage() {
               </PawWoodButton>
             }
           />
+          <button
+            type="button"
+            className="mt-2 w-full rounded-xl border border-[#dedee0] bg-white px-4 py-3 text-sm font-semibold text-[#6f4425]"
+            onClick={handleSaveImage}
+          >
+            이미지 저장
+          </button>
         </WizardBottomBar>
       ) : null}
     </div>
