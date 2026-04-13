@@ -82,88 +82,90 @@ export default function Step2Page() {
   };
 
   return (
-    <div className="relative z-10 mx-auto min-h-screen w-full max-w-[375px] overflow-x-hidden bg-transparent">
-      <WizardPageBackground />
-      <div className="relative flex min-h-screen w-full flex-col items-center gap-8 px-6 pb-40 pt-20">
-        <WizardHeader />
-        <div className="flex w-full max-w-[327px] flex-col gap-4">
-          <WizardProgress step={2} />
-          <div>
-            <h1 className="font-display text-[32px] leading-none text-[#111]">
-              Step 2 활동/체형
-            </h1>
-            <p className="mt-2 text-base leading-[1.4] text-[#555]">
-              우리 아이의 체형과 활동량을 입력해주세요.
-            </p>
+    <>
+      <div className="relative z-10 mx-auto min-h-screen w-full max-w-[375px] overflow-x-hidden bg-transparent">
+        <WizardPageBackground />
+        <div className="relative flex min-h-screen w-full flex-col items-center gap-8 px-6 pb-40 pt-20">
+          <WizardHeader />
+          <div className="flex w-full max-w-[327px] flex-col gap-4">
+            <WizardProgress step={2} />
+            <div>
+              <h1 className="font-display text-[32px] leading-none text-[#111]">
+                Step 2 활동/체형
+              </h1>
+              <p className="mt-2 text-base leading-[1.4] text-[#555]">
+                우리 아이의 체형과 활동량을 입력해주세요.
+              </p>
+            </div>
           </div>
-        </div>
 
-        <div className="w-full max-w-[327px]">
-          <FieldLabel required>체형(BCS)</FieldLabel>
-          <div className="grid grid-cols-2 gap-1">
-            {BCS.slice(0, 4).map((label) => bcsBtn(label))}
+          <div className="w-full max-w-[327px]">
+            <FieldLabel required>체형(BCS)</FieldLabel>
+            <div className="grid grid-cols-2 gap-1">
+              {BCS.slice(0, 4).map((label) => bcsBtn(label))}
+            </div>
+            <div className="mt-1 flex justify-start">
+              <div className="w-full max-w-[161px]">{bcsBtn(BCS[4])}</div>
+            </div>
           </div>
-          <div className="mt-1 flex justify-start">
-            <div className="w-full max-w-[161px]">{bcsBtn(BCS[4])}</div>
-          </div>
-        </div>
 
-        <div className="w-full max-w-[327px] pb-4">
-          <FieldLabel required>활동량</FieldLabel>
-          <div className="flex gap-1">
-            {ACTIVITY.map(({ title }) => {
-              const selected = activity === title;
-              return (
-                <button
-                  key={title}
-                  type="button"
-                  onClick={() => setActivity(title)}
-                  className={`relative flex h-[136px] min-w-0 flex-1 flex-col justify-center overflow-hidden rounded-xl px-2 py-3 text-center ${
-                    selected
-                      ? "text-white"
-                      : `${wizardChoiceClass} border-solid`
-                  }`}
-                >
-                  {selected ? <WizardSelectedChoiceLayers /> : null}
-                  <span className="relative z-10 flex flex-col justify-center gap-3">
-                    <span
-                      className={`text-base font-bold ${selected ? "text-white" : "text-[#111]"}`}
-                    >
-                      {title}
+          <div className="w-full max-w-[327px] pb-4">
+            <FieldLabel required>활동량</FieldLabel>
+            <div className="flex gap-1">
+              {ACTIVITY.map(({ title }) => {
+                const selected = activity === title;
+                return (
+                  <button
+                    key={title}
+                    type="button"
+                    onClick={() => setActivity(title)}
+                    className={`relative flex h-[136px] min-w-0 flex-1 flex-col justify-center overflow-hidden rounded-xl px-2 py-3 text-center ${
+                      selected
+                        ? "text-white"
+                        : `${wizardChoiceClass} border-solid`
+                    }`}
+                  >
+                    {selected ? <WizardSelectedChoiceLayers /> : null}
+                    <span className="relative z-10 flex flex-col justify-center gap-3">
+                      <span
+                        className={`text-base font-bold ${selected ? "text-white" : "text-[#111]"}`}
+                      >
+                        {title}
+                      </span>
+                      <span
+                        className={`text-sm leading-5 ${selected ? "text-white/95" : "text-[#333]"}`}
+                      >
+                        {title === "낮음" ? (
+                          <>
+                            대부분 쉬고
+                            <br />
+                            놀이가
+                            <br />
+                            적어요
+                          </>
+                        ) : title === "보통" ? (
+                          <>
+                            자주 움직이고 하루 1~2번
+                            <br />
+                            놀아요
+                          </>
+                        ) : (
+                          <>
+                            자주 뛰고
+                            <br />
+                            오르내리며
+                            <br />
+                            놀이 반응이
+                            <br />
+                            커요
+                          </>
+                        )}
+                      </span>
                     </span>
-                    <span
-                      className={`text-sm leading-5 ${selected ? "text-white/95" : "text-[#333]"}`}
-                    >
-                      {title === "낮음" ? (
-                        <>
-                          대부분 쉬고
-                          <br />
-                          놀이가
-                          <br />
-                          적어요
-                        </>
-                      ) : title === "보통" ? (
-                        <>
-                          자주 움직이고 하루 1~2번
-                          <br />
-                          놀아요
-                        </>
-                      ) : (
-                        <>
-                          자주 뛰고
-                          <br />
-                          오르내리며
-                          <br />
-                          놀이 반응이
-                          <br />
-                          커요
-                        </>
-                      )}
-                    </span>
-                  </span>
-                </button>
-              );
-            })}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
@@ -182,6 +184,6 @@ export default function Step2Page() {
           }
         />
       </WizardBottomBar>
-    </div>
+    </>
   );
 }

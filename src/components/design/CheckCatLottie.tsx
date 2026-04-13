@@ -5,8 +5,14 @@ import { useEffect, useState } from "react";
 
 const CHECK_CAT_LOTTIE_SRC = "/lottie/Check_cat.json";
 
-/** 계산 완료(결과 화면)용 체크 고양이 Lottie */
-export function CheckCatLottie({ className }: { className?: string }) {
+/** 계산 완료 스플래시용 체크 Lottie (`loop: false`일 때 `onComplete` 호출) */
+export function CheckCatLottie({
+  className,
+  onComplete,
+}: {
+  className?: string;
+  onComplete?: () => void;
+}) {
   const [animationData, setAnimationData] = useState<object | null>(null);
 
   useEffect(() => {
@@ -34,6 +40,7 @@ export function CheckCatLottie({ className }: { className?: string }) {
       <Lottie
         animationData={animationData}
         loop={false}
+        onComplete={onComplete ?? undefined}
         className="h-full w-full [&_svg]:block [&_svg]:h-full [&_svg]:w-full [&_svg]:max-h-none [&_svg]:max-w-none"
         style={{ width: "100%", height: "100%" }}
       />

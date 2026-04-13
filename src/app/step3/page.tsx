@@ -25,6 +25,7 @@ import {
 import { FeedSearchModal } from "@/components/wireframe/FeedSearchModal";
 import { IconClose, IconPlus, IconSearch } from "@/components/wireframe/icons";
 import { CALCULATING_OVERLAY_VIDEOS } from "@/constants/calculatingOverlayVideos";
+import { SESSION_SHOW_RESULT_COMPLETE_SPLASH } from "@/constants/resultNavigation";
 import { prefetchFeedCatalogForResult } from "@/lib/feedCatalogPrefetch";
 import { validateWizardBeforeResult } from "@/lib/wizardCalories";
 import { patchWizardState, readWizardState } from "@/lib/wizardStorage";
@@ -151,6 +152,11 @@ export default function Step3Page() {
         } catch {
           /* */
         }
+        try {
+          sessionStorage.setItem(SESSION_SHOW_RESULT_COMPLETE_SPLASH, "1");
+        } catch {
+          /* */
+        }
         router.push("/result");
       })();
       return;
@@ -177,8 +183,12 @@ export default function Step3Page() {
         } catch {
           /* */
         }
-        setShowCalculating(false);
-        setCalculatingVideoSrc(null);
+        try {
+          sessionStorage.setItem(SESSION_SHOW_RESULT_COMPLETE_SPLASH, "1");
+        } catch {
+          /* */
+        }
+        // 오버레이를 끄지 않고 바로 이동 — 끄면 push 직전에 Step3 본문이 한 프레임 보임
         router.push("/result");
       })();
     }, CALCULATING_OVERLAY_MS);
@@ -207,17 +217,25 @@ export default function Step3Page() {
             />
           </div>
           <CalculatingPawsPetLottie />
-          <div className="relative z-10 flex h-full min-h-0 flex-col items-center justify-center gap-4 px-6">
-            <p className="font-display text-xl text-[#111]">계산하는 중…</p>
-            <video
-              key={calculatingVideoSrc}
-              className="max-h-[50vh] w-full max-w-[320px] rounded-2xl object-contain"
-              src={calculatingVideoSrc}
-              autoPlay
-              loop
-              muted
-              playsInline
-            />
+          <div className="relative z-10 flex h-full min-h-0 flex-col items-center justify-center px-6 pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)]">
+            <div className="flex w-full max-w-[327px] flex-col items-center gap-4">
+              <div className="relative h-[239px] w-[233px] shrink-0 overflow-hidden rounded-[40px]">
+                <video
+                  key={calculatingVideoSrc}
+                  className="absolute left-0 top-[-7.33%] h-[129.99%] w-full max-w-none object-cover"
+                  src={calculatingVideoSrc}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  controlsList="nodownload"
+                />
+              </div>
+              <div className="w-full text-center font-display text-[32px] leading-none text-[#111]">
+                <p className="mb-0">칼로리를 </p>
+                <p className="mt-0">계산하고 있습니다...</p>
+              </div>
+            </div>
           </div>
         </div>
       ) : null}

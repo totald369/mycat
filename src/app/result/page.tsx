@@ -26,6 +26,7 @@ import type { CalculatorOutput } from "@/lib/calculator";
 import type { CalculatorSuccess } from "@/lib/calculator";
 import { CheckCatLottie } from "@/components/design/CheckCatLottie";
 import { RESULT_HERO_IMAGE } from "@/constants/resultHeroImages";
+import { SESSION_SHOW_RESULT_COMPLETE_SPLASH } from "@/constants/resultNavigation";
 
 function kcalBig(value: number, accent?: boolean) {
   const n = Math.round(value);
@@ -74,6 +75,22 @@ export default function ResultPage() {
   const [output, setOutput] = useState<CalculatorOutput | null>(null);
   const [warnings, setWarnings] = useState<string[]>([]);
   const usedPrefetchRef = useRef(false);
+  /** 위저드에서 온 경우에만 true → 계산 완료 Lottie 후 결과 본문 */
+  const [showCompleteSplash, setShowCompleteSplash] = useState(false);
+  const splashTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const finishCompleteSplash = useCallback(() => {
+    try {
+      sessionStorage.removeItem(SESSION_SHOW_RESULT_COMPLETE_SPLASH);
+    } catch {
+      /* */
+    }
+    setShowCompleteSplash(false);
+    if (splashTimerRef.current) {
+      clearTimeout(splashTimerRef.current);
+      splashTimerRef.current = null;
+    }
+  }, []);
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") return;
@@ -143,6 +160,34 @@ export default function ResultPage() {
   const errMsg =
     loadError ?? (output?.ok === false ? output.error : null);
 
+  useLayoutEffect(() => {
+    if (!success) return;
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("s")) {
+      setShowCompleteSplash(false);
+      return;
+    }
+    try {
+      setShowCompleteSplash(
+        sessionStorage.getItem(SESSION_SHOW_RESULT_COMPLETE_SPLASH) === "1",
+      );
+    } catch {
+      setShowCompleteSplash(false);
+    }
+  }, [success]);
+
+  useEffect(() => {
+    if (!showCompleteSplash) return;
+    splashTimerRef.current = setTimeout(finishCompleteSplash, 4000);
+    return () => {
+      if (splashTimerRef.current) {
+        clearTimeout(splashTimerRef.current);
+        splashTimerRef.current = null;
+      }
+    };
+  }, [showCompleteSplash, finishCompleteSplash]);
+
   const handleShare = useCallback(async () => {
     if (!success || typeof window === "undefined") return;
     const encoded = encodeShareResultPayload(success);
@@ -193,10 +238,26 @@ export default function ResultPage() {
           </p>
         ) : null}
 
-        {success ? (
+        {success && showCompleteSplash ? (
+          <div
+            className="flex min-h-[min(520px,70dvh)] flex-col items-center justify-center gap-6 px-4"
+            role="status"
+            aria-live="polite"
+            aria-busy="true"
+          >
+            <CheckCatLottie
+              className="pointer-events-none h-[140px] w-[140px] shrink-0 sm:h-[160px] sm:w-[160px]"
+              onComplete={finishCompleteSplash}
+            />
+            <p className="text-center font-display text-[40px] leading-none text-[#111]">
+              계산 완료
+            </p>
+          </div>
+        ) : null}
+
+        {success && !showCompleteSplash ? (
           <>
             <div className="flex flex-col items-center gap-6">
-              <CheckCatLottie className="pointer-events-none h-[120px] w-[120px] shrink-0" />
               <div className="relative h-[219px] w-[176px] shrink-0">
                 <Image
                   src={RESULT_HERO_IMAGE[success.status]}
@@ -266,7 +327,7 @@ export default function ResultPage() {
         ) : null}
       </div>
 
-      {success ? (
+      {success && !showCompleteSplash ? (
         <WizardBottomBar>
           <PawSplitRow
             left={
