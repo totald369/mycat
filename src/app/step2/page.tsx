@@ -21,6 +21,7 @@ import {
   wizardShellClass,
 } from "@/components/design/wizardLayoutClasses";
 import { wizardChoiceClass } from "@/components/design/wizardFieldClasses";
+import { DISPLAY_BUTTON, DISPLAY_TITLE } from "@/constants/displayTextSvg";
 import { patchWizardState, readWizardState } from "@/lib/wizardStorage";
 
 const BCS = [
@@ -98,8 +99,16 @@ export default function Step2Page() {
           <div className={wizardContentWidthClass}>
             <WizardProgress step={2} />
             <div>
-              <h1 className="font-display text-[1.75rem] leading-none text-[#111] min-[360px]:text-[2rem]">
-                Step 2 활동/체형
+              <h1>
+                <Image
+                  src={DISPLAY_TITLE.step2.src}
+                  alt="Step 2 활동/체형"
+                  width={DISPLAY_TITLE.step2.width}
+                  height={DISPLAY_TITLE.step2.height}
+                  className="h-auto w-auto object-contain"
+                  unoptimized
+                  sizes="200px"
+                />
               </h1>
               <p className="mt-2 text-base leading-[1.4] text-[#555]">
                 우리 아이의 체형과 활동량을 입력해주세요.
@@ -181,12 +190,17 @@ export default function Step2Page() {
       <WizardBottomBar>
         <PawSplitRow
           left={
-            <PawWoodLink href="/step1" className="text-center">
+            <PawWoodLink href="/step1" className="text-center" labelSvg={DISPLAY_BUTTON.prev}>
               이전 ♧
             </PawWoodLink>
           }
           right={
-            <PawPrimaryLink href="/step3" className="text-center" pawHalf="trailing">
+            <PawPrimaryLink
+              href="/step3"
+              className="text-center"
+              pawHalf="trailing"
+              labelSvg={DISPLAY_BUTTON.next}
+            >
               다음 ♧
             </PawPrimaryLink>
           }

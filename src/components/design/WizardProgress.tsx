@@ -23,7 +23,7 @@ export function WizardProgress({ step }: Props) {
   return (
     <div className={wizardProgressRowClass}>
       <div className="flex h-[26px] w-[60px] shrink-0 items-center justify-center rounded-full bg-[#6f4425] px-1">
-        <span className="text-center font-display text-[0.75rem] leading-none tracking-tight text-white">
+        <span className="text-center text-[0.75rem] leading-none tracking-tight text-white">
           STEP {step}
         </span>
       </div>

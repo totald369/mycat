@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import { FieldLabel } from "@/components/design/FieldLabel";
 import { PawPrimaryButton } from "@/components/design/PawButton";
@@ -26,6 +27,7 @@ import {
 } from "@/components/design/wizardFieldClasses";
 import { BreedSearchModal } from "@/components/wireframe/BreedSearchModal";
 import { IconSearch } from "@/components/wireframe/icons";
+import { DISPLAY_BUTTON, DISPLAY_TITLE } from "@/constants/displayTextSvg";
 import { parseWeightKg } from "@/lib/calculator";
 import { patchWizardState, readWizardState } from "@/lib/wizardStorage";
 
@@ -134,8 +136,16 @@ export default function Step1Page() {
           <div className={wizardContentWidthClass}>
             <WizardProgress step={1} />
             <div>
-              <h1 className="font-display text-[1.75rem] leading-none text-[#111] min-[360px]:text-[2rem]">
-                Step 1 기본정보
+              <h1>
+                <Image
+                  src={DISPLAY_TITLE.step1.src}
+                  alt="Step 1 기본정보"
+                  width={DISPLAY_TITLE.step1.width}
+                  height={DISPLAY_TITLE.step1.height}
+                  className="h-auto w-auto object-contain"
+                  unoptimized
+                  sizes="200px"
+                />
               </h1>
               <p className="mt-2 text-base leading-[1.4] text-[#555]">
                 우리 아이를 위한 최적의 영양 설계를 위해 기본정보를 입력해 주세요.
@@ -238,7 +248,9 @@ export default function Step1Page() {
       </div>
 
       <WizardBottomBar>
-        <PawPrimaryButton onClick={goNext}>다음 ♧</PawPrimaryButton>
+        <PawPrimaryButton onClick={goNext} labelSvg={DISPLAY_BUTTON.next}>
+          다음 ♧
+        </PawPrimaryButton>
       </WizardBottomBar>
 
       <BreedSearchModal

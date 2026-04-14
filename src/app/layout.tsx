@@ -42,24 +42,6 @@ const pretendard = localFont({
   ],
 });
 
-/** Memoment Kkukkukk(꾹꾹체) — 피그마 디스플레이체 woff2 */
-const memomentKkukkukk = localFont({
-  src: "../fonts/MemomentKkukkukk.woff2",
-  variable: "--font-display",
-  weight: "400",
-  style: "normal",
-  display: "optional",
-  preload: false,
-  fallback: [
-    "system-ui",
-    "-apple-system",
-    "Apple SD Gothic Neo",
-    "Malgun Gothic",
-    "sans-serif",
-  ],
-  adjustFontFallback: "Arial",
-});
-
 /** 최소 레이아웃 기준 320px 폭(논리 CSS px) — 모바일 퍼스트 대응 */
 export const viewport: Viewport = {
   width: "device-width",
@@ -114,7 +96,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${pretendard.variable} ${memomentKkukkukk.variable}`}
+      className={pretendard.variable}
     >
       <body className="font-sans antialiased">
         {children}

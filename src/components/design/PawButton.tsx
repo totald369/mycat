@@ -2,12 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { designResource } from "@/components/design/designResourcePaths";
+import type { DisplaySvgText } from "@/constants/displayTextSvg";
 
 /** `none`: 가로 전체(주황 PP100 / 보조는 SP 좌·우 합성). `leading`|`trailing`: 분할 행 한 칸. */
 export type PawHalf = "none" | "leading" | "trailing";
 
 const pawLabelBase =
-  "pointer-events-none absolute inset-0 z-10 flex flex-row items-center gap-1 font-display text-[1.0625rem] leading-[1.625rem] text-white min-[360px]:gap-2 min-[360px]:text-[1.25rem] min-[360px]:leading-[1.96875rem]";
+  "pointer-events-none absolute inset-0 z-10 flex flex-row items-center gap-1 text-[1.0625rem] leading-[1.625rem] text-white min-[360px]:gap-2 min-[360px]:text-[1.25rem] min-[360px]:leading-[1.96875rem]";
 
 /**
  * 피그마 반쪽 발 에셋(50L/50R viewBox) 기준: 왼쪽 버튼은 색 면이 오른쪽 ~72%, 오른쪽 버튼은 왼쪽 ~72%.
@@ -21,6 +22,36 @@ function pawLabelClass(half: PawHalf): string {
     return `${pawLabelBase} justify-center pr-[28%] pl-3`;
   }
   return `${pawLabelBase} justify-center`;
+}
+
+function PawLabel({
+  half,
+  children,
+  labelSvg,
+}: {
+  half: PawHalf;
+  children: ReactNode;
+  labelSvg?: DisplaySvgText;
+}) {
+  return (
+    <span className={pawLabelClass(half)}>
+      {labelSvg ? (
+        <Image
+          src={labelSvg.src}
+          alt=""
+          aria-hidden
+          width={labelSvg.width}
+          height={labelSvg.height}
+          className="h-auto w-auto max-h-8 object-contain"
+          unoptimized
+          draggable={false}
+          sizes={`${labelSvg.width}px`}
+        />
+      ) : (
+        children
+      )}
+    </span>
+  );
 }
 
 /** 발바닥 SVG가 박스 밖으로 살짝 나와도 잘리지 않게 `overflow-visible`, 높이는 피그마 73px 고정 */
@@ -148,49 +179,57 @@ function FigmaPaw({
 }
 
 export function PawPrimaryButton(
-  props: ComponentProps<"button"> & { pawHalf?: PawHalf },
+  props: ComponentProps<"button"> & { pawHalf?: PawHalf; labelSvg?: DisplaySvgText },
 ) {
-  const { className, children, pawHalf = "none", ...rest } = props;
+  const { className, children, pawHalf = "none", labelSvg, ...rest } = props;
   return (
     <button type="button" className={`${shell} ${className ?? ""}`} {...rest}>
       <FigmaPaw scheme="primary" half={pawHalf} />
-      <span className={pawLabelClass(pawHalf)}>{children}</span>
+      <PawLabel half={pawHalf} labelSvg={labelSvg}>
+        {children}
+      </PawLabel>
     </button>
   );
 }
 
 export function PawWoodButton(
-  props: ComponentProps<"button"> & { pawHalf?: PawHalf },
+  props: ComponentProps<"button"> & { pawHalf?: PawHalf; labelSvg?: DisplaySvgText },
 ) {
-  const { className, children, pawHalf = "none", ...rest } = props;
+  const { className, children, pawHalf = "none", labelSvg, ...rest } = props;
   return (
     <button type="button" className={`${shell} ${className ?? ""}`} {...rest}>
       <FigmaPaw scheme="secondary" half={pawHalf} />
-      <span className={pawLabelClass(pawHalf)}>{children}</span>
+      <PawLabel half={pawHalf} labelSvg={labelSvg}>
+        {children}
+      </PawLabel>
     </button>
   );
 }
 
 export function PawPrimaryLink(
-  props: ComponentProps<typeof Link> & { pawHalf?: PawHalf },
+  props: ComponentProps<typeof Link> & { pawHalf?: PawHalf; labelSvg?: DisplaySvgText },
 ) {
-  const { className, children, pawHalf = "none", ...rest } = props;
+  const { className, children, pawHalf = "none", labelSvg, ...rest } = props;
   return (
     <Link className={`${shell} ${className ?? ""}`} {...rest}>
       <FigmaPaw scheme="primary" half={pawHalf} />
-      <span className={pawLabelClass(pawHalf)}>{children}</span>
+      <PawLabel half={pawHalf} labelSvg={labelSvg}>
+        {children}
+      </PawLabel>
     </Link>
   );
 }
 
 export function PawWoodLink(
-  props: ComponentProps<typeof Link> & { pawHalf?: PawHalf },
+  props: ComponentProps<typeof Link> & { pawHalf?: PawHalf; labelSvg?: DisplaySvgText },
 ) {
-  const { className, children, pawHalf = "leading", ...rest } = props;
+  const { className, children, pawHalf = "leading", labelSvg, ...rest } = props;
   return (
     <Link className={`${shell} ${className ?? ""}`} {...rest}>
       <FigmaPaw scheme="secondary" half={pawHalf} />
-      <span className={pawLabelClass(pawHalf)}>{children}</span>
+      <PawLabel half={pawHalf} labelSvg={labelSvg}>
+        {children}
+      </PawLabel>
     </Link>
   );
 }

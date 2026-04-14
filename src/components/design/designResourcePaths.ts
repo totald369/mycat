@@ -1,10 +1,13 @@
 /**
- * 디자인 정적 에셋 — `public/design-resource/`
- * - `icon/`: SVG
+ * Design assets under `public/design-resource/`
+ * - `icon/`: SVG icons and button chrome
+ * - `display/`: Title / wordmark SVGs (e.g. Kkukkukk replacement from Figma)
  * - `img/`: WebP
  */
 export const DESIGN_RESOURCE = "/design-resource";
 export const DESIGN_RESOURCE_ICON = `${DESIGN_RESOURCE}/icon`;
+/** Wordmark SVGs: `${DESIGN_RESOURCE_DISPLAY}/your-file.svg` */
+export const DESIGN_RESOURCE_DISPLAY = `${DESIGN_RESOURCE}/display`;
 export const DESIGN_RESOURCE_IMG = `${DESIGN_RESOURCE}/img`;
 
 /** 에셋 URL 모음 (홈·위저드·결과 공통) */

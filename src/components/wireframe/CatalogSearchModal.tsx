@@ -154,10 +154,7 @@ export function CatalogSearchModal({
         >
           <IconClose />
         </button>
-        <h2
-          id={titleId}
-          className="font-display text-lg font-normal text-[#111]"
-        >
+        <h2 id={titleId} className="text-lg font-normal text-[#111]">
           {title}
         </h2>
       </header>

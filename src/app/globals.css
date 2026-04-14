@@ -28,12 +28,6 @@ body {
   font-family: inherit;
 }
 
-/* 제목·버튼: Memoment Kkukkukk(로컬) → Pretendard + 시스템 한글 */
-.font-display {
-  font-family: var(--font-display), var(--font-pretendard), system-ui,
-    -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-}
-
 /* 생년월일: 보이는 네이티브 date — 투명 오버레이는 PC에서 달력 미표시 이슈가 있어 사용하지 않음 */
 .wf-birth-date-field {
   color-scheme: light;

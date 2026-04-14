@@ -43,6 +43,7 @@ import {
 import { FeedSearchModal } from "@/components/wireframe/FeedSearchModal";
 import { IconClose, IconPlus, IconSearch } from "@/components/wireframe/icons";
 import { CALCULATING_OVERLAY_VIDEOS } from "@/constants/calculatingOverlayVideos";
+import { DISPLAY_BUTTON, DISPLAY_TITLE } from "@/constants/displayTextSvg";
 import { SESSION_SHOW_RESULT_COMPLETE_SPLASH } from "@/constants/resultNavigation";
 import { prefetchFeedCatalogForResult } from "@/lib/feedCatalogPrefetch";
 import { validateWizardBeforeResult } from "@/lib/wizardCalories";
@@ -256,9 +257,16 @@ export default function Step3Page() {
                   controlsList="nodownload"
                 />
               </div>
-              <div className="w-full text-center font-display text-[1.75rem] leading-none text-[#111] min-[360px]:text-[2rem]">
-                <p className="mb-0">칼로리를 </p>
-                <p className="mt-0">계산하고 있습니다...</p>
+              <div className="w-full text-center text-[1.75rem] leading-none text-[#111] min-[360px]:text-[2rem]">
+                <Image
+                  src={DISPLAY_TITLE.step3Calculating.src}
+                  alt="칼로리를 계산하고 있습니다..."
+                  width={DISPLAY_TITLE.step3Calculating.width}
+                  height={DISPLAY_TITLE.step3Calculating.height}
+                  className="mx-auto h-auto w-auto max-w-full object-contain"
+                  unoptimized
+                  sizes="(max-width: 360px) 80vw, 237px"
+                />
               </div>
             </div>
           </div>
@@ -272,8 +280,16 @@ export default function Step3Page() {
           <div className={wizardContentWidthClass}>
             <WizardProgress step={3} />
             <div>
-              <h1 className="font-display text-[1.75rem] leading-none text-[#111] min-[360px]:text-[2rem]">
-                Step 3 급여정보
+              <h1>
+                <Image
+                  src={DISPLAY_TITLE.step3.src}
+                  alt="Step 3 급여정보"
+                  width={DISPLAY_TITLE.step3.width}
+                  height={DISPLAY_TITLE.step3.height}
+                  className="h-auto w-auto object-contain"
+                  unoptimized
+                  sizes="200px"
+                />
               </h1>
               <p className="mt-2 text-base leading-[1.4] text-[#555]">
                 우리 아이가 어떤 사료를 얼마나 먹는지 입력해주세요.
@@ -355,7 +371,7 @@ export default function Step3Page() {
                     {chips.map((c) => (
                       <div
                         key={c.id}
-                        className="relative flex items-center justify-between gap-2 overflow-hidden rounded-lg py-1 pl-4 pr-2 font-display text-sm leading-[1.4] text-white"
+                        className="relative flex items-center justify-between gap-2 overflow-hidden rounded-lg py-1 pl-4 pr-2 text-sm leading-[1.4] text-white"
                       >
                         <span
                           aria-hidden
@@ -432,6 +448,7 @@ export default function Step3Page() {
               className="text-center"
               disabled={showCalculating}
               pawHalf="trailing"
+              labelSvg={DISPLAY_BUTTON.result}
             >
               결과보기 ♧
             </PawPrimaryButton>

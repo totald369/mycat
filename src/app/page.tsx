@@ -4,8 +4,8 @@ import type { Metadata } from "next";
 import { AppLogo } from "@/components/design/AppLogo";
 import { HomeCardCarousel } from "@/components/design/HomeCardCarousel";
 import { WizardPageBackground } from "@/components/design/WizardPageBackground";
-import { DESIGN_RESOURCE_PX, designResource } from "@/components/design/designResourcePaths";
 import { PawPrimaryLink } from "@/components/design/PawButton";
+import { DISPLAY_BUTTON, DISPLAY_TITLE } from "@/constants/displayTextSvg";
 import { wizardShellHomeClass } from "@/components/design/wizardLayoutClasses";
 
 export const metadata: Metadata = {
@@ -15,11 +15,6 @@ export const metadata: Metadata = {
 };
 
 export default function IntroPage() {
-  const { w: iw, h: ih } = DESIGN_RESOURCE_PX.catImg;
-  /** @3x 에셋 → 피그마 1x 논리 크기 */
-  const catLogicalW = iw / 3;
-  const catLogicalH = ih / 3;
-
   return (
     <>
       <Script
@@ -49,28 +44,17 @@ export default function IntroPage() {
             <AppLogo />
           </div>
 
-          <h1 className="w-full min-w-0 max-w-full text-center font-display text-[1.875rem] leading-none text-[#111] min-[360px]:text-[2.5rem]">
-            <span className="inline-flex min-w-0 max-w-full flex-wrap items-end justify-center gap-1">
-              <span>우리</span>
-              <span className="inline-flex shrink-0 items-end leading-none">
-                <Image
-                  src={designResource.catImg}
-                  alt="우리 냥이"
-                  width={iw}
-                  height={ih}
-                  className="shrink-0 object-contain"
-                  style={{
-                    width: catLogicalW,
-                    height: catLogicalH,
-                  }}
-                  priority
-                  sizes={`${Math.ceil(catLogicalW)}px`}
-                />
-              </span>
-              <span>에게</span>
-            </span>
-            <span className="mt-0 block pt-1">딱 맞는 칼로리를</span>
-            <span className="block">계산해보세요</span>
+          <h1 className="w-full min-w-0 max-w-full text-center">
+            <Image
+              src={DISPLAY_TITLE.homeMain.src}
+              alt="우리 냥이에게 딱 맞는 칼로리를 계산해보세요"
+              width={DISPLAY_TITLE.homeMain.width}
+              height={DISPLAY_TITLE.homeMain.height}
+              className="mx-auto h-auto w-auto max-w-full object-contain"
+              unoptimized
+              priority
+              sizes="(max-width: 360px) 90vw, 249px"
+            />
           </h1>
           <p className="mt-4 text-center text-lg leading-[1.4] text-[#555]">
             사료, 활동량, 성별에 따라 다른 적정 칼로리!
@@ -86,7 +70,9 @@ export default function IntroPage() {
 
         <div className="fixed bottom-0 left-0 right-0 z-20 overflow-x-clip overflow-y-visible bg-gradient-to-t from-white from-40% via-white/95 to-transparent px-3 pb-4 pt-10 min-[360px]:px-4">
           <div className="mx-auto w-full max-w-[min(100%,375px)] overflow-visible">
-            <PawPrimaryLink href="/step1">계산하기♧</PawPrimaryLink>
+            <PawPrimaryLink href="/step1" labelSvg={DISPLAY_BUTTON.start}>
+              계산하기♧
+            </PawPrimaryLink>
           </div>
         </div>
       </main>

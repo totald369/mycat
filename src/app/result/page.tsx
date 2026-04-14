@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   PawPrimaryLink,
@@ -33,6 +34,7 @@ import {
 } from "@/components/design/wizardLayoutClasses";
 import { RESULT_HERO_IMAGE } from "@/constants/resultHeroImages";
 import { SESSION_SHOW_RESULT_COMPLETE_SPLASH } from "@/constants/resultNavigation";
+import { DISPLAY_BUTTON, DISPLAY_TITLE } from "@/constants/displayTextSvg";
 
 const CheckCatLottie = dynamic(
   () =>
@@ -83,6 +85,12 @@ const TAGLINE: Record<
     "급여량을 늘려주세요.",
   ],
 };
+
+function statusHeadlineSvg(status: CalculatorSuccess["status"]) {
+  if (status === "balanced") return DISPLAY_TITLE.resultBalanced;
+  if (status === "slightly_high" || status === "high") return DISPLAY_TITLE.resultHigh;
+  return DISPLAY_TITLE.resultLow;
+}
 
 export default function ResultPage() {
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -358,8 +366,16 @@ export default function ResultPage() {
               className="h-[140px] w-[140px] shrink-0 sm:h-[160px] sm:w-[160px]"
               onComplete={finishCompleteSplash}
             />
-            <p className="text-center font-display text-[1.875rem] leading-none text-[#111] min-[360px]:text-[2.5rem]">
-              계산 완료
+            <p className="text-center text-[1.875rem] leading-none text-[#111] min-[360px]:text-[2.5rem]">
+              <Image
+                src={DISPLAY_TITLE.resultComplete.src}
+                alt="계산 완료"
+                width={DISPLAY_TITLE.resultComplete.width}
+                height={DISPLAY_TITLE.resultComplete.height}
+                className="mx-auto h-auto w-auto object-contain"
+                unoptimized
+                sizes="150px"
+              />
             </p>
           </div>
         ) : null}
@@ -383,8 +399,21 @@ export default function ResultPage() {
                 />
               </div>
               <div className="text-center">
-                <h1 className="font-display text-[1.875rem] leading-none text-[#111] min-[360px]:text-[2.5rem]">
-                  {statusHeadline(success.status)}
+                <h1 className="text-[1.875rem] leading-none text-[#111] min-[360px]:text-[2.5rem]">
+                  {(() => {
+                    const headlineSvg = statusHeadlineSvg(success.status);
+                    return (
+                  <Image
+                    src={headlineSvg.src}
+                    alt={statusHeadline(success.status)}
+                    width={headlineSvg.width}
+                    height={headlineSvg.height}
+                    className="mx-auto h-auto w-auto max-w-full object-contain"
+                    unoptimized
+                    sizes="(max-width: 360px) 90vw, 257px"
+                  />
+                    );
+                  })()}
                 </h1>
                 <p className="mt-3 text-lg leading-[1.4] text-[rgba(23,23,23,0.8)]">
                   {TAGLINE[success.status].map((line) => (
@@ -435,7 +464,7 @@ export default function ResultPage() {
                         : undefined
                     }
                   >
-                    0% 미만: 급여량 추가가 필요해요.
+                    -5% 미만: 급여량 추가가 필요해요.
                   </span>
                 </li>
                 <li>
@@ -494,6 +523,7 @@ export default function ResultPage() {
                 href="/step1"
                 className="text-center"
                 pawHalf="leading"
+                labelSvg={DISPLAY_BUTTON.retry}
               >
                 다시하기 ♧
               </PawPrimaryLink>
@@ -506,6 +536,7 @@ export default function ResultPage() {
                 disabled={shareBusy}
                 aria-busy={shareBusy}
                 onClick={handleShare}
+                labelSvg={shareBusy ? undefined : DISPLAY_BUTTON.share}
               >
                 {shareBusy ? "링크 만드는 중…" : "공유하기 ♧"}
               </PawWoodButton>
