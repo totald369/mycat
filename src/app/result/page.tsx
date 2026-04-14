@@ -1,6 +1,6 @@
 "use client";
 
-import { toPng } from "html-to-image";
+import dynamic from "next/dynamic";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   PawPrimaryLink,
@@ -24,8 +24,15 @@ import {
 } from "@/lib/wizardCalories";
 import type { CalculatorOutput } from "@/lib/calculator";
 import type { CalculatorSuccess } from "@/lib/calculator";
-import { CheckCatLottie } from "@/components/design/CheckCatLottie";
 import { designResource } from "@/components/design/designResourcePaths";
+
+const CheckCatLottie = dynamic(
+  () =>
+    import("@/components/design/CheckCatLottie").then((m) => ({
+      default: m.CheckCatLottie,
+    })),
+  { ssr: false },
+);
 import { RESULT_HERO_IMAGE } from "@/constants/resultHeroImages";
 import { SESSION_SHOW_RESULT_COMPLETE_SPLASH } from "@/constants/resultNavigation";
 
@@ -258,6 +265,7 @@ export default function ResultPage() {
   const handleSaveImage = useCallback(async () => {
     if (!resultCaptureRef.current) return;
     try {
+      const { toPng } = await import("html-to-image");
       const dataUrl = await toPng(resultCaptureRef.current, {
         cacheBust: true,
         pixelRatio: 2,

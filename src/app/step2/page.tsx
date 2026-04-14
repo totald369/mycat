@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FieldLabel } from "@/components/design/FieldLabel";
 import {
@@ -62,11 +63,12 @@ export default function Step2Page() {
       >
         {selected ? <WizardSelectedChoiceLayers /> : null}
         <span className="relative z-10 flex w-full flex-col items-center gap-4 px-6 pb-4 pt-6">
-          <img
+          <Image
             src={BCS_LABEL_TO_ICON[label as keyof typeof BCS_LABEL_TO_ICON]}
             alt=""
             width={106}
             height={72}
+            unoptimized
             draggable={false}
             className="h-[72px] w-[106px] shrink-0 object-contain"
             aria-hidden

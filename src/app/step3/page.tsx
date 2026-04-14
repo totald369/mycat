@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -14,8 +15,15 @@ import { WizardBottomBar } from "@/components/design/WizardBottomBar";
 import { WizardHeader } from "@/components/design/WizardHeader";
 import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { WizardSelectedChoiceLayers } from "@/components/design/WizardSelectedChoiceLayers";
-import { CalculatingPawsPetLottie } from "@/components/design/CalculatingPawsPetLottie";
 import { WizardProgress } from "@/components/design/WizardProgress";
+
+const CalculatingPawsPetLottie = dynamic(
+  () =>
+    import("@/components/design/CalculatingPawsPetLottie").then((m) => ({
+      default: m.CalculatingPawsPetLottie,
+    })),
+  { ssr: false },
+);
 import { ValidationToast } from "@/components/design/ValidationToast";
 import { designResource } from "@/components/design/designResourcePaths";
 import {

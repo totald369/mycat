@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { designResource } from "@/components/design/designResourcePaths";
@@ -35,16 +36,21 @@ function FigmaPaw({
 }) {
   const base =
     "pointer-events-none select-none [image-rendering:auto]";
-  /** 전체 그래픽이 보이도록 contain — cover/fill은 발·패드가 잘림 */
-  const fit = `${base} absolute inset-0 m-auto h-full w-full max-h-[73px] object-contain object-center`;
+  /** `next/image` `fill`이 absolute 포지셔닝 — object-contain으로 발·패드 잘림 방지 */
+  const fit = `${base} object-contain object-center`;
+
+  const pawSizes = "(max-width: 480px) 50vw, 200px";
 
   if (scheme === "primary" && half === "none") {
     return (
-      <img
+      <Image
         src={designResource.pawPrimaryFull}
         alt=""
         aria-hidden
+        fill
+        unoptimized
         draggable={false}
+        sizes={pawSizes}
         className={fit}
       />
     );
@@ -52,11 +58,14 @@ function FigmaPaw({
 
   if (scheme === "primary" && half === "leading") {
     return (
-      <img
+      <Image
         src={designResource.pawPrimaryLeading}
         alt=""
         aria-hidden
+        fill
+        unoptimized
         draggable={false}
+        sizes={pawSizes}
         className={fit}
       />
     );
@@ -64,11 +73,14 @@ function FigmaPaw({
 
   if (scheme === "primary" && half === "trailing") {
     return (
-      <img
+      <Image
         src={designResource.pawPrimaryTrailing}
         alt=""
         aria-hidden
+        fill
+        unoptimized
         draggable={false}
+        sizes={pawSizes}
         className={fit}
       />
     );
@@ -76,11 +88,14 @@ function FigmaPaw({
 
   if (scheme === "secondary" && half === "leading") {
     return (
-      <img
+      <Image
         src={designResource.pawSecondaryLeading}
         alt=""
         aria-hidden
+        fill
+        unoptimized
         draggable={false}
+        sizes={pawSizes}
         className={fit}
       />
     );
@@ -88,11 +103,14 @@ function FigmaPaw({
 
   if (scheme === "secondary" && half === "trailing") {
     return (
-      <img
+      <Image
         src={designResource.pawSecondaryTrailing}
         alt=""
         aria-hidden
+        fill
+        unoptimized
         draggable={false}
+        sizes={pawSizes}
         className={fit}
       />
     );
@@ -101,20 +119,30 @@ function FigmaPaw({
   /* secondary + full: SP 좌·우를 이어 전체 폭 발바닥 */
   return (
     <div className="absolute inset-0 flex w-full overflow-visible">
-      <img
-        src={designResource.pawSecondaryLeading}
-        alt=""
-        aria-hidden
-        draggable={false}
-        className={`${base} h-full min-h-0 w-1/2 object-contain object-right`}
-      />
-      <img
-        src={designResource.pawSecondaryTrailing}
-        alt=""
-        aria-hidden
-        draggable={false}
-        className={`${base} h-full min-h-0 w-1/2 object-contain object-left`}
-      />
+      <div className="relative h-full min-h-0 w-1/2">
+        <Image
+          src={designResource.pawSecondaryLeading}
+          alt=""
+          aria-hidden
+          fill
+          unoptimized
+          draggable={false}
+          sizes={pawSizes}
+          className={`${base} object-contain object-right`}
+        />
+      </div>
+      <div className="relative h-full min-h-0 w-1/2">
+        <Image
+          src={designResource.pawSecondaryTrailing}
+          alt=""
+          aria-hidden
+          fill
+          unoptimized
+          draggable={false}
+          sizes={pawSizes}
+          className={`${base} object-contain object-left`}
+        />
+      </div>
     </div>
   );
 }

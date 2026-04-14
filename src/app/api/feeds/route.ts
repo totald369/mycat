@@ -2,6 +2,10 @@ import { NextResponse } from "next/server";
 import { loadFeedCatalogFromCatFoodCsv } from "@/lib/catFoodCsv";
 import { prisma } from "@/lib/prisma";
 
+/** 정적에 가까운 카탈로그 — CDN·브라우저 캐시로 반복 요청 비용 감소 */
+const FEEDS_CACHE_CONTROL =
+  "public, s-maxage=300, stale-while-revalidate=3600";
+
 function feedListLabel(displayLabel: string, nameKo: string | null): string {
   const ko = nameKo?.trim();
   if (!ko) return displayLabel;
@@ -46,14 +50,20 @@ async function feedsFromDb() {
 export async function GET() {
   const fromCsv = loadFeedCatalogFromCatFoodCsv();
   if (fromCsv.length > 0) {
-    return NextResponse.json({ items: fromCsv });
+    return NextResponse.json(
+      { items: fromCsv },
+      { headers: { "Cache-Control": FEEDS_CACHE_CONTROL } },
+    );
   }
 
   if (process.env.DATABASE_URL) {
     try {
       const items = await feedsFromDb();
       if (items.length > 0) {
-        return NextResponse.json({ items });
+        return NextResponse.json(
+          { items },
+          { headers: { "Cache-Control": FEEDS_CACHE_CONTROL } },
+        );
       }
     } catch (e) {
       console.warn("[api/feeds] DB 급여 로드 실패:", e);
