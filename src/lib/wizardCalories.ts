@@ -30,6 +30,21 @@ export type FeedCatalogItem = {
   feedCondition?: string | null;
 };
 
+/** CSV display renames: Excellence, Ahn, &, dry/wet prefix; "ko (label)" uses inner label */
+function feedLookupSignature(raw: string): string {
+  let s = raw.trim();
+  const open = s.lastIndexOf(" (");
+  if (open >= 0 && s.endsWith(")")) {
+    s = s.slice(open + 2, -1).trim();
+  }
+  s = s.replace(/^습식\/|^건식\//u, "");
+  s = s.replace(/\uC5D1\uC124\uB7F0\uC2A4/gu, "");
+  s = s.replace(/\uC564/gu, "");
+  s = s.replace(/&/g, "");
+  s = s.replace(/\s+/gu, "");
+  return s;
+}
+
 export function findKcalPer100gForFeedLabel(
   namePart: string,
   items: FeedCatalogItem[],
@@ -50,7 +65,15 @@ export function findKcalPer100gForFeedLabel(
   ) {
     return byDisp.kcalPer100g;
   }
-  return null;
+  const want = feedLookupSignature(t);
+  if (!want) return null;
+  const loose = items.find((i) => {
+    if (i.kcalPer100g == null || !Number.isFinite(i.kcalPer100g)) return false;
+    const a = feedLookupSignature(i.label);
+    const b = feedLookupSignature(i.displayLabel);
+    return a === want || b === want;
+  });
+  return loose?.kcalPer100g ?? null;
 }
 
 export function buildFoodsFromWizardChips(
