@@ -487,45 +487,56 @@ export default function ResultPage() {
                 <li>
                   <span
                     className={
-                      success.diffPercent < 0
+                      success.diffPercent <= -15
                         ? "font-semibold text-[#f8620c]"
                         : undefined
                     }
                   >
-                    -5% 미만: 급여량 추가가 필요해요.
+                    -15% 이하: 급여량을 늘려야 해요!
                   </span>
                 </li>
                 <li>
                   <span
                     className={
-                      success.diffPercent >= 0 && success.diffPercent <= 5
+                      success.diffPercent > -15 && success.diffPercent < -5
                         ? "font-semibold text-[#f8620c]"
                         : undefined
                     }
                   >
-                    5% 이내: 현재 급여량을 유지해 보세요.
+                    -5% ~ -15%: 조금 더 늘려보세요.
                   </span>
                 </li>
                 <li>
                   <span
                     className={
-                      success.diffPercent > 5 && success.diffPercent < 15
+                      success.diffPercent >= -5 && success.diffPercent <= 5
                         ? "font-semibold text-[#f8620c]"
                         : undefined
                     }
                   >
-                    5~15% 차이: 조금씩 조정해 보세요.
+                    -5% ~ +5%: 지금 급여량이 적당해요.
                   </span>
                 </li>
                 <li>
                   <span
                     className={
-                      success.diffPercent >= 15
+                      success.diffPercent > 5 && success.diffPercent <= 15
                         ? "font-semibold text-[#f8620c]"
                         : undefined
                     }
                   >
-                    15% 이상 차이: 급여량 조정이 필요해 보여요.
+                    +5% ~ +15%: 조금만 줄여보세요.
+                  </span>
+                </li>
+                <li>
+                  <span
+                    className={
+                      success.diffPercent > 15
+                        ? "font-semibold text-[#f8620c]"
+                        : undefined
+                    }
+                  >
+                    +15% 이상: 급여량 조정이 필요해요.
                   </span>
                 </li>
               </ul>
