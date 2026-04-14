@@ -121,14 +121,14 @@ id,brand,name,type,life_stage,kcal_per_100g,serving_g,category,condition
 129,알모네이처,레전드 닭고기&햄,wet,all_life_stage,80,180,general,none
 130,알모네이처,데일리 치킨 파우치,wet,adult_1y_plus,85,180,general,none
 131,알모네이처,데일리 참치 파우치,wet,adult_1y_plus,82,180,general,none
-132,프린세스,치킨브레스트 헤어볼 컨트롤,wet,adult_1y_plus,80,180,general,none
-133,프린세스,치킨 튜나&쉬림프,wet,adult_1y_plus,82,180,general,none
-134,프린세스,퍼시픽 튜나,wet,adult_1y_plus,78,180,general,none
-135,프린세스,치킨브레스트&터키,wet,adult_1y_plus,85,180,general,none
-136,프린세스,치킨 튜나&살몬,wet,adult_1y_plus,84,180,general,none
-137,프린세스,치킨 튜나&흰살생선,wet,adult_1y_plus,82,180,general,none
-138,프린세스,엑설런스 치킨튜나 앤 알로에베라,wet,adult_1y_plus,80,70,general,none
-139,프린세스,치킨 튜나&펌킨,wet,adult_1y_plus,83,180,general,none
+132,프린세스,엑설런스 치킨튜나&알로에베라,wet,adult_1y_plus,95,140,general,skin
+133,프린세스,엑설런스 치킨튜나&쉬림프,wet,adult_1y_plus,95,140,general,palatability
+134,프린세스,엑설런스 치킨튜나&연어,wet,adult_1y_plus,95,140,general,skin
+135,프린세스,엑설런스 치킨브레스트&터키,wet,adult_1y_plus,95,140,general,high_protein
+136,프린세스,엑설런스 퍼시픽튜나,wet,adult_1y_plus,90,140,general,palatability
+137,프린세스,엑설런스 치킨튜나&흰살생선,wet,adult_1y_plus,95,140,general,palatability
+138,프린세스,엑설런스 치킨튜나&펌킨,wet,adult_1y_plus,90,140,general,digestion
+139,프린세스,엑설런스 치킨브레스트 헤어볼,wet,adult_1y_plus,90,140,general,hairball
 140,레오나르도,리치 인 피쉬 캔,wet,adult_1y_plus,95,170,general,none
 141,레오나르도,치킨 캔,wet,adult_1y_plus,100,170,general,none
 142,레오나르도,비프 캔,wet,adult_1y_plus,102,170,general,none
