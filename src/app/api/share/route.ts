@@ -27,6 +27,14 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "invalid payload" }, { status: 400 });
     }
 
+    const existing = await prisma.sharedResult.findFirst({
+      where: { payload: encoded },
+      select: { shortId: true },
+    });
+    if (existing) {
+      return NextResponse.json({ id: existing.shortId }, { status: 200 });
+    }
+
     for (let i = 0; i < 5; i++) {
       const shortId = createShortId();
       try {

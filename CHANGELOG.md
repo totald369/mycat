@@ -17,6 +17,11 @@ Build snapshot: `/result` and `/step3` First Load JS about **205 kB → ~121 kB 
 - **Result** (`src/app/result/page.tsx`): complete splash is a **full-area `button`** (tap skips to content); subtitle prompts tap; `touch-manipulation` on mobile.
 - Loading copy when **`output` is still null** and no error (short Korean loading line in UI).
 
+### Share (short links only)
+
+- **Result** share uses **`/r/{id}`** only (no long `?s=` fallback). `requestShortShareLink` retries `POST /api/share` up to 3 times; loading state and toasts for copy / errors.
+- **`POST /api/share`**: returns existing **`shortId`** when the same `payload` was already stored (HTTP 200).
+
 ### Data
 
 - When `prisma/cat_food.csv` / `prisma/cat_food.numbers` are updated in the same commit, production feed catalog follows after deploy.

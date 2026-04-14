@@ -11,6 +11,7 @@ import { WizardBottomBar } from "@/components/design/WizardBottomBar";
 import { WizardHeader } from "@/components/design/WizardHeader";
 import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { FEED_CATALOG_PREFETCH_KEY } from "@/lib/feedCatalogPrefetch";
+import { requestShortShareLink } from "@/lib/requestShortShareLink";
 import {
   decodeShareResultPayload,
   encodeShareResultPayload,
@@ -88,6 +89,9 @@ export default function ResultPage() {
   const splashTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const resultCaptureRef = useRef<HTMLDivElement | null>(null);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
+  const [shareBusy, setShareBusy] = useState(false);
+  const [shareMessage, setShareMessage] = useState<string | null>(null);
+  const shareInFlightRef = useRef(false);
 
   const finishCompleteSplash = useCallback(() => {
     try {
@@ -221,25 +225,27 @@ export default function ResultPage() {
 
   const handleShare = useCallback(async () => {
     if (!success || typeof window === "undefined") return;
+    if (shareInFlightRef.current) return;
+    shareInFlightRef.current = true;
     const encoded = encodeShareResultPayload(success);
-    const fallbackUrl = new URL(`${window.location.origin}${window.location.pathname}`);
-    fallbackUrl.searchParams.set("s", encoded);
-    let shareUrl = fallbackUrl.toString();
-
+    setShareBusy(true);
+    setShareMessage(null);
+    let shareUrl: string | null = null;
     try {
-      const res = await fetch("/api/share", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ encoded }),
-      });
-      if (res.ok) {
-        const data = (await res.json()) as { id?: string };
-        if (data.id) {
-          shareUrl = `${window.location.origin}/r/${encodeURIComponent(data.id)}`;
-        }
-      }
-    } catch {
-      /* 실패 시 fallbackUrl 사용 */
+      shareUrl = await requestShortShareLink(
+        encoded,
+        window.location.origin,
+      );
+    } finally {
+      shareInFlightRef.current = false;
+      setShareBusy(false);
+    }
+
+    if (!shareUrl) {
+      setShareMessage(
+        "단축 링크를 만들지 못했어요. 잠시 후 다시 시도해 주세요.",
+      );
+      return;
     }
 
     if (navigator.share) {
@@ -257,8 +263,9 @@ export default function ResultPage() {
 
     try {
       await navigator.clipboard.writeText(shareUrl);
+      setShareMessage("단축 링크를 복사했어요.");
     } catch {
-      /* */
+      setShareMessage("링크 복사에 실패했어요.");
     }
   }, [success]);
 
@@ -285,6 +292,12 @@ export default function ResultPage() {
     const timer = setTimeout(() => setSaveMessage(null), 2000);
     return () => clearTimeout(timer);
   }, [saveMessage]);
+
+  useEffect(() => {
+    if (!shareMessage) return;
+    const timer = setTimeout(() => setShareMessage(null), 2800);
+    return () => clearTimeout(timer);
+  }, [shareMessage]);
 
   return (
     <div className="relative z-10 mx-auto min-h-screen w-full max-w-[375px] overflow-x-hidden overflow-y-visible bg-transparent">
@@ -478,12 +491,12 @@ export default function ResultPage() {
         ) : null}
       </div>
 
-      {saveMessage ? (
+      {saveMessage || shareMessage ? (
         <div
           role="status"
           className="pointer-events-none fixed bottom-[calc(7.25rem+env(safe-area-inset-bottom,0px))] left-1/2 z-[25] w-[min(100%-32px,280px)] -translate-x-1/2 rounded-xl border border-[#dedee0] bg-white px-3 py-2 text-center text-xs font-medium text-[#6f4425] shadow-[0px_8px_24px_rgba(17,17,17,0.12)]"
         >
-          {saveMessage}
+          {saveMessage ?? shareMessage}
         </div>
       ) : null}
 
@@ -504,9 +517,11 @@ export default function ResultPage() {
                 type="button"
                 className="text-center"
                 pawHalf="trailing"
+                disabled={shareBusy}
+                aria-busy={shareBusy}
                 onClick={handleShare}
               >
-                공유하기 ♧
+                {shareBusy ? "링크 만드는 중…" : "공유하기 ♧"}
               </PawWoodButton>
             }
           />
