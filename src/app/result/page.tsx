@@ -427,15 +427,19 @@ export default function ResultPage() {
                   {(() => {
                     const headlineSvg = statusHeadlineSvg(success.status);
                     return (
-                  <Image
-                    src={headlineSvg.src}
-                    alt={statusHeadline(success.status)}
-                    width={headlineSvg.width}
-                    height={headlineSvg.height}
-                    className="mx-auto h-auto w-auto max-w-full object-contain"
-                    unoptimized
-                    sizes="(max-width: 360px) 90vw, 257px"
-                  />
+                      <>
+                        {/* eslint-disable-next-line @next/next/no-img-element -- 모바일 html-to-image 캡처 시 SVG 안정성 확보 */}
+                        <img
+                          src={headlineSvg.src}
+                          alt=""
+                          aria-hidden
+                          width={headlineSvg.width}
+                          height={headlineSvg.height}
+                          className="mx-auto h-auto w-auto max-w-full object-contain"
+                          decoding="async"
+                        />
+                        <span className="sr-only">{statusHeadline(success.status)}</span>
+                      </>
                     );
                   })()}
                 </h1>
