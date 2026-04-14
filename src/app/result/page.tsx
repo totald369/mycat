@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { toPng } from "html-to-image";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
@@ -26,7 +25,7 @@ import {
 import type { CalculatorOutput } from "@/lib/calculator";
 import type { CalculatorSuccess } from "@/lib/calculator";
 import { CheckCatLottie } from "@/components/design/CheckCatLottie";
-import { IconResultImageDownload } from "@/components/wireframe/icons";
+import { designResource } from "@/components/design/designResourcePaths";
 import { RESULT_HERO_IMAGE } from "@/constants/resultHeroImages";
 import { SESSION_SHOW_RESULT_COMPLETE_SPLASH } from "@/constants/resultNavigation";
 
@@ -262,7 +261,6 @@ export default function ResultPage() {
       const dataUrl = await toPng(resultCaptureRef.current, {
         cacheBust: true,
         pixelRatio: 2,
-        backgroundColor: "#fffcf9",
       });
       const link = document.createElement("a");
       link.href = dataUrl;
@@ -291,11 +289,19 @@ export default function ResultPage() {
                 {showCompleteSplash ? null : (
                   <button
                     type="button"
-                    className="flex size-12 items-center justify-center rounded-lg text-[#171717] transition-opacity hover:opacity-80 active:opacity-60"
+                    className="flex size-12 shrink-0 items-center justify-center rounded-lg transition-opacity hover:opacity-80 active:opacity-60"
                     aria-label="결과 이미지 저장"
                     onClick={handleSaveImage}
                   >
-                    <IconResultImageDownload className="size-5" />
+                    {/* eslint-disable-next-line @next/next/no-img-element -- 피그마 SVG 에셋(48×48 터치 영역) */}
+                    <img
+                      src={designResource.imageDownTouchArea}
+                      alt=""
+                      width={48}
+                      height={48}
+                      className="size-12"
+                      decoding="async"
+                    />
                   </button>
                 )}
               </div>
@@ -341,18 +347,19 @@ export default function ResultPage() {
         {success && !showCompleteSplash ? (
           <div
             ref={resultCaptureRef}
-            className="flex w-full max-w-[327px] flex-col items-center gap-6"
+            className="flex w-full max-w-[327px] flex-col items-center gap-6 bg-[#fffcf9]"
           >
             <div className="flex w-full flex-col items-center gap-6">
-              <div className="relative h-[219px] w-[176px] shrink-0">
-                <Image
+              <div className="relative h-[219px] w-[176px] shrink-0 bg-transparent">
+                {/* eslint-disable-next-line @next/next/no-img-element -- html-to-image 캡처 시 Next/Image 투명 WebP가 검은색으로 깨지는 이슈 방지 */}
+                <img
                   src={RESULT_HERO_IMAGE[success.status]}
                   alt=""
                   width={528}
                   height={657}
                   className="h-full w-full object-contain object-bottom"
-                  sizes="176px"
-                  priority
+                  decoding="async"
+                  fetchPriority="high"
                 />
               </div>
               <div className="text-center">

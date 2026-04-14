@@ -129,34 +129,6 @@ export function IconShare({ className }: { className?: string }) {
   );
 }
 
-/** 결과 화면 헤더 — 이미지 저장(피그마 `Image_down_Touch_area` 아이콘) */
-export function IconResultImageDownload({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      aria-hidden
-    >
-      <path
-        d="M10 12.5V3.5M6.5 7 10 3.5 13.5 7"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M3 11.5v3A2.5 2.5 0 0 0 5.5 17h9A2.5 2.5 0 0 0 17 14.5v-3"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
 export function CatSilhouette({ className }: { className?: string }) {
   return (
     <svg
