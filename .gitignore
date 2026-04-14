@@ -36,6 +36,9 @@ yarn-error.log*
 /prisma/dev.db
 /prisma/dev.db-journal
 
+# URL shortener (id → full URL); local / single Node instance
+/data/url-shortener.json
+
 # 구 피그마보내기 폴더 — 정적 에셋은 public/design-resource 사용
 /public/figma/
 

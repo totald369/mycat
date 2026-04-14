@@ -11,6 +11,13 @@ import { WizardSelectedChoiceLayers } from "@/components/design/WizardSelectedCh
 import { WizardProgress } from "@/components/design/WizardProgress";
 import { ValidationToast } from "@/components/design/ValidationToast";
 import {
+  wizardFormCardClass,
+  wizardFormInnerClass,
+  wizardContentWidthClass,
+  wizardPageColumnClass,
+  wizardShellClass,
+} from "@/components/design/wizardLayoutClasses";
+import {
   wizardChoiceClass,
   wizardChoiceSelectedClass,
   wizardInputClass,
@@ -118,14 +125,14 @@ export default function Step1Page() {
   return (
     <>
       {error ? <ValidationToast message={error} /> : null}
-      <div className="relative z-10 mx-auto min-h-screen w-full max-w-[375px] overflow-x-hidden bg-transparent">
+      <div className={wizardShellClass}>
         <WizardPageBackground />
-        <div className="relative flex min-h-screen w-full flex-col items-center gap-6 px-6 pb-36 pt-20">
+        <div className={wizardPageColumnClass}>
           <WizardHeader />
-          <div className="flex w-full max-w-[327px] flex-col gap-4">
+          <div className={wizardContentWidthClass}>
             <WizardProgress step={1} />
             <div>
-              <h1 className="font-display text-[32px] leading-none text-[#111]">
+              <h1 className="font-display text-[1.75rem] leading-none text-[#111] min-[360px]:text-[2rem]">
                 Step 1 기본정보
               </h1>
               <p className="mt-2 text-base leading-[1.4] text-[#555]">
@@ -134,8 +141,8 @@ export default function Step1Page() {
             </div>
           </div>
 
-          <div className="w-full max-w-[343px] rounded-[24px] bg-white p-8 shadow-[0px_8px_32px_0px_rgba(17,17,17,0.06)]">
-            <div className="mx-auto flex max-w-[295px] flex-col gap-8">
+          <div className={wizardFormCardClass}>
+            <div className={wizardFormInnerClass}>
               <div>
                 <FieldLabel required>이름</FieldLabel>
                 <input

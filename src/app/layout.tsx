@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
 import { GA_MEASUREMENT_ID } from "@/constants/googleAnalytics";
@@ -59,6 +59,12 @@ const memomentKkukkukk = localFont({
   ],
   adjustFontFallback: "Arial",
 });
+
+/** 최소 레이아웃 기준 320px 폭(논리 CSS px) — 모바일 퍼스트 대응 */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://meowdiet.com"),

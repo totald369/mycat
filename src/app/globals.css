@@ -16,6 +16,10 @@
 html {
   font-family: var(--font-pretendard), system-ui, -apple-system,
     "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  /* 320px 설계 기준: 가로 스크롤·1px 오버플로 방지 */
+  /* Narrow viewports: smaller root rem; wide: ~16px */
+  font-size: clamp(14px, 2vw + 7.6px, 16px);
+  overflow-x: clip;
 }
 
 body {

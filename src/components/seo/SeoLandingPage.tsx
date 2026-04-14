@@ -7,10 +7,12 @@ type Props = {
 
 export function SeoLandingPage({ page }: Props) {
   return (
-    <main className="mx-auto w-full max-w-3xl px-6 py-12 text-[#171717]">
+    <main className="mx-auto w-full min-w-0 max-w-3xl px-4 py-10 text-[#171717] min-[360px]:px-6 min-[360px]:py-12">
       <article className="space-y-10">
         <header className="space-y-4">
-          <h1 className="text-3xl font-bold leading-tight">{page.h1}</h1>
+          <h1 className="text-2xl font-bold leading-tight min-[360px]:text-3xl">
+            {page.h1}
+          </h1>
           <p className="text-base leading-7 text-[#333]">{page.description}</p>
           <div className="flex flex-wrap gap-3">
             <Link
@@ -30,7 +32,9 @@ export function SeoLandingPage({ page }: Props) {
 
         {page.sections.map((section) => (
           <section key={section.heading} className="space-y-4">
-            <h2 className="text-2xl font-semibold leading-tight">{section.heading}</h2>
+            <h2 className="text-xl font-semibold leading-tight min-[360px]:text-2xl">
+              {section.heading}
+            </h2>
             {section.paragraphs.map((paragraph) => (
               <p key={paragraph} className="text-base leading-8 text-[#333]">
                 {paragraph}
@@ -39,8 +43,10 @@ export function SeoLandingPage({ page }: Props) {
           </section>
         ))}
 
-        <section className="space-y-4 rounded-2xl bg-[#f8f5f2] p-6">
-          <h2 className="text-2xl font-semibold leading-tight">연관 급여량 가이드</h2>
+        <section className="space-y-4 rounded-2xl bg-[#f8f5f2] p-4 min-[360px]:p-6">
+          <h2 className="text-xl font-semibold leading-tight min-[360px]:text-2xl">
+            연관 급여량 가이드
+          </h2>
           <p className="text-base leading-7 text-[#333]">
             아래 페이지를 함께 확인하면 고양이 하루 사료 양과 칼로리 계산을 더
             정확하게 이해할 수 있습니다.

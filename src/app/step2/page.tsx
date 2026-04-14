@@ -14,6 +14,12 @@ import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { WizardSelectedChoiceLayers } from "@/components/design/WizardSelectedChoiceLayers";
 import { WizardProgress } from "@/components/design/WizardProgress";
 import { BCS_LABEL_TO_ICON } from "@/components/design/designResourcePaths";
+import {
+  wizardBlockWidthClass,
+  wizardContentWidthClass,
+  wizardPageColumnClassBarTall,
+  wizardShellClass,
+} from "@/components/design/wizardLayoutClasses";
 import { wizardChoiceClass } from "@/components/design/wizardFieldClasses";
 import { patchWizardState, readWizardState } from "@/lib/wizardStorage";
 
@@ -62,7 +68,7 @@ export default function Step2Page() {
         }`}
       >
         {selected ? <WizardSelectedChoiceLayers /> : null}
-        <span className="relative z-10 flex w-full flex-col items-center gap-4 px-6 pb-4 pt-6">
+        <span className="relative z-10 flex w-full flex-col items-center gap-4 px-3 pb-4 pt-5 min-[360px]:px-6 min-[360px]:pt-6">
           <Image
             src={BCS_LABEL_TO_ICON[label as keyof typeof BCS_LABEL_TO_ICON]}
             alt=""
@@ -85,14 +91,14 @@ export default function Step2Page() {
 
   return (
     <>
-      <div className="relative z-10 mx-auto min-h-screen w-full max-w-[375px] overflow-x-hidden bg-transparent">
+      <div className={wizardShellClass}>
         <WizardPageBackground />
-        <div className="relative flex min-h-screen w-full flex-col items-center gap-6 px-6 pb-40 pt-20">
+        <div className={wizardPageColumnClassBarTall}>
           <WizardHeader />
-          <div className="flex w-full max-w-[327px] flex-col gap-4">
+          <div className={wizardContentWidthClass}>
             <WizardProgress step={2} />
             <div>
-              <h1 className="font-display text-[32px] leading-none text-[#111]">
+              <h1 className="font-display text-[1.75rem] leading-none text-[#111] min-[360px]:text-[2rem]">
                 Step 2 활동/체형
               </h1>
               <p className="mt-2 text-base leading-[1.4] text-[#555]">
@@ -101,7 +107,7 @@ export default function Step2Page() {
             </div>
           </div>
 
-          <div className="w-full max-w-[327px]">
+          <div className={wizardBlockWidthClass}>
             <FieldLabel required>체형(BCS)</FieldLabel>
             <div className="grid grid-cols-2 gap-1">
               {BCS.slice(0, 4).map((label) => bcsBtn(label))}
@@ -111,7 +117,7 @@ export default function Step2Page() {
             </div>
           </div>
 
-          <div className="w-full max-w-[327px] pb-4">
+          <div className={`${wizardBlockWidthClass} pb-4`}>
             <FieldLabel required>활동량</FieldLabel>
             <div className="flex gap-1">
               {ACTIVITY.map(({ title }) => {

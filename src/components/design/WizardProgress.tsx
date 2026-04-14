@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { wizardProgressRowClass } from "@/components/design/wizardLayoutClasses";
 
 type Props = { step: 1 | 2 | 3 };
 
@@ -20,9 +21,9 @@ export function WizardProgress({ step }: Props) {
   }, [pct]);
 
   return (
-    <div className="flex w-full max-w-[327px] items-center gap-2">
+    <div className={wizardProgressRowClass}>
       <div className="flex h-[26px] w-[60px] shrink-0 items-center justify-center rounded-full bg-[#6f4425] px-1">
-        <span className="text-center font-display text-[12px] leading-none tracking-tight text-white">
+        <span className="text-center font-display text-[0.75rem] leading-none tracking-tight text-white">
           STEP {step}
         </span>
       </div>

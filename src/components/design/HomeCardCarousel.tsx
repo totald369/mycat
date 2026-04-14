@@ -14,7 +14,7 @@ export function HomeCardCarousel() {
       className="w-full"
       renderItem={(c) => (
         <article
-          className={`flex h-[245px] w-full flex-col justify-between gap-3 overflow-hidden rounded-[24px] px-6 py-5 ${c.className}`}
+          className={`flex h-[245px] w-full flex-col justify-between gap-3 overflow-hidden rounded-[24px] px-4 py-5 min-[360px]:px-6 ${c.className}`}
         >
           <div
             className="mx-auto flex size-16 shrink-0 items-center justify-center"

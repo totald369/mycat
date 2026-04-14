@@ -6,6 +6,7 @@ import { HomeCardCarousel } from "@/components/design/HomeCardCarousel";
 import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { DESIGN_RESOURCE_PX, designResource } from "@/components/design/designResourcePaths";
 import { PawPrimaryLink } from "@/components/design/PawButton";
+import { wizardShellHomeClass } from "@/components/design/wizardLayoutClasses";
 
 export const metadata: Metadata = {
   alternates: {
@@ -38,18 +39,18 @@ export default function IntroPage() {
           }),
         }}
       />
-      <main className="relative z-10 mx-auto h-[100dvh] max-h-[100dvh] w-full max-w-[375px] overflow-hidden bg-transparent">
+      <main className={wizardShellHomeClass}>
         <WizardPageBackground />
 
         <div className="relative flex h-full min-h-0 flex-col items-center overflow-hidden pt-12 pb-[calc(7.5rem+env(safe-area-inset-bottom,0px))]">
-          <div className="flex w-full shrink-0 flex-col items-center px-6">
+          <div className="flex w-full shrink-0 flex-col items-center px-4 min-[360px]:px-6">
           {/* 피그마: 헤더 없음 — 로고만 타이틀 위 4px 간격·가운데 정렬 */}
           <div className="mb-1 flex w-full justify-center">
             <AppLogo />
           </div>
 
-          <h1 className="text-center font-display text-[40px] leading-none text-[#111]">
-            <span className="inline-flex items-end justify-center gap-1">
+          <h1 className="w-full min-w-0 max-w-full text-center font-display text-[1.875rem] leading-none text-[#111] min-[360px]:text-[2.5rem]">
+            <span className="inline-flex min-w-0 max-w-full flex-wrap items-end justify-center gap-1">
               <span>우리</span>
               <span className="inline-flex shrink-0 items-end leading-none">
                 <Image
@@ -83,8 +84,8 @@ export default function IntroPage() {
           </div>
         </div>
 
-        <div className="fixed bottom-0 left-0 right-0 z-20 overflow-x-clip overflow-y-visible bg-gradient-to-t from-white from-40% via-white/95 to-transparent px-[16px] pb-4 pt-10">
-          <div className="mx-auto w-full max-w-[375px] overflow-visible">
+        <div className="fixed bottom-0 left-0 right-0 z-20 overflow-x-clip overflow-y-visible bg-gradient-to-t from-white from-40% via-white/95 to-transparent px-3 pb-4 pt-10 min-[360px]:px-4">
+          <div className="mx-auto w-full max-w-[min(100%,375px)] overflow-visible">
             <PawPrimaryLink href="/step1">계산하기♧</PawPrimaryLink>
           </div>
         </div>

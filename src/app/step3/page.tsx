@@ -27,6 +27,14 @@ const CalculatingPawsPetLottie = dynamic(
 import { ValidationToast } from "@/components/design/ValidationToast";
 import { designResource } from "@/components/design/designResourcePaths";
 import {
+  wizardBlockWidthClass,
+  wizardContentWidthClass,
+  wizardFormCardClass,
+  wizardFormInnerClass,
+  wizardPageColumnClassBarTall,
+  wizardShellClass,
+} from "@/components/design/wizardLayoutClasses";
+import {
   wizardChoiceClass,
   wizardChoiceSelectedClass,
   wizardInputClass,
@@ -233,9 +241,9 @@ export default function Step3Page() {
             />
           </div>
           <CalculatingPawsPetLottie />
-          <div className="relative z-10 flex h-full min-h-0 flex-col items-center justify-center px-6 pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)]">
-            <div className="flex w-full max-w-[327px] flex-col items-center gap-4">
-              <div className="relative h-[239px] w-[233px] shrink-0 overflow-hidden rounded-[40px]">
+          <div className="relative z-10 flex h-full min-h-0 flex-col items-center justify-center px-4 pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)] min-[360px]:px-6">
+            <div className={`flex ${wizardBlockWidthClass} flex-col items-center gap-4`}>
+              <div className="relative w-full max-w-[min(233px,calc(100%-0px))] shrink-0 overflow-hidden rounded-[40px] aspect-[233/239]">
                 <video
                   key={calculatingVideoSrc}
                   className="absolute left-0 top-[-7.33%] h-[129.99%] w-full max-w-none object-cover"
@@ -247,7 +255,7 @@ export default function Step3Page() {
                   controlsList="nodownload"
                 />
               </div>
-              <div className="w-full text-center font-display text-[32px] leading-none text-[#111]">
+              <div className="w-full text-center font-display text-[1.75rem] leading-none text-[#111] min-[360px]:text-[2rem]">
                 <p className="mb-0">칼로리를 </p>
                 <p className="mt-0">계산하고 있습니다...</p>
               </div>
@@ -256,14 +264,14 @@ export default function Step3Page() {
         </div>
       ) : null}
 
-      <div className="relative z-10 mx-auto min-h-screen w-full max-w-[375px] overflow-x-hidden bg-transparent">
+      <div className={wizardShellClass}>
         <WizardPageBackground />
-        <div className="relative flex min-h-screen w-full flex-col items-center gap-6 px-6 pb-40 pt-20">
+        <div className={wizardPageColumnClassBarTall}>
           <WizardHeader />
-          <div className="flex w-full max-w-[327px] flex-col gap-4">
+          <div className={wizardContentWidthClass}>
             <WizardProgress step={3} />
             <div>
-              <h1 className="font-display text-[32px] leading-none text-[#111]">
+              <h1 className="font-display text-[1.75rem] leading-none text-[#111] min-[360px]:text-[2rem]">
                 Step 3 급여정보
               </h1>
               <p className="mt-2 text-base leading-[1.4] text-[#555]">
@@ -272,8 +280,8 @@ export default function Step3Page() {
             </div>
           </div>
 
-          <div className="w-full max-w-[343px] rounded-[24px] bg-white p-8 shadow-[0px_8px_32px_0px_rgba(17,17,17,0.06)]">
-            <div className="mx-auto flex max-w-[295px] flex-col gap-8">
+          <div className={wizardFormCardClass}>
+            <div className={wizardFormInnerClass}>
               <div>
                 <FieldLabel required>급여 종류 및 횟수</FieldLabel>
                 <div className="relative">

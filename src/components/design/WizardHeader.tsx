@@ -11,7 +11,7 @@ type WizardHeaderProps = {
 export function WizardHeader({ trailing }: WizardHeaderProps) {
   if (trailing) {
     return (
-      <header className="absolute left-0 top-0 z-10 flex h-14 w-full items-center justify-between bg-transparent pl-6 pr-2 backdrop-blur-[12px]">
+      <header className="absolute left-0 top-0 z-10 flex h-[56px] min-h-[56px] max-h-[56px] w-full items-center justify-between bg-transparent pl-4 pr-1 backdrop-blur-[12px] min-[360px]:pl-6 min-[360px]:pr-2">
         <AppLogo />
         {trailing}
       </header>
@@ -19,7 +19,7 @@ export function WizardHeader({ trailing }: WizardHeaderProps) {
   }
 
   return (
-    <header className="absolute left-0 top-0 z-10 flex w-full bg-transparent px-6 py-4">
+    <header className="absolute left-0 top-0 z-10 flex w-full bg-transparent px-4 py-4 min-[360px]:px-6">
       <AppLogo />
     </header>
   );

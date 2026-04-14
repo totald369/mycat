@@ -7,7 +7,7 @@ import { designResource } from "@/components/design/designResourcePaths";
 export type PawHalf = "none" | "leading" | "trailing";
 
 const pawLabelBase =
-  "pointer-events-none absolute inset-0 z-10 flex flex-row items-center gap-2 font-display text-[20px] leading-[31.5px] text-white";
+  "pointer-events-none absolute inset-0 z-10 flex flex-row items-center gap-1 font-display text-[1.0625rem] leading-[1.625rem] text-white min-[360px]:gap-2 min-[360px]:text-[1.25rem] min-[360px]:leading-[1.96875rem]";
 
 /**
  * 피그마 반쪽 발 에셋(50L/50R viewBox) 기준: 왼쪽 버튼은 색 면이 오른쪽 ~72%, 오른쪽 버튼은 왼쪽 ~72%.
@@ -25,7 +25,7 @@ function pawLabelClass(half: PawHalf): string {
 
 /** 발바닥 SVG가 박스 밖으로 살짝 나와도 잘리지 않게 `overflow-visible`, 높이는 피그마 73px 고정 */
 const shell =
-  "relative flex h-[73px] w-full items-center justify-center overflow-visible outline-none ring-offset-2 transition active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[#f8620c]/40 disabled:opacity-50";
+  "relative flex h-[4.5625rem] w-full items-center justify-center overflow-visible outline-none ring-offset-2 transition active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-[#f8620c]/40 disabled:opacity-50";
 
 function FigmaPaw({
   scheme,

@@ -26,6 +26,11 @@ import {
 import type { CalculatorOutput } from "@/lib/calculator";
 import type { CalculatorSuccess } from "@/lib/calculator";
 import { designResource } from "@/components/design/designResourcePaths";
+import {
+  wizardPageColumnClass,
+  wizardResultContentClass,
+  wizardShellClassResult,
+} from "@/components/design/wizardLayoutClasses";
 import { RESULT_HERO_IMAGE } from "@/constants/resultHeroImages";
 import { SESSION_SHOW_RESULT_COMPLETE_SPLASH } from "@/constants/resultNavigation";
 
@@ -42,7 +47,7 @@ function kcalBig(value: number, accent?: boolean) {
   return (
     <div className="flex items-end justify-center gap-0.5">
       <span
-        className={`text-[32px] font-bold leading-none ${accent ? "text-[#f8620c]" : "text-black"}`}
+        className={`text-[1.75rem] font-bold leading-none min-[360px]:text-[2rem] ${accent ? "text-[#f8620c]" : "text-black"}`}
       >
         {n}
       </span>
@@ -300,27 +305,28 @@ export default function ResultPage() {
   }, [shareMessage]);
 
   return (
-    <div className="relative z-10 mx-auto min-h-screen w-full max-w-[375px] overflow-x-hidden overflow-y-visible bg-transparent">
+    <div className={wizardShellClassResult}>
       <WizardPageBackground />
-      <div className="relative flex min-h-screen w-full flex-col items-center gap-6 px-6 pb-36 pt-20">
+      <div className={wizardPageColumnClass}>
         <WizardHeader
           trailing={
             success ? (
-              <div className="flex size-12 shrink-0 items-center justify-center">
+              <div className="flex h-[48px] w-[48px] shrink-0 items-center justify-center">
                 {showCompleteSplash ? null : (
                   <button
                     type="button"
-                    className="flex size-12 shrink-0 items-center justify-center rounded-lg transition-opacity hover:opacity-80 active:opacity-60"
+                    className="flex h-[48px] w-[48px] shrink-0 items-center justify-center overflow-hidden rounded-lg p-0 transition-opacity hover:opacity-80 active:opacity-60"
                     aria-label="결과 이미지 저장"
                     onClick={handleSaveImage}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element -- 피그마 SVG 에셋(48×48 터치 영역) */}
+                    {/* 피그마 45:1204 — 48×48 터치, 아이콘 24×24 중앙 (download-01) */}
+                    {/* eslint-disable-next-line @next/next/no-img-element -- html-to-image 캡처 호환 */}
                     <img
                       src={designResource.imageDownTouchArea}
                       alt=""
                       width={48}
                       height={48}
-                      className="size-12"
+                      className="block h-[48px] w-[48px] max-w-none shrink-0 object-contain"
                       decoding="async"
                     />
                   </button>
@@ -361,7 +367,7 @@ export default function ResultPage() {
         {success && showCompleteSplash ? (
           <button
             type="button"
-            className="flex min-h-[min(520px,70dvh)] w-full max-w-[327px] cursor-pointer touch-manipulation flex-col items-center justify-center gap-4 px-4 text-center outline-none focus-visible:ring-2 focus-visible:ring-[#f8620c]/40 focus-visible:ring-offset-2"
+            className="flex min-h-[min(520px,70dvh)] w-full max-w-[min(327px,100%)] cursor-pointer touch-manipulation flex-col items-center justify-center gap-4 px-3 text-center outline-none focus-visible:ring-2 focus-visible:ring-[#f8620c]/40 focus-visible:ring-offset-2 min-[360px]:px-4"
             onClick={finishCompleteSplash}
             aria-label="탭하여 결과 화면으로 이동"
           >
@@ -369,11 +375,11 @@ export default function ResultPage() {
               className="pointer-events-none h-[140px] w-[140px] shrink-0 sm:h-[160px] sm:w-[160px]"
               onComplete={finishCompleteSplash}
             />
-            <p className="text-center font-display text-[40px] leading-none text-[#111]">
+            <p className="text-center font-display text-[1.875rem] leading-none text-[#111] min-[360px]:text-[2.5rem]">
               계산 완료
             </p>
             <p className="text-center text-sm font-medium leading-snug text-[#555]">
-              화면을 누러 결과 보기
+              화면을 눌러 결과 보기
             </p>
           </button>
         ) : null}
@@ -381,7 +387,7 @@ export default function ResultPage() {
         {success && !showCompleteSplash ? (
           <div
             ref={resultCaptureRef}
-            className="flex w-full max-w-[327px] flex-col items-center gap-6 bg-[#fffcf9]"
+            className={wizardResultContentClass}
           >
             <div className="flex w-full flex-col items-center gap-6">
               <div className="relative h-[219px] w-[176px] shrink-0 bg-transparent">
@@ -397,7 +403,7 @@ export default function ResultPage() {
                 />
               </div>
               <div className="text-center">
-                <h1 className="font-display text-[40px] leading-none text-[#111]">
+                <h1 className="font-display text-[1.875rem] leading-none text-[#111] min-[360px]:text-[2.5rem]">
                   {statusHeadline(success.status)}
                 </h1>
                 <p className="mt-3 text-lg leading-[1.4] text-[rgba(23,23,23,0.8)]">
@@ -429,7 +435,7 @@ export default function ResultPage() {
               </div>
             </div>
 
-            <p className="w-full text-center text-[11px] text-[rgba(23,23,23,0.55)]">
+            <p className="w-full text-center text-[0.6875rem] text-[rgba(23,23,23,0.55)]">
               사료 {formatKcal(success.foodCalories)} + 간식 추정{" "}
               {formatKcal(success.snackCalories)} · 권장 대비{" "}
               {success.diffPercent >= 0 ? "+" : ""}
