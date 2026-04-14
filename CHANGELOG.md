@@ -14,8 +14,8 @@ Build snapshot: `/result` and `/step3` First Load JS about **205 kB → ~121 kB 
 
 ### UX (Clarity dead clicks)
 
-- **Result** (`src/app/result/page.tsx`): “계산 ��료” splash is a **full-area `button`** (tap skips to content); subtitle “��러 결과 보기”; `touch-manipulation` on mobile.
-- Loading copy when **`output` is still null** and no error: “결과를 불러오는 중이에요…”.
+- **Result** (`src/app/result/page.tsx`): complete splash is a **full-area `button`** (tap skips to content); subtitle prompts tap; `touch-manipulation` on mobile.
+- Loading copy when **`output` is still null** and no error (short Korean loading line in UI).
 
 ### Data
 
