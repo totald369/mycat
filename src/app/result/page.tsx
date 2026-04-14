@@ -281,7 +281,7 @@ export default function ResultPage() {
   return (
     <div className="relative z-10 mx-auto min-h-screen w-full max-w-[375px] overflow-x-hidden overflow-y-visible bg-transparent">
       <WizardPageBackground />
-      <div className="relative flex min-h-screen w-full flex-col items-center gap-8 px-6 pb-36 pt-20">
+      <div className="relative flex min-h-screen w-full flex-col items-center gap-6 px-6 pb-36 pt-20">
         <WizardHeader
           trailing={
             success ? (

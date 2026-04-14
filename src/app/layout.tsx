@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Noto_Sans_KR } from "next/font/google";
 import Script from "next/script";
 import { GA_MEASUREMENT_ID } from "@/constants/googleAnalytics";
 import { CLARITY_PROJECT_ID } from "@/constants/microsoftClarity";
@@ -41,15 +40,6 @@ const pretendard = localFont({
     "Malgun Gothic",
     "sans-serif",
   ],
-});
-
-const notoSansKr = Noto_Sans_KR({
-  variable: "--font-noto",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-  preload: true,
-  adjustFontFallback: true,
 });
 
 /** Memoment Kkukkukk(꾹꾹체) — 피그마 디스플레이체 woff2 */
@@ -118,15 +108,15 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${pretendard.variable} ${notoSansKr.variable} ${memomentKkukkukk.variable}`}
+      className={`${pretendard.variable} ${memomentKkukkukk.variable}`}
     >
       <body className="font-sans antialiased">
         {children}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="gtag-init" strategy="afterInteractive">
+        <Script id="gtag-init" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -134,7 +124,7 @@ export default function RootLayout({
             gtag('config', '${GA_MEASUREMENT_ID}');
           `}
         </Script>
-        <Script id="clarity-init" strategy="afterInteractive">
+        <Script id="clarity-init" strategy="lazyOnload">
           {`
             (function(c,l,a,r,i,t,y){
               c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};

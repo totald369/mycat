@@ -8,12 +8,14 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  /* 본문: next/font Pretendard → Noto Sans KR(폴백) */
-  --font-sans: var(--font-pretendard), var(--font-noto), system-ui, sans-serif;
+  /* 본문: Pretendard + 시스템 한글 (Google Noto 미사용) */
+  --font-sans: var(--font-pretendard), system-ui, -apple-system,
+    "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
 }
 
 html {
-  font-family: var(--font-pretendard), var(--font-noto), system-ui, sans-serif;
+  font-family: var(--font-pretendard), system-ui, -apple-system,
+    "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
 }
 
 body {
@@ -22,10 +24,10 @@ body {
   font-family: inherit;
 }
 
-/* 제목·버튼: Memoment Kkukkukk(로컬) → Pretendard → Noto */
+/* 제목·버튼: Memoment Kkukkukk(로컬) → Pretendard + 시스템 한글 */
 .font-display {
-  font-family: var(--font-display), var(--font-pretendard), var(--font-noto),
-    system-ui, sans-serif;
+  font-family: var(--font-display), var(--font-pretendard), system-ui,
+    -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
 }
 
 /* 생년월일: 보이는 네이티브 date — 투명 오버레이는 PC에서 달력 미표시 이슈가 있어 사용하지 않음 */

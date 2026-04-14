@@ -250,7 +250,7 @@ export default function Step3Page() {
 
       <div className="relative z-10 mx-auto min-h-screen w-full max-w-[375px] overflow-x-hidden bg-transparent">
         <WizardPageBackground />
-        <div className="relative flex min-h-screen w-full flex-col items-center gap-8 px-6 pb-40 pt-20">
+        <div className="relative flex min-h-screen w-full flex-col items-center gap-6 px-6 pb-40 pt-20">
           <WizardHeader />
           <div className="flex w-full max-w-[327px] flex-col gap-4">
             <WizardProgress step={3} />
