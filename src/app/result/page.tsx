@@ -278,31 +278,26 @@ export default function ResultPage() {
     if (!resultCaptureRef.current) return;
     const captureNode = resultCaptureRef.current;
     const exportPaddingX = 30;
-    let wrapper: HTMLDivElement | null = null;
     try {
-      const { toJpeg } = await import("html-to-image");
-
-      // 캡처용 래퍼를 만들어 좌우 30px 여백을 강제로 포함한다.
-      wrapper = document.createElement("div");
-      wrapper.style.position = "fixed";
-      wrapper.style.left = "-100000px";
-      wrapper.style.top = "0";
-      wrapper.style.zIndex = "-1";
-      wrapper.style.background = "#ffffff";
-      wrapper.style.padding = `0 ${exportPaddingX}px`;
-      wrapper.style.boxSizing = "border-box";
-
-      const clone = captureNode.cloneNode(true) as HTMLElement;
-      clone.style.margin = "0";
-      wrapper.appendChild(clone);
-      document.body.appendChild(wrapper);
-
-      const dataUrl = await toJpeg(wrapper, {
+      const { toCanvas } = await import("html-to-image");
+      const pixelRatio = 2;
+      const sourceCanvas = await toCanvas(captureNode, {
         cacheBust: true,
-        pixelRatio: 2,
-        quality: 0.95,
+        pixelRatio,
+        backgroundColor: "#ffffff",
       });
 
+      const paddingPx = exportPaddingX * pixelRatio;
+      const outCanvas = document.createElement("canvas");
+      outCanvas.width = sourceCanvas.width + paddingPx * 2;
+      outCanvas.height = sourceCanvas.height;
+      const ctx = outCanvas.getContext("2d");
+      if (!ctx) throw new Error("canvas context unavailable");
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, outCanvas.width, outCanvas.height);
+      ctx.drawImage(sourceCanvas, paddingPx, 0);
+
+      const dataUrl = outCanvas.toDataURL("image/jpeg", 0.95);
       const link = document.createElement("a");
       link.href = dataUrl;
       link.download = "our-cat-calorie-result.jpg";
@@ -310,10 +305,6 @@ export default function ResultPage() {
       setSaveMessage("이미지를 저장했어요.");
     } catch {
       setSaveMessage("이미지 저장에 실패했어요. 다시 시도해 주세요.");
-    } finally {
-      if (wrapper && document.body.contains(wrapper)) {
-        document.body.removeChild(wrapper);
-      }
     }
   }, []);
 
