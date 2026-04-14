@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { AppLogo } from "@/components/design/AppLogo";
 import { HomeCardCarousel } from "@/components/design/HomeCardCarousel";
 import { WizardPageBackground } from "@/components/design/WizardPageBackground";
+import { DESIGN_RESOURCE_PX, designResource } from "@/components/design/designResourcePaths";
 import { PawPrimaryLink } from "@/components/design/PawButton";
 import { DISPLAY_BUTTON, DISPLAY_TITLE } from "@/constants/displayTextSvg";
 import { wizardShellHomeClass } from "@/components/design/wizardLayoutClasses";
@@ -15,6 +16,10 @@ export const metadata: Metadata = {
 };
 
 export default function IntroPage() {
+  const { w: iw, h: ih } = DESIGN_RESOURCE_PX.catImg;
+  const catLogicalW = iw / 3;
+  const catLogicalH = ih / 3;
+
   return (
     <>
       <Script
@@ -45,15 +50,47 @@ export default function IntroPage() {
           </div>
 
           <h1 className="w-full min-w-0 max-w-full text-center">
+            <span className="flex items-end justify-center gap-1">
+              <Image
+                src={DISPLAY_TITLE.homeLine1Left.src}
+                alt="우리"
+                width={DISPLAY_TITLE.homeLine1Left.width}
+                height={DISPLAY_TITLE.homeLine1Left.height}
+                className="h-auto w-auto object-contain"
+                unoptimized
+                priority
+                sizes="63px"
+              />
+              <Image
+                src={designResource.catImg}
+                alt="냥이"
+                width={iw}
+                height={ih}
+                className="shrink-0 object-contain"
+                style={{ width: catLogicalW, height: catLogicalH }}
+                priority
+                sizes={`${Math.ceil(catLogicalW)}px`}
+              />
+              <Image
+                src={DISPLAY_TITLE.homeLine1Right.src}
+                alt="에게"
+                width={DISPLAY_TITLE.homeLine1Right.width}
+                height={DISPLAY_TITLE.homeLine1Right.height}
+                className="h-auto w-auto object-contain"
+                unoptimized
+                priority
+                sizes="63px"
+              />
+            </span>
             <Image
-              src={DISPLAY_TITLE.homeMain.src}
-              alt="우리 냥이에게 딱 맞는 칼로리를 계산해보세요"
-              width={DISPLAY_TITLE.homeMain.width}
-              height={DISPLAY_TITLE.homeMain.height}
-              className="mx-auto h-auto w-auto max-w-full object-contain"
+              src={DISPLAY_TITLE.homeLine2.src}
+              alt="딱 맞는 칼로리를 계산해보세요"
+              width={DISPLAY_TITLE.homeLine2.width}
+              height={DISPLAY_TITLE.homeLine2.height}
+              className="mx-auto mt-1 h-auto w-auto max-w-full object-contain"
               unoptimized
               priority
-              sizes="(max-width: 360px) 90vw, 249px"
+              sizes="(max-width: 360px) 90vw, 237px"
             />
           </h1>
           <p className="mt-4 text-center text-lg leading-[1.4] text-[#555]">

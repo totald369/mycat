@@ -190,7 +190,7 @@ export default function Step2Page() {
       <WizardBottomBar>
         <PawSplitRow
           left={
-            <PawWoodLink href="/step1" className="text-center" labelSvg={DISPLAY_BUTTON.prev}>
+            <PawWoodLink href="/step1" className="text-center" labelSvg={DISPLAY_BUTTON.step2Prev}>
               이전 ♧
             </PawWoodLink>
           }
@@ -199,7 +199,7 @@ export default function Step2Page() {
               href="/step3"
               className="text-center"
               pawHalf="trailing"
-              labelSvg={DISPLAY_BUTTON.next}
+              labelSvg={DISPLAY_BUTTON.step2Next}
             >
               다음 ♧
             </PawPrimaryLink>

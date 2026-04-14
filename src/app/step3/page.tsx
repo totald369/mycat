@@ -392,7 +392,7 @@ export default function Step3Page() {
                             sizes="300px"
                           />
                         </span>
-                        <span className="relative z-10 min-w-0 flex-1 pr-1">
+                        <span className="relative z-10 min-w-0 flex-1 pr-1 font-semibold">
                           {c.text}
                         </span>
                         <button
@@ -437,7 +437,11 @@ export default function Step3Page() {
       <WizardBottomBar>
         <PawSplitRow
           left={
-            <PawWoodLink href="/step2" className="text-center">
+            <PawWoodLink
+              href="/step2"
+              className="text-center"
+              labelSvg={DISPLAY_BUTTON.step3Prev}
+            >
               이전 ♧
             </PawWoodLink>
           }
@@ -448,7 +452,7 @@ export default function Step3Page() {
               className="text-center"
               disabled={showCalculating}
               pawHalf="trailing"
-              labelSvg={DISPLAY_BUTTON.result}
+              labelSvg={DISPLAY_BUTTON.step3Next}
             >
               결과보기 ♧
             </PawPrimaryButton>

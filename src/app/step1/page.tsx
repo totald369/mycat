@@ -248,7 +248,7 @@ export default function Step1Page() {
       </div>
 
       <WizardBottomBar>
-        <PawPrimaryButton onClick={goNext} labelSvg={DISPLAY_BUTTON.next}>
+        <PawPrimaryButton onClick={goNext} labelSvg={DISPLAY_BUTTON.step1Next}>
           다음 ♧
         </PawPrimaryButton>
       </WizardBottomBar>

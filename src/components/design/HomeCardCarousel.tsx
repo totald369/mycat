@@ -15,13 +15,13 @@ export function HomeCardCarousel() {
   return (
     <InfiniteMarquee
       items={HOME_FEATURE_CARDS}
-      cardWidth={220}
+      cardWidth={200}
       gap={16}
       durationSec={15}
       className="w-full"
       renderItem={(c) => (
         <article
-          className={`flex h-[245px] w-full flex-col justify-between gap-3 overflow-hidden rounded-[24px] px-4 py-5 min-[360px]:px-6 ${c.className}`}
+          className={`flex h-[230px] w-full flex-col justify-between gap-3 overflow-hidden rounded-[24px] px-4 py-8 min-[360px]:px-6 ${c.className}`}
         >
           <div
             className="mx-auto flex size-16 shrink-0 items-center justify-center"
