@@ -537,6 +537,11 @@ export default function ResultPage() {
                 aria-busy={shareBusy}
                 onClick={handleShare}
                 labelSvg={shareBusy ? undefined : DISPLAY_BUTTON.share}
+                labelClassName={
+                  shareBusy
+                    ? "text-[0.375rem] min-[360px]:text-[0.375rem] leading-[1.1] font-semibold"
+                    : undefined
+                }
               >
                 {shareBusy ? "링크 만드는 중…" : "공유하기 ♧"}
               </PawWoodButton>

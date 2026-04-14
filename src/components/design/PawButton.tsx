@@ -28,13 +28,15 @@ function PawLabel({
   half,
   children,
   labelSvg,
+  labelClassName,
 }: {
   half: PawHalf;
   children: ReactNode;
   labelSvg?: DisplaySvgText;
+  labelClassName?: string;
 }) {
   return (
-    <span className={pawLabelClass(half)}>
+    <span className={`${pawLabelClass(half)} ${labelClassName ?? ""}`}>
       {labelSvg ? (
         <Image
           src={labelSvg.src}
@@ -179,13 +181,17 @@ function FigmaPaw({
 }
 
 export function PawPrimaryButton(
-  props: ComponentProps<"button"> & { pawHalf?: PawHalf; labelSvg?: DisplaySvgText },
+  props: ComponentProps<"button"> & {
+    pawHalf?: PawHalf;
+    labelSvg?: DisplaySvgText;
+    labelClassName?: string;
+  },
 ) {
-  const { className, children, pawHalf = "none", labelSvg, ...rest } = props;
+  const { className, children, pawHalf = "none", labelSvg, labelClassName, ...rest } = props;
   return (
     <button type="button" className={`${shell} ${className ?? ""}`} {...rest}>
       <FigmaPaw scheme="primary" half={pawHalf} />
-      <PawLabel half={pawHalf} labelSvg={labelSvg}>
+      <PawLabel half={pawHalf} labelSvg={labelSvg} labelClassName={labelClassName}>
         {children}
       </PawLabel>
     </button>
@@ -193,13 +199,17 @@ export function PawPrimaryButton(
 }
 
 export function PawWoodButton(
-  props: ComponentProps<"button"> & { pawHalf?: PawHalf; labelSvg?: DisplaySvgText },
+  props: ComponentProps<"button"> & {
+    pawHalf?: PawHalf;
+    labelSvg?: DisplaySvgText;
+    labelClassName?: string;
+  },
 ) {
-  const { className, children, pawHalf = "none", labelSvg, ...rest } = props;
+  const { className, children, pawHalf = "none", labelSvg, labelClassName, ...rest } = props;
   return (
     <button type="button" className={`${shell} ${className ?? ""}`} {...rest}>
       <FigmaPaw scheme="secondary" half={pawHalf} />
-      <PawLabel half={pawHalf} labelSvg={labelSvg}>
+      <PawLabel half={pawHalf} labelSvg={labelSvg} labelClassName={labelClassName}>
         {children}
       </PawLabel>
     </button>
@@ -207,13 +217,17 @@ export function PawWoodButton(
 }
 
 export function PawPrimaryLink(
-  props: ComponentProps<typeof Link> & { pawHalf?: PawHalf; labelSvg?: DisplaySvgText },
+  props: ComponentProps<typeof Link> & {
+    pawHalf?: PawHalf;
+    labelSvg?: DisplaySvgText;
+    labelClassName?: string;
+  },
 ) {
-  const { className, children, pawHalf = "none", labelSvg, ...rest } = props;
+  const { className, children, pawHalf = "none", labelSvg, labelClassName, ...rest } = props;
   return (
     <Link className={`${shell} ${className ?? ""}`} {...rest}>
       <FigmaPaw scheme="primary" half={pawHalf} />
-      <PawLabel half={pawHalf} labelSvg={labelSvg}>
+      <PawLabel half={pawHalf} labelSvg={labelSvg} labelClassName={labelClassName}>
         {children}
       </PawLabel>
     </Link>
@@ -221,13 +235,17 @@ export function PawPrimaryLink(
 }
 
 export function PawWoodLink(
-  props: ComponentProps<typeof Link> & { pawHalf?: PawHalf; labelSvg?: DisplaySvgText },
+  props: ComponentProps<typeof Link> & {
+    pawHalf?: PawHalf;
+    labelSvg?: DisplaySvgText;
+    labelClassName?: string;
+  },
 ) {
-  const { className, children, pawHalf = "leading", labelSvg, ...rest } = props;
+  const { className, children, pawHalf = "leading", labelSvg, labelClassName, ...rest } = props;
   return (
     <Link className={`${shell} ${className ?? ""}`} {...rest}>
       <FigmaPaw scheme="secondary" half={pawHalf} />
-      <PawLabel half={pawHalf} labelSvg={labelSvg}>
+      <PawLabel half={pawHalf} labelSvg={labelSvg} labelClassName={labelClassName}>
         {children}
       </PawLabel>
     </Link>
