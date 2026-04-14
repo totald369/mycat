@@ -9,22 +9,43 @@ export async function requestShortShareLink(
   encoded: string,
   origin: string,
 ): Promise<string | null> {
+  const originalUrl = new URL(
+    `/result?s=${encodeURIComponent(encoded)}`,
+    origin,
+  ).toString();
+
   for (let i = 0; i < ATTEMPTS; i++) {
     try {
       const res = await fetch("/api/share", {
         method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ encoded }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ encoded, originalUrl }),
       });
       const data = (await res.json().catch(() => ({}))) as {
+        success?: boolean;
         id?: string;
+        shortUrl?: string;
         error?: string;
       };
+
+      if (res.ok && data.success && typeof data.shortUrl === "string") {
+        return data.shortUrl;
+      }
+
       if (res.ok) {
         const id = (data.id ?? "").trim();
         if (id && ID_RE.test(id)) {
           return new URL(`/r/${encodeURIComponent(id)}`, origin).toString();
         }
+      }
+
+      // 4xx는 검증 실패로 간주하고 재시도하지 않음 (400 스팸 방지)
+      if (res.status >= 400 && res.status < 500) {
+        console.warn("[share] /api/share rejected request", {
+          status: res.status,
+          error: data.error,
+        });
+        return null;
       }
     } catch {
       /* 네트워크 오류 — 재시도 */
