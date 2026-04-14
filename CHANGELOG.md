@@ -14,8 +14,12 @@ Build snapshot: `/result` and `/step3` First Load JS about **205 kB → ~121 kB 
 
 ### UX (Clarity dead clicks)
 
-- **Result** (`src/app/result/page.tsx`): complete splash is a **full-area `button`** (tap skips to content); subtitle prompts tap; `touch-manipulation` on mobile.
 - Loading copy when **`output` is still null** and no error (short Korean loading line in UI).
+
+### Follow-up (result splash & step1)
+
+- **Result** (`src/app/result/page.tsx`): Complete splash dismisses only when **`CheckCatLottie`** calls `onComplete` (removed tap target, four-second fallback, and the tap-hint subtitle below the complete headline). **`CheckCatLottie`**: if the Lottie JSON fetch fails, still invokes `onComplete` so the screen cannot stall.
+- **Step1** (`src/app/step1/page.tsx`): Breed field uses **`truncate`**, **`min-w-0`**, and extra right padding so long values do not overlap the search icon.
 
 ### Share (short links only)
 

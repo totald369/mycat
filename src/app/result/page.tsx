@@ -91,7 +91,6 @@ export default function ResultPage() {
   const usedPrefetchRef = useRef(false);
   /** 위저드에서 온 경우에만 true → 계산 완료 Lottie 후 결과 본문 */
   const [showCompleteSplash, setShowCompleteSplash] = useState(false);
-  const splashTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const resultCaptureRef = useRef<HTMLDivElement | null>(null);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
   const [shareBusy, setShareBusy] = useState(false);
@@ -105,10 +104,6 @@ export default function ResultPage() {
       /* */
     }
     setShowCompleteSplash(false);
-    if (splashTimerRef.current) {
-      clearTimeout(splashTimerRef.current);
-      splashTimerRef.current = null;
-    }
   }, []);
 
   useLayoutEffect(() => {
@@ -216,17 +211,6 @@ export default function ResultPage() {
       setShowCompleteSplash(false);
     }
   }, [success]);
-
-  useEffect(() => {
-    if (!showCompleteSplash) return;
-    splashTimerRef.current = setTimeout(finishCompleteSplash, 4000);
-    return () => {
-      if (splashTimerRef.current) {
-        clearTimeout(splashTimerRef.current);
-        splashTimerRef.current = null;
-      }
-    };
-  }, [showCompleteSplash, finishCompleteSplash]);
 
   const handleShare = useCallback(async () => {
     if (!success || typeof window === "undefined") return;
@@ -365,23 +349,19 @@ export default function ResultPage() {
         ) : null}
 
         {success && showCompleteSplash ? (
-          <button
-            type="button"
-            className="flex min-h-[min(520px,70dvh)] w-full max-w-[min(327px,100%)] cursor-pointer touch-manipulation flex-col items-center justify-center gap-4 px-3 text-center outline-none focus-visible:ring-2 focus-visible:ring-[#f8620c]/40 focus-visible:ring-offset-2 min-[360px]:px-4"
-            onClick={finishCompleteSplash}
-            aria-label="탭하여 결과 화면으로 이동"
+          <div
+            className="flex min-h-[min(520px,70dvh)] w-full max-w-[min(327px,100%)] flex-col items-center justify-center gap-4 px-3 text-center min-[360px]:px-4"
+            aria-busy="true"
+            aria-live="polite"
           >
             <CheckCatLottie
-              className="pointer-events-none h-[140px] w-[140px] shrink-0 sm:h-[160px] sm:w-[160px]"
+              className="h-[140px] w-[140px] shrink-0 sm:h-[160px] sm:w-[160px]"
               onComplete={finishCompleteSplash}
             />
             <p className="text-center font-display text-[1.875rem] leading-none text-[#111] min-[360px]:text-[2.5rem]">
               계산 완료
             </p>
-            <p className="text-center text-sm font-medium leading-snug text-[#555]">
-              화면을 눌러 결과 보기
-            </p>
-          </button>
+          </div>
         ) : null}
 
         {success && !showCompleteSplash ? (

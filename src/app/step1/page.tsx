@@ -210,20 +210,20 @@ export default function Step1Page() {
                 </div>
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <FieldLabel>품종</FieldLabel>
-                <div className="relative">
+                <div className="relative min-w-0 w-full">
                   <input
                     type="text"
                     value={breed}
                     onChange={(e) => setBreed(e.target.value)}
                     placeholder="예: 샴, 브리티시 숏헤어..."
-                    className={`${wizardInputClass} pr-12`}
+                    className={`${wizardInputClass} min-w-0 truncate pr-14`}
                   />
                   <button
                     type="button"
                     aria-label="품종 검색"
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#555]"
+                    className="absolute right-3 top-1/2 z-10 -translate-y-1/2 shrink-0 text-[#555]"
                     onClick={() => setBreedModalOpen(true)}
                   >
                     <IconSearch className="size-6" />

@@ -22,6 +22,9 @@ export function CheckCatLottie({
     lottieRef.current?.setSpeed(CHECK_CAT_PLAYBACK_SPEED);
   }, []);
 
+  const onCompleteRef = useRef(onComplete);
+  onCompleteRef.current = onComplete;
+
   useEffect(() => {
     let cancelled = false;
     fetch(CHECK_CAT_LOTTIE_SRC)
@@ -33,7 +36,7 @@ export function CheckCatLottie({
         if (!cancelled) setAnimationData(json);
       })
       .catch(() => {
-        /* Lottie 없이 결과만 표시 */
+        if (!cancelled) onCompleteRef.current?.();
       });
     return () => {
       cancelled = true;
