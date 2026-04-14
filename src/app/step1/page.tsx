@@ -21,6 +21,8 @@ import {
   wizardChoiceClass,
   wizardChoiceSelectedClass,
   wizardInputClass,
+  wizardInputInRowClass,
+  wizardInputRowClass,
 } from "@/components/design/wizardFieldClasses";
 import { BreedSearchModal } from "@/components/wireframe/BreedSearchModal";
 import { IconSearch } from "@/components/wireframe/icons";
@@ -212,18 +214,18 @@ export default function Step1Page() {
 
               <div className="min-w-0">
                 <FieldLabel>품종</FieldLabel>
-                <div className="relative min-w-0 w-full">
+                <div className={wizardInputRowClass}>
                   <input
                     type="text"
                     value={breed}
                     onChange={(e) => setBreed(e.target.value)}
                     placeholder="예: 샴, 브리티시 숏헤어..."
-                    className={`${wizardInputClass} min-w-0 truncate pr-14`}
+                    className={wizardInputInRowClass}
                   />
                   <button
                     type="button"
                     aria-label="품종 검색"
-                    className="absolute right-3 top-1/2 z-10 -translate-y-1/2 shrink-0 text-[#555]"
+                    className="shrink-0 text-[#555]"
                     onClick={() => setBreedModalOpen(true)}
                   >
                     <IconSearch className="size-6" />

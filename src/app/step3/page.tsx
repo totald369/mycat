@@ -37,7 +37,8 @@ import {
 import {
   wizardChoiceClass,
   wizardChoiceSelectedClass,
-  wizardInputClass,
+  wizardInputInRowClass,
+  wizardInputRowClass,
 } from "@/components/design/wizardFieldClasses";
 import { FeedSearchModal } from "@/components/wireframe/FeedSearchModal";
 import { IconClose, IconPlus, IconSearch } from "@/components/wireframe/icons";
@@ -282,17 +283,17 @@ export default function Step3Page() {
 
           <div className={wizardFormCardClass}>
             <div className={wizardFormInnerClass}>
-              <div>
+              <div className="min-w-0">
                 <FieldLabel required>급여 종류 및 횟수</FieldLabel>
-                <div className="relative">
+                <div className={wizardInputRowClass}>
                   <input
                     type="text"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="건식/아카나..."
-                    className={`${wizardInputClass} pr-12`}
+                    className={wizardInputInRowClass}
                   />
-                  <div className="absolute right-3 top-1/2 flex -translate-y-1/2 items-center gap-1">
+                  <div className="flex shrink-0 items-center gap-1">
                     {search.trim() ? (
                       <button
                         type="button"

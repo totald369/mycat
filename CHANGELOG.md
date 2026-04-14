@@ -16,10 +16,12 @@ Build snapshot: `/result` and `/step3` First Load JS about **205 kB → ~121 kB 
 
 - Loading copy when **`output` is still null** and no error (short Korean loading line in UI).
 
-### Follow-up (result splash & step1)
+### Follow-up (result splash & wizard inputs)
 
 - **Result** (`src/app/result/page.tsx`): Complete splash dismisses only when **`CheckCatLottie`** calls `onComplete` (removed tap target, four-second fallback, and the tap-hint subtitle below the complete headline). **`CheckCatLottie`**: if the Lottie JSON fetch fails, still invokes `onComplete` so the screen cannot stall.
-- **Step1** (`src/app/step1/page.tsx`): Breed field uses **`truncate`**, **`min-w-0`**, and extra right padding so long values do not overlap the search icon.
+- **Wizard fields** (`wizardFieldClasses.ts`): **`wizardInputRowClass`** / **`wizardInputInRowClass`** — Figma 45:402-style horizontal flex (`flex-1` text + `shrink-0` trailing actions) with **`overflow-hidden`** and input **`truncate`**, instead of overlaying the search icon with `absolute`.
+- **Step1** (`src/app/step1/page.tsx`): Breed field uses the row pattern above.
+- **Step3** (`src/app/step3/page.tsx`): Feed search field uses the same row pattern (clear + search buttons in a trailing `shrink-0` group); field wrapper **`min-w-0`** for reliable ellipsis in the card column.
 
 ### Share (short links only)
 
