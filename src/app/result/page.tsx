@@ -25,6 +25,8 @@ import {
 import type { CalculatorOutput } from "@/lib/calculator";
 import type { CalculatorSuccess } from "@/lib/calculator";
 import { designResource } from "@/components/design/designResourcePaths";
+import { RESULT_HERO_IMAGE } from "@/constants/resultHeroImages";
+import { SESSION_SHOW_RESULT_COMPLETE_SPLASH } from "@/constants/resultNavigation";
 
 const CheckCatLottie = dynamic(
   () =>
@@ -33,8 +35,6 @@ const CheckCatLottie = dynamic(
     })),
   { ssr: false },
 );
-import { RESULT_HERO_IMAGE } from "@/constants/resultHeroImages";
-import { SESSION_SHOW_RESULT_COMPLETE_SPLASH } from "@/constants/resultNavigation";
 
 function kcalBig(value: number, accent?: boolean) {
   const n = Math.round(value);
@@ -335,12 +335,22 @@ export default function ResultPage() {
           </p>
         ) : null}
 
-        {success && showCompleteSplash ? (
-          <div
-            className="flex min-h-[min(520px,70dvh)] flex-col items-center justify-center gap-6 px-4"
+        {!output && !loadError ? (
+          <p
+            className="mt-8 text-center text-base text-[#555]"
             role="status"
             aria-live="polite"
-            aria-busy="true"
+          >
+            결과를 불러오는 중이에요…
+          </p>
+        ) : null}
+
+        {success && showCompleteSplash ? (
+          <button
+            type="button"
+            className="flex min-h-[min(520px,70dvh)] w-full max-w-[327px] cursor-pointer touch-manipulation flex-col items-center justify-center gap-4 px-4 text-center outline-none focus-visible:ring-2 focus-visible:ring-[#f8620c]/40 focus-visible:ring-offset-2"
+            onClick={finishCompleteSplash}
+            aria-label="탭하여 결과 화면으로 이동"
           >
             <CheckCatLottie
               className="pointer-events-none h-[140px] w-[140px] shrink-0 sm:h-[160px] sm:w-[160px]"
@@ -349,7 +359,10 @@ export default function ResultPage() {
             <p className="text-center font-display text-[40px] leading-none text-[#111]">
               계산 완료
             </p>
-          </div>
+            <p className="text-center text-sm font-medium leading-snug text-[#555]">
+              화면을 누러 결과 보기
+            </p>
+          </button>
         ) : null}
 
         {success && !showCompleteSplash ? (

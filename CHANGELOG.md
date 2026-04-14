@@ -12,6 +12,11 @@
 
 Build snapshot: `/result` and `/step3` First Load JS about **205 kB → ~121 kB / ~123 kB**.
 
+### UX (Clarity dead clicks)
+
+- **Result** (`src/app/result/page.tsx`): “계산 ��료” splash is a **full-area `button`** (tap skips to content); subtitle “��러 결과 보기”; `touch-manipulation` on mobile.
+- Loading copy when **`output` is still null** and no error: “결과를 불러오는 중이에요…”.
+
 ### Data
 
 - When `prisma/cat_food.csv` / `prisma/cat_food.numbers` are updated in the same commit, production feed catalog follows after deploy.
