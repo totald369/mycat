@@ -5,7 +5,6 @@ export type Step1Persist = {
   birthDate: string;
   gender: string | null;
   weight: string;
-  weightUnknown: boolean;
   breed: string;
 };
 
@@ -40,9 +39,22 @@ export const defaultStep1 = (): Step1Persist => ({
   birthDate: "",
   gender: null,
   weight: "",
-  weightUnknown: false,
   breed: "",
 });
+
+/** 예전 저장본의 `weightUnknown` 등 제거 */
+function sanitizeStep1(
+  s: Partial<Step1Persist> & { weightUnknown?: boolean },
+): Step1Persist {
+  return {
+    name: typeof s.name === "string" ? s.name : "",
+    birthDate: typeof s.birthDate === "string" ? s.birthDate : "",
+    gender:
+      s.gender === null || typeof s.gender === "string" ? s.gender : null,
+    weight: typeof s.weight === "string" ? s.weight : "",
+    breed: typeof s.breed === "string" ? s.breed : "",
+  };
+}
 
 export const defaultStep2 = (): Step2Persist => ({
   bcs: "정상",
@@ -88,7 +100,7 @@ export function readWizardState(): WizardPersistState {
       ? chipsRaw.filter(isChip)
       : base.step3.chips;
     return {
-      step1: { ...base.step1, ...p.step1 },
+      step1: sanitizeStep1({ ...base.step1, ...p.step1 }),
       step2: { ...base.step2, ...p.step2 },
       step3: {
         ...base.step3,
@@ -123,7 +135,7 @@ export function patchWizardState(
 ): void {
   const prev = readWizardState();
   const next: WizardPersistState = {
-    step1: { ...prev.step1, ...patch.step1 },
+    step1: sanitizeStep1({ ...prev.step1, ...(patch.step1 ?? {}) }),
     step2: { ...prev.step2, ...patch.step2 },
     step3: {
       ...prev.step3,

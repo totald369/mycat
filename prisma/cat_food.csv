@@ -127,7 +127,7 @@ id,brand,name,type,life_stage,kcal_per_100g,serving_g,category,condition
 135,프린세스,치킨브레스트&터키,wet,adult_1y_plus,85,180,general,none
 136,프린세스,치킨 튜나&살몬,wet,adult_1y_plus,84,180,general,none
 137,프린세스,치킨 튜나&흰살생선,wet,adult_1y_plus,82,180,general,none
-138,프린세스,치킨튜나&알로에베라,wet,adult_1y_plus,80,180,general,none
+138,프린세스,엑설런스 치킨튜나 앤 알로에베라,wet,adult_1y_plus,80,70,general,none
 139,프린세스,치킨 튜나&펌킨,wet,adult_1y_plus,83,180,general,none
 140,레오나르도,리치 인 피쉬 캔,wet,adult_1y_plus,95,170,general,none
 141,레오나르도,치킨 캔,wet,adult_1y_plus,100,170,general,none
@@ -171,3 +171,6 @@ id,brand,name,type,life_stage,kcal_per_100g,serving_g,category,condition
 179,아미오,키튼 닭고기,dry,kitten_0_12m,380,60,general,none
 180,아미오,인도어 닭고기,dry,adult_indoor,330,55,general,none
 181,아미오,시니어 닭고기,dry,senior_7y_plus,320,55,general,none
+301,아보덤,캣 그레인프리 정어리&새우&게살 85g,wet,adult_1y_plus,95,170,general,none
+302,아보덤,캣 그레인프리 연어&치킨 85g,wet,adult_1y_plus,95,170,general,none
+303,아보덤,치킨 어덜트 캣,dry,adult_1y_plus,365,55,general,none

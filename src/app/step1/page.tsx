@@ -17,6 +17,7 @@ import {
 } from "@/components/design/wizardFieldClasses";
 import { BreedSearchModal } from "@/components/wireframe/BreedSearchModal";
 import { IconSearch } from "@/components/wireframe/icons";
+import { parseWeightKg } from "@/lib/calculator";
 import { patchWizardState, readWizardState } from "@/lib/wizardStorage";
 
 const GENDER_OPTIONS = [
@@ -39,7 +40,6 @@ export default function Step1Page() {
   const [birthDate, setBirthDate] = useState("");
   const [gender, setGender] = useState<string | null>(null);
   const [weight, setWeight] = useState("");
-  const [weightUnknown, setWeightUnknown] = useState(false);
   const [breed, setBreed] = useState("");
   const [breedModalOpen, setBreedModalOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -51,7 +51,6 @@ export default function Step1Page() {
     setBirthDate(s.birthDate);
     setGender(s.gender);
     setWeight(s.weight);
-    setWeightUnknown(s.weightUnknown);
     setBreed(s.breed);
     setHydrated(true);
   }, []);
@@ -64,7 +63,6 @@ export default function Step1Page() {
         birthDate,
         gender,
         weight,
-        weightUnknown,
         breed,
       },
     });
@@ -74,7 +72,6 @@ export default function Step1Page() {
     birthDate,
     gender,
     weight,
-    weightUnknown,
     breed,
   ]);
 
@@ -107,8 +104,12 @@ export default function Step1Page() {
       setError("성별 및 중성화 여부를 선택해 주세요.");
       return;
     }
-    if (!weightUnknown && !weight.trim()) {
-      setError("현재 체중을 입력하거나 「정확히 모름」을 선택해 주세요.");
+    if (!weight.trim()) {
+      setError("현재 체중을 입력해 주세요.");
+      return;
+    }
+    if (parseWeightKg(weight) == null) {
+      setError("현재 체중(kg)을 올바르게 입력해 주세요.");
       return;
     }
     router.push("/step2");
@@ -187,32 +188,18 @@ export default function Step1Page() {
 
               <div>
                 <FieldLabel required>현재 체중</FieldLabel>
-                <div className="flex flex-wrap items-center gap-4">
-                  <div className="flex min-w-0 flex-1 items-center gap-2 rounded-xl bg-[#f5f1ed] px-4 py-3">
-                    <input
-                      type="text"
-                      value={weight}
-                      onChange={(e) => setWeight(e.target.value)}
-                      placeholder="0.0"
-                      disabled={weightUnknown}
-                      className="min-w-0 flex-1 border-0 bg-transparent text-base text-[#111] placeholder:text-[#6b7280] focus:outline-none disabled:opacity-50"
-                    />
-                    <span className="shrink-0 text-base font-bold text-[#111]">
-                      Kg
-                    </span>
-                  </div>
-                  <label className="flex cursor-pointer items-center gap-2 text-sm text-[#111]">
-                    <input
-                      type="checkbox"
-                      checked={weightUnknown}
-                      onChange={(e) => {
-                        setWeightUnknown(e.target.checked);
-                        if (e.target.checked) setWeight("");
-                      }}
-                      className="size-5 rounded border border-[#dedee0] text-[#6f4425] focus:ring-[#f8620c]/40"
-                    />
-                    정확히 모름
-                  </label>
+                <div className="flex min-w-0 items-center gap-2 rounded-xl bg-[#f5f1ed] px-4 py-3">
+                  <input
+                    type="text"
+                    value={weight}
+                    onChange={(e) => setWeight(e.target.value)}
+                    placeholder="0.0"
+                    inputMode="decimal"
+                    className="min-w-0 flex-1 border-0 bg-transparent text-base text-[#111] placeholder:text-[#6b7280] focus:outline-none"
+                  />
+                  <span className="shrink-0 text-base font-bold text-[#111]">
+                    Kg
+                  </span>
                 </div>
               </div>
 

@@ -112,13 +112,6 @@ export function validateWizardBeforeResult(
     };
   }
 
-  if (w.step1.weightUnknown) {
-    return {
-      ok: false,
-      error: "Step1에서 체중을 입력하거나 「정확히 모름」을 해제해 주세요.",
-    };
-  }
-
   if (parseWeightKg(w.step1.weight) == null) {
     return {
       ok: false,
@@ -182,16 +175,6 @@ export function computeCaloriesWithWizard(
   if (!gender) {
     return {
       output: { ok: false, error: "성별 및 중성화 여부를 선택해 주세요." },
-      warnings,
-    };
-  }
-
-  if (w.step1.weightUnknown) {
-    return {
-      output: {
-        ok: false,
-        error: "체중을 알 수 없으면 칼로리를 계산할 수 없습니다.",
-      },
       warnings,
     };
   }

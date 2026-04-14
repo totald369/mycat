@@ -44,6 +44,11 @@ async function feedsFromDb() {
 }
 
 export async function GET() {
+  const fromCsv = loadFeedCatalogFromCatFoodCsv();
+  if (fromCsv.length > 0) {
+    return NextResponse.json({ items: fromCsv });
+  }
+
   if (process.env.DATABASE_URL) {
     try {
       const items = await feedsFromDb();
@@ -51,13 +56,8 @@ export async function GET() {
         return NextResponse.json({ items });
       }
     } catch (e) {
-      console.warn("[api/feeds] DB 급여 로드 실패, cat_food.csv로 대체:", e);
+      console.warn("[api/feeds] DB 급여 로드 실패:", e);
     }
-  }
-
-  const fromCsv = loadFeedCatalogFromCatFoodCsv();
-  if (fromCsv.length > 0) {
-    return NextResponse.json({ items: fromCsv });
   }
 
   return NextResponse.json(
