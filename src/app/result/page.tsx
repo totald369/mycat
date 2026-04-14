@@ -26,6 +26,7 @@ import {
 import type { CalculatorOutput } from "@/lib/calculator";
 import type { CalculatorSuccess } from "@/lib/calculator";
 import { CheckCatLottie } from "@/components/design/CheckCatLottie";
+import { IconResultImageDownload } from "@/components/wireframe/icons";
 import { RESULT_HERO_IMAGE } from "@/constants/resultHeroImages";
 import { SESSION_SHOW_RESULT_COMPLETE_SPLASH } from "@/constants/resultNavigation";
 
@@ -283,7 +284,24 @@ export default function ResultPage() {
     <div className="relative z-10 mx-auto min-h-screen w-full max-w-[375px] overflow-x-hidden overflow-y-visible bg-transparent">
       <WizardPageBackground />
       <div className="relative flex min-h-screen w-full flex-col items-center gap-8 px-6 pb-36 pt-20">
-        <WizardHeader />
+        <WizardHeader
+          trailing={
+            success ? (
+              <div className="flex size-12 shrink-0 items-center justify-center">
+                {showCompleteSplash ? null : (
+                  <button
+                    type="button"
+                    className="flex size-12 items-center justify-center rounded-lg text-[#171717] transition-opacity hover:opacity-80 active:opacity-60"
+                    aria-label="결과 이미지 저장"
+                    onClick={handleSaveImage}
+                  >
+                    <IconResultImageDownload className="size-5" />
+                  </button>
+                )}
+              </div>
+            ) : undefined
+          }
+        />
 
         {loadError && !output ? (
           <p className="text-center text-sm text-red-600" role="alert">
@@ -321,8 +339,11 @@ export default function ResultPage() {
         ) : null}
 
         {success && !showCompleteSplash ? (
-          <div ref={resultCaptureRef} className="contents">
-            <div className="flex flex-col items-center gap-6">
+          <div
+            ref={resultCaptureRef}
+            className="flex w-full max-w-[327px] flex-col items-center gap-6"
+          >
+            <div className="flex w-full flex-col items-center gap-6">
               <div className="relative h-[219px] w-[176px] shrink-0">
                 <Image
                   src={RESULT_HERO_IMAGE[success.status]}
@@ -347,7 +368,7 @@ export default function ResultPage() {
                 </p>
               </div>
 
-              <div className="flex w-full max-w-[327px] items-center justify-between rounded-2xl bg-white p-4 shadow-[0px_8px_32px_0px_rgba(17,17,17,0.06)]">
+              <div className="flex w-full items-center justify-between rounded-2xl bg-white p-4 shadow-[0px_8px_32px_0px_rgba(17,17,17,0.06)]">
                 <div className="flex w-[125px] flex-col items-center gap-2 text-center">
                   <p className="text-sm font-semibold leading-[1.4] text-black">
                     권장 칼로리
@@ -367,14 +388,14 @@ export default function ResultPage() {
               </div>
             </div>
 
-            <p className="w-full max-w-[327px] text-center text-[11px] text-[rgba(23,23,23,0.55)]">
+            <p className="w-full text-center text-[11px] text-[rgba(23,23,23,0.55)]">
               사료 {formatKcal(success.foodCalories)} + 간식 추정{" "}
               {formatKcal(success.snackCalories)} · 권장 대비{" "}
               {success.diffPercent >= 0 ? "+" : ""}
               {success.diffPercent.toFixed(1)}%
             </p>
 
-            <div className="w-full max-w-[327px] rounded-lg bg-[#f5f1ed] p-4 text-sm">
+            <div className="w-full rounded-lg bg-[#f5f1ed] p-4 text-sm">
               <p className="font-bold leading-[1.4] text-[#171717]">
                 계산 결과 가이드
               </p>
@@ -429,13 +450,17 @@ export default function ResultPage() {
         ) : null}
       </div>
 
+      {saveMessage ? (
+        <div
+          role="status"
+          className="pointer-events-none fixed bottom-[calc(7.25rem+env(safe-area-inset-bottom,0px))] left-1/2 z-[25] w-[min(100%-32px,280px)] -translate-x-1/2 rounded-xl border border-[#dedee0] bg-white px-3 py-2 text-center text-xs font-medium text-[#6f4425] shadow-[0px_8px_24px_rgba(17,17,17,0.12)]"
+        >
+          {saveMessage}
+        </div>
+      ) : null}
+
       {success && !showCompleteSplash ? (
         <WizardBottomBar>
-          {saveMessage ? (
-            <p className="mb-2 text-center text-xs text-[#6f4425]" role="status">
-              {saveMessage}
-            </p>
-          ) : null}
           <PawSplitRow
             left={
               <PawPrimaryLink
@@ -457,13 +482,6 @@ export default function ResultPage() {
               </PawWoodButton>
             }
           />
-          <button
-            type="button"
-            className="mt-2 w-full rounded-xl border border-[#dedee0] bg-white px-4 py-3 text-sm font-semibold text-[#6f4425]"
-            onClick={handleSaveImage}
-          >
-            이미지 저장
-          </button>
         </WizardBottomBar>
       ) : null}
     </div>
