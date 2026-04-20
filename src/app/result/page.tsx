@@ -128,6 +128,8 @@ export default function ResultPage() {
     const params = new URLSearchParams(window.location.search);
     const shortId = params.get("sid");
     if (shortId) {
+      // 공유 링크 모드에서는 로컬 재계산(fetch /api/feeds)으로 덮어쓰지 않도록 즉시 잠금.
+      usedPrefetchRef.current = true;
       void (async () => {
         try {
           const res = await fetch(`/api/share/${encodeURIComponent(shortId)}`);
@@ -149,11 +151,11 @@ export default function ResultPage() {
 
     const share = params.get("s");
     if (share) {
+      usedPrefetchRef.current = true;
       const decoded = decodeShareResultPayload(share);
       if (decoded.ok) {
         setOutput(sharePayloadToCalculatorSuccess(decoded.value));
         setWarnings([]);
-        usedPrefetchRef.current = true;
         return;
       }
     }
