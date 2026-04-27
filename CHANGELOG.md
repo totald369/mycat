@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-04-27
+
+### Data
+
+- Added 14 `RecipeV` cat feeds from `yuhan_recipe_v_mall` into `prisma/cat_food.csv` for production catalog delivery.
+- Filled kcal values from label screenshots for 13 products; `10025316492` (코숏) remains without confirmed kcal and is left blank.
+- Applied medical conditions (`renal`, `digestive`, `urinary`, `senior`, `low_fat`, `adult`, `skin_allergy`, `hairball`, `diet`, `indoor`, `kitten`) for the new rows.
+
 ## 2026-04-14
 
 ### Performance

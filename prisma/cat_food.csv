@@ -183,3 +183,17 @@ id,brand,name,type,life_stage,kcal_per_100g,serving_g,category,condition
 191,쓰라이브,컴플리트 치킨&야채,wet,all,95,150,general,digestion
 192,쓰라이브,컴플리트 고등어&흰살생선,wet,all,95,150,general,palatability
 193,쓰라이브,컴플리트 키튼 치킨,wet,kittens,100,140,general,growth
+9993727576,유한양행,레시피브이 레날캣,dry,adult_1y_plus,330.5,55,medical,renal
+10025316492,유한양행,레시피브이 코숏캣,dry,adult_1y_plus,326,55,medical,korshort
+11724094156,유한양행,레시피브이 시니어캣 3.6kg,dry,senior_7y_plus,314.5,55,medical,senior
+9993758490,유한양행,레시피브이 로우펫캣,dry,adult_1y_plus,329,55,medical,low_fat
+9993706434,유한양행,레시피브이 다이제스트캣,dry,adult_1y_plus,362.5,55,medical,digestive
+9993453312,유한양행,레시피브이 어덜트캣,dry,adult_1y_plus,329,55,medical,adult
+9993778852,유한양행,레시피브이 스킨앤알러지캣,dry,adult_1y_plus,314.5,55,medical,skin_allergy
+9993791759,유한양행,레시피브이 헤어볼캣,dry,adult_1y_plus,349,55,medical,hairball
+9993688522,유한양행,레시피브이 다이어트캣,dry,adult_1y_plus,334.3,55,medical,diet
+10786596088,유한양행,레시피브이 인도어 C 캣 3.6kg,dry,adult_indoor,312.5,55,medical,indoor
+10200734275,유한양행,레시피브이 어덜트캣 3.6kg,dry,adult_1y_plus,329,55,medical,adult
+9993744485,유한양행,레시피브이 유리너리캣,dry,adult_1y_plus,324,55,medical,urinary
+9993669103,유한양행,레시피브이 시니어캣,dry,senior_7y_plus,314.5,55,medical,senior
+9993648650,유한양행,레시피브이 키튼,dry,kitten_0_12m,352.5,55,medical,kitten

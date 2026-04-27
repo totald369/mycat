@@ -5,6 +5,7 @@ import { registerShortUrl } from "@/lib/urlShortenerStore";
 
 const ID_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
 const ID_LENGTH = 8;
+const ID_RE = /^[A-Za-z0-9_-]{6,32}$/;
 
 function createShortId(): string {
   let out = "";
@@ -13,6 +14,10 @@ function createShortId(): string {
     out += ID_ALPHABET[idx];
   }
   return out;
+}
+
+function isValidShortId(id: unknown): id is string {
+  return typeof id === "string" && ID_RE.test(id);
 }
 
 function parseAbsoluteUrl(value: string): URL | null {
@@ -132,7 +137,7 @@ export async function POST(req: Request) {
           where: { payload: encoded },
           select: { shortId: true },
         });
-        if (existing) {
+        if (existing && isValidShortId(existing.shortId)) {
           return NextResponse.json(
             {
               success: true,

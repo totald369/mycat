@@ -13,6 +13,7 @@ import { WizardHeader } from "@/components/design/WizardHeader";
 import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { FEED_CATALOG_PREFETCH_KEY } from "@/lib/feedCatalogPrefetch";
 import { requestShortShareLink } from "@/lib/requestShortShareLink";
+import { resolveShareShortId } from "@/lib/shareShortId";
 import {
   decodeShareResultPayload,
   encodeShareResultPayload,
@@ -126,24 +127,51 @@ export default function ResultPage() {
     if (typeof window === "undefined") return;
 
     const params = new URLSearchParams(window.location.search);
-    const shortId = params.get("sid");
-    if (shortId) {
-      // 공유 링크 모드에서는 로컬 재계산(fetch /api/feeds)으로 덮어쓰지 않도록 즉시 잠금.
+    if (params.has("sid")) {
+      // `sid`가 있으면 공유 모드: 실패 시에도 /api/feeds로 넘어가며 무한 로딩이 되지 않게 잠금.
       usedPrefetchRef.current = true;
+      const shortId = resolveShareShortId(params.get("sid"));
+      if (!shortId) {
+        setLoadError(
+          "공유 링크가 잘못되었거나 손상되었어요. 결과 화면에서 다시 공유해 주세요.",
+        );
+        return;
+      }
       void (async () => {
+        const controller = new AbortController();
+        const timeoutMs = 15000;
+        const tid = window.setTimeout(() => controller.abort(), timeoutMs);
         try {
-          const res = await fetch(`/api/share/${encodeURIComponent(shortId)}`);
-          if (!res.ok) return;
+          const res = await fetch(
+            `/api/share/${encodeURIComponent(shortId)}`,
+            { signal: controller.signal },
+          );
+          if (!res.ok) {
+            throw new Error("shared result not found");
+          }
           const data = (await res.json()) as { encoded?: string };
           const encoded = (data.encoded ?? "").trim();
-          if (!encoded) return;
+          if (!encoded) {
+            throw new Error("empty shared payload");
+          }
           const decoded = decodeShareResultPayload(encoded);
-          if (!decoded.ok) return;
+          if (!decoded.ok) {
+            throw new Error("invalid shared payload");
+          }
           setOutput(sharePayloadToCalculatorSuccess(decoded.value));
           setWarnings([]);
+          setLoadError(null);
           usedPrefetchRef.current = true;
-        } catch {
-          /* */
+        } catch (e: unknown) {
+          const aborted =
+            e instanceof DOMException && e.name === "AbortError";
+          setLoadError(
+            aborted
+              ? "공유 결과를 불러오는 데 시간이 너무 걸렸어요. 네트워크를 확인한 뒤 다시 시도해 주세요."
+              : "공유 결과를 불러오지 못했어요. 링크를 다시 확인해 주세요.",
+          );
+        } finally {
+          window.clearTimeout(tid);
         }
       })();
       return;
