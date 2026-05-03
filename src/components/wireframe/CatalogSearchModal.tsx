@@ -82,6 +82,10 @@ type Props = {
 
 const FEED_CHIPS: FeedKindChip[] = ["전체", "습식", "건식"];
 
+/** 급여 검색 빈 화면·메인 안내와 동일한 «사료 추가 요청» 버튼 스타일 */
+const FEED_REQUEST_LINK_CLASS =
+  "relative flex h-14 w-full max-w-[242px] items-center justify-center overflow-hidden rounded-[12px] bg-[#6f4425] text-base font-bold leading-5 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f8620c]/50";
+
 export function CatalogSearchModal({
   open,
   initialQuery,
@@ -287,10 +291,26 @@ export function CatalogSearchModal({
                     className={`flex min-h-0 flex-1 flex-col ${showResultList ? "mt-4" : ""}`}
                   >
                     {!searched ? (
-                      <div className="flex flex-1 flex-col items-center justify-center px-6 pb-6">
-                        <p className="text-center text-base leading-normal text-[#666]">
-                          검색창에 사료명·브랜드를 입력하고 검색해 주세요.
-                        </p>
+                      <div className="flex flex-1 flex-col items-center justify-center gap-6 px-6 pb-6">
+                        <div className="flex flex-col items-center gap-3">
+                          <p className="text-center text-base leading-normal text-[#666]">
+                            검색창에 사료명·브랜드를 입력하고 검색해 주세요.
+                          </p>
+                          <p className="text-center text-base font-bold leading-[1.5] text-[#171717]">
+                            찾는 사료가 없나요?
+                          </p>
+                        </div>
+                        {feedRequestHref ? (
+                          <a
+                            href={feedRequestHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={FEED_REQUEST_LINK_CLASS}
+                            aria-label="사료 추가 요청"
+                          >
+                            사료 추가 요청
+                          </a>
+                        ) : null}
                       </div>
                     ) : showHintEmptyNeedle ? (
                       <div className="flex flex-1 flex-col items-center justify-center px-6 pb-6">
@@ -324,7 +344,7 @@ export function CatalogSearchModal({
                           href={feedRequestHref}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="relative flex h-14 w-full max-w-[242px] items-center justify-center overflow-hidden rounded-[12px] bg-[#6f4425] text-base font-bold leading-5 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f8620c]/50"
+                          className={FEED_REQUEST_LINK_CLASS}
                           aria-label="사료 추가 요청"
                         >
                           사료 추가 요청
