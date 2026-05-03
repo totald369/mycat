@@ -31,7 +31,8 @@ const pretendard = localFont({
   ],
   variable: "--font-pretendard",
   display: "swap",
-  preload: true,
+  /** 여러 서브셋 preload는 초기 대역폭·우선순위 경쟁을 키움 — swap으로 시스템 폰트 먼저 표시 */
+  preload: false,
   fallback: [
     "system-ui",
     "-apple-system",

@@ -16,14 +16,6 @@ import { WizardHeader } from "@/components/design/WizardHeader";
 import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { WizardSelectedChoiceLayers } from "@/components/design/WizardSelectedChoiceLayers";
 import { WizardProgress } from "@/components/design/WizardProgress";
-
-const CalculatingPawsPetLottie = dynamic(
-  () =>
-    import("@/components/design/CalculatingPawsPetLottie").then((m) => ({
-      default: m.CalculatingPawsPetLottie,
-    })),
-  { ssr: false },
-);
 import { ValidationToast } from "@/components/design/ValidationToast";
 import { designResource } from "@/components/design/designResourcePaths";
 import {
@@ -40,7 +32,6 @@ import {
   wizardInputInRowClass,
   wizardInputRowClass,
 } from "@/components/design/wizardFieldClasses";
-import { FeedSearchModal } from "@/components/wireframe/FeedSearchModal";
 import { IconClose, IconPlus, IconSearch } from "@/components/wireframe/icons";
 import { CALCULATING_OVERLAY_VIDEOS } from "@/constants/calculatingOverlayVideos";
 import { DISPLAY_BUTTON, DISPLAY_TITLE } from "@/constants/displayTextSvg";
@@ -48,6 +39,22 @@ import { SESSION_SHOW_RESULT_COMPLETE_SPLASH } from "@/constants/resultNavigatio
 import { prefetchFeedCatalogForResult } from "@/lib/feedCatalogPrefetch";
 import { validateWizardBeforeResult } from "@/lib/wizardCalories";
 import { patchWizardState, readWizardState } from "@/lib/wizardStorage";
+
+const CalculatingPawsPetLottie = dynamic(
+  () =>
+    import("@/components/design/CalculatingPawsPetLottie").then((m) => ({
+      default: m.CalculatingPawsPetLottie,
+    })),
+  { ssr: false },
+);
+
+const FeedSearchModal = dynamic(
+  () =>
+    import("@/components/wireframe/FeedSearchModal").then((m) => ({
+      default: m.FeedSearchModal,
+    })),
+  { ssr: false },
+);
 
 const CALCULATING_OVERLAY_MS = 2800;
 
@@ -232,16 +239,7 @@ export default function Step3Page() {
           aria-live="polite"
           aria-busy="true"
         >
-          <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
-            <Image
-              src={designResource.background}
-              alt=""
-              fill
-              className="object-cover object-center"
-              sizes="100vw"
-              priority
-            />
-          </div>
+          <WizardPageBackground placement="contain" priority quality={64} />
           <CalculatingPawsPetLottie />
           <div className="relative z-10 flex h-full min-h-0 flex-col items-center justify-center px-4 pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)] min-[360px]:px-6">
             <div className={`flex ${wizardBlockWidthClass} flex-col items-center gap-4`}>
@@ -389,7 +387,8 @@ export default function Step3Page() {
                             alt=""
                             fill
                             className="rounded-lg object-cover opacity-20"
-                            sizes="300px"
+                            sizes="(max-width: 400px) 92vw, 360px"
+                            quality={72}
                           />
                         </span>
                         <span className="relative z-10 min-w-0 flex-1 pr-1 font-semibold">

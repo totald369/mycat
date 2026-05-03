@@ -100,7 +100,7 @@ function FeedRequestWoodAnchor({ href }: { href: string }) {
         fill
         className="pointer-events-none object-cover opacity-20"
         sizes="242px"
-        unoptimized
+        quality={72}
         draggable={false}
       />
       <span className="relative z-10 px-8 text-base font-bold leading-5 text-white">

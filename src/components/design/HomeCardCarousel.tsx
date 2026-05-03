@@ -34,9 +34,11 @@ export function HomeCardCarousel() {
               height={64}
               className="h-16 w-16 object-contain"
               draggable={false}
+              loading="lazy"
               unoptimized
               sizes="64px"
               decoding="async"
+              fetchPriority="low"
             />
           </div>
           <div className="flex min-h-0 flex-1 flex-col gap-2 text-center">
@@ -47,8 +49,11 @@ export function HomeCardCarousel() {
                 width={titleSvgById[c.id].width}
                 height={titleSvgById[c.id].height}
                 className="mx-auto h-auto w-auto object-contain"
+                loading="lazy"
                 unoptimized
                 sizes={`${titleSvgById[c.id].width}px`}
+                decoding="async"
+                fetchPriority="low"
               />
             </h2>
             <p className="line-clamp-4 min-h-0 text-base leading-[1.2] text-black/70">

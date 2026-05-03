@@ -40,7 +40,8 @@ export default function IntroPage() {
         }}
       />
       <main className={wizardShellHomeClass}>
-        <WizardPageBackground />
+        {/* 풀스크린 배경은 LCP 후보와 대역폭 경쟁 → 홈만 지연 로드 */}
+        <WizardPageBackground priority={false} quality={62} />
 
         <div className="relative flex h-full min-h-0 flex-col items-center overflow-hidden pt-12 pb-[calc(7.5rem+env(safe-area-inset-bottom,0px))]">
           <div className="flex w-full shrink-0 flex-col items-center px-4 min-[360px]:px-6">
@@ -58,8 +59,9 @@ export default function IntroPage() {
                 height={DISPLAY_TITLE.homeLine1Left.height}
                 className="h-auto w-auto object-contain"
                 unoptimized
-                priority
                 sizes="63px"
+                decoding="async"
+                fetchPriority="low"
               />
               <Image
                 src={designResource.catImg}
@@ -69,7 +71,10 @@ export default function IntroPage() {
                 className="shrink-0 object-contain"
                 style={{ width: catLogicalW, height: catLogicalH }}
                 priority
+                quality={82}
                 sizes={`${Math.ceil(catLogicalW)}px`}
+                fetchPriority="high"
+                decoding="async"
               />
               <Image
                 src={DISPLAY_TITLE.homeLine1Right.src}
@@ -78,8 +83,9 @@ export default function IntroPage() {
                 height={DISPLAY_TITLE.homeLine1Right.height}
                 className="h-auto w-auto object-contain"
                 unoptimized
-                priority
                 sizes="63px"
+                decoding="async"
+                fetchPriority="low"
               />
             </span>
             <Image
@@ -89,8 +95,9 @@ export default function IntroPage() {
               height={DISPLAY_TITLE.homeLine2.height}
               className="mx-auto mt-1 h-auto w-auto max-w-full object-contain"
               unoptimized
-              priority
               sizes="(max-width: 360px) 90vw, 237px"
+              decoding="async"
+              fetchPriority="low"
             />
           </h1>
           <p className="mt-4 text-center text-lg leading-[1.4] text-[#555]">
