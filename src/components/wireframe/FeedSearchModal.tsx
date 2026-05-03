@@ -4,6 +4,7 @@ import {
   CatalogSearchModal,
   type CatalogItem,
 } from "@/components/wireframe/CatalogSearchModal";
+import { FEED_REQUEST_HREF } from "@/constants/feedRequest";
 
 type Props = {
   open: boolean;
@@ -18,7 +19,7 @@ export function FeedSearchModal(props: Props) {
       {...props}
       title="급여 종류"
       titleId="feed-modal-title"
-      placeholder="건식/아카나..."
+      placeholder="예: 아카나"
       fetchUrl="/api/feeds"
       loadErrorMessage="급여(사료) 목록을 불러오지 못했습니다."
       emptyDbHint={
@@ -34,6 +35,8 @@ export function FeedSearchModal(props: Props) {
           를 실행해 주세요.
         </>
       }
+      feedRequestHref={FEED_REQUEST_HREF}
+      variant="feed"
     />
   );
 }

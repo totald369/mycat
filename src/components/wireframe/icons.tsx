@@ -16,6 +16,28 @@ export function IconCalendar({ className }: { className?: string }) {
   );
 }
 
+/** 피그마 `back_32` — 급여 검색 시트 상단 뒤로가기 */
+export function IconBack({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      aria-hidden
+    >
+      <path
+        d="M19 8L11 16l8 8"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function IconSearch({ className }: { className?: string }) {
   return (
     <svg

@@ -241,13 +241,63 @@ export function PawWoodLink(
     labelClassName?: string;
   },
 ) {
-  const { className, children, pawHalf = "leading", labelSvg, labelClassName, ...rest } = props;
-  return (
-    <Link className={`${shell} ${className ?? ""}`} {...rest}>
+  const {
+    className,
+    children,
+    pawHalf = "leading",
+    labelSvg,
+    labelClassName,
+    href,
+    prefetch,
+    replace,
+    scroll,
+    shallow,
+    passHref,
+    locale,
+    ...rest
+  } = props;
+
+  const hrefStr = typeof href === "string" ? href.trim() : "";
+  const useNativeAnchor =
+    hrefStr.startsWith("mailto:") ||
+    hrefStr.startsWith("http://") ||
+    hrefStr.startsWith("https://");
+
+  const inner = (
+    <>
       <FigmaPaw scheme="secondary" half={pawHalf} />
       <PawLabel half={pawHalf} labelSvg={labelSvg} labelClassName={labelClassName}>
         {children}
       </PawLabel>
+    </>
+  );
+
+  if (useNativeAnchor) {
+    return (
+      <a
+        className={`${shell} ${className ?? ""}`}
+        href={hrefStr}
+        rel={hrefStr.startsWith("http") ? "noopener noreferrer" : undefined}
+        {...(rest as Omit<ComponentProps<"a">, "href" | "children" | "className" | "rel">)}
+      >
+        {inner}
+      </a>
+    );
+  }
+
+  return (
+    <Link
+      className={`${shell} ${className ?? ""}`}
+      href={href}
+      prefetch={prefetch}
+      replace={replace}
+      scroll={scroll}
+      shallow={shallow}
+      passHref={passHref}
+      locale={locale}
+      {...rest}
+    >
+      {inner}
     </Link>
   );
 }
