@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
+import { designResource } from "@/components/design/designResourcePaths";
 import { PawWoodLink } from "@/components/design/PawButton";
 import { IconBack, IconClose, IconSearch } from "@/components/wireframe/icons";
 import { canonicalizeKoreanSearchSpelling } from "@/lib/koreanSearchNormalize";
@@ -82,9 +83,67 @@ type Props = {
 
 const FEED_CHIPS: FeedKindChip[] = ["전체", "습식", "건식"];
 
-/** 급여 검색 빈 화면·메인 안내와 동일한 «사료 추가 요청» 버튼 스타일 */
-const FEED_REQUEST_LINK_CLASS =
-  "relative flex h-14 w-full max-w-[242px] items-center justify-center overflow-hidden rounded-[12px] bg-[#6f4425] text-base font-bold leading-5 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f8620c]/50";
+/** 피그마 Selected_Button (#6f4425 + 우드 텍스처 20%) */
+function FeedRequestWoodAnchor({ href }: { href: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="relative flex h-14 w-full max-w-[242px] shrink-0 items-center justify-center overflow-hidden rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f8620c]/50"
+      aria-label="사료 추가 요청"
+    >
+      <span className="absolute inset-0 bg-[#6f4425]" aria-hidden />
+      <Image
+        src={designResource.selectedChoiceTexture}
+        alt=""
+        fill
+        className="pointer-events-none object-cover opacity-20"
+        sizes="242px"
+        unoptimized
+        draggable={false}
+      />
+      <span className="relative z-10 px-8 text-base font-bold leading-5 text-white">
+        사료 추가 요청
+      </span>
+    </a>
+  );
+}
+
+/** 피그마 SearchList_basic(143:40) 초기·안내 블록: 아이콘 + 카피 + CTA 간격(gap 8 · 24) */
+function FeedSearchIdleBlock({
+  feedRequestHref,
+}: {
+  feedRequestHref: string | undefined;
+}) {
+  return (
+    <div className="flex flex-col items-center gap-6 px-6">
+      <div className="flex flex-col items-center gap-2">
+        <Image
+          src="/design-resource/icon/Ic_88_empty.svg"
+          alt=""
+          width={88}
+          height={88}
+          className="shrink-0"
+          unoptimized
+          draggable={false}
+        />
+        <div className="flex flex-col items-center gap-1 text-center">
+          <p className="text-base font-bold leading-[1.5] text-[#171717]">
+            검색창에 사료명・브랜드명을 검색해주세요.
+          </p>
+          <div className="text-base font-normal leading-[1.5] text-[#666]">
+            <p className="mb-0">찾는 사료가 없으시면 </p>
+            <p className="mb-0">사료 추가 요청을 해주세요.</p>
+          </div>
+        </div>
+      </div>
+      {feedRequestHref ? (
+        <FeedRequestWoodAnchor href={feedRequestHref} />
+      ) : null}
+    </div>
+  );
+}
 
 export function CatalogSearchModal({
   open,
@@ -208,8 +267,8 @@ export function CatalogSearchModal({
         <h2 id={titleId} className="sr-only">
           {title}
         </h2>
-        <div className="flex min-h-0 flex-1 flex-col">
-          {/* 피그마 Frame 971 + 972: 검색줄 */}
+        <div className="flex min-h-0 flex-1 flex-col gap-2">
+          {/* 피그마 SearchList_basic: 검색줄 → 본문 gap 8px */}
           <div className="flex shrink-0 items-start justify-center pr-4 pt-[max(8px,env(safe-area-inset-top))]">
             <button
               type="button"
@@ -219,7 +278,7 @@ export function CatalogSearchModal({
             >
               <IconBack />
             </button>
-            <div className="flex h-12 min-w-0 flex-1 items-center gap-2 overflow-hidden rounded-[12px] border border-transparent bg-[#f5f1ed] px-4 focus-within:border-[#f8620c]">
+            <div className="flex h-12 min-w-0 flex-1 items-center gap-2 overflow-hidden rounded-xl border border-transparent bg-[#f5f1ed] px-4 focus-within:border-[#f8620c]">
               <input
                 type="text"
                 value={draft}
@@ -266,7 +325,7 @@ export function CatalogSearchModal({
 
               {!loading && !loadError && catalog.length > 0 ? (
                 <div className="flex min-h-0 flex-1 flex-col">
-                  <div className="mt-[8px] flex shrink-0 gap-1 px-4 pb-1">
+                  <div className="flex shrink-0 gap-1 px-4 pb-1">
                     {FEED_CHIPS.map((c) => {
                       const sel = chipFilter === c;
                       return (
@@ -276,8 +335,8 @@ export function CatalogSearchModal({
                           onClick={() => setChipFilter(c)}
                           className={
                             sel
-                              ? "shrink-0 rounded-lg bg-[#171717] py-2 pl-3 pr-3 text-sm font-semibold tracking-[0.1px] text-white"
-                              : "shrink-0 rounded-lg border border-[#eee] bg-white py-2 pl-3 pr-3 text-sm font-semibold tracking-[0.1px] text-[#333]"
+                              ? "shrink-0 rounded-lg bg-[#171717] py-2 pl-3 pr-3 text-sm font-semibold leading-normal tracking-[0.1px] text-white"
+                              : "shrink-0 rounded-lg border border-solid border-[#eee] bg-white py-2 pl-3 pr-3 text-sm font-semibold leading-normal tracking-[0.1px] text-[#333]"
                           }
                         >
                           {c}
@@ -286,40 +345,23 @@ export function CatalogSearchModal({
                     })}
                   </div>
 
-                  {/* 피그마 검색 결과와 동일 간격 · 빈 상태는 남은 높이 가운데 정렬 */}
                   <div
                     className={`flex min-h-0 flex-1 flex-col ${showResultList ? "mt-4" : ""}`}
                   >
                     {!searched ? (
-                      <div className="flex flex-1 flex-col items-center justify-center gap-6 px-6 pb-6">
-                        <div className="flex flex-col items-center gap-3">
-                          <p className="text-center text-base leading-normal text-[#666]">
-                            검색창에 사료명·브랜드를 입력하고 검색해 주세요.
-                          </p>
-                          <p className="text-center text-base font-bold leading-[1.5] text-[#171717]">
-                            찾는 사료가 없나요?
-                          </p>
-                        </div>
-                        {feedRequestHref ? (
-                          <a
-                            href={feedRequestHref}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={FEED_REQUEST_LINK_CLASS}
-                            aria-label="사료 추가 요청"
-                          >
-                            사료 추가 요청
-                          </a>
-                        ) : null}
+                      <div className="flex min-h-0 flex-1 flex-col items-center justify-center pb-6">
+                        <FeedSearchIdleBlock
+                          feedRequestHref={feedRequestHref}
+                        />
                       </div>
                     ) : showHintEmptyNeedle ? (
-                      <div className="flex flex-1 flex-col items-center justify-center px-6 pb-6">
-                        <p className="text-center text-base leading-normal text-[#666]">
+                      <div className="flex min-h-0 flex-1 flex-col items-center justify-center px-6 pb-6">
+                        <p className="text-center text-base font-normal leading-[1.5] text-[#666]">
                           검색어를 입력해 주세요.
                         </p>
                       </div>
                     ) : showFigmaEmpty ? (
-                      <div className="flex flex-1 flex-col items-center justify-center gap-6 px-4 pb-6">
+                      <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-6 px-4 pb-6">
                         <div className="flex flex-col items-center gap-2">
                           <Image
                             src="/design-resource/icon/Ic_88_empty.svg"
@@ -340,15 +382,9 @@ export function CatalogSearchModal({
                             <p>2~3일 내에 업데이트됩니다.</p>
                           </div>
                         </div>
-                        <a
-                          href={feedRequestHref}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={FEED_REQUEST_LINK_CLASS}
-                          aria-label="사료 추가 요청"
-                        >
-                          사료 추가 요청
-                        </a>
+                        {feedRequestHref ? (
+                          <FeedRequestWoodAnchor href={feedRequestHref} />
+                        ) : null}
                       </div>
                     ) : showResultList ? (
                       <div className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto px-2 pb-28">
@@ -385,7 +421,7 @@ export function CatalogSearchModal({
 
             {/* 홈 인디케이터 (피그마 1. Indicator) */}
             <div className="relative h-[33px] shrink-0 bg-white pb-[max(8px,env(safe-area-inset-bottom))]">
-              <div className="-translate-x-1/2 absolute bottom-3 left-1/2 h-[5px] w-[135px] rounded-[100px] bg-[#222]" />
+              <div className="-translate-x-1/2 absolute bottom-2 left-1/2 h-[5px] w-[135px] rounded-[100px] bg-[#222]" />
             </div>
           </div>
         </div>
