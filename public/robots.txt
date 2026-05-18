@@ -1,0 +1,21 @@
+# https://meowdiet.com — 정적 fallback (App Router robots.ts와 동일 정책)
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /step1
+Disallow: /step2
+Disallow: /step3
+Disallow: /result
+Disallow: /r/
+
+User-agent: Yeti
+Allow: /
+Disallow: /api/
+Disallow: /step1
+Disallow: /step2
+Disallow: /step3
+Disallow: /result
+Disallow: /r/
+
+Sitemap: https://meowdiet.com/sitemap.xml
+Host: https://meowdiet.com

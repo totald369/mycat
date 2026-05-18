@@ -1,10 +1,9 @@
-import type { Metadata } from "next";
+import { buildWizardStepMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  alternates: {
-    canonical: "/result",
-  },
-};
+export const metadata = buildWizardStepMetadata(
+  "result",
+  "급여량 계산 결과",
+);
 
 export default function ResultLayout({
   children,

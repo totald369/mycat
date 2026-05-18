@@ -1,10 +1,9 @@
-import type { Metadata } from "next";
+import { buildWizardStepMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  alternates: {
-    canonical: "/step3",
-  },
-};
+export const metadata = buildWizardStepMetadata(
+  "step3",
+  "급여 사료 입력",
+);
 
 export default function Step3Layout({
   children,

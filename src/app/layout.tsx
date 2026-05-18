@@ -1,8 +1,9 @@
-import type { Metadata, Viewport } from "next";
+import type { Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
 import { GA_MEASUREMENT_ID } from "@/constants/googleAnalytics";
 import { CLARITY_PROJECT_ID } from "@/constants/microsoftClarity";
+import { buildRootMetadata } from "@/lib/seo";
 import "./globals.css";
 
 /** Pretendard subset woff2 — UI에 쓰는 굵기만 (피그마와 동일 스택, next/font로 FOIT 완화) */
@@ -47,47 +48,10 @@ const pretendard = localFont({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  themeColor: "#f8f5f2",
 };
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://meowdiet.com"),
-  title: "우리냥이 | 고양이 사료 급여량 계산기",
-  description:
-    "고양이 체중, 활동량, 체형, 사료 정보를 바탕으로 하루 적정 급여량과 칼로리를 계산해보세요.",
-  keywords: [
-    "고양이 사료 급여량",
-    "고양이 하루 사료 양",
-    "고양이 칼로리 계산",
-    "고양이 급여량 계산기",
-  ],
-  openGraph: {
-    title: "우리냥이 | 고양이 사료 급여량 계산기",
-    description: "고양이 체중 기반 사료 급여량 계산 서비스",
-    url: "https://meowdiet.com",
-    siteName: "우리냥이",
-    images: [
-      {
-        url: "/og-brown.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: "ko_KR",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "우리냥이 | 고양이 사료 급여량 계산기",
-    description: "고양이 체중 기반 사료 급여량 계산",
-    images: ["/og-brown.png"],
-  },
-  verification: {
-    google: "8M9JJaFTVZbs-ZQzd7cpmI2luczjidpKkuS5sTO8nMg",
-    other: {
-      "naver-site-verification": "9930da34737f943a79ea16f2a702cad985fd0977",
-    },
-  },
-};
+export const metadata = buildRootMetadata();
 
 export default function RootLayout({
   children,
@@ -95,10 +59,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ko"
-      className={pretendard.variable}
-    >
+    <html lang="ko" className={pretendard.variable}>
       <body className="font-sans antialiased">
         {children}
         <Script

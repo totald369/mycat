@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-05-18 (SEO)
+
+### SEO (Google·Naver, structured data, CWV)
+
+- **`src/lib/seo.ts`**: Central site config, core keywords, `buildRootMetadata` / `buildPageMetadata`, JSON-LD helpers (Organization, WebSite, WebApplication, Article, FAQPage, BreadcrumbList), wizard `noindex`.
+- **Home** (`page.tsx`): sr-only H1, FAQ section + FAQ schema, WebApplication graph, semantic `header`/`nav`/`aside`, landing internal links.
+- **Landing** (`SeoLandingPage.tsx`, `seoLandingPages.ts`): Korean-first titles/descriptions, visible FAQ + Article/Breadcrumb/FAQ JSON-LD, breadcrumb nav.
+- **`sitemap.ts` / `robots.ts` / `public/robots.txt`**: Index landing + home only; disallow `/step*`, `/result`, `/r/`, `/api/`; Naver Yeti rule.
+- **Wizard layouts**: `robots: noindex` for step1–3 and result.
+
 ## 2026-05-18
 
 ### UX (Result calorie breakdown)

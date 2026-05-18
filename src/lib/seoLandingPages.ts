@@ -1,4 +1,10 @@
 import type { Metadata } from "next";
+import {
+  buildLandingFaqs,
+  buildPageMetadata,
+  SEO_LANDING_PATHS,
+  type FaqItem,
+} from "@/lib/seo";
 
 export type SeoLandingPageData = {
   path: string;
@@ -10,6 +16,7 @@ export type SeoLandingPageData = {
     heading: string;
     paragraphs: string[];
   }>;
+  faqs: FaqItem[];
 };
 
 function buildSections(keyword: string, focus: string): SeoLandingPageData["sections"] {
@@ -59,62 +66,76 @@ function buildSections(keyword: string, focus: string): SeoLandingPageData["sect
   ];
 }
 
+function landingPage(
+  data: Omit<SeoLandingPageData, "faqs" | "sections"> & {
+    focus: string;
+  },
+): SeoLandingPageData {
+  return {
+    ...data,
+    sections: buildSections(data.keyword, data.focus),
+    faqs: buildLandingFaqs(data.keyword),
+  };
+}
+
 export const SEO_LANDING_PAGES: SeoLandingPageData[] = [
-  {
+  landingPage({
     path: "/cat-food-amount",
-    title: "Cat Food Amount Guide | 고양이 사료 급여량 계산 가이드",
+    title: "고양이 사료 급여량 계산 가이드 | 하루 사료량·칼로리",
     description:
-      "고양이 사료 급여량을 체중, 활동량, 중성화 여부에 맞춰 계산하는 방법과 실전 관리 팁을 확인하세요.",
+      "고양이 사료 급여량·하루 사료량을 체중, 활동량, 중성화 여부에 맞춰 계산하는 방법과 실전 관리 팁을 확인하세요.",
     h1: "고양이 사료 급여량 계산 가이드",
     keyword: "고양이 사료 급여량",
-    sections: buildSections("고양이 사료 급여량", "일반 성묘"),
-  },
-  {
+    focus: "일반 성묘",
+  }),
+  landingPage({
     path: "/cat-calorie-calculator",
-    title: "Cat Calorie Calculator | 고양이 칼로리 계산 완전 가이드",
+    title: "고양이 칼로리 계산 가이드 | 급여량·하루 사료량",
     description:
-      "고양이 칼로리 계산 방법, 하루 사료 양 조절 기준, 실전 점검 루틴까지 한 번에 확인하세요.",
+      "고양이 칼로리 계산 방법, 하루 사료량 조절 기준, 건식·습식·간식 반영 실전 루틴까지 한 번에 확인하세요.",
     h1: "고양이 칼로리 계산 완전 가이드",
     keyword: "고양이 칼로리 계산",
-    sections: buildSections("고양이 칼로리 계산", "실내 생활 고양이"),
-  },
-  {
+    focus: "실내 생활 고양이",
+  }),
+  landingPage({
     path: "/고양이-사료-급여량",
-    title: "고양이 사료 급여량 | 하루 급여 기준과 계산 방법",
+    title: "고양이 사료 급여량 | 적정 급여량·하루 사료량 계산",
     description:
-      "고양이 하루 사료 양과 적정 급여량을 계산하는 방법, 영향 요인, 점검 루틴을 자세히 안내합니다.",
+      "고양이 하루 사료량과 적정 급여량을 계산하는 방법, 영향 요인, 점검 루틴을 자세히 안내합니다.",
     h1: "고양이 사료 급여량, 어떻게 계산해야 할까요?",
     keyword: "고양이 적정 급여량",
-    sections: buildSections("고양이 적정 급여량", "평균 체형의 성묘"),
-  },
-  {
+    focus: "평균 체형의 성묘",
+  }),
+  landingPage({
     path: "/고양이-3kg-사료-급여량",
-    title: "고양이 3kg 사료 급여량 | 체중별 급여 가이드",
+    title: "고양이 3kg 사료 급여량 | 체중별 하루 사료량",
     description:
-      "3kg 고양이의 하루 사료 양과 칼로리 계산 기준, 활동량·중성화 여부에 따른 조정법을 확인하세요.",
+      "3kg 고양이의 하루 사료량·칼로리 계산 기준, 활동량·중성화 여부에 따른 조정법을 확인하세요.",
     h1: "고양이 3kg 사료 급여량 계산 가이드",
     keyword: "고양이 3kg 사료 급여량",
-    sections: buildSections("고양이 3kg 사료 급여량", "3kg 전후의 소형 체형 고양이"),
-  },
-  {
+    focus: "3kg 전후의 소형 체형 고양이",
+  }),
+  landingPage({
     path: "/고양이-5kg-사료-급여량",
-    title: "고양이 5kg 사료 급여량 | 체중별 급여 기준",
+    title: "고양이 5kg 사료 급여량 | 체중별 급여량 계산",
     description:
-      "5kg 고양이 급여량 계산 방법과 칼로리 조정 기준을 확인하고 과급여를 예방하세요.",
+      "5kg 고양이 급여량·하루 사료량 계산 방법과 칼로리 조정 기준으로 과급여를 예방하세요.",
     h1: "고양이 5kg 사료 급여량 계산 가이드",
     keyword: "고양이 5kg 사료 급여량",
-    sections: buildSections("고양이 5kg 사료 급여량", "5kg 내외 중대형 체형 고양이"),
-  },
-  {
+    focus: "5kg 내외 중대형 체형 고양이",
+  }),
+  landingPage({
     path: "/중성화-고양이-급여량",
-    title: "중성화 고양이 급여량 | 칼로리와 사료량 조절법",
+    title: "중성화 고양이 급여량 | 칼로리·하루 사료량",
     description:
-      "중성화 고양이의 적정 급여량과 하루 사료 양을 계산하고 체중 증가를 예방하는 방법을 안내합니다.",
+      "중성화 고양이의 적정 급여량과 하루 사료량을 계산하고 체중 증가를 예방하는 방법을 안내합니다.",
     h1: "중성화 고양이 급여량 계산 가이드",
     keyword: "중성화 고양이 급여량",
-    sections: buildSections("중성화 고양이 급여량", "중성화 이후 체중 관리 단계"),
-  },
+    focus: "중성화 이후 체중 관리 단계",
+  }),
 ];
+
+export { SEO_LANDING_PATHS };
 
 export function getSeoLandingPage(path: string): SeoLandingPageData {
   const page = SEO_LANDING_PAGES.find((item) => item.path === path);
@@ -126,17 +147,11 @@ export function getSeoLandingPage(path: string): SeoLandingPageData {
 
 export function buildSeoMetadata(path: string): Metadata {
   const page = getSeoLandingPage(path);
-  return {
+  return buildPageMetadata({
     title: page.title,
     description: page.description,
-    alternates: { canonical: path },
-    openGraph: {
-      title: page.title,
-      description: page.description,
-      url: `https://meowdiet.com${path}`,
-      type: "article",
-      locale: "ko_KR",
-      siteName: "우리냥이",
-    },
-  };
+    path: page.path,
+    keywords: [page.keyword, "고양이 급여량 계산기"],
+    ogType: "article",
+  });
 }
