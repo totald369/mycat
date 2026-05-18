@@ -9,6 +9,7 @@ import {
   type CalculatorInput,
   type CalculatorOutput,
   type CalculatorSuccess,
+  type FeedKindLabel,
   type FoodInput,
 } from "@/lib/calculator";
 import type { Step3ChipPersist } from "@/lib/wizardStorage";
@@ -76,6 +77,51 @@ export function findKcalPer100gForFeedLabel(
   return loose?.kcalPer100g ?? null;
 }
 
+function normalizeFeedKindLabel(raw: string | undefined): FeedKindLabel | null {
+  if (!raw) return null;
+  const x = raw.trim().toLowerCase();
+  if (x === "건식" || x === "dry") return "건식";
+  if (x === "습식" || x === "wet") return "습식";
+  if (x === "기타") return "기타";
+  return null;
+}
+
+function feedKindFromNamePart(namePart: string): FeedKindLabel | null {
+  const t = namePart.trim();
+  if (t.startsWith("습식/")) return "습식";
+  if (t.startsWith("건식/")) return "건식";
+  return null;
+}
+
+export function findFeedKindForFeedLabel(
+  namePart: string,
+  items: FeedCatalogItem[],
+): FeedKindLabel | null {
+  const t = namePart.trim();
+  if (!t) return null;
+
+  const byLabel = items.find((i) => i.label === t);
+  const fromLabel = normalizeFeedKindLabel(byLabel?.feedKind);
+  if (fromLabel) return fromLabel;
+
+  const byDisp = items.find((i) => i.displayLabel === t);
+  const fromDisp = normalizeFeedKindLabel(byDisp?.feedKind);
+  if (fromDisp) return fromDisp;
+
+  const want = feedLookupSignature(t);
+  if (want) {
+    const loose = items.find((i) => {
+      const a = feedLookupSignature(i.label);
+      const b = feedLookupSignature(i.displayLabel);
+      return a === want || b === want;
+    });
+    const fromLoose = normalizeFeedKindLabel(loose?.feedKind);
+    if (fromLoose) return fromLoose;
+  }
+
+  return feedKindFromNamePart(t);
+}
+
 export function buildFoodsFromWizardChips(
   chipTexts: string[],
   items: FeedCatalogItem[],
@@ -94,10 +140,13 @@ export function buildFoodsFromWizardChips(
       unmatched.push(parsed.namePart);
       continue;
     }
+    const feedKind =
+      findFeedKindForFeedLabel(parsed.namePart, items) ?? "건식";
     foods.push({
       kcalPer100g: kcal,
       amountG: parsed.amountG,
       timesPerDay: parsed.timesPerDay,
+      feedKind,
     });
   }
 
@@ -253,6 +302,54 @@ export function computeCaloriesWithWizard(
 export function formatKcal(n: number): string {
   if (!Number.isFinite(n)) return "—";
   return `${Math.round(n)}kcal`;
+}
+
+export type IntakeCompositionItem = {
+  label: string;
+  calories: number;
+};
+
+/** 결과 화면: 권장 대비 한 줄 해석 */
+export function calorieIntakeStatusSentence(
+  success: CalculatorSuccess,
+): string {
+  if (success.diffPercent >= -5 && success.diffPercent <= 5) {
+    return "권장량에 맞게 먹고 있어요.";
+  }
+  const pct = Math.abs(success.diffPercent).toFixed(1);
+  if (success.diffPercent < 0) {
+    return `권장량보다 ${pct}% 적게 먹고 있어요.`;
+  }
+  return `권장량보다 ${pct}% 많이 먹고 있어요.`;
+}
+
+const RESULT_TAGLINE_ACTION: Record<CalculatorSuccess["status"], string> = {
+  balanced: "지금 급여량을 유지해주세요.",
+  slightly_high: "급여량을 줄여주세요.",
+  high: "급여량을 줄여주세요.",
+  slightly_low: "급여량을 늘려주세요.",
+  low: "급여량을 늘려주세요.",
+};
+
+/** 결과 화면 헤드라인 아래 2줄 (권장 대비 + 기존 안내) */
+export function resultTaglineLines(
+  success: CalculatorSuccess,
+): readonly [string, string] {
+  return [
+    calorieIntakeStatusSentence(success),
+    RESULT_TAGLINE_ACTION[success.status],
+  ];
+}
+
+/** 결과 화면: 건식·습식·간식 칩용 (0kcal 항목 제외) */
+export function calorieIntakeComposition(
+  success: CalculatorSuccess,
+): IntakeCompositionItem[] {
+  return [
+    { label: "건식", calories: success.dryFoodCalories },
+    { label: "습식", calories: success.wetFoodCalories },
+    { label: "간식", calories: success.snackCalories },
+  ].filter((item) => Math.round(item.calories) > 0);
 }
 
 /** 피그마 계산결과: 이모지 포함 한 줄 타이틀 */

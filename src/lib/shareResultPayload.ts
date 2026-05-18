@@ -1,9 +1,10 @@
 import type { CalculatorSuccess, CalorieStatus } from "@/lib/calculator";
 
-const VERSION = 1 as const;
+const VERSION_V1 = 1 as const;
+const VERSION_V2 = 2 as const;
 
 export type ShareResultPayloadV1 = {
-  v: typeof VERSION;
+  v: typeof VERSION_V1;
   status: CalorieStatus;
   recommendedCalories: number;
   totalCalories: number;
@@ -11,6 +12,14 @@ export type ShareResultPayloadV1 = {
   snackCalories: number;
   diffPercent: number;
 };
+
+export type ShareResultPayloadV2 = Omit<ShareResultPayloadV1, "v"> & {
+  v: typeof VERSION_V2;
+  dryFoodCalories: number;
+  wetFoodCalories: number;
+};
+
+export type ShareResultPayload = ShareResultPayloadV1 | ShareResultPayloadV2;
 
 const STATUSES: readonly CalorieStatus[] = [
   "balanced",
@@ -28,10 +37,10 @@ function finiteNum(x: unknown): x is number {
   return typeof x === "number" && Number.isFinite(x);
 }
 
-function parsePayload(raw: unknown): ShareResultPayloadV1 | null {
+function parsePayload(raw: unknown): ShareResultPayload | null {
   if (!raw || typeof raw !== "object") return null;
   const o = raw as Record<string, unknown>;
-  if (o.v !== VERSION) return null;
+  if (o.v !== VERSION_V1 && o.v !== VERSION_V2) return null;
   if (!isStatus(o.status)) return null;
   if (
     !finiteNum(o.recommendedCalories) ||
@@ -51,8 +60,9 @@ function parsePayload(raw: unknown): ShareResultPayloadV1 | null {
   ];
   if (nums.some((n) => n < 0 || n > cap)) return null;
   if (o.diffPercent < -1000 || o.diffPercent > 1000) return null;
-  return {
-    v: VERSION,
+
+  const base: ShareResultPayloadV1 = {
+    v: VERSION_V1,
     status: o.status,
     recommendedCalories: o.recommendedCalories,
     totalCalories: o.totalCalories,
@@ -60,6 +70,39 @@ function parsePayload(raw: unknown): ShareResultPayloadV1 | null {
     snackCalories: o.snackCalories,
     diffPercent: o.diffPercent,
   };
+
+  if (o.v === VERSION_V1) {
+    return base;
+  }
+
+  if (
+    !finiteNum(o.dryFoodCalories) ||
+    !finiteNum(o.wetFoodCalories) ||
+    o.dryFoodCalories < 0 ||
+    o.wetFoodCalories < 0 ||
+    o.dryFoodCalories > cap ||
+    o.wetFoodCalories > cap
+  ) {
+    return null;
+  }
+  if (
+    Math.abs(o.dryFoodCalories + o.wetFoodCalories - o.foodCalories) > 1
+  ) {
+    return null;
+  }
+
+  const v2: ShareResultPayloadV2 = {
+    v: VERSION_V2,
+    status: base.status,
+    recommendedCalories: base.recommendedCalories,
+    totalCalories: base.totalCalories,
+    foodCalories: base.foodCalories,
+    snackCalories: base.snackCalories,
+    diffPercent: base.diffPercent,
+    dryFoodCalories: o.dryFoodCalories,
+    wetFoodCalories: o.wetFoodCalories,
+  };
+  return v2;
 }
 
 function utf8ToBase64Url(json: string): string {
@@ -82,12 +125,14 @@ function base64UrlToUtf8(s: string): string {
 }
 
 export function encodeShareResultPayload(success: CalculatorSuccess): string {
-  const payload: ShareResultPayloadV1 = {
-    v: VERSION,
+  const payload: ShareResultPayloadV2 = {
+    v: VERSION_V2,
     status: success.status,
     recommendedCalories: success.recommendedCalories,
     totalCalories: success.totalCalories,
     foodCalories: success.foodCalories,
+    dryFoodCalories: success.dryFoodCalories,
+    wetFoodCalories: success.wetFoodCalories,
     snackCalories: success.snackCalories,
     diffPercent: success.diffPercent,
   };
@@ -96,7 +141,7 @@ export function encodeShareResultPayload(success: CalculatorSuccess): string {
 
 export function decodeShareResultPayload(
   encoded: string,
-): { ok: true; value: ShareResultPayloadV1 } | { ok: false } {
+): { ok: true; value: ShareResultPayload } | { ok: false } {
   const trimmed = encoded.trim();
   if (!trimmed) return { ok: false };
   try {
@@ -112,8 +157,11 @@ export function decodeShareResultPayload(
 
 /** 공유 링크 전용: 화면에 필요한 필드만 채우고 나머지는 더미 */
 export function sharePayloadToCalculatorSuccess(
-  p: ShareResultPayloadV1,
+  p: ShareResultPayload,
 ): CalculatorSuccess {
+  const dryFoodCalories =
+    p.v === VERSION_V2 ? p.dryFoodCalories : p.foodCalories;
+  const wetFoodCalories = p.v === VERSION_V2 ? p.wetFoodCalories : 0;
   return {
     ok: true,
     rer: 0,
@@ -122,6 +170,8 @@ export function sharePayloadToCalculatorSuccess(
     activityFactor: 0,
     recommendedCalories: p.recommendedCalories,
     foodCalories: p.foodCalories,
+    dryFoodCalories,
+    wetFoodCalories,
     snackCalories: p.snackCalories,
     totalCalories: p.totalCalories,
     diffPercent: p.diffPercent,

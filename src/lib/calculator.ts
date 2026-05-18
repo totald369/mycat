@@ -23,10 +23,13 @@ export type SnackFrequency =
   | "weekly_2_3"
   | "weekly_less_than_1";
 
+export type FeedKindLabel = "건식" | "습식" | "기타";
+
 export type FoodInput = {
   kcalPer100g: number;
   amountG: number;
   timesPerDay: number;
+  feedKind?: FeedKindLabel;
 };
 
 export type CalculatorInput = {
@@ -55,6 +58,8 @@ export type CalculatorSuccess = {
   activityFactor: number;
   recommendedCalories: number;
   foodCalories: number;
+  dryFoodCalories: number;
+  wetFoodCalories: number;
   snackCalories: number;
   totalCalories: number;
   diffPercent: number;
@@ -179,17 +184,37 @@ export function snackPercentOfRecommended(
   }
 }
 
+export function caloriesForFoodItem(f: FoodInput): number {
+  const k = f.kcalPer100g;
+  const g = f.amountG;
+  const t = f.timesPerDay;
+  if (!Number.isFinite(k) || !Number.isFinite(g) || !Number.isFinite(t)) return 0;
+  return (k / 100) * g * t;
+}
+
 export function foodCaloriesFromFoods(foods: FoodInput[]): number {
   let sum = 0;
   for (const f of foods) {
-    const k = f.kcalPer100g;
-    const g = f.amountG;
-    const t = f.timesPerDay;
-    if (!Number.isFinite(k) || !Number.isFinite(g) || !Number.isFinite(t))
-      continue;
-    sum += (k / 100) * g * t;
+    sum += caloriesForFoodItem(f);
   }
   return sum;
+}
+
+export function foodCaloriesSplitFromFoods(foods: FoodInput[]): {
+  dryFoodCalories: number;
+  wetFoodCalories: number;
+} {
+  let dryFoodCalories = 0;
+  let wetFoodCalories = 0;
+  for (const f of foods) {
+    const c = caloriesForFoodItem(f);
+    if (f.feedKind === "습식") {
+      wetFoodCalories += c;
+    } else {
+      dryFoodCalories += c;
+    }
+  }
+  return { dryFoodCalories, wetFoodCalories };
 }
 
 export function statusFromDiffPercent(diffPercent: number): CalorieStatus {
@@ -229,6 +254,8 @@ export function calculateCatCalories(
   }
 
   const foodCalories = foodCaloriesFromFoods(foods);
+  const { dryFoodCalories, wetFoodCalories } =
+    foodCaloriesSplitFromFoods(foods);
   const snackPct = snackPercentOfRecommended(input.snackFrequency);
   const snackCalories = recommendedCalories * (snackPct / 100);
   const totalCalories = foodCalories + snackCalories;
@@ -243,6 +270,8 @@ export function calculateCatCalories(
     activityFactor,
     recommendedCalories,
     foodCalories,
+    dryFoodCalories,
+    wetFoodCalories,
     snackCalories,
     totalCalories,
     diffPercent,

@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-05-18
+
+### UX (Result calorie breakdown)
+
+- **Result** (`src/app/result/page.tsx`): Summary card stays **권장 칼로리 / 급여 칼로리**; tagline line 1 uses **권장량 대비 %** (`권장량보다 N% 적게/많이 먹고 있어요.` or `권장량에 맞게 먹고 있어요.`), line 2 keeps existing action copy (늘리기/줄이기/유지).
+- **Intake chips** below the card: **건식 / 습식 / 간식** kcal pills (0 kcal hidden); total kcal is not repeated under the card.
+- **Calculator** (`src/lib/calculator.ts`): `dryFoodCalories` / `wetFoodCalories` from feed `feedKind`; `foodCalories` unchanged as their sum.
+- **Wizard** (`src/lib/wizardCalories.ts`): Resolves `feedKind` from catalog or `건식/`·`습식/` label prefix when building foods from Step3 chips.
+- **Share** (`src/lib/shareResultPayload.ts`): Payload **v2** includes dry/wet split; v1 links still decode (dry = legacy `foodCalories`, wet = 0).
+
 ## 2026-04-27
 
 ### Data

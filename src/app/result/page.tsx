@@ -20,8 +20,10 @@ import {
   sharePayloadToCalculatorSuccess,
 } from "@/lib/shareResultPayload";
 import {
+  calorieIntakeComposition,
   computeCaloriesWithWizard,
   formatKcal,
+  resultTaglineLines,
   statusHeadline,
   type FeedCatalogItem,
 } from "@/lib/wizardCalories";
@@ -69,36 +71,32 @@ function kcalBig(value: number, accent?: boolean) {
   );
 }
 
-const TAGLINE: Record<
-  CalculatorSuccess["status"],
-  readonly [string, string]
-> = {
-  balanced: [
-    "적절한 양의 사료를 먹고 있어요!",
-    "지금 급여량을 유지해주세요.",
-  ],
-  slightly_high: [
-    "많은 양의 사료를 먹고 있어요!",
-    "급여량을 줄여주세요.",
-  ],
-  high: [
-    "많은 양의 사료를 먹고 있어요!",
-    "급여량을 줄여주세요.",
-  ],
-  slightly_low: [
-    "적은 양의 사료를 먹고 있어요!",
-    "급여량을 늘려주세요.",
-  ],
-  low: [
-    "적은 양의 사료를 먹고 있어요!",
-    "급여량을 늘려주세요.",
-  ],
-};
-
 function statusHeadlineSvg(status: CalculatorSuccess["status"]) {
   if (status === "balanced") return DISPLAY_TITLE.resultBalanced;
   if (status === "slightly_high" || status === "high") return DISPLAY_TITLE.resultHigh;
   return DISPLAY_TITLE.resultLow;
+}
+
+function CalorieIntakeDetail({ success }: { success: CalculatorSuccess }) {
+  const composition = calorieIntakeComposition(success);
+
+  if (composition.length === 0) return null;
+
+  return (
+    <div
+      className="flex w-full flex-wrap justify-center gap-2"
+      aria-label="섭취 구성"
+    >
+      {composition.map((item) => (
+        <span
+          key={item.label}
+          className="inline-flex items-center rounded-full bg-white px-3.5 py-2 text-sm leading-none text-[#444444] shadow-[0px_4px_16px_0px_rgba(17,17,17,0.06)]"
+        >
+          {item.label} {formatKcal(item.calories)}
+        </span>
+      ))}
+    </div>
+  );
 }
 
 export default function ResultPage() {
@@ -474,7 +472,7 @@ export default function ResultPage() {
                   })()}
                 </h1>
                 <p className="mt-3 text-lg leading-[1.4] text-[rgba(23,23,23,0.8)]">
-                  {TAGLINE[success.status].map((line) => (
+                  {resultTaglineLines(success).map((line) => (
                     <span key={line} className="block">
                       {line}
                     </span>
@@ -500,14 +498,8 @@ export default function ResultPage() {
                   {kcalBig(success.totalCalories, true)}
                 </div>
               </div>
+              <CalorieIntakeDetail success={success} />
             </div>
-
-            <p className="w-full text-center text-[0.6875rem] text-[rgba(23,23,23,0.55)]">
-              사료 {formatKcal(success.foodCalories)} + 간식 추정{" "}
-              {formatKcal(success.snackCalories)} · 권장 대비{" "}
-              {success.diffPercent >= 0 ? "+" : ""}
-              {success.diffPercent.toFixed(1)}%
-            </p>
 
             <div className="w-full rounded-lg bg-[#f5f1ed] p-4 text-sm">
               <p className="font-bold leading-[1.4] text-[#171717]">
