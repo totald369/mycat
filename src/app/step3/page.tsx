@@ -322,7 +322,7 @@ export default function Step3Page() {
               <div ref={feedSectionRef} className="min-w-0 scroll-mt-28">
                 <FieldLabel required>급여 종류 및 횟수</FieldLabel>
                 <p className="mb-2 text-sm leading-[1.4] text-[#888]">
-                  검색(돋보기)으로 사료를 고른 뒤 g·회를 입력하고 추가해 주세요.
+                  사료를 검색하신 후 급여량과 횟수를 입력하고 추가해주세요.
                 </p>
                 <div className={wizardInputRowClass}>
                   <input
