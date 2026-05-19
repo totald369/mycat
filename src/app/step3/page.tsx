@@ -38,6 +38,7 @@ import { DISPLAY_BUTTON, DISPLAY_TITLE } from "@/constants/displayTextSvg";
 import { SESSION_SHOW_RESULT_COMPLETE_SPLASH } from "@/constants/resultNavigation";
 import { prefetchFeedCatalogForResult } from "@/lib/feedCatalogPrefetch";
 import { validateWizardBeforeResult } from "@/lib/wizardCalories";
+import { useRequireWizardStep } from "@/lib/wizardFlow";
 import { patchWizardState, readWizardState } from "@/lib/wizardStorage";
 
 const CalculatingPawsPetLottie = dynamic(
@@ -90,6 +91,10 @@ export default function Step3Page() {
   );
   const overlayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const feedPrefetchRef = useRef<Promise<void> | null>(null);
+  const feedSectionRef = useRef<HTMLDivElement>(null);
+  const snackSectionRef = useRef<HTMLDivElement>(null);
+
+  useRequireWizardStep(3);
 
   useEffect(() => {
     const s = readWizardState().step3;
@@ -116,9 +121,17 @@ export default function Step3Page() {
     });
   }, [hydrated, search, grams, times, chips, snack, nextTone]);
 
+  const scrollToSection = useCallback((ref: React.RefObject<HTMLElement | null>) => {
+    ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, []);
+
   const addChip = () => {
     const name = search.trim();
-    if (!name) return;
+    if (!name) {
+      setResultError("사료명을 입력하거나 검색으로 선택해 주세요.");
+      scrollToSection(feedSectionRef);
+      return;
+    }
     const g = grams.trim() || "10";
     const t = times.trim() || "1";
     const text = `${name}/${g}g/${t}회`;
@@ -154,6 +167,14 @@ export default function Step3Page() {
     const v = validateWizardBeforeResult({ chips, snack });
     if (!v.ok) {
       setResultError(v.error);
+      if (v.error.includes("간식")) {
+        scrollToSection(snackSectionRef);
+      } else if (
+        v.error.includes("급여") ||
+        v.error.includes("사료")
+      ) {
+        scrollToSection(feedSectionRef);
+      }
       return;
     }
     patchWizardState({
@@ -198,6 +219,7 @@ export default function Step3Page() {
     times,
     nextTone,
     router,
+    scrollToSection,
   ]);
 
   useEffect(() => {
@@ -272,7 +294,7 @@ export default function Step3Page() {
       ) : null}
 
       <div className={wizardShellClass}>
-        <WizardPageBackground />
+        <WizardPageBackground priority={false} quality={62} />
         <div className={wizardPageColumnClassBarTall}>
           <WizardHeader />
           <div className={wizardContentWidthClass}>
@@ -295,10 +317,27 @@ export default function Step3Page() {
             </div>
           </div>
 
+          <ul
+            className={`${wizardBlockWidthClass} flex flex-col gap-1 rounded-xl bg-[#f8f5f2] px-4 py-3 text-sm text-[#555]`}
+            aria-label="입력 체크리스트"
+          >
+            <li className={chips.length > 0 ? "font-medium text-[#f8620c]" : ""}>
+              {chips.length > 0 ? "✓" : "1."} 사료 검색 후{" "}
+              <span className="font-semibold">추가</span> 버튼으로 등록
+            </li>
+            <li className={snack ? "font-medium text-[#f8620c]" : ""}>
+              {snack ? "✓" : "2."} 간식 급여 빈도 선택
+            </li>
+            <li className="text-[#888]">3. 하단 결과보기 버튼을 눌러주세요</li>
+          </ul>
+
           <div className={wizardFormCardClass}>
             <div className={wizardFormInnerClass}>
-              <div className="min-w-0">
+              <div ref={feedSectionRef} className="min-w-0 scroll-mt-28">
                 <FieldLabel required>급여 종류 및 횟수</FieldLabel>
+                <p className="mb-2 text-sm leading-[1.4] text-[#888]">
+                  검색(돋보기)으로 사료를 고른 뒤 g·회를 입력하고 추가해 주세요.
+                </p>
                 <div className={wizardInputRowClass}>
                   <input
                     type="text"
@@ -408,19 +447,20 @@ export default function Step3Page() {
                 )}
               </div>
 
-              <div>
+              <div ref={snackSectionRef} className="scroll-mt-28">
                 <FieldLabel required>간식</FieldLabel>
                 <div className="grid grid-cols-2 gap-1">
                   {SNACKS.map((s) => (
                     <button
                       key={s}
                       type="button"
+                      aria-pressed={snack === s}
                       onClick={() => setSnack(s)}
-                      className={
+                      className={`touch-manipulation ${
                         snack === s
                           ? `${wizardChoiceSelectedClass} min-w-0 px-2 py-3 text-sm`
                           : `${wizardChoiceClass} min-w-0 border-solid px-2 py-3 text-sm`
-                      }
+                      }`}
                     >
                       {snack === s ? <WizardSelectedChoiceLayers /> : null}
                       <span className="relative z-10">{s}</span>

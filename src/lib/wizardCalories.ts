@@ -205,6 +205,15 @@ export function validateWizardBeforeResult(
     };
   }
 
+  const snack =
+    options?.snack !== undefined ? options.snack : w.step3.snack;
+  if (!snack) {
+    return {
+      ok: false,
+      error: "간식 급여 빈도를 선택해 주세요.",
+    };
+  }
+
   if (chips.length < 1) {
     return {
       ok: false,

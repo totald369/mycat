@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { FieldLabel } from "@/components/design/FieldLabel";
 import { PawPrimaryButton } from "@/components/design/PawButton";
 import { WizardBottomBar } from "@/components/design/WizardBottomBar";
@@ -55,6 +55,7 @@ export default function Step1Page() {
   const [breedModalOpen, setBreedModalOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hydrated, setHydrated] = useState(false);
+  const weightInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const s = readWizardState().step1;
@@ -115,6 +116,10 @@ export default function Step1Page() {
       setError("성별 및 중성화 여부를 선택해 주세요.");
       return;
     }
+    if (!birthDate.trim()) {
+      setError("생년월일을 입력해 주세요.");
+      return;
+    }
     if (!weight.trim()) {
       setError("현재 체중을 입력해 주세요.");
       return;
@@ -130,7 +135,7 @@ export default function Step1Page() {
     <>
       {error ? <ValidationToast message={error} /> : null}
       <div className={wizardShellClass}>
-        <WizardPageBackground />
+        <WizardPageBackground priority={false} quality={62} />
         <div className={wizardPageColumnClass}>
           <WizardHeader />
           <div className={wizardContentWidthClass}>
@@ -167,7 +172,7 @@ export default function Step1Page() {
               </div>
 
               <div>
-                <FieldLabel>생년월일</FieldLabel>
+                <FieldLabel required>생년월일</FieldLabel>
                 <input
                   id="birth-date"
                   type="date"
@@ -191,12 +196,22 @@ export default function Step1Page() {
                     <button
                       key={opt}
                       type="button"
-                      onClick={() => setGender(opt)}
-                      className={
+                      aria-pressed={gender === opt}
+                      onClick={() => {
+                        setGender(opt);
+                        requestAnimationFrame(() => {
+                          weightInputRef.current?.focus();
+                          weightInputRef.current?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center",
+                          });
+                        });
+                      }}
+                      className={`touch-manipulation ${
                         gender === opt
                           ? wizardChoiceSelectedClass
                           : wizardChoiceClass
-                      }
+                      }`}
                     >
                       {gender === opt ? <WizardSelectedChoiceLayers /> : null}
                       <span className="relative z-10">{opt}</span>
@@ -209,6 +224,7 @@ export default function Step1Page() {
                 <FieldLabel required>현재 체중</FieldLabel>
                 <div className="flex min-w-0 items-center gap-2 rounded-xl bg-[#f5f1ed] px-4 py-3">
                   <input
+                    ref={weightInputRef}
                     type="text"
                     value={weight}
                     onChange={(e) => setWeight(e.target.value)}

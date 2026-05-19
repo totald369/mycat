@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-05-18 (Clarity UX)
+
+### UX (Microsoft Clarity 세션 인사이트 대응)
+
+- **Step1**: 생년월일 필수(다음·결과 검증 일치), 성별 선택 후 체중 입력으로 포커스·스크롤, 배경 LCP `priority={false}`.
+- **Step2**: `useRequireWizardStep`·체형/활동량 선택 요약, step1 미완료 시 다음 차단.
+- **Step3**: 입력 체크리스트·사료 추가 안내, 간식 필수 검증, 오류 시 섹션 스크롤, 이전 단계 가드.
+- **`wizardFlow.ts`**: step1/2 완료 여부·직접 URL 진입 리다이렉트.
+
 ## 2026-05-18 (AdSense·Step3)
 
 ### AdSense

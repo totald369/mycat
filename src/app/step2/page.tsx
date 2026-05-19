@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FieldLabel } from "@/components/design/FieldLabel";
 import {
-  PawPrimaryLink,
+  PawPrimaryButton,
   PawSplitRow,
   PawWoodLink,
 } from "@/components/design/PawButton";
@@ -22,6 +23,7 @@ import {
 } from "@/components/design/wizardLayoutClasses";
 import { wizardChoiceClass } from "@/components/design/wizardFieldClasses";
 import { DISPLAY_BUTTON, DISPLAY_TITLE } from "@/constants/displayTextSvg";
+import { isStep1Complete, useRequireWizardStep } from "@/lib/wizardFlow";
 import { patchWizardState, readWizardState } from "@/lib/wizardStorage";
 
 const BCS = [
@@ -39,9 +41,12 @@ const ACTIVITY = [
 ] as const;
 
 export default function Step2Page() {
+  const router = useRouter();
   const [bcs, setBcs] = useState<string>("정상");
   const [activity, setActivity] = useState<string>("보통");
   const [hydrated, setHydrated] = useState(false);
+
+  useRequireWizardStep(2);
 
   useEffect(() => {
     const s = readWizardState().step2;
@@ -62,7 +67,8 @@ export default function Step2Page() {
         key={label}
         type="button"
         onClick={() => setBcs(label)}
-        className={`relative flex w-full flex-col items-center overflow-hidden rounded-xl ${
+        aria-pressed={selected}
+        className={`relative flex w-full touch-manipulation flex-col items-center overflow-hidden rounded-xl ${
           selected
             ? "text-white"
             : "border border-solid border-[#dedee0] bg-white text-center text-base font-medium text-[#111] transition"
@@ -93,7 +99,7 @@ export default function Step2Page() {
   return (
     <>
       <div className={wizardShellClass}>
-        <WizardPageBackground />
+        <WizardPageBackground priority={false} quality={62} />
         <div className={wizardPageColumnClassBarTall}>
           <WizardHeader />
           <div className={wizardContentWidthClass}>
@@ -112,6 +118,12 @@ export default function Step2Page() {
               </h1>
               <p className="mt-2 text-base leading-[1.4] text-[#555]">
                 우리 아이의 체형과 활동량을 입력해주세요.
+              </p>
+              <p className="mt-2 text-sm leading-[1.4] text-[#888]">
+                선택: 체형 <span className="font-semibold text-[#555]">{bcs}</span>
+                {" · "}
+                활동량{" "}
+                <span className="font-semibold text-[#555]">{activity}</span>
               </p>
             </div>
           </div>
@@ -136,7 +148,8 @@ export default function Step2Page() {
                     key={title}
                     type="button"
                     onClick={() => setActivity(title)}
-                    className={`relative flex h-[136px] min-w-0 flex-1 flex-col justify-center overflow-hidden rounded-xl px-2 py-3 text-center ${
+                    aria-pressed={selected}
+                    className={`relative flex h-[136px] min-w-0 flex-1 touch-manipulation flex-col justify-center overflow-hidden rounded-xl px-2 py-3 text-center ${
                       selected
                         ? "text-white"
                         : `${wizardChoiceClass} border-solid`
@@ -195,14 +208,22 @@ export default function Step2Page() {
             </PawWoodLink>
           }
           right={
-            <PawPrimaryLink
-              href="/step3"
+            <PawPrimaryButton
+              type="button"
               className="text-center"
               pawHalf="trailing"
               labelSvg={DISPLAY_BUTTON.step2Next}
+              onClick={() => {
+                patchWizardState({ step2: { bcs, activity } });
+                if (!isStep1Complete()) {
+                  router.replace("/step1");
+                  return;
+                }
+                router.push("/step3");
+              }}
             >
               다음 ♧
-            </PawPrimaryLink>
+            </PawPrimaryButton>
           }
         />
       </WizardBottomBar>
