@@ -322,8 +322,10 @@ export function activityLevelFromStep2Label(
 
 const SNACK_LABEL_TO_FREQ: Record<string, SnackFrequency> = {
   "하루 한번": "daily",
+  "주2-3회": "weekly_2_3",
   "주 2-3회": "weekly_2_3",
   "주1회 미만": "weekly_less_than_1",
+  "주지 않음": "none",
 };
 
 export function snackFrequencyFromStep3(

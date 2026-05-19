@@ -1,6 +1,7 @@
 import type { Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
+import { ADSENSE_SCRIPT_SRC } from "@/constants/googleAdSense";
 import { GA_MEASUREMENT_ID } from "@/constants/googleAnalytics";
 import { CLARITY_PROJECT_ID } from "@/constants/microsoftClarity";
 import { buildRootMetadata } from "@/lib/seo";
@@ -60,6 +61,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={pretendard.variable}>
+      <head>
+        {/* Google AdSense — 사이트 전역 (검수·광고 게재용) */}
+        <script async src={ADSENSE_SCRIPT_SRC} crossOrigin="anonymous" />
+      </head>
       <body className="font-sans antialiased">
         {children}
         <Script

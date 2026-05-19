@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-05-18 (AdSense·Step3)
+
+### AdSense
+
+- **`src/constants/googleAdSense.ts`**: Publisher ID `ca-pub-7804546387826763`.
+- **`layout.tsx`**: Site-wide AdSense script in `<head>` (all pages) for Google site verification / ad serving.
+
+### UX (Step3 snack)
+
+- Snack choices: **하루 한번 / 주2-3회 / 주1회 미만 / 주지 않음** (2×2 grid). Legacy label `주 2-3회` still maps in calculator.
+
 ## 2026-05-18 (SEO)
 
 ### SEO (Google·Naver, structured data, CWV)

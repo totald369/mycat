@@ -60,7 +60,7 @@ const CALCULATING_OVERLAY_MS = 2800;
 
 type Chip = { id: string; text: string; tone: "purple" | "peach" };
 
-const SNACKS = ["하루 한번", "주 2-3회", "주1회 미만"] as const;
+const SNACKS = ["하루 한번", "주2-3회", "주1회 미만", "주지 않음"] as const;
 
 function isWetFeedKind(feedKind: string | undefined): boolean {
   if (!feedKind) return false;
@@ -410,7 +410,7 @@ export default function Step3Page() {
 
               <div>
                 <FieldLabel required>간식</FieldLabel>
-                <div className="flex gap-1">
+                <div className="grid grid-cols-2 gap-1">
                   {SNACKS.map((s) => (
                     <button
                       key={s}
@@ -418,8 +418,8 @@ export default function Step3Page() {
                       onClick={() => setSnack(s)}
                       className={
                         snack === s
-                          ? `${wizardChoiceSelectedClass} min-w-0 flex-1 px-2 py-3 text-sm`
-                          : `${wizardChoiceClass} min-w-0 flex-1 border-solid px-2 py-3 text-sm`
+                          ? `${wizardChoiceSelectedClass} min-w-0 px-2 py-3 text-sm`
+                          : `${wizardChoiceClass} min-w-0 border-solid px-2 py-3 text-sm`
                       }
                     >
                       {snack === s ? <WizardSelectedChoiceLayers /> : null}
