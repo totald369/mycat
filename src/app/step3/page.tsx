@@ -317,20 +317,6 @@ export default function Step3Page() {
             </div>
           </div>
 
-          <ul
-            className={`${wizardBlockWidthClass} flex flex-col gap-1 rounded-xl bg-[#f8f5f2] px-4 py-3 text-sm text-[#555]`}
-            aria-label="입력 체크리스트"
-          >
-            <li className={chips.length > 0 ? "font-medium text-[#f8620c]" : ""}>
-              {chips.length > 0 ? "✓" : "1."} 사료 검색 후{" "}
-              <span className="font-semibold">추가</span> 버튼으로 등록
-            </li>
-            <li className={snack ? "font-medium text-[#f8620c]" : ""}>
-              {snack ? "✓" : "2."} 간식 급여 빈도 선택
-            </li>
-            <li className="text-[#888]">3. 하단 결과보기 버튼을 눌러주세요</li>
-          </ul>
-
           <div className={wizardFormCardClass}>
             <div className={wizardFormInnerClass}>
               <div ref={feedSectionRef} className="min-w-0 scroll-mt-28">
