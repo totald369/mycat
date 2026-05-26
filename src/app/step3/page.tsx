@@ -36,6 +36,7 @@ import { IconClose, IconPlus, IconSearch } from "@/components/wireframe/icons";
 import { CALCULATING_OVERLAY_VIDEOS } from "@/constants/calculatingOverlayVideos";
 import { DISPLAY_BUTTON, DISPLAY_TITLE } from "@/constants/displayTextSvg";
 import { SESSION_SHOW_RESULT_COMPLETE_SPLASH } from "@/constants/resultNavigation";
+import { parseChipFoodLine } from "@/lib/calculator";
 import { prefetchFeedCatalogForResult } from "@/lib/feedCatalogPrefetch";
 import { validateWizardBeforeResult } from "@/lib/wizardCalories";
 import { useRequireWizardStep } from "@/lib/wizardFlow";
@@ -81,6 +82,7 @@ export default function Step3Page() {
   const [grams, setGrams] = useState("10");
   const [times, setTimes] = useState("1");
   const [chips, setChips] = useState<Chip[]>([]);
+  const [editingChipId, setEditingChipId] = useState<string | null>(null);
   const [snack, setSnack] = useState<string | null>(null);
   const [nextTone, setNextTone] = useState<"purple" | "peach">("purple");
   const [hydrated, setHydrated] = useState(false);
@@ -125,6 +127,13 @@ export default function Step3Page() {
     ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
   }, []);
 
+  const resetFeedInputs = useCallback(() => {
+    setSearch("");
+    setGrams("10");
+    setTimes("1");
+    setEditingChipId(null);
+  }, []);
+
   const addChip = () => {
     const name = search.trim();
     if (!name) {
@@ -135,18 +144,37 @@ export default function Step3Page() {
     const g = grams.trim() || "10";
     const t = times.trim() || "1";
     const text = `${name}/${g}g/${t}회`;
+    if (editingChipId) {
+      setChips((c) =>
+        c.map((x) => (x.id === editingChipId ? { ...x, text } : x)),
+      );
+      resetFeedInputs();
+      return;
+    }
     setChips((c) => [
       ...c,
       { id: `${Date.now()}`, text, tone: nextTone },
     ]);
     setNextTone(nextTone === "purple" ? "peach" : "purple");
-    setSearch("");
-    setGrams("10");
-    setTimes("1");
+    resetFeedInputs();
+  };
+
+  const selectChipForEdit = (chip: Chip) => {
+    if (editingChipId === chip.id) {
+      resetFeedInputs();
+      return;
+    }
+    const parsed = parseChipFoodLine(chip.text);
+    if (!parsed) return;
+    setEditingChipId(chip.id);
+    setSearch(parsed.namePart);
+    setGrams(formatGramsForInput(parsed.amountG));
+    setTimes(formatGramsForInput(parsed.timesPerDay));
   };
 
   const removeChip = (id: string) => {
     setChips((c) => c.filter((x) => x.id !== id));
+    if (editingChipId === id) resetFeedInputs();
   };
 
   const onFeedSelect = useCallback((item: CatalogItem) => {
@@ -384,51 +412,66 @@ export default function Step3Page() {
                     onClick={addChip}
                     className="flex min-w-0 flex-1 items-center justify-center gap-1 rounded-xl bg-[#f8620c] px-3 py-3 text-base font-bold text-white shadow-sm"
                   >
-                    <IconPlus className="size-5 text-white" />
-                    추가
+                    {editingChipId ? null : (
+                      <IconPlus className="size-5 text-white" />
+                    )}
+                    {editingChipId ? "수정" : "추가"}
                   </button>
                 </div>
 
                 {chips.length > 0 && (
                   <div className="mt-3 flex flex-col gap-1">
-                    {chips.map((c) => (
-                      <div
-                        key={c.id}
-                        className="relative flex items-center justify-between gap-2 overflow-hidden rounded-lg py-1 pl-4 pr-2 text-sm leading-[1.4] text-white"
-                      >
-                        <span
-                          aria-hidden
-                          className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-lg"
+                    {chips.map((c) => {
+                      const isEditing = editingChipId === c.id;
+                      return (
+                        <div
+                          key={c.id}
+                          className={`relative flex items-center justify-between gap-2 overflow-hidden rounded-lg py-1 pl-4 pr-2 text-sm leading-[1.4] text-white ${
+                            isEditing
+                              ? "ring-2 ring-[#f8620c] ring-offset-2 ring-offset-[#fffcf9]"
+                              : ""
+                          }`}
                         >
                           <span
-                            className={
-                              c.tone === "purple"
-                                ? "absolute inset-0 rounded-lg bg-[#6f4425]"
-                                : "absolute inset-0 rounded-lg bg-[#884413]"
-                            }
-                          />
-                          <Image
-                            src={designResource.selectedChoiceTexture}
-                            alt=""
-                            fill
-                            className="rounded-lg object-cover opacity-20"
-                            sizes="(max-width: 400px) 92vw, 360px"
-                            quality={72}
-                          />
-                        </span>
-                        <span className="relative z-10 min-w-0 flex-1 pr-1 font-semibold">
-                          {c.text}
-                        </span>
-                        <button
-                          type="button"
-                          aria-label="삭제"
-                          className="relative z-10 shrink-0 text-white/85 hover:text-white"
-                          onClick={() => removeChip(c.id)}
-                        >
-                          <IconClose />
-                        </button>
-                      </div>
-                    ))}
+                            aria-hidden
+                            className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-lg"
+                          >
+                            <span
+                              className={
+                                c.tone === "purple"
+                                  ? "absolute inset-0 rounded-lg bg-[#6f4425]"
+                                  : "absolute inset-0 rounded-lg bg-[#884413]"
+                              }
+                            />
+                            <Image
+                              src={designResource.selectedChoiceTexture}
+                              alt=""
+                              fill
+                              className="rounded-lg object-cover opacity-20"
+                              sizes="(max-width: 400px) 92vw, 360px"
+                              quality={72}
+                            />
+                          </span>
+                          <button
+                            type="button"
+                            aria-pressed={isEditing}
+                            aria-label={`${c.text} 급여량 수정`}
+                            className="relative z-10 min-w-0 flex-1 cursor-pointer pr-1 text-left font-semibold"
+                            onClick={() => selectChipForEdit(c)}
+                          >
+                            {c.text}
+                          </button>
+                          <button
+                            type="button"
+                            aria-label="삭제"
+                            className="relative z-10 shrink-0 text-white/85 hover:text-white"
+                            onClick={() => removeChip(c.id)}
+                          >
+                            <IconClose />
+                          </button>
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
               </div>
