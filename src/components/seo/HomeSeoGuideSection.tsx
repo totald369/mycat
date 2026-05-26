@@ -32,9 +32,19 @@ export function HomeSeoGuideSection() {
         고양이 급여량·칼로리, 알고 급여하기
       </p>
       <p className="mt-2 text-sm leading-7 text-[#555]">
-        아래는 계산 카드 바로 아래에서 읽을 수 있는 요약 안내입니다. 숫자는{" "}
-        <TopicLink href="/step1">고양이 급여량 계산기 시작</TopicLink>
-        에서 우리 아이 조건으로 확인하는 것이 가장 정확합니다.
+        <span className="block pl-0.5">
+          고양이의{" "}
+          <span className="font-semibold text-[#f8620c]">적정 급여량</span>은{" "}
+          <span className="font-semibold text-[#f8620c]">
+            체중, 활동량, 체형, 사료 칼로리
+          </span>
+          에 따라 달라져요.
+        </span>
+        <span className="mt-1 block pl-0.5">
+          아래 기준을 참고한 뒤,{" "}
+          <span className="font-semibold text-[#f8620c]">계산기</span>에서 우리
+          아이에게 맞는 급여량을 확인해보세요.
+        </span>
       </p>
 
       <div className="mt-8 space-y-8 text-sm leading-7">

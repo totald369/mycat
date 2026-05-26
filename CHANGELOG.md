@@ -11,6 +11,8 @@
 - **Home** (`src/app/page.tsx`): 계산 카드 아래에 **SEO 가이드 섹션(H2 5개)** + 내부 링크 추가(고정 CTA는 유지, 하단 겹침 문구 제거).
 - **Landing**: 검색 의도형 한국어 랜딩 페이지 8개 추가(고유 메타/본문/H1/H2, 계산기(`/step1`)로 링크).
 - **Sitemap** (`src/app/sitemap.ts`): 랜딩 경로를 `seoLandingPages.ts`에서 생성한 목록으로 관리해 누락 방지.
+- **Copy polish**: 홈 SEO 타이틀 하단 안내 문구를 새 카피로 교체하고 중요 문구 색상 강조 + 문장 시작 2px 들여쓰기 적용.
+- **FAQ UI** (`src/components/seo/SeoFaqSection.tsx`): 질문/답변 앞머리에 `Q.` / `A.` 프리픽스 추가.
 
 ## 2026-05-18
 

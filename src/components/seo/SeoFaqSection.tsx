@@ -26,9 +26,13 @@ export function SeoFaqSection({
         {faqs.map((faq) => (
           <div key={faq.question}>
             <dt className="text-base font-semibold leading-snug text-[#171717]">
+              <span className="mr-1 font-bold text-[#f8620c]">Q.</span>
               {faq.question}
             </dt>
-            <dd className="mt-2 text-base leading-7 text-[#333]">{faq.answer}</dd>
+            <dd className="mt-2 text-base leading-7 text-[#333]">
+              <span className="mr-1 font-bold text-[#6f4425]">A.</span>
+              {faq.answer}
+            </dd>
           </div>
         ))}
       </dl>
