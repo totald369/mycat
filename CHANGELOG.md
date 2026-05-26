@@ -6,6 +6,10 @@
 
 - 추가된 사료 **칩 탭** 시 g·회·사료명을 입력란에 불러와 **수정** 버튼으로 급여량 갱신. 편집 중 칩 링 표시, 재탭 시 선택 해제.
 
+### SEO (Naver·Google)
+
+- **Meta description** (`src/lib/seo.ts`, `page.tsx`): 사이트·OG·Twitter description을 80자 이내 문구로 통일 (`고양이 체중·활동량·사료 칼로리로 하루 급여량을 계산해보세요.`). 홈이 긴 description으로 덮어쓰지 않도록 `DEFAULT_DESCRIPTION` 공유.
+
 ### SEO (Google)
 
 - **Home** (`src/app/page.tsx`): 계산 카드 아래에 **SEO 가이드 섹션(H2 5개)** + 내부 링크 추가(고정 CTA는 유지, 하단 겹침 문구 제거).

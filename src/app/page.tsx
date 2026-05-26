@@ -9,12 +9,15 @@ import { HomePageBelowFold } from "@/components/home/HomePageBelowFold";
 import { DISPLAY_BUTTON, DISPLAY_TITLE } from "@/constants/displayTextSvg";
 import { wizardShellHomeClass } from "@/components/design/wizardLayoutClasses";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { buildHomeJsonLdGraph, buildPageMetadata } from "@/lib/seo";
+import {
+  buildHomeJsonLdGraph,
+  buildPageMetadata,
+  DEFAULT_DESCRIPTION,
+} from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "고양이 급여량 계산기 — 하루 사료량·칼로리",
-  description:
-    "고양이 체중·활동량·체형·건식·습식 사료·간식을 반영해 하루 적정 급여량과 칼로리를 무료로 계산하세요. 권장 칼로리 대비 급여 상태를 한눈에 확인합니다.",
+  description: DEFAULT_DESCRIPTION,
   path: "/",
   keywords: ["고양이 급여량 계산기", "고양이 하루 사료량"],
 });

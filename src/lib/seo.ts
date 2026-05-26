@@ -23,8 +23,9 @@ export const CORE_KEYWORDS = [
   "고양이 급여량 계산",
 ] as const;
 
+/** 네이버 서치어드바이저 권장: 80자 이내 — 사이트·OG·Twitter 공통 */
 export const DEFAULT_DESCRIPTION =
-  "고양이 체중·활동량·체형·건식·습식 사료·간식을 반영해 하루 적정 급여량과 칼로리를 계산하는 무료 고양이 급여량 계산기입니다.";
+  "고양이 체중·활동량·사료 칼로리로 하루 급여량을 계산해보세요.";
 
 export type FaqItem = {
   question: string;
