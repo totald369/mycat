@@ -13,6 +13,11 @@
 - **Sitemap** (`src/app/sitemap.ts`): 랜딩 경로를 `seoLandingPages.ts`에서 생성한 목록으로 관리해 누락 방지.
 - **Copy polish**: 홈 SEO 타이틀 하단 안내 문구를 새 카피로 교체하고 중요 문구 색상 강조 + 문장 시작 2px 들여쓰기 적용.
 - **FAQ UI** (`src/components/seo/SeoFaqSection.tsx`): 질문/답변 앞머리에 `Q.` / `A.` 프리픽스 추가.
+- **Hierarchy tune** (`src/components/seo/HomeSeoGuideSection.tsx`): 카드 아래 SEO 안내 영역 타이포를 FAQ 섹션 위계와 맞추도록 제목/본문 크기·행간·여백 상향 조정.
+
+### UX (Search input)
+
+- **Step1/Step3** (`src/app/step1/page.tsx`, `src/app/step3/page.tsx`): 검색 입력창에서 Enter 키로도 검색 모달이 열리도록 키보드 동작 추가.
 
 ## 2026-05-18
 

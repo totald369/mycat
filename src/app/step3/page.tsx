@@ -357,6 +357,11 @@ export default function Step3Page() {
                     type="text"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key !== "Enter") return;
+                      e.preventDefault();
+                      setFeedModalOpen(true);
+                    }}
                     placeholder="건식/아카나..."
                     className={wizardInputInRowClass}
                   />

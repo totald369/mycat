@@ -245,6 +245,11 @@ export default function Step1Page() {
                     type="text"
                     value={breed}
                     onChange={(e) => setBreed(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key !== "Enter") return;
+                      e.preventDefault();
+                      setBreedModalOpen(true);
+                    }}
                     placeholder="예: 샴, 브리티시 숏헤어..."
                     className={wizardInputInRowClass}
                   />
