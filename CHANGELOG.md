@@ -14,6 +14,7 @@
 - **Copy polish**: 홈 SEO 타이틀 하단 안내 문구를 새 카피로 교체하고 중요 문구 색상 강조 + 문장 시작 2px 들여쓰기 적용.
 - **FAQ UI** (`src/components/seo/SeoFaqSection.tsx`): 질문/답변 앞머리에 `Q.` / `A.` 프리픽스 추가.
 - **Hierarchy tune** (`src/components/seo/HomeSeoGuideSection.tsx`): 카드 아래 SEO 안내 영역 타이포를 FAQ 섹션 위계와 맞추도록 제목/본문 크기·행간·여백 상향 조정.
+- **Home SEO copy** (`HomeSeoGuideSection.tsx`): 급여량 계산 안내 문구 수정(급여 그램·우리 아이 급여량 기준). 홈 SEO 섹션 내부 랜딩 링크 전부 제거.
 
 ### UX (Search input)
 
