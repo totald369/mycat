@@ -10,9 +10,9 @@ export const wizardShellClass =
 export const wizardShellClassResult =
   "relative z-10 mx-auto min-h-screen w-full max-w-[min(100%,375px)] overflow-x-hidden overflow-y-visible bg-transparent";
 
-/** 홈: 전체 높이 셸 */
+/** 홈: 세로 스크롤 가능(하단 SEO 안내·FAQ), 가로만 클립 */
 export const wizardShellHomeClass =
-  "relative z-10 mx-auto h-[100dvh] max-h-[100dvh] w-full max-w-[min(100%,375px)] overflow-hidden bg-transparent";
+  "relative z-10 mx-auto min-h-[100dvh] w-full max-w-[min(100%,375px)] overflow-x-hidden overflow-y-auto bg-transparent";
 
 /** 본문 컬럼 — 하단 고정 바 짧은 화면(step1·result) */
 export const wizardPageColumnClass =

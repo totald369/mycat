@@ -339,16 +339,6 @@ export function buildLandingFaqs(keyword: string): FaqItem[] {
   ];
 }
 
-/** sitemap·robots 공통 — 인덱싱 대상 랜딩 경로 */
-export const SEO_LANDING_PATHS = [
-  "/cat-food-amount",
-  "/cat-calorie-calculator",
-  "/고양이-사료-급여량",
-  "/고양이-3kg-사료-급여량",
-  "/고양이-5kg-사료-급여량",
-  "/중성화-고양이-급여량",
-] as const;
-
 export const ROBOTS_DISALLOW = [
   "/api/",
   "/step1",

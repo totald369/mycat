@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
-import { SEO_LANDING_PATHS, SITE_URL } from "@/lib/seo";
+import { SITE_URL } from "@/lib/seo";
+import { SEO_LANDING_PATHS } from "@/lib/seoLandingPages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
