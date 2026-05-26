@@ -19,6 +19,17 @@
 
 - **Step1/Step3** (`src/app/step1/page.tsx`, `src/app/step3/page.tsx`): 검색 입력창에서 Enter 키로도 검색 모달이 열리도록 키보드 동작 추가.
 
+### Site footer
+
+- **`SiteFooter`**: 홈·SEO 랜딩 하단에 `2026 우리냥이맘마. All rights reserved.` 푸터 추가.
+
+### Performance (home LCP)
+
+- **Home carousel**: `HomeCardCarouselLazy`로 마퀴 클라이언트 번들 지연 로드.
+- **Below-fold**: `HomePageBelowFold` + `content-visibility`로 SEO·FAQ paint 비용 완화.
+- **Prefetch**: 홈·랜딩 내부 링크 `prefetch={false}`로 초기 네트워크 부담 감소.
+- **Assets/scripts**: 배경·로고 우선순위 조정, AdSense `afterInteractive` 로드, `html-to-image` import 최적화.
+
 ## 2026-05-18
 
 ### UX (Step3)

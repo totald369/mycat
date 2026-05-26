@@ -10,7 +10,7 @@ type TopicLinkProps = {
 
 function TopicLink({ href, children }: TopicLinkProps) {
   return (
-    <Link href={href} className={linkCls}>
+    <Link href={href} prefetch={false} className={linkCls}>
       {children}
     </Link>
   );

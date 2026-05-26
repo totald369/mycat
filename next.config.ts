@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     ],
   },
   experimental: {
-    optimizePackageImports: ["lottie-react"],
+    optimizePackageImports: ["lottie-react", "html-to-image"],
   },
 };
 

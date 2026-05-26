@@ -18,7 +18,8 @@ export function AppLogo() {
         unoptimized
         className="h-6 w-[96px] object-contain object-center"
         draggable={false}
-        priority
+        loading="eager"
+        fetchPriority="low"
       />
     </Link>
   );

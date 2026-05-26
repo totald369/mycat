@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SiteFooter } from "@/components/design/SiteFooter";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SeoFaqSection } from "@/components/seo/SeoFaqSection";
 import {
@@ -29,7 +30,7 @@ export function SeoLandingPage({ page }: Props) {
         <nav aria-label="breadcrumb" className="mb-6 text-sm text-[#666]">
           <ol className="flex flex-wrap items-center gap-1">
             <li>
-              <Link href="/" className="hover:text-[#f8620c]">
+              <Link href="/" prefetch={false} className="hover:text-[#f8620c]">
                 홈
               </Link>
             </li>
@@ -49,12 +50,14 @@ export function SeoLandingPage({ page }: Props) {
             <div className="flex flex-wrap gap-3 pt-1">
               <Link
                 href="/step1"
+                prefetch={false}
                 className="rounded-lg bg-[#f8620c] px-4 py-2.5 text-sm font-semibold text-white"
               >
                 고양이 급여량 계산기 시작
               </Link>
               <Link
                 href="/"
+                prefetch={false}
                 className="rounded-lg border border-[#dedee0] bg-white px-4 py-2.5 text-sm font-semibold text-[#171717]"
               >
                 홈으로 이동
@@ -99,6 +102,7 @@ export function SeoLandingPage({ page }: Props) {
                 <li key={item.path}>
                   <Link
                     href={item.path}
+                    prefetch={false}
                     className="block rounded-lg border border-[#dedee0] bg-white px-3 py-2.5 text-sm font-medium text-[#171717] hover:bg-[#fff7f2]"
                   >
                     {item.h1}
@@ -108,6 +112,7 @@ export function SeoLandingPage({ page }: Props) {
             </ul>
           </section>
         </article>
+        <SiteFooter className="mt-12 max-w-none" />
       </main>
     </>
   );

@@ -61,12 +61,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={pretendard.variable}>
-      <head>
-        {/* Google AdSense — 사이트 전역 (검수·광고 게재용) */}
-        <script async src={ADSENSE_SCRIPT_SRC} crossOrigin="anonymous" />
-      </head>
       <body className="font-sans antialiased">
         {children}
+        {/* Google AdSense — 초기 페인트 이후 로드(검수·광고 게재 유지) */}
+        <Script
+          src={ADSENSE_SCRIPT_SRC}
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="lazyOnload"

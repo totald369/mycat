@@ -1,20 +1,15 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { AppLogo } from "@/components/design/AppLogo";
-import { HomeCardCarousel } from "@/components/design/HomeCardCarousel";
 import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { DESIGN_RESOURCE_PX, designResource } from "@/components/design/designResourcePaths";
 import { PawPrimaryLink } from "@/components/design/PawButton";
+import { HomeCardCarouselLazy } from "@/components/home/HomeCardCarouselLazy";
+import { HomePageBelowFold } from "@/components/home/HomePageBelowFold";
 import { DISPLAY_BUTTON, DISPLAY_TITLE } from "@/constants/displayTextSvg";
 import { wizardShellHomeClass } from "@/components/design/wizardLayoutClasses";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { HomeSeoGuideSection } from "@/components/seo/HomeSeoGuideSection";
-import { SeoFaqSection } from "@/components/seo/SeoFaqSection";
-import {
-  buildHomeJsonLdGraph,
-  buildPageMetadata,
-  HOME_FAQ,
-} from "@/lib/seo";
+import { buildHomeJsonLdGraph, buildPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "고양이 급여량 계산기 — 하루 사료량·칼로리",
@@ -33,7 +28,7 @@ export default function IntroPage() {
     <>
       <JsonLd id="home-jsonld" data={buildHomeJsonLdGraph()} />
       <main className={wizardShellHomeClass}>
-        <WizardPageBackground priority={false} quality={62} />
+        <WizardPageBackground priority={false} quality={58} />
 
         <div className="relative flex w-full flex-col items-center overflow-x-clip px-4 pt-12 pb-4 min-[360px]:px-6">
           <header className="flex w-full shrink-0 flex-col items-center">
@@ -65,7 +60,7 @@ export default function IntroPage() {
                   className="shrink-0 object-contain"
                   style={{ width: catLogicalW, height: catLogicalH }}
                   priority
-                  quality={82}
+                  quality={72}
                   sizes={`${Math.ceil(catLogicalW)}px`}
                   fetchPriority="high"
                   decoding="async"
@@ -103,14 +98,11 @@ export default function IntroPage() {
           </header>
 
           <div className="mt-6 w-full">
-            <HomeCardCarousel />
+            <HomeCardCarouselLazy />
           </div>
         </div>
 
-        <div className="relative w-full px-4 pb-[calc(11rem+env(safe-area-inset-bottom,0px))] pt-2 min-[360px]:px-6">
-          <HomeSeoGuideSection />
-          <SeoFaqSection faqs={HOME_FAQ} className="mx-auto mt-12 w-full max-w-[min(327px,100%)]" />
-        </div>
+        <HomePageBelowFold />
 
         <nav
           className="fixed bottom-0 left-0 right-0 z-20 overflow-x-clip overflow-y-visible bg-gradient-to-t from-white from-40% via-white/95 to-transparent px-3 pb-4 pt-10 min-[360px]:px-4"
