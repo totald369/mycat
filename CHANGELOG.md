@@ -2,6 +2,12 @@
 
 ## 2026-05-26
 
+### UI (공통 헤더)
+
+- **`WizardHeader`**: 피그마 시안 기준 전 페이지(홈·step1~3·result) 공통 헤더 — 좌 `Ic_Menu` 메뉴, 중앙 로고, 우측 액션(결과 화면 이미지 저장) 또는 균형 스페이서. `padding: 16px 24px`, 배경 투명.
+- **`wizardHeaderOffsetClass`**: safe-area + 헤더 높이 + 8px 본문 상단 여백.
+- **Asset**: `public/design-resource/icon/Ic_Menu.svg` 추가.
+
 ### UX (Step3)
 
 - 추가된 사료 **칩 탭** 시 g·회·사료명을 입력란에 불러와 **수정** 버튼으로 급여량 갱신. 편집 중 칩 링 표시, 재탭 시 선택 해제.

@@ -1,26 +1,51 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 
 import { AppLogo } from "@/components/design/AppLogo";
+import { designResource } from "@/components/design/designResourcePaths";
 
 type WizardHeaderProps = {
-  /** 결과 화면 등: 우측 액션(예: 이미지 저장). 있으면 피그마 헤더(56px, blur, 좌우 정렬) */
+  /** 결과 화면 등: 우측 액션(예: 이미지 저장). 없으면 24px 균형 스페이서 */
   trailing?: ReactNode;
 };
 
-/** 홈(`page.tsx`)과 동일: 상단 고정 느낌의 로고 줄 — 부모는 `relative` + 콘텐츠는 `pt-20` 권장 */
-export function WizardHeader({ trailing }: WizardHeaderProps) {
-  if (trailing) {
-    return (
-      <header className="absolute left-0 top-0 z-10 flex h-[56px] min-h-[56px] max-h-[56px] w-full items-center justify-between bg-transparent pl-4 pr-1 min-[360px]:pl-6 min-[360px]:pr-2">
-        <AppLogo />
-        {trailing}
-      </header>
-    );
-  }
+const headerShellClass =
+  "absolute left-0 top-0 z-10 w-full bg-transparent px-6 pb-4 pt-[calc(env(safe-area-inset-top,0px)+16px)]";
 
+const headerRowClass =
+  "grid w-full grid-cols-[24px_1fr_auto] items-center gap-2";
+
+function HeaderMenuButton() {
   return (
-    <header className="absolute left-0 top-0 z-10 flex w-full bg-transparent px-4 py-4 min-[360px]:px-6">
-      <AppLogo />
+    <button
+      type="button"
+      className="flex size-6 shrink-0 items-center justify-center rounded-sm outline-none ring-offset-2 focus-visible:ring-2 focus-visible:ring-[#f8620c]/40"
+      aria-label="메뉴"
+    >
+      <Image
+        src={designResource.iconMenu}
+        alt=""
+        width={24}
+        height={24}
+        className="size-6 object-contain"
+        unoptimized
+        draggable={false}
+      />
+    </button>
+  );
+}
+
+/** 전 페이지 공통 — 좌 메뉴 · 중앙 로고 · 우측 액션(또는 균형 스페이서) */
+export function WizardHeader({ trailing }: WizardHeaderProps) {
+  return (
+    <header className={headerShellClass}>
+      <div className={headerRowClass}>
+        <HeaderMenuButton />
+        <div className="flex justify-center">
+          <AppLogo />
+        </div>
+        {trailing ?? <span className="size-6 shrink-0" aria-hidden />}
+      </div>
     </header>
   );
 }

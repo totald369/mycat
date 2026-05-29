@@ -1,13 +1,16 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { AppLogo } from "@/components/design/AppLogo";
+import { WizardHeader } from "@/components/design/WizardHeader";
 import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { DESIGN_RESOURCE_PX, designResource } from "@/components/design/designResourcePaths";
 import { PawPrimaryLink } from "@/components/design/PawButton";
 import { HomeCardCarouselLazy } from "@/components/home/HomeCardCarouselLazy";
 import { HomePageBelowFold } from "@/components/home/HomePageBelowFold";
 import { DISPLAY_BUTTON, DISPLAY_TITLE } from "@/constants/displayTextSvg";
-import { wizardShellHomeClass } from "@/components/design/wizardLayoutClasses";
+import {
+  wizardHeaderOffsetClass,
+  wizardShellHomeClass,
+} from "@/components/design/wizardLayoutClasses";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
   buildHomeJsonLdGraph,
@@ -33,12 +36,12 @@ export default function IntroPage() {
       <main className={wizardShellHomeClass}>
         <WizardPageBackground priority={false} quality={58} />
 
-        <div className="relative flex w-full flex-col items-center overflow-x-clip px-4 pt-12 pb-4 min-[360px]:px-6">
-          <header className="flex w-full shrink-0 flex-col items-center">
-            <div className="mb-1 flex w-full justify-center">
-              <AppLogo />
-            </div>
+        <WizardHeader />
 
+        <div
+          className={`relative flex w-full flex-col items-center overflow-x-clip px-4 pb-4 ${wizardHeaderOffsetClass} min-[360px]:px-6`}
+        >
+          <header className="flex w-full shrink-0 flex-col items-center">
             <h1 className="w-full min-w-0 max-w-full text-center">
               <span className="sr-only">
                 고양이 급여량 계산기 — 하루 사료량·칼로리 계산

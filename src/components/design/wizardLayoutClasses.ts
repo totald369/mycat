@@ -14,13 +14,17 @@ export const wizardShellClassResult =
 export const wizardShellHomeClass =
   "relative z-10 mx-auto min-h-[100dvh] w-full max-w-[min(100%,375px)] overflow-x-hidden overflow-y-auto bg-transparent";
 
+/** 피그마 Header(245:91) 아래 본문 — safe-area + 56px 바 + 8px 간격 */
+export const wizardHeaderOffsetClass =
+  "pt-[calc(env(safe-area-inset-top,0px)+56px+8px)]";
+
 /** 본문 컬럼 — 하단 고정 바 짧은 화면(step1·result) */
 export const wizardPageColumnClass =
-  "relative flex min-h-screen w-full flex-col items-center gap-6 px-4 pb-36 pt-20 min-[360px]:px-6";
+  `relative flex min-h-screen w-full flex-col items-center gap-6 px-4 pb-36 ${wizardHeaderOffsetClass} min-[360px]:px-6`;
 
 /** 본문 컬럼 — 하단 바 여유 큰 화면(step2·step3) */
 export const wizardPageColumnClassBarTall =
-  "relative flex min-h-screen w-full flex-col items-center gap-6 px-4 pb-40 pt-20 min-[360px]:px-6";
+  `relative flex min-h-screen w-full flex-col items-center gap-6 px-4 pb-40 ${wizardHeaderOffsetClass} min-[360px]:px-6`;
 
 /** 피그마 327 기준 콘텐츠 폭 — 부모 패딩 안에서 100% 이하 */
 export const wizardContentWidthClass =
