@@ -16,6 +16,12 @@ export type FeedCatalogItem = {
   feedCondition?: string | null;
 };
 
+/** CSV 원본 + 상세 페이지용 필드 */
+export type FeedDetailItem = FeedCatalogItem & {
+  rawType: string;
+  lifeStage: string | null;
+};
+
 function resolveCsvPath(): string {
   const inPrisma = join(process.cwd(), "prisma", "cat_food.csv");
   const inRoot = join(process.cwd(), "cat_food.csv");
@@ -90,6 +96,11 @@ function buildDisplayLabel(kind: string, brand: string, name: string): string {
  * (로컬 db:seed:csv 와 동일 데이터 소스)
  */
 export function loadFeedCatalogFromCatFoodCsv(): FeedCatalogItem[] {
+  return loadFeedDetailItemsFromCatFoodCsv();
+}
+
+/** 상세 페이지 — life_stage·raw type 포함 */
+export function loadFeedDetailItemsFromCatFoodCsv(): FeedDetailItem[] {
   const csvPath = resolveCsvPath();
   if (!existsSync(csvPath)) {
     return [];
@@ -125,8 +136,9 @@ export function loadFeedCatalogFromCatFoodCsv(): FeedCatalogItem[] {
 
   const categoryI = idx("category");
   const conditionI = idx("condition");
+  const lifeStageI = idx("life_stage");
 
-  const out: FeedCatalogItem[] = [];
+  const out: FeedDetailItem[] = [];
 
   for (let r = 1; r < rows.length; r++) {
     const cells = rows[r];
@@ -140,6 +152,7 @@ export function loadFeedCatalogFromCatFoodCsv(): FeedCatalogItem[] {
     if (!name) continue;
 
     const feedKind = normalizeFeedKind(cells[typeI] ?? "");
+    const rawType = (cells[typeI] ?? "").trim().toLowerCase();
     const kcalRaw = (cells[kcalI] ?? "").trim();
     const kcalParsed = kcalRaw === "" ? NaN : Number.parseFloat(kcalRaw);
     const kcalPer100g = Number.isFinite(kcalParsed) ? kcalParsed : NaN;
@@ -165,6 +178,8 @@ export function loadFeedCatalogFromCatFoodCsv(): FeedCatalogItem[] {
       categoryI >= 0 ? (cells[categoryI] ?? "").trim() || null : null;
     const feedCondition =
       conditionI >= 0 ? (cells[conditionI] ?? "").trim() || null : null;
+    const lifeStage =
+      lifeStageI >= 0 ? (cells[lifeStageI] ?? "").trim() || null : null;
 
     out.push({
       id: `csv-${apiId}`,
@@ -178,6 +193,8 @@ export function loadFeedCatalogFromCatFoodCsv(): FeedCatalogItem[] {
       servingGrams,
       category,
       feedCondition,
+      rawType,
+      lifeStage,
     });
   }
 

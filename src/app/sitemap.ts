@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { INFO_GUIDE_PATHS } from "@/lib/infoGuidePages";
 import { SITE_URL } from "@/lib/seo";
 import { SEO_LANDING_PATHS } from "@/lib/seoLandingPages";
 
@@ -11,6 +12,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily",
       priority: 1,
     },
+    ...INFO_GUIDE_PATHS.map((path) => ({
+      url: `${SITE_URL}${path}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    })),
     ...SEO_LANDING_PATHS.map((path) => ({
       url: `${SITE_URL}${path}`,
       lastModified: now,

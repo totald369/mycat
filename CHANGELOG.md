@@ -2,6 +2,36 @@
 
 ## 2026-05-26
 
+### Navigation (메뉴 레이어)
+
+- **`SiteMenuLayer`**: 피그마 Menu Layer(315:54) 기준 전역 메뉴 오버레이 — 375px 앱 셸, 4개 항목(급여량 계산하기·사료 찾기·급여 가이드·칼로리 가이드).
+- **`WizardHeader`**: 좌 메뉴 버튼(`Ic_Menu`) 탭 시 메뉴 레이어 오픈.
+- **`siteMenu.ts`**: 메뉴 항목 정의 및 `isSiteMenuItemActive` — 현재 경로에 맞는 항목 Active(브라운 `#6f4425` + `WizardSelectedChoiceLayers`, 흰색 semibold). 계산기(`/step1`~`/result`), 사료 찾기(`/feed-find`, `/foods/*`) 포함.
+
+### Feed find (사료 찾기)
+
+- **`/feed-find`**: 전용 사료 찾기 페이지 — 공통 헤더 + `FeedSearchView`(page 모드). 페이지 진입 시 전체 사료 목록 표시, 칩·검색 필터.
+- **`FeedSearchView`**: step3 모달·feed-find 페이지 공유 검색 UI(`layout: "modal" | "page"`).
+- **`next.config.ts`**: `/사료-찾기` → `/feed-find` 영구 리다이렉트.
+
+### Food detail (사료 상세)
+
+- **`/foods/[id]`**: CSV 기반 사료 상세 페이지 — 브랜드·제품명·유형·급여 대상·칼로리·기준 급여량, 가이드·성분(준비 중) 섹션, not-found 처리.
+- **`FeedFindPageClient`**: 사료 선택 시 `/foods/[id]` 이동.
+- **SEO**: 동적 title/description, SSG(`generateStaticParams`).
+
+### Info guides (정보 가이드)
+
+- **`/feeding-guide`**: 고양이 급여 가이드 — 급여량·칼로리·건습식·간식·조정 방법 안내, 계산기 CTA.
+- **`/calorie-guide`**: 고양이 칼로리 가이드 — 100g당 kcal·건습식 차이·간식·재계산 시점 안내, 계산기 CTA.
+- **`InfoGuidePage`**: 375px 모바일 레이아웃, 내부 링크(가이드·계산기·사료 찾기), Article JSON-LD.
+- **메뉴·푸터**: 가이드 경로를 `/feeding-guide`, `/calorie-guide`로 연결.
+- **Sitemap**: 두 가이드 URL 추가.
+
+### Site footer
+
+- **`SiteFooter`**: 홈·SEO 랜딩 하단 `2026 우리냥이맘마. All rights reserved.` + 바로가기 링크(급여 가이드·칼로리 가이드·급여량 계산하기·사료 찾기).
+
 ### UI (공통 헤더)
 
 - **`WizardHeader`**: 피그마 시안 기준 전 페이지(홈·step1~3·result) 공통 헤더 — 좌 `Ic_Menu` 메뉴, 중앙 로고, 우측 액션(결과 화면 이미지 저장) 또는 균형 스페이서. `padding: 16px 24px`, 배경 투명.
@@ -29,10 +59,6 @@
 ### UX (Search input)
 
 - **Step1/Step3** (`src/app/step1/page.tsx`, `src/app/step3/page.tsx`): 검색 입력창에서 Enter 키로도 검색 모달이 열리도록 키보드 동작 추가.
-
-### Site footer
-
-- **`SiteFooter`**: 홈·SEO 랜딩 하단에 `2026 우리냥이맘마. All rights reserved.` 푸터 추가.
 
 ### Performance (home LCP)
 

@@ -4,15 +4,18 @@
  */
 
 /** 최대 375px, 뷰포트보다 넓어지지 않음 */
+export const wizardAppWidthClass = "w-full max-w-[min(100%,375px)]";
+
+/** 최대 375px, 뷰포트보다 넓어지지 않음 */
 export const wizardShellClass =
-  "relative z-10 mx-auto min-h-screen w-full max-w-[min(100%,375px)] overflow-x-hidden bg-transparent";
+  `relative z-10 mx-auto min-h-screen ${wizardAppWidthClass} overflow-x-hidden bg-transparent`;
 
 export const wizardShellClassResult =
-  "relative z-10 mx-auto min-h-screen w-full max-w-[min(100%,375px)] overflow-x-hidden overflow-y-visible bg-transparent";
+  `relative z-10 mx-auto min-h-screen ${wizardAppWidthClass} overflow-x-hidden overflow-y-visible bg-transparent`;
 
 /** 홈: 세로 스크롤 가능(하단 SEO 안내·FAQ), 가로만 클립 */
 export const wizardShellHomeClass =
-  "relative z-10 mx-auto min-h-[100dvh] w-full max-w-[min(100%,375px)] overflow-x-hidden overflow-y-auto bg-transparent";
+  `relative z-10 mx-auto min-h-[100dvh] ${wizardAppWidthClass} overflow-x-hidden overflow-y-auto bg-transparent`;
 
 /** 피그마 Header(245:91) 아래 본문 — safe-area + 56px 바 + 8px 간격 */
 export const wizardHeaderOffsetClass =
