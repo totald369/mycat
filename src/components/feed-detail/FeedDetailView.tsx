@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { SeoInternalLinksSection } from "@/components/seo/SeoInternalLinksSection";
 import type { FeedDetailItem } from "@/lib/catFoodCsv";
 import {
   feedCategoryLabel,
@@ -40,6 +41,7 @@ export function FeedDetailView({ feed }: Props) {
   const categoryLabel = feedCategoryLabel(feed.category);
   const conditionLabel = feedConditionLabel(feed.feedCondition);
   const servingLabel = formatServingGrams(feed.servingGrams, feed.feedKind);
+  const pagePath = `/foods/${feed.id}`;
 
   return (
     <main className="relative z-10 mx-auto min-h-[100dvh] w-full max-w-[min(100%,375px)] bg-white">
@@ -61,7 +63,7 @@ export function FeedDetailView({ feed }: Props) {
         <header className="space-y-1">
           <p className="text-sm font-normal text-[#555]">{feed.brand}</p>
           <h1 className="text-xl font-bold leading-tight text-[#171717]">
-            {feed.name}
+            {feed.brand} {feed.name}
           </h1>
         </header>
 
@@ -96,6 +98,31 @@ export function FeedDetailView({ feed }: Props) {
             기준으로 계산할 수 있어요.
           </p>
         </section>
+
+        <div className="mt-8">
+          {/*
+            TODO(step3-prefill): `/step1?feedId=` 로 전달된 id를 step3 사료 검색·칩
+            추가 흐름(readWizardState / patchWizardState step3.search·chips)에 연결
+          */}
+          <Link
+            href={`/step1?feedId=${encodeURIComponent(feed.id)}`}
+            prefetch={false}
+            className="flex h-14 w-full items-center justify-center rounded-xl bg-[#f8620c] text-base font-semibold text-white active:opacity-90"
+          >
+            이 사료로 급여량 계산하기
+          </Link>
+        </div>
+
+        <SeoInternalLinksSection
+          currentPath={pagePath}
+          title="관련 가이드"
+          links={[
+            { href: "/feed-find", label: "사료 찾기" },
+            { href: "/step1", label: "급여량 계산하기" },
+            { href: "/calorie-guide", label: "칼로리 가이드" },
+          ]}
+          className="mt-8"
+        />
       </div>
     </main>
   );

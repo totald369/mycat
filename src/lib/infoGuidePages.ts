@@ -14,6 +14,7 @@ export type InfoGuidePageData = {
   path: string;
   title: string;
   description: string;
+  keywords: string[];
   h1: string;
   intro: string[];
   sections: InfoGuideSection[];
@@ -37,9 +38,16 @@ export const INFO_GUIDE_PATHS = ["/feeding-guide", "/calorie-guide"] as const;
 export const INFO_GUIDE_PAGES: InfoGuidePageData[] = [
   {
     path: "/feeding-guide",
-    title: "고양이 급여 가이드 | 우리냥이맘마",
+    title: "고양이 급여 가이드 — 사료량·간식·습식 급여 기준 | 우리냥이맘마",
     description:
-      "고양이 사료 급여량, 건식과 습식 차이, 간식 칼로리와 급여량 조정 방법을 쉽게 확인해보세요.",
+      "고양이 급여량이 중요한 이유, 건식과 습식 차이, 간식 칼로리와 급여량 조정 방법을 쉽게 확인해보세요.",
+    keywords: [
+      "고양이 급여 가이드",
+      "고양이 사료 급여량",
+      "고양이 하루 사료 양",
+      "고양이 간식 급여량",
+      "고양이 습식 급여량",
+    ],
     h1: "고양이 급여 가이드",
     intro: [
       "고양이의 하루 급여량은 체중, 나이, 활동량, 체형, 중성화 여부, 사료의 칼로리에 따라 달라질 수 있어요.",
@@ -102,15 +110,22 @@ export const INFO_GUIDE_PAGES: InfoGuidePageData[] = [
     cta: {
       title: "우리 아이에게 맞는 급여량 확인하기",
       text: "고양이마다 필요한 급여량은 다릅니다. 체중, 활동량, 체형, 사료 칼로리를 함께 반영하면 우리 아이에게 더 가까운 하루 급여량을 확인할 수 있어요.",
-      buttonLabel: "급여량 계산하러 가기",
+      buttonLabel: "우리 아이 급여량 계산하기",
       href: "/step1",
     },
   },
   {
     path: "/calorie-guide",
-    title: "고양이 칼로리 가이드 | 우리냥이맘마",
+    title: "고양이 칼로리 가이드 — 사료·습식·간식 칼로리 계산 | 우리냥이맘마",
     description:
       "고양이 사료 칼로리, 건식과 습식 칼로리 차이, 간식 칼로리 계산 기준을 쉽게 확인해보세요.",
+    keywords: [
+      "고양이 칼로리 계산",
+      "고양이 사료 칼로리",
+      "고양이 간식 칼로리",
+      "고양이 습식 칼로리",
+      "고양이 하루 칼로리",
+    ],
     h1: "고양이 칼로리 가이드",
     intro: [
       "고양이의 급여량을 정확히 확인하려면 사료의 무게뿐 아니라 하루 총 섭취 칼로리를 함께 봐야 합니다.",
@@ -183,7 +198,7 @@ export const INFO_GUIDE_PAGES: InfoGuidePageData[] = [
     cta: {
       title: "우리 아이 하루 칼로리 확인하기",
       text: "고양이의 하루 칼로리는 체중, 활동량, 체형, 사료 종류에 따라 달라집니다. 우리냥이맘마에서는 사료의 칼로리와 현재 급여량을 기준으로 하루 섭취 칼로리를 계산하고, 권장 칼로리와 비교해볼 수 있습니다.",
-      buttonLabel: "우리 아이 급여량 확인하기",
+      buttonLabel: "우리 아이 하루 칼로리 계산하기",
       href: "/step1",
     },
   },
@@ -208,5 +223,7 @@ export function buildInfoGuideMetadata(path: string): Metadata {
     title: page.title,
     description: page.description,
     path: page.path,
+    keywords: [...page.keywords],
+    ogType: "article",
   });
 }

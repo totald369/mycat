@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 export const SITE_URL = "https://meowdiet.com" as const;
 export const SITE_NAME = "우리냥이" as const;
+export const SITE_BRAND = "우리냥이맘마" as const;
 export const SITE_NAME_FULL = "우리냥이 고양이 급여량 계산기" as const;
 
 export const OG_IMAGE = {
@@ -14,18 +15,25 @@ export const OG_IMAGE = {
 /** 구글·네이버 공통 타깃 키워드 */
 export const CORE_KEYWORDS = [
   "고양이 급여량 계산기",
-  "고양이 하루 사료량",
-  "고양이 칼로리 계산",
-  "고양이 적정 급여량",
-  "고양이 사료 계산",
   "고양이 사료 급여량",
   "고양이 하루 사료 양",
+  "고양이 칼로리 계산",
+  "고양이 사료 칼로리",
+  "고양이 습식 급여량",
+  "고양이 간식 칼로리",
+  "고양이 하루 사료량",
+  "고양이 적정 급여량",
+  "고양이 사료 계산",
   "고양이 급여량 계산",
 ] as const;
 
-/** 네이버 서치어드바이저 권장: 80자 이내 — 사이트·OG·Twitter 공통 */
-export const DEFAULT_DESCRIPTION =
+/** 네이버 서치어드바이저 권장: 80자 이내 — OG·Twitter fallback */
+export const NAVER_OG_DESCRIPTION =
   "고양이 체중·활동량·사료 칼로리로 하루 급여량을 계산해보세요.";
+
+/** 사이트 기본 meta description */
+export const DEFAULT_DESCRIPTION =
+  "고양이 체중·활동량·사료 칼로리로 하루 급여량을 계산하고, 사료 칼로리 정보를 확인해보세요.";
 
 export type FaqItem = {
   question: string;
@@ -70,6 +78,12 @@ export function absoluteUrl(path: string): string {
   return `${SITE_URL}${normalized}`;
 }
 
+/** 네이버 OG 권장 80자 이내 — 긴 description은 짧은 fallback 사용 */
+export function ogDescriptionFor(description: string, override?: string): string {
+  if (override) return override;
+  return [...description].length > 80 ? NAVER_OG_DESCRIPTION : description;
+}
+
 export function buildOpenGraph(
   title: string,
   description: string,
@@ -108,18 +122,18 @@ export function buildTwitterCard(
 
 /** 루트 레이아웃 기본 메타 */
 export function buildRootMetadata(): Metadata {
-  const title = `${SITE_NAME} | 고양이 급여량 계산기 — 하루 사료량·칼로리`;
+  const title = `고양이 급여량 계산기 | ${SITE_BRAND}`;
   return {
     metadataBase: new URL(SITE_URL),
     title: {
       default: title,
-      template: `%s | ${SITE_NAME}`,
+      template: `%s | ${SITE_BRAND}`,
     },
     description: DEFAULT_DESCRIPTION,
     keywords: [...CORE_KEYWORDS],
-    authors: [{ name: SITE_NAME, url: SITE_URL }],
-    creator: SITE_NAME,
-    publisher: SITE_NAME,
+    authors: [{ name: SITE_BRAND, url: SITE_URL }],
+    creator: SITE_BRAND,
+    publisher: SITE_BRAND,
     category: "health",
     robots: {
       index: true,
@@ -131,8 +145,12 @@ export function buildRootMetadata(): Metadata {
         "max-snippet": -1,
       },
     },
-    openGraph: buildOpenGraph(title, DEFAULT_DESCRIPTION, "/"),
-    twitter: buildTwitterCard(title, DEFAULT_DESCRIPTION),
+    openGraph: buildOpenGraph(
+      title,
+      NAVER_OG_DESCRIPTION,
+      "/",
+    ),
+    twitter: buildTwitterCard(title, NAVER_OG_DESCRIPTION),
     verification: {
       google: "8M9JJaFTVZbs-ZQzd7cpmI2luczjidpKkuS5sTO8nMg",
       other: {
@@ -150,6 +168,7 @@ export type PageMetadataOptions = {
   description: string;
   path: string;
   keywords?: string[];
+  ogDescription?: string;
   ogType?: "website" | "article";
   noindex?: boolean;
 };
@@ -160,12 +179,15 @@ export function buildPageMetadata(options: PageMetadataOptions): Metadata {
     description,
     path,
     keywords = [],
+    ogDescription,
     ogType = "website",
     noindex = false,
   } = options;
 
+  const ogDesc = ogDescriptionFor(description, ogDescription);
+
   return {
-    title,
+    title: { absolute: title },
     description,
     keywords: [...CORE_KEYWORDS, ...keywords],
     alternates: {
@@ -179,8 +201,8 @@ export function buildPageMetadata(options: PageMetadataOptions): Metadata {
           follow: true,
           googleBot: { index: true, follow: true },
         },
-    openGraph: buildOpenGraph(title, description, path, ogType),
-    twitter: buildTwitterCard(title, description),
+    openGraph: buildOpenGraph(title, ogDesc, path, ogType),
+    twitter: buildTwitterCard(title, ogDesc),
   };
 }
 
@@ -210,6 +232,9 @@ export function buildFaqPageJsonLd(faqs: FaqItem[]) {
   };
 }
 
+const WEBAPP_DESCRIPTION =
+  "고양이 체중, 활동량, 체형, 사료 칼로리를 기준으로 하루 급여량과 섭취 칼로리를 계산하는 웹 서비스";
+
 export function buildHomeJsonLdGraph() {
   return {
     "@context": "https://schema.org",
@@ -217,7 +242,7 @@ export function buildHomeJsonLdGraph() {
       {
         "@type": "Organization",
         "@id": ORGANIZATION_ID,
-        name: SITE_NAME,
+        name: SITE_BRAND,
         url: SITE_URL,
         logo: {
           "@type": "ImageObject",
@@ -228,7 +253,7 @@ export function buildHomeJsonLdGraph() {
         "@type": "WebSite",
         "@id": WEBSITE_ID,
         url: SITE_URL,
-        name: SITE_NAME_FULL,
+        name: `${SITE_BRAND} 고양이 급여량 계산기`,
         description: DEFAULT_DESCRIPTION,
         inLanguage: "ko-KR",
         publisher: { "@id": ORGANIZATION_ID },
@@ -236,8 +261,8 @@ export function buildHomeJsonLdGraph() {
       {
         "@type": "WebApplication",
         "@id": WEBAPP_ID,
-        name: SITE_NAME_FULL,
-        description: DEFAULT_DESCRIPTION,
+        name: SITE_BRAND,
+        description: WEBAPP_DESCRIPTION,
         url: SITE_URL,
         applicationCategory: "HealthApplication",
         operatingSystem: "Web",
@@ -292,6 +317,43 @@ export function buildBreadcrumbJsonLd(
   };
 }
 
+export function buildWebPageJsonLd(options: {
+  path: string;
+  name: string;
+  description: string;
+}) {
+  return {
+    "@type": "WebPage",
+    "@id": absoluteUrl(options.path),
+    name: options.name,
+    description: options.description,
+    inLanguage: "ko-KR",
+    isPartOf: { "@id": WEBSITE_ID },
+    publisher: { "@id": ORGANIZATION_ID },
+  };
+}
+
+export function buildWebPageJsonLdGraph(options: {
+  path: string;
+  name: string;
+  description: string;
+  breadcrumbs: Array<{ name: string; path: string }>;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": ORGANIZATION_ID,
+        name: SITE_BRAND,
+        url: SITE_URL,
+      },
+      buildWebPageJsonLd(options),
+      buildBreadcrumbJsonLd(options.breadcrumbs),
+    ],
+  };
+}
+
 export function buildLandingJsonLdGraph(options: {
   path: string;
   headline: string;
@@ -304,7 +366,7 @@ export function buildLandingJsonLdGraph(options: {
       {
         "@type": "Organization",
         "@id": ORGANIZATION_ID,
-        name: SITE_NAME,
+        name: SITE_BRAND,
         url: SITE_URL,
       },
       buildArticleJsonLd({

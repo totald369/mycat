@@ -134,7 +134,7 @@ export function InfoGuidePage({ page }: Props) {
               id={`related-links-${page.path.replace(/\//g, "-")}`}
               className="text-base font-semibold text-[#171717]"
             >
-              함께 보면 좋은 페이지
+              함께 보면 좋은 글
             </h2>
             <ul className="grid gap-2">
               {relatedLinks.map((link) => (

@@ -42,6 +42,16 @@
 
 - 추가된 사료 **칩 탭** 시 g·회·사료명을 입력란에 불러와 **수정** 버튼으로 급여량 갱신. 편집 중 칩 링 표시, 재탭 시 선택 해제.
 
+### SEO (서비스 확장 후 구조 개선)
+
+- **`seo.ts`**: 글로벌 메타 `우리냥이맘마` 브랜드 통일, 키워드 확장, `title: { absolute }`로 중복 접미사 방지, OG 80자 fallback(`NAVER_OG_DESCRIPTION`), WebPage JSON-LD 헬퍼, WebApplication 설명 강화.
+- **홈(`/`)**: 계산기 검색 의도 메타(title/description), SEO H2 5개 재구성, `SeoInternalLinksSection` 내부 링크.
+- **`/feed-find`**: 사료 찾기 메타·H1 인트로·관련 링크, WebPage JSON-LD.
+- **`/foods/[id]`**: 동적 메타(우리냥이맘마), H1 브랜드+제품명, CTA·관련 가이드 링크, WebPage JSON-LD.
+- **가이드(`/feeding-guide`, `/calorie-guide`)**: 검색 의도별 title/description·keywords, CTA 문구 정리.
+- **`sitemap.ts`**: `/feed-find` 및 CSV 사료 상세 198개 URL 추가.
+- **`seoInternalLinks.ts`**, **`SeoInternalLinksSection.tsx`**, **`FeedFindSeoIntro.tsx`**: 페이지 간 내부 링크 공통화.
+
 ### SEO (Naver·Google)
 
 - **Meta description** (`src/lib/seo.ts`, `page.tsx`): 사이트·OG·Twitter description을 80자 이내 문구로 통일 (`고양이 체중·활동량·사료 칼로리로 하루 급여량을 계산해보세요.`). 홈이 긴 description으로 덮어쓰지 않도록 `DEFAULT_DESCRIPTION` 공유.
