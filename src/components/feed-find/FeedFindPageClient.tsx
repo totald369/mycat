@@ -18,7 +18,7 @@ export function FeedFindPageClient({ intro, initialCatalog }: Props) {
   const router = useRouter();
 
   const goToFeedDetail = (item: CatalogItem) => {
-    router.push(`/foods/${encodeURIComponent(item.id)}`);
+    router.push(`/foods/${encodeURIComponent(item.slug ?? item.id)}`);
   };
 
   return (

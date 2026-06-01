@@ -12,6 +12,7 @@ import { canonicalizeKoreanSearchSpelling } from "@/lib/koreanSearchNormalize";
 
 export type CatalogItem = {
   id: string;
+  slug?: string;
   label: string;
   feedKind?: string;
   kcalPer100g?: number | null;

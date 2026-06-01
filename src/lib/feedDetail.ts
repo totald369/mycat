@@ -2,7 +2,18 @@ import {
   loadFeedDetailItemsFromCatFoodCsv,
   type FeedDetailItem,
 } from "@/lib/catFoodCsv";
+import {
+  assignUniqueFeedSlugs,
+  feedDetailPath,
+  isLegacyCsvFeedId,
+} from "@/lib/feedSlug";
 import { prisma } from "@/lib/prisma";
+
+export type FeedDetailItemWithSlug = FeedDetailItem;
+
+let cachedFeeds: FeedDetailItemWithSlug[] | null = null;
+let slugIndex: Map<string, FeedDetailItemWithSlug> | null = null;
+let legacyIdIndex: Map<string, FeedDetailItemWithSlug> | null = null;
 
 function mapDbRowToFeedDetail(row: {
   id: string;
@@ -16,7 +27,7 @@ function mapDbRowToFeedDetail(row: {
   servingGrams: number | null;
   category: string | null;
   feedCondition: string | null;
-}): FeedDetailItem | null {
+}): Omit<FeedDetailItem, "slug"> | null {
   if (row.kcalPer100g == null || !Number.isFinite(row.kcalPer100g)) {
     return null;
   }
@@ -42,10 +53,64 @@ function mapDbRowToFeedDetail(row: {
   };
 }
 
-export function getFeedDetailFromCsvById(id: string): FeedDetailItem | null {
-  return (
-    loadFeedDetailItemsFromCatFoodCsv().find((item) => item.id === id) ?? null
-  );
+function buildIndexes(feeds: FeedDetailItemWithSlug[]) {
+  slugIndex = new Map(feeds.map((f) => [f.slug, f]));
+  legacyIdIndex = new Map(feeds.map((f) => [f.id, f]));
+}
+
+/** CSV 로드 + slug 부여 (빌드·런타임 공용 캐시) */
+export function getAllFeedDetails(): FeedDetailItemWithSlug[] {
+  if (cachedFeeds) return cachedFeeds;
+
+  const raw = loadFeedDetailItemsFromCatFoodCsv();
+  cachedFeeds = assignUniqueFeedSlugs(raw);
+  buildIndexes(cachedFeeds);
+  return cachedFeeds;
+}
+
+export function getFeedDetailFromCsvById(id: string): FeedDetailItemWithSlug | null {
+  getAllFeedDetails();
+  return legacyIdIndex?.get(id) ?? null;
+}
+
+export function getFeedBySlug(slug: string): FeedDetailItemWithSlug | null {
+  getAllFeedDetails();
+  return slugIndex?.get(slug) ?? null;
+}
+
+export type FeedRouteResolution = {
+  feed: FeedDetailItemWithSlug;
+  canonicalSlug: string;
+  /** csv-* 등 레거시 ID로 접근한 경우 */
+  isLegacyRedirect: boolean;
+};
+
+export function resolveFeedRouteParam(
+  param: string,
+): FeedRouteResolution | null {
+  const fromCsv = getAllFeedDetails();
+  if (fromCsv.length > 0) {
+    if (isLegacyCsvFeedId(param)) {
+      const feed = legacyIdIndex?.get(param);
+      if (!feed) return null;
+      return {
+        feed,
+        canonicalSlug: feed.slug,
+        isLegacyRedirect: true,
+      };
+    }
+    const bySlug = slugIndex?.get(param);
+    if (bySlug) {
+      return {
+        feed: bySlug,
+        canonicalSlug: bySlug.slug,
+        isLegacyRedirect: false,
+      };
+    }
+    return null;
+  }
+
+  return null;
 }
 
 export async function getFeedById(id: string): Promise<FeedDetailItem | null> {
@@ -72,12 +137,90 @@ export async function getFeedById(id: string): Promise<FeedDetailItem | null> {
       },
     });
     if (!row) return null;
-    return mapDbRowToFeedDetail(row);
+    const mapped = mapDbRowToFeedDetail(row);
+    if (!mapped) return null;
+    const [withSlug] = assignUniqueFeedSlugs([mapped]);
+    return withSlug;
   } catch {
     return null;
   }
 }
 
+/** @deprecated slug 기반 listFeedDetailSlugs 사용 */
 export function listFeedDetailIds(): string[] {
-  return loadFeedDetailItemsFromCatFoodCsv().map((item) => item.id);
+  return getAllFeedDetails().map((item) => item.id);
+}
+
+export function listFeedDetailSlugs(): string[] {
+  return getAllFeedDetails().map((item) => item.slug);
+}
+
+export function getFeedDetailPath(feed: Pick<FeedDetailItemWithSlug, "slug">): string {
+  return feedDetailPath(feed.slug);
+}
+
+const RELATED_LIMIT = 6;
+
+export type RelatedFeedLink = {
+  href: string;
+  label: string;
+  kcalPer100g: number;
+};
+
+export function getRelatedFeedsByBrand(
+  feed: FeedDetailItemWithSlug,
+  limit = RELATED_LIMIT,
+): RelatedFeedLink[] {
+  return getAllFeedDetails()
+    .filter((f) => f.slug !== feed.slug && f.brand === feed.brand)
+    .slice(0, limit)
+    .map((f) => ({
+      href: getFeedDetailPath(f),
+      label: `${f.brand} ${f.name}`,
+      kcalPer100g: f.kcalPer100g,
+    }));
+}
+
+export function getRelatedFeedsByLifeStage(
+  feed: FeedDetailItemWithSlug,
+  limit = RELATED_LIMIT,
+): RelatedFeedLink[] {
+  if (!feed.lifeStage) return [];
+  return getAllFeedDetails()
+    .filter(
+      (f) =>
+        f.slug !== feed.slug &&
+        f.lifeStage === feed.lifeStage &&
+        f.brand !== feed.brand,
+    )
+    .slice(0, limit)
+    .map((f) => ({
+      href: getFeedDetailPath(f),
+      label: `${f.brand} ${f.name}`,
+      kcalPer100g: f.kcalPer100g,
+    }));
+}
+
+export function getRelatedFeedsBySimilarKcal(
+  feed: FeedDetailItemWithSlug,
+  limit = RELATED_LIMIT,
+): RelatedFeedLink[] {
+  const tolerance = Math.max(15, feed.kcalPer100g * 0.12);
+  return getAllFeedDetails()
+    .filter(
+      (f) =>
+        f.slug !== feed.slug &&
+        Math.abs(f.kcalPer100g - feed.kcalPer100g) <= tolerance,
+    )
+    .sort(
+      (a, b) =>
+        Math.abs(a.kcalPer100g - feed.kcalPer100g) -
+        Math.abs(b.kcalPer100g - feed.kcalPer100g),
+    )
+    .slice(0, limit)
+    .map((f) => ({
+      href: getFeedDetailPath(f),
+      label: `${f.brand} ${f.name} (${f.kcalPer100g} kcal/100g)`,
+      kcalPer100g: f.kcalPer100g,
+    }));
 }

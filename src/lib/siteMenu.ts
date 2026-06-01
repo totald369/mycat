@@ -25,7 +25,7 @@ export function isSiteMenuItemActive(
   }
 
   if (item.href === "/feed-find") {
-    return pathname.startsWith("/foods/");
+    return pathname === "/foods" || pathname.startsWith("/foods/");
   }
 
   return false;

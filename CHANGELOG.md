@@ -2,6 +2,11 @@
 
 ## 2026-05-26
 
+### SEO — 사료 상세 URL·메타·구조화 데이터
+
+- **`/foods/[slug]`**: SEO URL (`royal-canin-indoor` 등). 레거시 `/foods/csv-*` → slug **301** 리다이렉트.
+- **`/foods`**: 브랜드·연령·유형별 HTML 링크 목록, sitemap·Product JSON-LD·성분 해석·내부링크.
+
 ### Navigation (메뉴 레이어)
 
 - **`SiteMenuLayer`**: 피그마 Menu Layer(315:54) 기준 전역 메뉴 오버레이 — 375px 앱 셸, 4개 항목(급여량 계산하기·사료 찾기·급여 가이드·칼로리 가이드).

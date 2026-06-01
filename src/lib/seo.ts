@@ -354,6 +354,123 @@ export function buildWebPageJsonLdGraph(options: {
   };
 }
 
+export type FeedProductJsonLdInput = {
+  path: string;
+  name: string;
+  brand: string;
+  description: string;
+  kcalPer100g: number;
+  proteinPercent?: number | null;
+  fatPercent?: number | null;
+  fiberPercent?: number | null;
+  feedKind: string;
+};
+
+export function buildFeedProductJsonLdGraph(
+  input: FeedProductJsonLdInput,
+): Record<string, unknown> {
+  const additionalProperty: Array<{
+    "@type": "PropertyValue";
+    name: string;
+    value: string;
+  }> = [
+    {
+      "@type": "PropertyValue",
+      name: "100g당 칼로리",
+      value: `${input.kcalPer100g} kcal`,
+    },
+  ];
+
+  if (input.proteinPercent != null) {
+    additionalProperty.push({
+      "@type": "PropertyValue",
+      name: "조단백",
+      value: `${input.proteinPercent}%`,
+    });
+  }
+  if (input.fatPercent != null) {
+    additionalProperty.push({
+      "@type": "PropertyValue",
+      name: "조지방",
+      value: `${input.fatPercent}%`,
+    });
+  }
+  if (input.fiberPercent != null) {
+    additionalProperty.push({
+      "@type": "PropertyValue",
+      name: "조섬유",
+      value: `${input.fiberPercent}%`,
+    });
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": ORGANIZATION_ID,
+        name: SITE_BRAND,
+        url: SITE_URL,
+      },
+      {
+        "@type": "Product",
+        "@id": `${absoluteUrl(input.path)}#product`,
+        name: input.name,
+        description: input.description,
+        brand: {
+          "@type": "Brand",
+          name: input.brand,
+        },
+        category: input.feedKind,
+        additionalProperty,
+        isRelatedTo: {
+          "@type": "WebPage",
+          "@id": absoluteUrl(input.path),
+        },
+      },
+      buildWebPageJsonLd({
+        path: input.path,
+        name: input.name,
+        description: input.description,
+      }),
+      buildBreadcrumbJsonLd([
+        { name: "홈", path: "/" },
+        { name: "사료 목록", path: "/foods" },
+        { name: input.brand, path: "/foods" },
+        { name: input.name, path: input.path },
+      ]),
+    ],
+  };
+}
+
+export function buildFeedDetailMetadata(feed: {
+  brand: string;
+  name: string;
+  slug: string;
+  kcalPer100g: number;
+  feedKind: string;
+}) {
+  const productName = `${feed.brand} ${feed.name}`;
+  const title = `${productName} 성분 분석 | 칼로리·원재료·급여량 | ${SITE_BRAND}`;
+  const description = `${productName}의 칼로리, 조단백, 조지방, 원재료 정보를 확인하고 우리냥이 급여량을 계산해보세요. 100g당 ${feed.kcalPer100g}kcal (${feed.feedKind}).`;
+  const path = `/foods/${feed.slug}`;
+
+  return buildPageMetadata({
+    title,
+    description,
+    path,
+    keywords: [
+      productName,
+      `${feed.brand} 사료`,
+      `${feed.brand} ${feed.name} 성분`,
+      "고양이 사료 칼로리",
+      "고양이 사료 성분",
+      "고양이 급여량",
+    ],
+    ogDescription: `${productName} — 100g당 ${feed.kcalPer100g}kcal, 성분·급여량 정보`,
+  });
+}
+
 export function buildLandingJsonLdGraph(options: {
   path: string;
   headline: string;

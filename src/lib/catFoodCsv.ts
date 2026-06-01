@@ -1,9 +1,13 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
+import { assignUniqueFeedSlugs } from "@/lib/feedSlug";
+
 /** `/api/feeds` 한 행과 동일한 형태 */
 export type FeedCatalogItem = {
   id: string;
+  /** SEO URL slug — `/foods/{slug}` */
+  slug: string;
   apiId: string;
   brand: string;
   name: string;
@@ -144,7 +148,8 @@ export function loadFeedDetailItemsFromCatFoodCsv(): FeedDetailItem[] {
   const ingredientsI = idx("ingredients");
   const nutritionAnalysisI = idx("nutrition_analysis");
 
-  const out: FeedDetailItem[] = [];
+  type FeedDetailRow = Omit<FeedDetailItem, "slug">;
+  const out: FeedDetailRow[] = [];
 
   for (let r = 1; r < rows.length; r++) {
     const cells = rows[r];
@@ -213,5 +218,5 @@ export function loadFeedDetailItemsFromCatFoodCsv(): FeedDetailItem[] {
   }
 
   out.sort((a, b) => a.displayLabel.localeCompare(b.displayLabel, "ko"));
-  return out;
+  return assignUniqueFeedSlugs(out);
 }

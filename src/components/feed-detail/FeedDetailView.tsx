@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 
 import { SeoInternalLinksSection } from "@/components/seo/SeoInternalLinksSection";
 import type { FeedDetailItem } from "@/lib/catFoodCsv";
+import type { RelatedFeedLink } from "@/lib/feedDetail";
+import { getFeedDetailPath } from "@/lib/feedDetail";
 import {
   feedCategoryLabel,
   feedConditionLabel,
@@ -10,10 +12,15 @@ import {
   formatServingGrams,
   lifeStageLabel,
 } from "@/lib/feedDetailLabels";
+import type { NutritionInterpretation } from "@/lib/feedNutritionInterpretation";
 import { IconBack } from "@/components/wireframe/icons";
 
 type Props = {
   feed: FeedDetailItem;
+  nutritionInterpretations?: NutritionInterpretation[];
+  relatedByBrand?: RelatedFeedLink[];
+  relatedByKcal?: RelatedFeedLink[];
+  relatedByLifeStage?: RelatedFeedLink[];
 };
 
 function Badge({ children }: { children: ReactNode }) {
@@ -35,20 +42,58 @@ function InfoCard({ label, value }: { label: string; value: string }) {
   );
 }
 
-export function FeedDetailView({ feed }: Props) {
+function RelatedFeedList({
+  title,
+  links,
+}: {
+  title: string;
+  links: RelatedFeedLink[];
+}) {
+  if (links.length === 0) return null;
+  const headingId = title.replace(/\s+/g, "-").toLowerCase();
+
+  return (
+    <section className="mt-6 space-y-3" aria-labelledby={headingId}>
+      <h2 id={headingId} className="text-base font-semibold text-[#171717]">
+        {title}
+      </h2>
+      <ul className="grid gap-2">
+        {links.map((link) => (
+          <li key={link.href}>
+            <Link
+              href={link.href}
+              prefetch={false}
+              className="block rounded-xl border border-[#eee] bg-white px-4 py-3 text-sm font-medium text-[#171717] active:bg-[#f5f1ed]"
+            >
+              {link.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+export function FeedDetailView({
+  feed,
+  nutritionInterpretations = [],
+  relatedByBrand = [],
+  relatedByKcal = [],
+  relatedByLifeStage = [],
+}: Props) {
   const typeLabel = feedTypeLabel(feed.rawType, feed.feedKind);
   const lifeLabel = lifeStageLabel(feed.lifeStage);
   const categoryLabel = feedCategoryLabel(feed.category);
   const conditionLabel = feedConditionLabel(feed.feedCondition);
   const servingLabel = formatServingGrams(feed.servingGrams, feed.feedKind);
-  const pagePath = `/foods/${feed.id}`;
+  const pagePath = getFeedDetailPath(feed);
 
   return (
     <main className="relative z-10 mx-auto min-h-[100dvh] w-full max-w-[min(100%,375px)] bg-white">
       <div className="flex shrink-0 items-center px-4 pt-[max(8px,env(safe-area-inset-top))]">
         <Link
-          href="/feed-find"
-          aria-label="사료 찾기로 돌아가기"
+          href="/foods"
+          aria-label="사료 목록으로 돌아가기"
           className="relative flex size-12 shrink-0 items-center justify-center text-[#171717]"
         >
           <IconBack />
@@ -89,6 +134,13 @@ export function FeedDetailView({ feed }: Props) {
             이 사료는 100g당 칼로리 기준으로 급여량 계산에 사용됩니다. 실제
             급여량은 고양이의 체중, 활동량, 체형에 따라 달라질 수 있어요.
           </p>
+          <Link
+            href="/step1"
+            prefetch={false}
+            className="mt-4 flex h-12 items-center justify-center rounded-xl bg-[#f8620c] text-sm font-semibold text-white"
+          >
+            이 사료로 급여량 계산하기
+          </Link>
         </section>
 
         <section className="mt-6 space-y-3">
@@ -116,13 +168,46 @@ export function FeedDetailView({ feed }: Props) {
           )}
         </section>
 
+        {nutritionInterpretations.length > 0 ? (
+          <section className="mt-6 space-y-3" aria-labelledby="nutrition-interpret">
+            <h2
+              id="nutrition-interpret"
+              className="text-base font-semibold text-[#171717]"
+            >
+              성분 해석
+            </h2>
+            <ul className="space-y-3">
+              {nutritionInterpretations.map((item) => (
+                <li
+                  key={item.metric.label}
+                  className="rounded-xl border border-[#eee] bg-white p-4"
+                >
+                  <p className="text-sm font-semibold text-[#171717]">
+                    {item.metric.label} {item.metric.value}
+                    {item.metric.unit} →
+                  </p>
+                  <p className="mt-1 text-sm leading-relaxed text-[#555]">
+                    {item.interpretation}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+
+        <RelatedFeedList title="같은 브랜드 사료" links={relatedByBrand} />
+        <RelatedFeedList title="비슷한 칼로리 사료" links={relatedByKcal} />
+        <RelatedFeedList title="같은 연령대 사료" links={relatedByLifeStage} />
+
         <SeoInternalLinksSection
           currentPath={pagePath}
           title="관련 가이드"
           links={[
+            { href: "/foods", label: "전체 사료 목록" },
             { href: "/feed-find", label: "사료 찾기" },
             { href: "/step1", label: "급여량 계산하기" },
             { href: "/calorie-guide", label: "칼로리 가이드" },
+            { href: "/feeding-guide", label: "급여 가이드" },
           ]}
           className="mt-8"
         />
