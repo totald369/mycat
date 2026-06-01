@@ -23,6 +23,8 @@ import {
   wizardContentWidthClass,
   wizardFormCardClass,
   wizardFormInnerClass,
+  wizardModalOverlayElevatedClass,
+  wizardModalPanelClass,
   wizardPageColumnClassBarTall,
   wizardShellClass,
 } from "@/components/design/wizardLayoutClasses";
@@ -284,14 +286,17 @@ export default function Step3Page() {
       {resultError ? <ValidationToast message={resultError} /> : null}
       {showCalculating && calculatingVideoSrc ? (
         <div
-          className="fixed inset-0 isolate z-[200] min-h-[100dvh] w-full overflow-hidden bg-[#fffcf9]"
+          className={`${wizardModalOverlayElevatedClass} isolate overflow-hidden`}
           role="status"
           aria-live="polite"
           aria-busy="true"
         >
-          <WizardPageBackground placement="contain" priority quality={64} />
-          <CalculatingPawsPetLottie />
-          <div className="relative z-10 flex h-full min-h-0 flex-col items-center justify-center px-4 pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)] min-[360px]:px-6">
+          <div
+            className={`relative ${wizardModalPanelClass} overflow-hidden bg-[#fffcf9]`}
+          >
+            <WizardPageBackground placement="contain" priority quality={64} />
+            <CalculatingPawsPetLottie />
+            <div className="relative z-10 flex h-full min-h-[100dvh] flex-col items-center justify-center px-4 pt-[env(safe-area-inset-top,0px)] pb-[env(safe-area-inset-bottom,0px)] min-[360px]:px-6">
             <div className={`flex ${wizardBlockWidthClass} flex-col items-center gap-4`}>
               <div className="relative w-full max-w-[min(233px,calc(100%-0px))] shrink-0 overflow-hidden rounded-[40px] aspect-[233/239]">
                 <video
@@ -317,6 +322,7 @@ export default function Step3Page() {
                 />
               </div>
             </div>
+          </div>
           </div>
         </div>
       ) : null}

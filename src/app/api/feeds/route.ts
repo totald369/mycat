@@ -28,23 +28,32 @@ async function feedsFromDb() {
       servingGrams: true,
       category: true,
       feedCondition: true,
+      lifeStage: true,
     },
   });
 
-  return rows.map((r) => ({
-    id: r.id,
-    apiId: r.apiId,
-    brand: r.brand,
-    name: r.name,
-    displayLabel: r.displayLabel,
-    nameKo: r.nameKo,
-    label: feedListLabel(r.displayLabel, r.nameKo),
-    kcalPer100g: r.kcalPer100g,
-    feedKind: r.feedKind,
-    servingGrams: r.servingGrams,
-    category: r.category,
-    feedCondition: r.feedCondition,
-  }));
+  return rows.map((r) => {
+    const feedKind = r.feedKind.trim();
+    const rawType =
+      feedKind === "습식" ? "wet" : feedKind === "건식" ? "dry" : feedKind;
+
+    return {
+      id: r.id,
+      apiId: r.apiId,
+      brand: r.brand,
+      name: r.name,
+      displayLabel: r.displayLabel,
+      nameKo: r.nameKo,
+      label: feedListLabel(r.displayLabel, r.nameKo),
+      kcalPer100g: r.kcalPer100g,
+      feedKind: r.feedKind,
+      servingGrams: r.servingGrams,
+      category: r.category,
+      feedCondition: r.feedCondition,
+      lifeStage: r.lifeStage,
+      rawType,
+    };
+  });
 }
 
 export async function GET() {

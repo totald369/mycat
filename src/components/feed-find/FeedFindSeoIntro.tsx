@@ -8,12 +8,8 @@ export function FeedFindSeoIntro() {
         고양이 사료 찾기
       </h1>
       <p className="text-sm leading-relaxed text-[#555]">
-        사료마다 100g당 칼로리와 급여 기준량이 다를 수 있어요. 급여량 계산
-        전, 우리 아이가 먹는 사료 정보를 먼저 확인해보세요.
-      </p>
-      <p className="text-sm leading-relaxed text-[#555]">
-        브랜드명·사료명으로 검색하면 건식·습식 유형, 100g당 칼로리, 급여
-        기준 정보를 확인할 수 있어요.
+        사료마다 100g당 칼로리와 급여 기준량이 달라요. 우리 아이가 먹는 사료
+        정보를 확인하고, 급여량 계산에 활용해보세요.
       </p>
       <nav aria-label="관련 페이지" className="flex flex-wrap gap-2 pt-1">
         {[

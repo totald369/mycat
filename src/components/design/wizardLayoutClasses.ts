@@ -6,6 +6,18 @@
 /** 최대 375px, 뷰포트보다 넓어지지 않음 */
 export const wizardAppWidthClass = "w-full max-w-[min(100%,375px)]";
 
+/** 전면 팝업 오버레이 — 페이지 셸(375px) 중앙 정렬 */
+export const wizardModalOverlayClass =
+  "fixed inset-0 z-[100] flex min-h-[100dvh] justify-center font-sans";
+
+/** 계산 중 등 상위 레이어 팝업 */
+export const wizardModalOverlayElevatedClass =
+  "fixed inset-0 z-[200] flex min-h-[100dvh] justify-center font-sans";
+
+/** 오버레이 내부 패널 — 앱 페이지와 동일 너비 */
+export const wizardModalPanelClass =
+  `flex min-h-[100dvh] w-full flex-col ${wizardAppWidthClass}`;
+
 /** 최대 375px, 뷰포트보다 넓어지지 않음 */
 export const wizardShellClass =
   `relative z-10 mx-auto min-h-screen ${wizardAppWidthClass} overflow-x-hidden bg-transparent`;

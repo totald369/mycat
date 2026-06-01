@@ -11,12 +11,18 @@
 ### Feed find (사료 찾기)
 
 - **`/feed-find`**: 전용 사료 찾기 페이지 — 공통 헤더 + `FeedSearchView`(page 모드). 페이지 진입 시 전체 사료 목록 표시, 칩·검색 필터.
-- **`FeedSearchView`**: step3 모달·feed-find 페이지 공유 검색 UI(`layout: "modal" | "page"`).
+- **`FeedFindPageView`**: 독립 탐색형 UI — 8개 필터 칩(전체·건식·습식·키튼·성묘·체중관리·헤어볼·처방식), 인기 사료, `FeedFindCard`(브랜드·칼로리·뱃지·상세 보기). 계산기 팝업(`FeedSearchView` modal)과 분리.
+- **`FeedSearchView`**: step3 모달용 간편 검색(건식/습식 칩만). page 모드는 `FeedFindPageView`로 대체.
 - **`next.config.ts`**: `/사료-찾기` → `/feed-find` 영구 리다이렉트.
+
+### Modal layout (팝업 너비 통일)
+
+- **`wizardModalOverlayClass` / `wizardModalPanelClass`**: 전면 팝업을 페이지와 동일 375px 중앙 정렬.
+- **적용**: 메뉴 레이어, 품종·사료 검색 모달, step3 계산 중 오버레이.
 
 ### Food detail (사료 상세)
 
-- **`/foods/[id]`**: CSV 기반 사료 상세 페이지 — 브랜드·제품명·유형·급여 대상·칼로리·기준 급여량, 가이드·성분(준비 중) 섹션, not-found 처리.
+- **`/foods/[id]`**: CSV 기반 사료 상세 페이지 — 브랜드·제품명·유형·급여 대상·칼로리·기준 급여량, 가이드·성분(준비 중) 섹션, not-found(돌아가기·계산하러 가기). 계산기 CTA 미연결(화면 로직 정합성).
 - **`FeedFindPageClient`**: 사료 선택 시 `/foods/[id]` 이동.
 - **SEO**: 동적 title/description, SSG(`generateStaticParams`).
 

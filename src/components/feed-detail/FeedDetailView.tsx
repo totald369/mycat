@@ -99,20 +99,6 @@ export function FeedDetailView({ feed }: Props) {
           </p>
         </section>
 
-        <div className="mt-8">
-          {/*
-            TODO(step3-prefill): `/step1?feedId=` 로 전달된 id를 step3 사료 검색·칩
-            추가 흐름(readWizardState / patchWizardState step3.search·chips)에 연결
-          */}
-          <Link
-            href={`/step1?feedId=${encodeURIComponent(feed.id)}`}
-            prefetch={false}
-            className="flex h-14 w-full items-center justify-center rounded-xl bg-[#f8620c] text-base font-semibold text-white active:opacity-90"
-          >
-            이 사료로 급여량 계산하기
-          </Link>
-        </div>
-
         <SeoInternalLinksSection
           currentPath={pagePath}
           title="관련 가이드"

@@ -91,6 +91,40 @@ export function feedConditionLabel(
   return CONDITION_LABELS[key] ?? humanizeToken(key);
 }
 
+/** 카드·칩용 짧은 라벨 */
+export function lifeStageShortLabel(
+  lifeStage: string | null | undefined,
+): string | null {
+  if (!lifeStage?.trim()) return null;
+  const key = lifeStage.trim().toLowerCase();
+  if (key.includes("kitten")) return "키튼";
+  if (key.includes("senior")) return "노묘";
+  if (key.includes("adult")) return "성묘";
+  if (key.includes("all_life") || key === "all") return "전연령";
+  return null;
+}
+
+export function conditionShortLabel(
+  condition: string | null | undefined,
+): string | null {
+  if (!condition?.trim()) return null;
+  const key = condition.trim().toLowerCase();
+  if (key === "none") return null;
+  if (key === "hairball") return "헤어볼";
+  if (key === "weight" || key === "diet") return "체중관리";
+  return CONDITION_LABELS[key] ?? null;
+}
+
+export function categoryShortLabel(
+  category: string | null | undefined,
+): string | null {
+  if (!category?.trim()) return null;
+  const key = category.trim().toLowerCase();
+  if (key === "general") return null;
+  if (key === "prescription" || key === "medical") return "처방식";
+  return CATEGORY_LABELS[key] ?? null;
+}
+
 export function formatServingGrams(
   servingGrams: number | null | undefined,
   feedKind: string,

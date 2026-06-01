@@ -3,6 +3,10 @@
 import type { ReactNode } from "react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { PawWoodLink } from "@/components/design/PawButton";
+import {
+  wizardModalOverlayClass,
+  wizardModalPanelClass,
+} from "@/components/design/wizardLayoutClasses";
 import { IconClose, IconSearch } from "@/components/wireframe/icons";
 import { canonicalizeKoreanSearchSpelling } from "@/lib/koreanSearchNormalize";
 
@@ -19,6 +23,8 @@ export type CatalogItem = {
   name?: string | null;
   category?: string | null;
   feedCondition?: string | null;
+  lifeStage?: string | null;
+  rawType?: string | null;
 };
 
 function compactForSearch(s: string): string {
@@ -138,12 +144,13 @@ export function CatalogSearchModal({
   if (!open) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-[100] flex min-h-[100dvh] w-full flex-col bg-[#fffcf9]"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby={titleId}
-    >
+    <div className={wizardModalOverlayClass}>
+      <div
+        className={`${wizardModalPanelClass} bg-[#fffcf9]`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+      >
       <header className="relative flex shrink-0 items-center justify-center border-b border-[#dedee0] px-4 pb-3.5 pt-[max(0.875rem,env(safe-area-inset-top))]">
         <button
           type="button"
@@ -235,6 +242,7 @@ export function CatalogSearchModal({
           </>
         ) : null}
       </div>
+    </div>
     </div>
   );
 }

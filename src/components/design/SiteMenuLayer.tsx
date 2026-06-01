@@ -6,7 +6,7 @@ import { useEffect, useId } from "react";
 
 import { AppLogo } from "@/components/design/AppLogo";
 import { WizardSelectedChoiceLayers } from "@/components/design/WizardSelectedChoiceLayers";
-import { wizardAppWidthClass } from "@/components/design/wizardLayoutClasses";
+import { wizardModalOverlayClass, wizardModalPanelClass } from "@/components/design/wizardLayoutClasses";
 import {
   isSiteMenuItemActive,
   SITE_MENU_ITEMS,
@@ -73,10 +73,10 @@ export function SiteMenuLayer({ id, open, onClose }: SiteMenuLayerProps) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex min-h-[100dvh] justify-center font-sans">
+    <div className={wizardModalOverlayClass}>
       <div
         id={id}
-        className={`flex min-h-[100dvh] flex-col bg-white ${wizardAppWidthClass}`}
+        className={`${wizardModalPanelClass} bg-white`}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}

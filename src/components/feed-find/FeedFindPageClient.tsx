@@ -3,16 +3,16 @@
 import { useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 
+import { FeedFindPageView } from "@/components/feed-find/FeedFindPageView";
 import { WizardHeader } from "@/components/design/WizardHeader";
 import { wizardHeaderOffsetClass } from "@/components/design/wizardLayoutClasses";
 import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
-import { FeedSearchView } from "@/components/wireframe/FeedSearchView";
 
 type Props = {
   intro?: ReactNode;
 };
 
-/** 피그마 사료 찾기(321:91) — 공통 헤더 + SearchList_basic */
+/** 피그마 사료 찾기(321:91) — 공통 헤더 + 탐색형 사료 목록 */
 export function FeedFindPageClient({ intro }: Props) {
   const router = useRouter();
 
@@ -27,7 +27,7 @@ export function FeedFindPageClient({ intro }: Props) {
         className={`flex min-h-0 flex-1 flex-col ${wizardHeaderOffsetClass}`}
       >
         {intro}
-        <FeedSearchView layout="page" onSelect={goToFeedDetail} />
+        <FeedFindPageView onOpenDetail={goToFeedDetail} />
       </div>
     </main>
   );

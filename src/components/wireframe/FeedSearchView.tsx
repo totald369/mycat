@@ -4,9 +4,17 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { designResource } from "@/components/design/designResourcePaths";
+import {
+  wizardModalOverlayClass,
+  wizardModalPanelClass,
+} from "@/components/design/wizardLayoutClasses";
 import { FEED_REQUEST_HREF } from "@/constants/feedRequest";
 import { IconBack, IconSearch } from "@/components/wireframe/icons";
-import { canonicalizeKoreanSearchSpelling } from "@/lib/koreanSearchNormalize";
+import {
+  catalogSearchBlob,
+  compactForSearch,
+  FEED_MODAL_PLACEHOLDER,
+} from "@/lib/feedSearchUtils";
 import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
 
 export type FeedSearchLayout = "modal" | "page";
@@ -17,7 +25,7 @@ const FEED_CHIPS: FeedKindChip[] = ["전체", "습식", "건식"];
 
 const FEED_FETCH_URL = "/api/feeds";
 const FEED_LOAD_ERROR = "급여(사료) 목록을 불러오지 못했습니다.";
-const FEED_PLACEHOLDER = "예: 아카나";
+const FEED_PLACEHOLDER = FEED_MODAL_PLACEHOLDER;
 
 const FEED_EMPTY_DB_HINT = (
   <>
@@ -32,28 +40,6 @@ const FEED_EMPTY_DB_HINT = (
     를 실행해 주세요.
   </>
 );
-
-function compactForSearch(s: string): string {
-  return canonicalizeKoreanSearchSpelling(s)
-    .normalize("NFC")
-    .toLowerCase()
-    .replace(/[\s\-_/·.,]+/gu, "");
-}
-
-function catalogSearchBlob(row: CatalogItem): string {
-  return [
-    row.label,
-    row.nameEn,
-    row.nameKo,
-    row.displayLabel,
-    row.brand,
-    row.name,
-    row.category,
-    row.feedCondition,
-  ]
-    .filter((x): x is string => typeof x === "string" && x.trim() !== "")
-    .join(" ");
-}
 
 function matchesFeedChip(row: CatalogItem, chip: FeedKindChip): boolean {
   if (chip === "전체") return true;
@@ -490,18 +476,20 @@ export function FeedSearchView({
 
   if (isModal) {
     return (
-      <div
-        className="fixed inset-0 z-[100] flex min-h-[100dvh] flex-col bg-white font-sans"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={titleId}
-      >
-        {titleId ? (
-          <h2 id={titleId} className="sr-only">
-            {title}
-          </h2>
-        ) : null}
-        {content}
+      <div className={wizardModalOverlayClass}>
+        <div
+          className={`${wizardModalPanelClass} bg-white font-sans`}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={titleId}
+        >
+          {titleId ? (
+            <h2 id={titleId} className="sr-only">
+              {title}
+            </h2>
+          ) : null}
+          {content}
+        </div>
       </div>
     );
   }
