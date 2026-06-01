@@ -20,6 +20,8 @@ const LIFE_STAGE_LABELS: Record<string, string> = {
   kitten_6_12m_neutered: "중성화 키튼 (6~12개월)",
   kittens: "키튼",
   senior_7y_plus: "노묘 (7세 이상)",
+  senior_11y_plus: "노묘 (11세 이상)",
+  senior_15y_plus: "노묘 (15세 이상)",
   weight_control: "체중 관리",
 };
 
