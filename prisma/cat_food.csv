@@ -1,10 +1,11 @@
-id,brand,name,type,life_stage,kcal_per_100g,serving_g,category,condition
+id,brand,name,type,life_stage,kcal_per_100g,serving_g,category,condition,ingredients,nutrition_analysis
 1,로얄캐닌,마더 앤 베이비캣,dry,kitten_0_4m,443,,general,none
 2,로얄캐닌,키튼,dry,kitten_4_12m,406,,general,none
 3,로얄캐닌,키튼 스테럴라이즈드,dry,kitten_6_12m_neutered,348,,general,none
 4,로얄캐닌,인도어,dry,adult_1_7y,374,,general,none
 5,로얄캐닌,스테럴라이즈드 37,dry,adult_1_7y_neutered,360,,general,none
 6,로얄캐닌,헤어볼 케어,dry,adult_1y_plus,390,,general,none
+01tdJ000002FJKvQAO,로얄캐닌,유리너리 케어,dry,adult_1y_plus,358,,general,urinary,"옥수수, 밀 글루텐, 육분(닭, 오리), 밀, 쌀, 옥수수 글루텐, 동물성 지방(닭, 오리), 분말셀룰로오스, 동물성 유도단백질(닭, 칠면조), 밀가루, 혼합광물질류 합제, 사탕무박, 효모, 대두유, 어유, 금잔화 분말, 아미노산제 합제, 비타민 A, 비타민 D3, 철, 요오드, 구리, 망간, 아연, 셀레늄, 항산화제","단백질 33%, 지방 13%, 조섬유 5%, 조회분 6.6%"
 7,로얄캐닌,라이트 웨이트 케어,dry,weight_control,338,,general,none
 8,로얄캐닌,인도어 7+,dry,senior_7y_plus,374,,general,none
 9,로얄캐닌,마더 앤 베이비캣 무스,wet,kitten_0_4m,95,100,general,none

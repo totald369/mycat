@@ -25,6 +25,10 @@
 - **`/foods/[id]`**: CSV 기반 사료 상세 페이지 — 브랜드·제품명·유형·급여 대상·칼로리·기준 급여량, 가이드·성분(준비 중) 섹션, not-found(돌아가기·계산하러 가기). 계산기 CTA 미연결(화면 로직 정합성).
 - **`FeedFindPageClient`**: 사료 선택 시 `/foods/[id]` 이동.
 - **SEO**: 동적 title/description, SSG(`generateStaticParams`).
+- **성분 CSV**: `prisma/cat_food.csv`에 `ingredients`·`nutrition_analysis` 열 추가 — 상세 페이지 등록성분량·원재료 표시.
+- **로얄캐닌 유리너리 케어**: CSV 등록(`csv-01tdJ000002FJKvQAO`) — 공식 원재료·등록성분량(단백질 33% 등), 358 kcal/100g.
+- **`FeedDetailView`**: 성분 데이터 있을 때 등록성분량·원재료 카드 렌더.
+- **`next.config.ts`**: `images.qualities` `[58, 62, 64, 68, 72]` — Next.js 16 대비·dev issue 경고 완화.
 
 ### Info guides (정보 가이드)
 

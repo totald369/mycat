@@ -91,12 +91,29 @@ export function FeedDetailView({ feed }: Props) {
           </p>
         </section>
 
-        <section className="mt-6 space-y-2">
+        <section className="mt-6 space-y-3">
           <h2 className="text-base font-semibold text-[#171717]">성분 정보</h2>
-          <p className="text-sm leading-relaxed text-[#555]">
-            상세 성분 정보는 준비 중이에요. 우선 칼로리와 급여 기준량을
-            기준으로 계산할 수 있어요.
-          </p>
+          {feed.nutritionAnalysis ? (
+            <div className="rounded-xl bg-[#f8f5f2] p-4">
+              <p className="text-xs font-semibold text-[#666]">등록성분량</p>
+              <p className="mt-1 text-sm leading-relaxed text-[#171717]">
+                {feed.nutritionAnalysis}
+              </p>
+            </div>
+          ) : null}
+          {feed.ingredients ? (
+            <div className="rounded-xl border border-[#eee] bg-white p-4">
+              <p className="text-xs font-semibold text-[#666]">원재료</p>
+              <p className="mt-1 text-sm leading-relaxed text-[#555]">
+                {feed.ingredients}
+              </p>
+            </div>
+          ) : (
+            <p className="text-sm leading-relaxed text-[#555]">
+              상세 성분 정보는 준비 중이에요. 우선 칼로리와 급여 기준량을
+              기준으로 계산할 수 있어요.
+            </p>
+          )}
         </section>
 
         <SeoInternalLinksSection

@@ -20,6 +20,10 @@ export type FeedCatalogItem = {
 export type FeedDetailItem = FeedCatalogItem & {
   rawType: string;
   lifeStage: string | null;
+  /** 사용한 원료의 명칭 (로얄캐닌 등 공식 표기) */
+  ingredients?: string | null;
+  /** 등록성분량·영양성분 요약 */
+  nutritionAnalysis?: string | null;
 };
 
 function resolveCsvPath(): string {
@@ -137,6 +141,8 @@ export function loadFeedDetailItemsFromCatFoodCsv(): FeedDetailItem[] {
   const categoryI = idx("category");
   const conditionI = idx("condition");
   const lifeStageI = idx("life_stage");
+  const ingredientsI = idx("ingredients");
+  const nutritionAnalysisI = idx("nutrition_analysis");
 
   const out: FeedDetailItem[] = [];
 
@@ -180,6 +186,12 @@ export function loadFeedDetailItemsFromCatFoodCsv(): FeedDetailItem[] {
       conditionI >= 0 ? (cells[conditionI] ?? "").trim() || null : null;
     const lifeStage =
       lifeStageI >= 0 ? (cells[lifeStageI] ?? "").trim() || null : null;
+    const ingredients =
+      ingredientsI >= 0 ? (cells[ingredientsI] ?? "").trim() || null : null;
+    const nutritionAnalysis =
+      nutritionAnalysisI >= 0
+        ? (cells[nutritionAnalysisI] ?? "").trim() || null
+        : null;
 
     out.push({
       id: `csv-${apiId}`,
@@ -195,6 +207,8 @@ export function loadFeedDetailItemsFromCatFoodCsv(): FeedDetailItem[] {
       feedCondition,
       rawType,
       lifeStage,
+      ingredients,
+      nutritionAnalysis,
     });
   }
 
