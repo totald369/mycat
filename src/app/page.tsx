@@ -44,7 +44,7 @@ export default function IntroPage() {
           className={`relative flex w-full flex-col items-center overflow-x-clip px-4 pb-4 ${wizardHeaderOffsetClass} min-[360px]:px-6`}
         >
           <header className="flex w-full shrink-0 flex-col items-center">
-            <h1 className="w-full min-w-0 max-w-full text-center">
+            <h1 className="w-full min-w-0 max-w-full text-center min-h-[147px]">
               <span className="sr-only">
                 고양이 급여량 계산기 — 하루 사료량·칼로리 계산
               </span>

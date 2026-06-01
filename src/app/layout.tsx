@@ -35,6 +35,8 @@ const pretendard = localFont({
   display: "swap",
   /** 여러 서브셋 preload는 초기 대역폭·우선순위 경쟁을 키움 — swap으로 시스템 폰트 먼저 표시 */
   preload: false,
+  /** 폰트 교체 시 글리프 크기 차이로 인한 CLS 완화 */
+  adjustFontFallback: "Arial",
   fallback: [
     "system-ui",
     "-apple-system",
@@ -63,10 +65,10 @@ export default function RootLayout({
     <html lang="ko" className={pretendard.variable}>
       <body className="font-sans antialiased">
         {children}
-        {/* Google AdSense — 초기 페인트 이후 로드(검수·광고 게재 유지) */}
+        {/* Google AdSense — 상호작용 구간 main thread 부담을 줄이기 위해 idle 시 로드 */}
         <Script
           src={ADSENSE_SCRIPT_SRC}
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           crossOrigin="anonymous"
         />
         <Script

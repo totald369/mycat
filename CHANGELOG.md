@@ -83,6 +83,15 @@
 - **Prefetch**: 홈·랜딩 내부 링크 `prefetch={false}`로 초기 네트워크 부담 감소.
 - **Assets/scripts**: 배경·로고 우선순위 조정, AdSense `afterInteractive` 로드, `html-to-image` import 최적화.
 
+### Performance (Clarity CLS·INP)
+
+- **CLS**: `HomePageBelowFold`의 `content-visibility` 제거 — 스크롤 시 intrinsic size 불일치로 발생하던 레이아웃 이동 완화.
+- **CLS**: 홈 히어로 `h1` `min-h-[147px]`로 타이틀 영역 높이 예약.
+- **CLS**: `HomeCardCarouselLazy` SSR 활성화 — hydration 전후 캐러셀 영역 안정화.
+- **CLS**: Pretendard `adjustFontFallback: "Arial"` — 폰트 swap 시 텍스트 reflow 완화.
+- **CLS·INP**: `/feed-find` 로딩 시 스켈레톤 UI(`FeedFindSkeletons`) + 필터 칩 즉시 표시, `startTransition`으로 필터·검색 업데이트.
+- **INP**: AdSense 스크립트 `lazyOnload`로 변경 — 상호작용 구간 main thread 부담 감소.
+
 ## 2026-05-18
 
 ### UX (Step3)

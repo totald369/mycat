@@ -1,12 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { startTransition, useCallback, useEffect, useMemo, useState } from "react";
 
 import {
   FeedFindCard,
   FeedFindPopularChip,
 } from "@/components/feed-find/FeedFindCard";
+import {
+  FeedFindListSkeleton,
+  FeedFindPopularSkeleton,
+} from "@/components/feed-find/FeedFindSkeletons";
 import { designResource } from "@/components/design/designResourcePaths";
 import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
 import { IconSearch } from "@/components/wireframe/icons";
@@ -89,6 +93,38 @@ function FeedSearchField({
   );
 }
 
+function FeedFindChipFilters({
+  chipFilter,
+  onChipFilterChange,
+}: {
+  chipFilter: FeedFindChip;
+  onChipFilterChange: (chip: FeedFindChip) => void;
+}) {
+  return (
+    <div className="mt-3 flex shrink-0 gap-1.5 overflow-x-auto px-4 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      {FEED_FIND_CHIPS.map((chip) => {
+        const selected = chipFilter === chip;
+        return (
+          <button
+            key={chip}
+            type="button"
+            onClick={() =>
+              startTransition(() => onChipFilterChange(chip))
+            }
+            className={
+              selected
+                ? "shrink-0 rounded-lg bg-[#171717] px-3 py-2 text-sm font-semibold text-white"
+                : "shrink-0 rounded-lg border border-solid border-[#eee] bg-white px-3 py-2 text-sm font-semibold text-[#333]"
+            }
+          >
+            {chip}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 type Props = {
   onOpenDetail: (item: CatalogItem) => void;
 };
@@ -98,7 +134,7 @@ export function FeedFindPageView({ onOpenDetail }: Props) {
   const [draft, setDraft] = useState("");
   const [activeQuery, setActiveQuery] = useState("");
   const [catalog, setCatalog] = useState<CatalogItem[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [chipFilter, setChipFilter] = useState<FeedFindChip>("전체");
 
@@ -124,7 +160,7 @@ export function FeedFindPageView({ onOpenDetail }: Props) {
   }, []);
 
   const runSearch = useCallback(() => {
-    setActiveQuery(draft.trim());
+    startTransition(() => setActiveQuery(draft.trim()));
   }, [draft]);
 
   const hasSearchQuery = compactForSearch(activeQuery).length > 0;
@@ -139,10 +175,12 @@ export function FeedFindPageView({ onOpenDetail }: Props) {
     [catalog],
   );
 
-  const showPopular = !loading && !loadError && catalog.length > 0 && !hasSearchQuery;
+  const showPopular =
+    !loading && !loadError && catalog.length > 0 && !hasSearchQuery;
   const showEmpty =
     !loading && !loadError && catalog.length > 0 && filtered.length === 0;
   const showList = !loading && !loadError && filtered.length > 0;
+  const showLoadingSkeleton = loading && !loadError;
 
   return (
     <div className="flex min-h-0 flex-1 flex-col bg-white font-sans">
@@ -160,31 +198,17 @@ export function FeedFindPageView({ onOpenDetail }: Props) {
             {loadError}
           </p>
         ) : null}
-        {loading ? (
-          <p className="mt-4 px-4 text-sm text-neutral-500">불러오는 중…</p>
-        ) : null}
 
-        {!loading && !loadError && catalog.length > 0 ? (
+        {!loadError ? (
           <>
-            <div className="mt-3 flex shrink-0 gap-1.5 overflow-x-auto px-4 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {FEED_FIND_CHIPS.map((chip) => {
-                const selected = chipFilter === chip;
-                return (
-                  <button
-                    key={chip}
-                    type="button"
-                    onClick={() => setChipFilter(chip)}
-                    className={
-                      selected
-                        ? "shrink-0 rounded-lg bg-[#171717] px-3 py-2 text-sm font-semibold text-white"
-                        : "shrink-0 rounded-lg border border-solid border-[#eee] bg-white px-3 py-2 text-sm font-semibold text-[#333]"
-                    }
-                  >
-                    {chip}
-                  </button>
-                );
-              })}
-            </div>
+            <FeedFindChipFilters
+              chipFilter={chipFilter}
+              onChipFilterChange={setChipFilter}
+            />
+
+            {showLoadingSkeleton && !hasSearchQuery ? (
+              <FeedFindPopularSkeleton />
+            ) : null}
 
             {showPopular ? (
               <section
@@ -207,6 +231,10 @@ export function FeedFindPageView({ onOpenDetail }: Props) {
                   ))}
                 </div>
               </section>
+            ) : null}
+
+            {showLoadingSkeleton ? (
+              <FeedFindListSkeleton />
             ) : null}
 
             {showEmpty ? (

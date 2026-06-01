@@ -8,10 +8,9 @@ const HomeCardCarousel = dynamic(
       default: m.HomeCardCarousel,
     })),
   {
-    ssr: false,
     loading: () => (
       <div
-        className="mx-auto h-[230px] w-full max-w-[min(327px,100%)]"
+        className="mx-auto h-[230px] w-full max-w-[min(327px,100%)] overflow-hidden"
         aria-hidden
       />
     ),
