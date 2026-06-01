@@ -27,6 +27,7 @@
 - **SEO**: 동적 title/description, SSG(`generateStaticParams`).
 - **성분 CSV**: `prisma/cat_food.csv`에 `ingredients`·`nutrition_analysis` 열 추가 — 상세 페이지 등록성분량·원재료 표시.
 - **로얄캐닌 유리너리 케어**: CSV 등록(`csv-01tdJ000002FJKvQAO`) — 공식 원재료·등록성분량(단백질 33% 등), 358 kcal/100g.
+- **로얄캐닌 케어 시리즈 (클럽 ID)**: CSV 10종 등록·성분 반영 — 헤어볼·유리너리·라이트 웨이트(건·습), 헤어볼 습식, 다이제스티브(건·습), 덴탈, 헤어앤스킨. 구 numeric id(`6`·`7`) → 클럽 상품번호(`01tdJ000002FJK*`)로 교체.
 - **`FeedDetailView`**: 성분 데이터 있을 때 등록성분량·원재료 카드 렌더.
 - **`next.config.ts`**: `images.qualities` `[58, 62, 64, 68, 72]` — Next.js 16 대비·dev issue 경고 완화.
 
