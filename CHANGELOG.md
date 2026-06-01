@@ -92,6 +92,16 @@
 - **CLS·INP**: `/feed-find` 로딩 시 스켈레톤 UI(`FeedFindSkeletons`) + 필터 칩 즉시 표시, `startTransition`으로 필터·검색 업데이트.
 - **INP**: AdSense 스크립트 `lazyOnload`로 변경 — 상호작용 구간 main thread 부담 감소.
 
+### Performance (페이지 전환·로딩)
+
+- **`WizardShellBackground`**: 루트 레이아웃에 위저드 배경 단일 인스턴스 — 페이지별 `fixed` 배경 중복으로 이전 화면이 겹치던 현상 완화.
+- **`ScrollToTopOnNavigate`**: 라우트 변경 시 스크롤 초기화.
+- **body** 배경 `#fffcf9` — 배경 WebP 로드 전 흰 깜빡임 완화.
+- **Home carousel**: `HomeCardCarouselLazy` `ssr: false` 복원 — 초기 hydration 부담·전환 지연 감소.
+- **`/feed-find`**: `getFeedCatalogItems` 서버 preload — 클라이언트 fetch·스켈레톤 전환 없이 목록 즉시 표시.
+- **`useRequireWizardStep`**: `useLayoutEffect` + 렌더 차단 — step2/3 잘못된 화면 한 프레임 노출 방지.
+- **`feedCatalogServer.ts`**: `/api/feeds`와 카탈로그 로드 로직 공용화.
+
 ## 2026-05-18
 
 ### UX (Step3)

@@ -127,18 +127,23 @@ function FeedFindChipFilters({
 
 type Props = {
   onOpenDetail: (item: CatalogItem) => void;
+  initialCatalog?: CatalogItem[];
 };
 
 /** 사료 찾기 독립 페이지 — 탐색·상세·계산 연결 (팝업과 분리) */
-export function FeedFindPageView({ onOpenDetail }: Props) {
+export function FeedFindPageView({ onOpenDetail, initialCatalog }: Props) {
+  const hasServerCatalog =
+    initialCatalog !== undefined && initialCatalog.length > 0;
   const [draft, setDraft] = useState("");
   const [activeQuery, setActiveQuery] = useState("");
-  const [catalog, setCatalog] = useState<CatalogItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [catalog, setCatalog] = useState<CatalogItem[]>(initialCatalog ?? []);
+  const [loading, setLoading] = useState(!hasServerCatalog);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [chipFilter, setChipFilter] = useState<FeedFindChip>("전체");
 
   useEffect(() => {
+    if (hasServerCatalog) return;
+
     setLoading(true);
     setLoadError(null);
     fetch(FEED_FETCH_URL)
@@ -157,7 +162,7 @@ export function FeedFindPageView({ onOpenDetail }: Props) {
         setLoadError(e.message);
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [hasServerCatalog]);
 
   const runSearch = useCallback(() => {
     startTransition(() => setActiveQuery(draft.trim()));

@@ -7,7 +7,6 @@ import { FieldLabel } from "@/components/design/FieldLabel";
 import { PawPrimaryButton } from "@/components/design/PawButton";
 import { WizardBottomBar } from "@/components/design/WizardBottomBar";
 import { WizardHeader } from "@/components/design/WizardHeader";
-import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { WizardSelectedChoiceLayers } from "@/components/design/WizardSelectedChoiceLayers";
 import { WizardProgress } from "@/components/design/WizardProgress";
 import { ValidationToast } from "@/components/design/ValidationToast";
@@ -135,7 +134,6 @@ export default function Step1Page() {
     <>
       {error ? <ValidationToast message={error} /> : null}
       <div className={wizardShellClass}>
-        <WizardPageBackground priority={false} quality={62} />
         <div className={wizardPageColumnClass}>
           <WizardHeader />
           <div className={wizardContentWidthClass}>

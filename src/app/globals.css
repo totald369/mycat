@@ -23,7 +23,7 @@ html {
 }
 
 body {
-  background: var(--background);
+  background: #fffcf9;
   color: var(--foreground);
   font-family: inherit;
 }

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { FeedFindPageClient } from "@/components/feed-find/FeedFindPageClient";
 import { FeedFindSeoIntro } from "@/components/feed-find/FeedFindSeoIntro";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { getFeedCatalogItems } from "@/lib/feedCatalogServer";
 import { buildPageMetadata, buildWebPageJsonLdGraph } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
@@ -13,7 +14,8 @@ export const metadata: Metadata = buildPageMetadata({
   keywords: ["고양이 사료 찾기", "고양이 사료 칼로리", "고양이 사료 정보"],
 });
 
-export default function FeedFindPage() {
+export default async function FeedFindPage() {
+  const initialCatalog = await getFeedCatalogItems();
   const jsonLd = buildWebPageJsonLdGraph({
     path: "/feed-find",
     name: "고양이 사료 찾기",
@@ -28,7 +30,10 @@ export default function FeedFindPage() {
   return (
     <>
       <JsonLd id="feed-find-jsonld" data={jsonLd} />
-      <FeedFindPageClient intro={<FeedFindSeoIntro />} />
+      <FeedFindPageClient
+        intro={<FeedFindSeoIntro />}
+        initialCatalog={initialCatalog}
+      />
     </>
   );
 }

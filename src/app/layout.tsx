@@ -5,6 +5,8 @@ import { ADSENSE_SCRIPT_SRC } from "@/constants/googleAdSense";
 import { GA_MEASUREMENT_ID } from "@/constants/googleAnalytics";
 import { CLARITY_PROJECT_ID } from "@/constants/microsoftClarity";
 import { buildRootMetadata } from "@/lib/seo";
+import { WizardShellBackground } from "@/components/design/WizardShellBackground";
+import { ScrollToTopOnNavigate } from "@/components/navigation/ScrollToTopOnNavigate";
 import "./globals.css";
 
 /** Pretendard subset woff2 — UI에 쓰는 굵기만 (피그마와 동일 스택, next/font로 FOIT 완화) */
@@ -64,6 +66,8 @@ export default function RootLayout({
   return (
     <html lang="ko" className={pretendard.variable}>
       <body className="font-sans antialiased">
+        <WizardShellBackground />
+        <ScrollToTopOnNavigate />
         {children}
         {/* Google AdSense — 상호작용 구간 main thread 부담을 줄이기 위해 idle 시 로드 */}
         <Script

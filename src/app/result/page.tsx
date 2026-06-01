@@ -10,7 +10,6 @@ import {
 } from "@/components/design/PawButton";
 import { WizardBottomBar } from "@/components/design/WizardBottomBar";
 import { WizardHeader } from "@/components/design/WizardHeader";
-import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { FEED_CATALOG_PREFETCH_KEY } from "@/lib/feedCatalogPrefetch";
 import { requestShortShareLink } from "@/lib/requestShortShareLink";
 import { resolveShareShortId } from "@/lib/shareShortId";
@@ -350,7 +349,6 @@ export default function ResultPage() {
 
   return (
     <div className={wizardShellClassResult}>
-      <WizardPageBackground />
       <div className={wizardPageColumnClass}>
         <WizardHeader
           trailing={

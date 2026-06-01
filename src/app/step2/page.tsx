@@ -11,7 +11,6 @@ import {
 } from "@/components/design/PawButton";
 import { WizardBottomBar } from "@/components/design/WizardBottomBar";
 import { WizardHeader } from "@/components/design/WizardHeader";
-import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { WizardSelectedChoiceLayers } from "@/components/design/WizardSelectedChoiceLayers";
 import { WizardProgress } from "@/components/design/WizardProgress";
 import { BCS_LABEL_TO_ICON } from "@/components/design/designResourcePaths";
@@ -46,7 +45,7 @@ export default function Step2Page() {
   const [activity, setActivity] = useState<string>("보통");
   const [hydrated, setHydrated] = useState(false);
 
-  useRequireWizardStep(2);
+  const ready = useRequireWizardStep(2);
 
   useEffect(() => {
     const s = readWizardState().step2;
@@ -96,10 +95,13 @@ export default function Step2Page() {
     );
   };
 
+  if (!ready) {
+    return null;
+  }
+
   return (
     <>
       <div className={wizardShellClass}>
-        <WizardPageBackground priority={false} quality={62} />
         <div className={wizardPageColumnClassBarTall}>
           <WizardHeader />
           <div className={wizardContentWidthClass}>

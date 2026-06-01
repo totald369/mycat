@@ -1,82 +1,18 @@
 import { NextResponse } from "next/server";
-import { loadFeedCatalogFromCatFoodCsv } from "@/lib/catFoodCsv";
-import { prisma } from "@/lib/prisma";
+import { getFeedCatalogItems } from "@/lib/feedCatalogServer";
 
 /** 정적에 가까운 카탈로그 — CDN·브라우저 캐시로 반복 요청 비용 감소 */
 const FEEDS_CACHE_CONTROL =
   "public, s-maxage=300, stale-while-revalidate=3600";
 
-function feedListLabel(displayLabel: string, nameKo: string | null): string {
-  const ko = nameKo?.trim();
-  if (!ko) return displayLabel;
-  return `${ko} (${displayLabel})`;
-}
-
-async function feedsFromDb() {
-  const rows = await prisma.feedProduct.findMany({
-    where: { kcalPer100g: { not: null } },
-    orderBy: { displayLabel: "asc" },
-    select: {
-      id: true,
-      apiId: true,
-      brand: true,
-      name: true,
-      displayLabel: true,
-      nameKo: true,
-      kcalPer100g: true,
-      feedKind: true,
-      servingGrams: true,
-      category: true,
-      feedCondition: true,
-      lifeStage: true,
-    },
-  });
-
-  return rows.map((r) => {
-    const feedKind = r.feedKind.trim();
-    const rawType =
-      feedKind === "습식" ? "wet" : feedKind === "건식" ? "dry" : feedKind;
-
-    return {
-      id: r.id,
-      apiId: r.apiId,
-      brand: r.brand,
-      name: r.name,
-      displayLabel: r.displayLabel,
-      nameKo: r.nameKo,
-      label: feedListLabel(r.displayLabel, r.nameKo),
-      kcalPer100g: r.kcalPer100g,
-      feedKind: r.feedKind,
-      servingGrams: r.servingGrams,
-      category: r.category,
-      feedCondition: r.feedCondition,
-      lifeStage: r.lifeStage,
-      rawType,
-    };
-  });
-}
-
 export async function GET() {
-  const fromCsv = loadFeedCatalogFromCatFoodCsv();
-  if (fromCsv.length > 0) {
+  const items = await getFeedCatalogItems();
+
+  if (items.length > 0) {
     return NextResponse.json(
-      { items: fromCsv },
+      { items },
       { headers: { "Cache-Control": FEEDS_CACHE_CONTROL } },
     );
-  }
-
-  if (process.env.DATABASE_URL) {
-    try {
-      const items = await feedsFromDb();
-      if (items.length > 0) {
-        return NextResponse.json(
-          { items },
-          { headers: { "Cache-Control": FEEDS_CACHE_CONTROL } },
-        );
-      }
-    } catch (e) {
-      console.warn("[api/feeds] DB 급여 로드 실패:", e);
-    }
   }
 
   return NextResponse.json(

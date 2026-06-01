@@ -98,7 +98,7 @@ export default function Step3Page() {
   const feedSectionRef = useRef<HTMLDivElement>(null);
   const snackSectionRef = useRef<HTMLDivElement>(null);
 
-  useRequireWizardStep(3);
+  const ready = useRequireWizardStep(3);
 
   useEffect(() => {
     const s = readWizardState().step3;
@@ -281,6 +281,10 @@ export default function Step3Page() {
     return () => clearTimeout(timer);
   }, [resultError]);
 
+  if (!ready) {
+    return null;
+  }
+
   return (
     <>
       {resultError ? <ValidationToast message={resultError} /> : null}
@@ -328,7 +332,6 @@ export default function Step3Page() {
       ) : null}
 
       <div className={wizardShellClass}>
-        <WizardPageBackground priority={false} quality={62} />
         <div className={wizardPageColumnClassBarTall}>
           <WizardHeader />
           <div className={wizardContentWidthClass}>

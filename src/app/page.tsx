@@ -1,7 +1,6 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { WizardHeader } from "@/components/design/WizardHeader";
-import { WizardPageBackground } from "@/components/design/WizardPageBackground";
 import { DESIGN_RESOURCE_PX, designResource } from "@/components/design/designResourcePaths";
 import { PawPrimaryLink } from "@/components/design/PawButton";
 import { HomeCardCarouselLazy } from "@/components/home/HomeCardCarouselLazy";
@@ -36,8 +35,6 @@ export default function IntroPage() {
     <>
       <JsonLd id="home-jsonld" data={buildHomeJsonLdGraph()} />
       <main className={wizardShellHomeClass}>
-        <WizardPageBackground priority={false} quality={58} />
-
         <WizardHeader />
 
         <div

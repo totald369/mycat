@@ -10,10 +10,11 @@ import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
 
 type Props = {
   intro?: ReactNode;
+  initialCatalog?: CatalogItem[];
 };
 
 /** 피그마 사료 찾기(321:91) — 공통 헤더 + 탐색형 사료 목록 */
-export function FeedFindPageClient({ intro }: Props) {
+export function FeedFindPageClient({ intro, initialCatalog }: Props) {
   const router = useRouter();
 
   const goToFeedDetail = (item: CatalogItem) => {
@@ -27,7 +28,10 @@ export function FeedFindPageClient({ intro }: Props) {
         className={`flex min-h-0 flex-1 flex-col ${wizardHeaderOffsetClass}`}
       >
         {intro}
-        <FeedFindPageView onOpenDetail={goToFeedDetail} />
+        <FeedFindPageView
+          onOpenDetail={goToFeedDetail}
+          initialCatalog={initialCatalog}
+        />
       </div>
     </main>
   );
