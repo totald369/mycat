@@ -35,6 +35,15 @@ const BRAND_SLUGS: Record<string, string> = {
   네이처스버라이어티: "natures-variety",
   후새: "fussie-cat",
   아투: "aatu",
+  ANF: "anf",
+  뉴트로: "nutro",
+  게더: "gather",
+  케어캣: "carecat",
+  "CP클래식": "cp-classic",
+  데일리딜라이트: "daily-delight",
+  런치: "lunch",
+  사조: "sajo",
+  옵티원: "opti-one",
 };
 
 /** 제품명 토큰 — 긴 구문 우선 매칭 */
@@ -130,6 +139,26 @@ const PRODUCT_TERM_SLUGS = [
   ["오리", "duck"],
   ["돼지", "pork"],
   ["프로", "pro"],
+  ["테이스티믹스", "tasty-mix"],
+  ["비타플러스", "vita-plus"],
+  ["생생닭고기", "fresh-chicken"],
+  ["저요저요", "juyojuyo"],
+  ["로우코티드", "raw-coated"],
+  ["메리타임", "meritime"],
+  ["6free", "6free"],
+  ["올라이프", "all-life"],
+  ["프리에이커", "freeacke"],
+  ["포켓", "pocket"],
+  ["오션피쉬", "ocean-fish"],
+  ["치킨리버", "chicken-liver"],
+  ["게맛살", "crab-stick"],
+  ["씨푸드", "seafood"],
+  ["칵테일", "cocktail"],
+  ["미역", "seaweed"],
+  ["당근", "carrot"],
+  ["부스트캔", "boost-can"],
+  ["셰프스페셜", "chef-special"],
+  ["흰살참치", "white-tuna"],
 ] as [string, string][];
 
 const SORTED_TERMS = [...PRODUCT_TERM_SLUGS].sort(
