@@ -7,6 +7,7 @@
 - **`/foods/[slug]`**: SEO URL (`royal-canin-indoor` 등). 레거시 `/foods/csv-*` → slug **301** 리다이렉트.
 - **`/foods`**: 브랜드·연령·유형별 HTML 링크 목록, sitemap·WebPage+Article JSON-LD·성분 해석·내부링크.
 - **사료 상세 JSON-LD**: Product → WebPage + Article (정보 제공 페이지, Product Rich Result·offers 오류 회피).
+- **습식·건식 추가 3 (어바웃펫 ID)**: CSV 13종 — 알모네이처 젤리·참치&새우 캔, 인디고 헤어볼·유리너리, 하림 더리얼 5.8kg, NV Instinct LID 칠면토, 후새·아투·now·로우즈 밀프리 건식. 후새·하림 건식 ME 미표기는 성분 기반 추정.
 
 ### Navigation (메뉴 레이어)
 
