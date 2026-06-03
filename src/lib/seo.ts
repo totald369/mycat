@@ -354,8 +354,9 @@ export function buildWebPageJsonLdGraph(options: {
   };
 }
 
-export type FeedProductJsonLdInput = {
+export type FeedDetailJsonLdInput = {
   path: string;
+  headline: string;
   name: string;
   brand: string;
   description: string;
@@ -366,42 +367,55 @@ export type FeedProductJsonLdInput = {
   feedKind: string;
 };
 
-export function buildFeedProductJsonLdGraph(
-  input: FeedProductJsonLdInput,
-): Record<string, unknown> {
-  const additionalProperty: Array<{
-    "@type": "PropertyValue";
-    name: string;
-    value: string;
-  }> = [
-    {
-      "@type": "PropertyValue",
-      name: "100g당 칼로리",
-      value: `${input.kcalPer100g} kcal`,
-    },
-  ];
+function buildFeedNutritionProperties(
+  input: FeedDetailJsonLdInput,
+): Array<{ "@type": "PropertyValue"; name: string; value: string }> {
+  const props: Array<{ "@type": "PropertyValue"; name: string; value: string }> =
+    [
+      {
+        "@type": "PropertyValue",
+        name: "100g당 칼로리",
+        value: `${input.kcalPer100g} kcal`,
+      },
+      {
+        "@type": "PropertyValue",
+        name: "사료 유형",
+        value: input.feedKind,
+      },
+    ];
 
   if (input.proteinPercent != null) {
-    additionalProperty.push({
+    props.push({
       "@type": "PropertyValue",
       name: "조단백",
       value: `${input.proteinPercent}%`,
     });
   }
   if (input.fatPercent != null) {
-    additionalProperty.push({
+    props.push({
       "@type": "PropertyValue",
       name: "조지방",
       value: `${input.fatPercent}%`,
     });
   }
   if (input.fiberPercent != null) {
-    additionalProperty.push({
+    props.push({
       "@type": "PropertyValue",
       name: "조섬유",
       value: `${input.fiberPercent}%`,
     });
   }
+
+  return props;
+}
+
+/** 사료 상세 — 정보 제공 페이지용 WebPage + Article (Product Rich Result 미대상) */
+export function buildFeedDetailJsonLdGraph(
+  input: FeedDetailJsonLdInput,
+): Record<string, unknown> {
+  const pageUrl = absoluteUrl(input.path);
+  const pageId = `${pageUrl}#webpage`;
+  const articleId = `${pageUrl}#article`;
 
   return {
     "@context": "https://schema.org",
@@ -413,26 +427,35 @@ export function buildFeedProductJsonLdGraph(
         url: SITE_URL,
       },
       {
-        "@type": "Product",
-        "@id": `${absoluteUrl(input.path)}#product`,
-        name: input.name,
+        "@type": "WebPage",
+        "@id": pageId,
+        url: pageUrl,
+        name: input.headline,
         description: input.description,
-        brand: {
-          "@type": "Brand",
-          name: input.brand,
-        },
-        category: input.feedKind,
-        additionalProperty,
-        isRelatedTo: {
-          "@type": "WebPage",
-          "@id": absoluteUrl(input.path),
+        inLanguage: "ko-KR",
+        isPartOf: { "@id": WEBSITE_ID },
+        publisher: { "@id": ORGANIZATION_ID },
+        mainEntity: { "@id": articleId },
+      },
+      {
+        "@type": "Article",
+        "@id": articleId,
+        headline: input.headline,
+        description: input.description,
+        inLanguage: "ko-KR",
+        author: { "@id": ORGANIZATION_ID },
+        publisher: { "@id": ORGANIZATION_ID },
+        mainEntityOfPage: { "@id": pageId },
+        about: {
+          "@type": "Thing",
+          name: input.name,
+          brand: {
+            "@type": "Brand",
+            name: input.brand,
+          },
+          additionalProperty: buildFeedNutritionProperties(input),
         },
       },
-      buildWebPageJsonLd({
-        path: input.path,
-        name: input.name,
-        description: input.description,
-      }),
       buildBreadcrumbJsonLd([
         { name: "홈", path: "/" },
         { name: "사료 목록", path: "/foods" },

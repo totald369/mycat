@@ -12,8 +12,8 @@ import {
   resolveFeedRouteParam,
 } from "@/lib/feedDetail";
 import {
+  buildFeedDetailJsonLdGraph,
   buildFeedDetailMetadata,
-  buildFeedProductJsonLdGraph,
   buildPageMetadata,
 } from "@/lib/seo";
 import {
@@ -73,8 +73,10 @@ export default async function FoodDetailPage({ params }: PageProps) {
   const fat = metrics.find((m) => m.label === "조지방")?.value ?? null;
   const fiber = metrics.find((m) => m.label === "조섬유")?.value ?? null;
 
-  const jsonLd = buildFeedProductJsonLdGraph({
+  const pageHeadline = `${productName} 성분 분석`;
+  const jsonLd = buildFeedDetailJsonLdGraph({
     path: pagePath,
+    headline: pageHeadline,
     name: productName,
     brand: feed.brand,
     description: pageDescription,

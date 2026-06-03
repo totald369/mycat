@@ -5,7 +5,8 @@
 ### SEO — 사료 상세 URL·메타·구조화 데이터
 
 - **`/foods/[slug]`**: SEO URL (`royal-canin-indoor` 등). 레거시 `/foods/csv-*` → slug **301** 리다이렉트.
-- **`/foods`**: 브랜드·연령·유형별 HTML 링크 목록, sitemap·Product JSON-LD·성분 해석·내부링크.
+- **`/foods`**: 브랜드·연령·유형별 HTML 링크 목록, sitemap·WebPage+Article JSON-LD·성분 해석·내부링크.
+- **사료 상세 JSON-LD**: Product → WebPage + Article (정보 제공 페이지, Product Rich Result·offers 오류 회피).
 
 ### Navigation (메뉴 레이어)
 
