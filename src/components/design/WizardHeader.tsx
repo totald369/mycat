@@ -6,6 +6,7 @@ import Image from "next/image";
 
 import { AppLogo } from "@/components/design/AppLogo";
 import { designResource } from "@/components/design/designResourcePaths";
+import { IMAGE_ALT } from "@/constants/imageAlt";
 import { SiteMenuLayer } from "@/components/design/SiteMenuLayer";
 
 type WizardHeaderProps = {
@@ -39,7 +40,7 @@ function HeaderMenuButton({
     >
       <Image
         src={designResource.iconMenu}
-        alt=""
+        alt={IMAGE_ALT.menu}
         width={24}
         height={24}
         className="size-6 object-contain"

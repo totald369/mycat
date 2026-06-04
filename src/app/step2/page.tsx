@@ -22,6 +22,7 @@ import {
 } from "@/components/design/wizardLayoutClasses";
 import { wizardChoiceClass } from "@/components/design/wizardFieldClasses";
 import { DISPLAY_BUTTON, DISPLAY_TITLE } from "@/constants/displayTextSvg";
+import { bcsIconAlt } from "@/constants/imageAlt";
 import { isStep1Complete, useRequireWizardStep } from "@/lib/wizardFlow";
 import { patchWizardState, readWizardState } from "@/lib/wizardStorage";
 
@@ -77,13 +78,12 @@ export default function Step2Page() {
         <span className="relative z-10 flex w-full flex-col items-center gap-4 px-3 pb-4 pt-5 min-[360px]:px-6 min-[360px]:pt-6">
           <Image
             src={BCS_LABEL_TO_ICON[label as keyof typeof BCS_LABEL_TO_ICON]}
-            alt=""
+            alt={bcsIconAlt(label)}
             width={106}
             height={72}
             unoptimized
             draggable={false}
             className="h-[72px] w-[106px] shrink-0 object-contain"
-            aria-hidden
           />
           <span
             className={`text-center text-base ${selected ? "font-bold" : "font-medium"}`}
@@ -110,7 +110,7 @@ export default function Step2Page() {
               <h1>
                 <Image
                   src={DISPLAY_TITLE.step2.src}
-                  alt="Step 2 활동/체형"
+                  alt={DISPLAY_TITLE.step2.alt}
                   width={DISPLAY_TITLE.step2.width}
                   height={DISPLAY_TITLE.step2.height}
                   className="h-auto w-auto object-contain"

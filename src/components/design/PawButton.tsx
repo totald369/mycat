@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { designResource } from "@/components/design/designResourcePaths";
 import type { DisplaySvgText } from "@/constants/displayTextSvg";
+import { IMAGE_ALT } from "@/constants/imageAlt";
 
 /** `none`: 가로 전체(주황 PP100 / 보조는 SP 좌·우 합성). `leading`|`trailing`: 분할 행 한 칸. */
 export type PawHalf = "none" | "leading" | "trailing";
@@ -40,7 +41,7 @@ function PawLabel({
       {labelSvg ? (
         <Image
           src={labelSvg.src}
-          alt=""
+          alt={labelSvg.alt}
           aria-hidden
           width={labelSvg.width}
           height={labelSvg.height}
@@ -78,7 +79,7 @@ function FigmaPaw({
     return (
       <Image
         src={designResource.pawPrimaryFull}
-        alt=""
+        alt={IMAGE_ALT.pawButton}
         aria-hidden
         fill
         unoptimized
@@ -93,7 +94,7 @@ function FigmaPaw({
     return (
       <Image
         src={designResource.pawPrimaryLeading}
-        alt=""
+        alt={IMAGE_ALT.pawButton}
         aria-hidden
         fill
         unoptimized
@@ -108,7 +109,7 @@ function FigmaPaw({
     return (
       <Image
         src={designResource.pawPrimaryTrailing}
-        alt=""
+        alt={IMAGE_ALT.pawButton}
         aria-hidden
         fill
         unoptimized
@@ -123,7 +124,7 @@ function FigmaPaw({
     return (
       <Image
         src={designResource.pawSecondaryLeading}
-        alt=""
+        alt={IMAGE_ALT.pawButton}
         aria-hidden
         fill
         unoptimized
@@ -138,7 +139,7 @@ function FigmaPaw({
     return (
       <Image
         src={designResource.pawSecondaryTrailing}
-        alt=""
+        alt={IMAGE_ALT.pawButton}
         aria-hidden
         fill
         unoptimized
@@ -155,7 +156,7 @@ function FigmaPaw({
       <div className="relative h-full min-h-0 w-1/2">
         <Image
           src={designResource.pawSecondaryLeading}
-          alt=""
+          alt={IMAGE_ALT.pawButton}
           aria-hidden
           fill
           unoptimized
@@ -167,7 +168,7 @@ function FigmaPaw({
       <div className="relative h-full min-h-0 w-1/2">
         <Image
           src={designResource.pawSecondaryTrailing}
-          alt=""
+          alt={IMAGE_ALT.pawButton}
           aria-hidden
           fill
           unoptimized

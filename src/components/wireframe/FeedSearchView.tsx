@@ -9,6 +9,7 @@ import {
   wizardModalPanelClass,
 } from "@/components/design/wizardLayoutClasses";
 import { FEED_REQUEST_HREF } from "@/constants/feedRequest";
+import { IMAGE_ALT } from "@/constants/imageAlt";
 import { IconBack, IconSearch } from "@/components/wireframe/icons";
 import {
   catalogSearchBlob,
@@ -70,7 +71,7 @@ function FeedRequestWoodAnchor({ href }: { href: string }) {
       <span className="absolute inset-0 bg-[#6f4425]" aria-hidden />
       <Image
         src={designResource.selectedChoiceTexture}
-        alt=""
+        alt={IMAGE_ALT.selectedTexture}
         fill
         className="pointer-events-none object-cover opacity-20"
         sizes="242px"
@@ -95,7 +96,7 @@ function FeedSearchIdleBlock({
       <div className="flex flex-col items-center gap-2">
         <Image
           src="/design-resource/icon/Ic_88_empty.svg"
-          alt=""
+          alt={IMAGE_ALT.emptySearch}
           width={88}
           height={88}
           className="shrink-0"
@@ -263,7 +264,7 @@ function FeedSearchBody({
                   <div className="flex flex-col items-center gap-2">
                     <Image
                       src="/design-resource/icon/Ic_88_empty.svg"
-                      alt=""
+                      alt={IMAGE_ALT.emptySearch}
                       width={88}
                       height={88}
                       className="shrink-0"

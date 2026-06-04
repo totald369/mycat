@@ -15,6 +15,7 @@ import { designResource } from "@/components/design/designResourcePaths";
 import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
 import { IconSearch } from "@/components/wireframe/icons";
 import { FEED_REQUEST_HREF } from "@/constants/feedRequest";
+import { IMAGE_ALT } from "@/constants/imageAlt";
 import {
   FEED_FIND_CHIPS,
   filterCatalogByChip,
@@ -42,7 +43,7 @@ function FeedRequestWoodAnchor({ href }: { href: string }) {
       <span className="absolute inset-0 bg-[#6f4425]" aria-hidden />
       <Image
         src={designResource.selectedChoiceTexture}
-        alt=""
+        alt={IMAGE_ALT.selectedTexture}
         fill
         className="pointer-events-none object-cover opacity-20"
         sizes="280px"
@@ -246,7 +247,7 @@ export function FeedFindPageView({ onOpenDetail, initialCatalog }: Props) {
               <div className="flex flex-col items-center gap-5 px-6 py-10">
                 <Image
                   src="/design-resource/icon/Ic_88_empty.svg"
-                  alt=""
+                  alt={IMAGE_ALT.emptySearch}
                   width={88}
                   height={88}
                   unoptimized

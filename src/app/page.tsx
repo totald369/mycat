@@ -6,6 +6,7 @@ import { PawPrimaryLink } from "@/components/design/PawButton";
 import { HomeCardCarouselLazy } from "@/components/home/HomeCardCarouselLazy";
 import { HomePageBelowFold } from "@/components/home/HomePageBelowFold";
 import { DISPLAY_BUTTON, DISPLAY_TITLE } from "@/constants/displayTextSvg";
+import { IMAGE_ALT } from "@/constants/imageAlt";
 import {
   wizardHeaderOffsetClass,
   wizardShellHomeClass,
@@ -48,7 +49,7 @@ export default function IntroPage() {
               <span className="flex items-end justify-center gap-1" aria-hidden>
                 <Image
                   src={DISPLAY_TITLE.homeLine1Left.src}
-                  alt=""
+                  alt={DISPLAY_TITLE.homeLine1Left.alt}
                   width={DISPLAY_TITLE.homeLine1Left.width}
                   height={DISPLAY_TITLE.homeLine1Left.height}
                   className="h-auto w-auto object-contain"
@@ -59,7 +60,7 @@ export default function IntroPage() {
                 />
                 <Image
                   src={designResource.catImg}
-                  alt=""
+                  alt={IMAGE_ALT.catIllustration}
                   width={iw}
                   height={ih}
                   className="shrink-0 object-contain"
@@ -72,7 +73,7 @@ export default function IntroPage() {
                 />
                 <Image
                   src={DISPLAY_TITLE.homeLine1Right.src}
-                  alt=""
+                  alt={DISPLAY_TITLE.homeLine1Right.alt}
                   width={DISPLAY_TITLE.homeLine1Right.width}
                   height={DISPLAY_TITLE.homeLine1Right.height}
                   className="h-auto w-auto object-contain"
@@ -84,7 +85,7 @@ export default function IntroPage() {
               </span>
               <Image
                 src={DISPLAY_TITLE.homeLine2.src}
-                alt=""
+                alt={DISPLAY_TITLE.homeLine2.alt}
                 width={DISPLAY_TITLE.homeLine2.width}
                 height={DISPLAY_TITLE.homeLine2.height}
                 className="mx-auto mt-1 h-auto w-auto max-w-full object-contain"

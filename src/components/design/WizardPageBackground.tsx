@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { designResource } from "@/components/design/designResourcePaths";
+import { IMAGE_ALT } from "@/constants/imageAlt";
 
 /** `fullscreen`: 레이아웃 뷰포트 고정 배경 · `contain`: 부모 오버레이 안에만 덮음(계산 중 풀스크린 등) */
 type WizardPageBackgroundPlacement = "fullscreen" | "contain";
@@ -27,7 +28,7 @@ export function WizardPageBackground({
     <div className={wrapClass} aria-hidden>
       <Image
         src={designResource.background}
-        alt=""
+        alt={IMAGE_ALT.pageBackground}
         fill
         className="object-cover object-center"
         sizes="100vw"

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { designResource } from "@/components/design/designResourcePaths";
+import { IMAGE_ALT } from "@/constants/imageAlt";
 
 /**
  * 피그마: 브라운(#6f4425) fill + 선택 텍스처(WebP) 덮은 뒤 콘텐츠는 `relative z-10`.
@@ -14,7 +15,7 @@ export function WizardSelectedChoiceLayers() {
       <span className="absolute inset-0 bg-[#6f4425]" />
       <Image
         src={designResource.selectedChoiceTexture}
-        alt=""
+        alt={IMAGE_ALT.selectedTexture}
         fill
         className="object-cover object-center"
         sizes="200px"

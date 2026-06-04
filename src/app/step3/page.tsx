@@ -18,6 +18,7 @@ import { WizardSelectedChoiceLayers } from "@/components/design/WizardSelectedCh
 import { WizardProgress } from "@/components/design/WizardProgress";
 import { ValidationToast } from "@/components/design/ValidationToast";
 import { designResource } from "@/components/design/designResourcePaths";
+import { IMAGE_ALT } from "@/constants/imageAlt";
 import {
   wizardBlockWidthClass,
   wizardContentWidthClass,
@@ -317,7 +318,7 @@ export default function Step3Page() {
               <div className="w-full text-center text-[1.75rem] leading-none text-[#111] min-[360px]:text-[2rem]">
                 <Image
                   src={DISPLAY_TITLE.step3Calculating.src}
-                  alt="칼로리를 계산하고 있습니다..."
+                  alt={DISPLAY_TITLE.step3Calculating.alt}
                   width={DISPLAY_TITLE.step3Calculating.width}
                   height={DISPLAY_TITLE.step3Calculating.height}
                   className="mx-auto h-auto w-auto max-w-full object-contain"
@@ -340,7 +341,7 @@ export default function Step3Page() {
               <h1>
                 <Image
                   src={DISPLAY_TITLE.step3.src}
-                  alt="Step 3 급여정보"
+                  alt={DISPLAY_TITLE.step3.alt}
                   width={DISPLAY_TITLE.step3.width}
                   height={DISPLAY_TITLE.step3.height}
                   className="h-auto w-auto object-contain"
@@ -459,7 +460,7 @@ export default function Step3Page() {
                             />
                             <Image
                               src={designResource.selectedChoiceTexture}
-                              alt=""
+                              alt={IMAGE_ALT.selectedTexture}
                               fill
                               className="rounded-lg object-cover opacity-20"
                               sizes="(max-width: 400px) 92vw, 360px"

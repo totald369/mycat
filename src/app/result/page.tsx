@@ -37,6 +37,7 @@ import {
 import { RESULT_HERO_IMAGE } from "@/constants/resultHeroImages";
 import { SESSION_SHOW_RESULT_COMPLETE_SPLASH } from "@/constants/resultNavigation";
 import { DISPLAY_BUTTON, DISPLAY_TITLE } from "@/constants/displayTextSvg";
+import { IMAGE_ALT, resultHeroAlt } from "@/constants/imageAlt";
 
 const CheckCatLottie = dynamic(
   () =>
@@ -365,7 +366,7 @@ export default function ResultPage() {
                     {/* eslint-disable-next-line @next/next/no-img-element -- html-to-image 캡처 호환 */}
                     <img
                       src={designResource.imageDownTouchArea}
-                      alt=""
+                      alt={IMAGE_ALT.saveResult}
                       width={48}
                       height={48}
                       className="block h-[48px] w-[48px] max-w-none shrink-0 object-contain"
@@ -419,7 +420,7 @@ export default function ResultPage() {
             <p className="text-center text-[1.875rem] leading-none text-[#111] min-[360px]:text-[2.5rem]">
               <Image
                 src={DISPLAY_TITLE.resultComplete.src}
-                alt="계산 완료"
+                alt={DISPLAY_TITLE.resultComplete.alt}
                 width={DISPLAY_TITLE.resultComplete.width}
                 height={DISPLAY_TITLE.resultComplete.height}
                 className="mx-auto h-auto w-auto object-contain"
@@ -440,7 +441,7 @@ export default function ResultPage() {
                 {/* eslint-disable-next-line @next/next/no-img-element -- html-to-image 캡처 시 Next/Image 투명 WebP가 검은색으로 깨지는 이슈 방지 */}
                 <img
                   src={RESULT_HERO_IMAGE[success.status]}
-                  alt=""
+                  alt={resultHeroAlt(statusHeadline(success.status))}
                   width={528}
                   height={657}
                   className="h-full w-full object-contain object-bottom"
@@ -457,8 +458,7 @@ export default function ResultPage() {
                         {/* eslint-disable-next-line @next/next/no-img-element -- 모바일 html-to-image 캡처 시 SVG 안정성 확보 */}
                         <img
                           src={headlineSvg.src}
-                          alt=""
-                          aria-hidden
+                          alt={headlineSvg.alt}
                           width={headlineSvg.width}
                           height={headlineSvg.height}
                           className="mx-auto h-auto w-auto max-w-full object-contain"

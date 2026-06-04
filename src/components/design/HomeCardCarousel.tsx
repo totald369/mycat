@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { InfiniteMarquee } from "@/components/ui/InfiniteMarquee";
 import { DISPLAY_CARD } from "@/constants/displayTextSvg";
+import { featureIconAlt } from "@/constants/imageAlt";
 import { HOME_FEATURE_CARDS } from "@/data/homeFeatureCards";
 
 export function HomeCardCarousel() {
@@ -29,7 +30,7 @@ export function HomeCardCarousel() {
           >
             <Image
               src={c.icon}
-              alt=""
+              alt={featureIconAlt(c.title)}
               width={64}
               height={64}
               className="h-16 w-16 object-contain"
@@ -45,7 +46,7 @@ export function HomeCardCarousel() {
             <h2 className="shrink-0 text-xl leading-5 text-[#2f342a]">
               <Image
                 src={titleSvgById[c.id].src}
-                alt={c.title}
+                alt={titleSvgById[c.id].alt}
                 width={titleSvgById[c.id].width}
                 height={titleSvgById[c.id].height}
                 className="mx-auto h-auto w-auto object-contain"

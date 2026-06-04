@@ -142,7 +142,7 @@ export default function Step1Page() {
               <h1>
                 <Image
                   src={DISPLAY_TITLE.step1.src}
-                  alt="Step 1 기본정보"
+                  alt={DISPLAY_TITLE.step1.alt}
                   width={DISPLAY_TITLE.step1.width}
                   height={DISPLAY_TITLE.step1.height}
                   className="h-auto w-auto object-contain"

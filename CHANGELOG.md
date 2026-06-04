@@ -2,6 +2,12 @@
 
 ## 2026-06-04
 
+### SEO — 이미지 alt 속성
+
+- **`imageAlt.ts`**: 공통 alt 상수·`bcsIconAlt`·`resultHeroAlt`·`featureIconAlt` 헬퍼 추가.
+- **`displayTextSvg.ts`**: SVG 타이틀·버튼·카드에 `alt` 필드 정의.
+- **전 페이지·컴포넌트**: 홈·step1~3·result·feed-find 등 `<Image>`/`<img>` 빈 `alt=""` → 의미 있는 설명으로 교체(SEO 검사 대응).
+
 ### Feed catalog (사료 CSV)
 
 - **퓨어네이쳐 캣 치킨 2kg** (`CP7292214927`): 쿠팡 상품 기준 등록, [공식몰 캣 치킨](https://purenature.kr/product/%ED%93%A8%EC%96%B4%EB%84%A4%EC%9D%B4%EC%B3%90-%EC%BA%A3-%EC%B9%98%ED%82%A8-5kg/53/) 원료·등록성분량·ME 3,595 kcal/kg(360 kcal/100g) 반영.
