@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-06-04
+
+### Feed catalog (사료 CSV)
+
+- **퓨어네이쳐 캣 치킨 2kg** (`CP7292214927`): 쿠팡 상품 기준 등록, [공식몰 캣 치킨](https://purenature.kr/product/%ED%93%A8%EC%96%B4%EB%84%A4%EC%9D%B4%EC%B3%90-%EC%BA%A3-%EC%B9%98%ED%82%A8-5kg/53/) 원료·등록성분량·ME 3,595 kcal/kg(360 kcal/100g) 반영.
+
 ## 2026-05-26
 
 ### SEO — 사료 상세 URL·메타·구조화 데이터
