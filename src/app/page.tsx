@@ -18,13 +18,13 @@ import {
 } from "@/lib/seo";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "고양이 급여량 계산기 — 하루 사료량·칼로리 계산 | 우리냥이맘마",
+  title: "고양이 사료, 하루에 얼마나 줘야 할까? | 우리냥이맘마 급여량 계산기",
   description:
-    "고양이 체중, 활동량, 체형, 사료 칼로리를 기준으로 하루 급여량과 현재 섭취 칼로리를 계산해보세요.",
+    "우리 아이 사료량이 적당한지 궁금하다면 체중, 활동량, 체형, 사료 칼로리 기준으로 하루 급여량을 확인해보세요.",
   path: "/",
   keywords: ["고양이 급여량 계산기", "고양이 사료 급여량", "고양이 하루 사료 양"],
   ogDescription:
-    "고양이 체중·활동량·사료 칼로리로 하루 급여량을 계산해보세요.",
+    "체중·활동량·사료 칼로리로 하루 급여량을 계산해보세요.",
 });
 
 export default function IntroPage() {

@@ -2,10 +2,8 @@ import Link from "next/link";
 import { SiteFooter } from "@/components/design/SiteFooter";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SeoFaqSection } from "@/components/seo/SeoFaqSection";
-import {
-  SEO_LANDING_PAGES,
-  type SeoLandingPageData,
-} from "@/lib/seoLandingPages";
+import { SeoInternalLinksSection } from "@/components/seo/SeoInternalLinksSection";
+import { type SeoLandingPageData } from "@/lib/seoLandingPages";
 import { buildLandingJsonLdGraph } from "@/lib/seo";
 
 type Props = {
@@ -13,7 +11,12 @@ type Props = {
 };
 
 export function SeoLandingPage({ page }: Props) {
-  const related = SEO_LANDING_PAGES.filter((item) => item.path !== page.path);
+  const guideHref =
+    page.path.includes("칼로리") || page.path.includes("간식")
+      ? "/calorie-guide"
+      : "/feeding-guide";
+  const guideLabel =
+    guideHref === "/calorie-guide" ? "칼로리 가이드" : "급여 가이드";
 
   return (
     <>
@@ -56,11 +59,11 @@ export function SeoLandingPage({ page }: Props) {
                 고양이 급여량 계산기 시작
               </Link>
               <Link
-                href="/"
+                href={guideHref}
                 prefetch={false}
                 className="rounded-lg border border-[#dedee0] bg-white px-4 py-2.5 text-sm font-semibold text-[#171717]"
               >
-                홈으로 이동
+                {guideLabel} 보기
               </Link>
             </div>
           </header>
@@ -83,34 +86,11 @@ export function SeoLandingPage({ page }: Props) {
 
           <SeoFaqSection faqs={page.faqs} />
 
-          <section
-            className="space-y-4 rounded-2xl bg-[#f8f5f2] p-5 min-[360px]:p-6"
-            aria-labelledby="related-guides-heading"
-          >
-            <h2
-              id="related-guides-heading"
-              className="text-xl font-semibold leading-tight min-[360px]:text-2xl"
-            >
-              연관 급여량 가이드
-            </h2>
-            <p className="text-base leading-7 text-[#333]">
-              아래 페이지를 함께 확인하면 고양이 하루 사료량과 칼로리 계산을 더
-              정확하게 이해할 수 있습니다.
-            </p>
-            <ul className="grid gap-2 sm:grid-cols-2">
-              {related.map((item) => (
-                <li key={item.path}>
-                  <Link
-                    href={item.path}
-                    prefetch={false}
-                    className="block rounded-lg border border-[#dedee0] bg-white px-3 py-2.5 text-sm font-medium text-[#171717] hover:bg-[#fff7f2]"
-                  >
-                    {item.h1}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
+          <SeoInternalLinksSection
+            currentPath={page.path}
+            title="함께 보면 좋은 글"
+            className="rounded-2xl bg-[#f8f5f2] p-5 min-[360px]:p-6"
+          />
         </article>
         <SiteFooter className="mt-12 max-w-none" />
       </main>

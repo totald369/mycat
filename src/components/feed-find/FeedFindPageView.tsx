@@ -14,7 +14,10 @@ import {
 import { designResource } from "@/components/design/designResourcePaths";
 import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
 import { IconSearch } from "@/components/wireframe/icons";
-import { FEED_REQUEST_HREF } from "@/constants/feedRequest";
+import {
+  buildFeedRequestHref,
+  FEED_REQUEST_HREF,
+} from "@/constants/feedRequest";
 import { IMAGE_ALT } from "@/constants/imageAlt";
 import {
   FEED_FIND_CHIPS,
@@ -25,20 +28,32 @@ import {
   compactForSearch,
   FEED_PAGE_PLACEHOLDER,
   filterCatalogByQuery,
+  findSimilarCatalogResults,
 } from "@/lib/feedSearchUtils";
 
 const FEED_FETCH_URL = "/api/feeds";
 const FEED_LOAD_ERROR = "급여(사료) 목록을 불러오지 못했습니다.";
 const POPULAR_COUNT = 8;
 
-function FeedRequestWoodAnchor({ href }: { href: string }) {
+function FeedRequestWoodAnchor({
+  href,
+  searchKeyword,
+}: {
+  href: string;
+  searchKeyword?: string;
+}) {
+  const keyword = searchKeyword?.trim();
+  const label = keyword
+    ? `「${keyword}」 사료 추가 요청하기`
+    : "사료 추가 요청하기";
+
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="relative flex h-14 w-full max-w-[280px] shrink-0 items-center justify-center overflow-hidden rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f8620c]/50"
-      aria-label="사료 추가 요청하기"
+      className="relative flex h-14 w-full max-w-[320px] shrink-0 items-center justify-center overflow-hidden rounded-xl px-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f8620c]/50"
+      aria-label={label}
     >
       <span className="absolute inset-0 bg-[#6f4425]" aria-hidden />
       <Image
@@ -46,12 +61,12 @@ function FeedRequestWoodAnchor({ href }: { href: string }) {
         alt={IMAGE_ALT.selectedTexture}
         fill
         className="pointer-events-none object-cover opacity-20"
-        sizes="280px"
+        sizes="320px"
         quality={72}
         draggable={false}
       />
-      <span className="relative z-10 px-6 text-base font-bold leading-5 text-white">
-        사료 추가 요청하기
+      <span className="relative z-10 text-center text-base font-bold leading-5 text-white">
+        {label}
       </span>
     </a>
   );
@@ -156,7 +171,7 @@ export function FeedFindPageView({ onOpenDetail, initialCatalog }: Props) {
         if (!res.ok) {
           throw new Error(data.error ?? FEED_LOAD_ERROR);
         }
-        setCatalog(data.items ?? []);
+        setCatalog(Array.isArray(data.items) ? data.items : []);
       })
       .catch((e: Error) => {
         setCatalog([]);
@@ -169,12 +184,44 @@ export function FeedFindPageView({ onOpenDetail, initialCatalog }: Props) {
     startTransition(() => setActiveQuery(draft.trim()));
   }, [draft]);
 
+  const clearSearchAndFilters = useCallback(() => {
+    startTransition(() => {
+      setDraft("");
+      setActiveQuery("");
+      setChipFilter("전체");
+    });
+  }, []);
+
   const hasSearchQuery = compactForSearch(activeQuery).length > 0;
 
-  const filtered = useMemo(() => {
+  const { exactResults, similarResults } = useMemo(() => {
     const byText = filterCatalogByQuery(catalog, activeQuery);
-    return filterCatalogByChip(byText, chipFilter);
-  }, [catalog, activeQuery, chipFilter]);
+    const exact = filterCatalogByChip(byText, chipFilter);
+
+    if (exact.length > 0 || !hasSearchQuery) {
+      return { exactResults: exact, similarResults: [] as CatalogItem[] };
+    }
+
+    const similar = filterCatalogByChip(
+      findSimilarCatalogResults(catalog, activeQuery),
+      chipFilter,
+    );
+    return { exactResults: exact, similarResults: similar };
+  }, [catalog, activeQuery, chipFilter, hasSearchQuery]);
+
+  const chipOnlyResults = useMemo(() => {
+    if (hasSearchQuery) return [];
+    return filterCatalogByChip(catalog, chipFilter);
+  }, [catalog, chipFilter, hasSearchQuery]);
+
+  const displayResults = hasSearchQuery
+    ? exactResults.length > 0
+      ? exactResults
+      : similarResults
+    : chipOnlyResults;
+
+  const showSimilarHint =
+    hasSearchQuery && exactResults.length === 0 && similarResults.length > 0;
 
   const popularItems = useMemo(
     () => catalog.slice(0, POPULAR_COUNT),
@@ -182,11 +229,21 @@ export function FeedFindPageView({ onOpenDetail, initialCatalog }: Props) {
   );
 
   const showPopular =
-    !loading && !loadError && catalog.length > 0 && !hasSearchQuery;
+    !loading &&
+    !loadError &&
+    catalog.length > 0 &&
+    !hasSearchQuery &&
+    chipFilter === "전체";
   const showEmpty =
-    !loading && !loadError && catalog.length > 0 && filtered.length === 0;
-  const showList = !loading && !loadError && filtered.length > 0;
+    !loading &&
+    !loadError &&
+    catalog.length > 0 &&
+    displayResults.length === 0 &&
+    (hasSearchQuery || chipFilter !== "전체");
+  const showList = !loading && !loadError && displayResults.length > 0;
   const showLoadingSkeleton = loading && !loadError;
+
+  const requestHref = buildFeedRequestHref(activeQuery || draft);
 
   return (
     <div className="flex min-h-0 flex-1 flex-col bg-white font-sans">
@@ -253,28 +310,57 @@ export function FeedFindPageView({ onOpenDetail, initialCatalog }: Props) {
                   unoptimized
                   draggable={false}
                 />
-                <div className="space-y-1 text-center">
+                <div className="space-y-2 text-center">
                   <p className="text-base font-bold text-[#171717]">
                     찾는 사료가 아직 없어요.
                   </p>
                   <p className="text-sm leading-relaxed text-[#666]">
-                    사료 추가 요청을 남겨주시면 빠르게 반영해볼게요.
+                    입력하신 키워드와 비슷한 사료를 확인하거나, 사료 추가
+                    요청을 남겨주시면 데이터에 반영해볼게요.
                   </p>
                 </div>
-                {FEED_REQUEST_HREF ? (
-                  <FeedRequestWoodAnchor href={FEED_REQUEST_HREF} />
-                ) : null}
+                <div className="flex w-full max-w-[320px] flex-col items-stretch gap-3">
+                  {FEED_REQUEST_HREF ? (
+                    <FeedRequestWoodAnchor
+                      href={requestHref}
+                      searchKeyword={activeQuery || draft}
+                    />
+                  ) : null}
+                  <button
+                    type="button"
+                    onClick={clearSearchAndFilters}
+                    className="h-12 rounded-xl border border-solid border-[#eee] bg-white text-base font-semibold text-[#333]"
+                  >
+                    전체 사료 보기
+                  </button>
+                </div>
               </div>
             ) : null}
 
             {showList ? (
-              <ul className="mt-4 flex flex-col gap-3 px-4 pb-28">
-                {filtered.map((item) => (
-                  <li key={item.id}>
-                    <FeedFindCard item={item} onOpenDetail={onOpenDetail} />
-                  </li>
-                ))}
-              </ul>
+              <>
+                {showSimilarHint ? (
+                  <p className="mt-4 px-4 text-sm leading-relaxed text-[#666]">
+                    정확히 일치하는 사료는 없지만, 입력하신 조건과 비슷한
+                    사료예요.
+                  </p>
+                ) : null}
+                <ul className="mt-4 flex flex-col gap-3 px-4 pb-28">
+                  {displayResults.map((item) => (
+                    <li key={item.id}>
+                      <FeedFindCard item={item} onOpenDetail={onOpenDetail} />
+                    </li>
+                  ))}
+                </ul>
+                {showSimilarHint && FEED_REQUEST_HREF ? (
+                  <div className="flex justify-center px-4 pb-28">
+                    <FeedRequestWoodAnchor
+                      href={requestHref}
+                      searchKeyword={activeQuery || draft}
+                    />
+                  </div>
+                ) : null}
+              </>
             ) : null}
           </>
         ) : null}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { buildPageMetadata } from "@/lib/seo";
+import { buildPageMetadata, type FaqItem } from "@/lib/seo";
 
 export type InfoGuideSection = {
   heading: string;
@@ -24,6 +24,7 @@ export type InfoGuidePageData = {
     buttonLabel: string;
     href: string;
   };
+  faqs?: FaqItem[];
 };
 
 export const INFO_GUIDE_INTERNAL_LINKS = [
@@ -31,6 +32,9 @@ export const INFO_GUIDE_INTERNAL_LINKS = [
   { href: "/calorie-guide", label: "칼로리 가이드" },
   { href: "/step1", label: "급여량 계산하기" },
   { href: "/feed-find", label: "사료 찾기" },
+  { href: "/고양이-4kg-사료량", label: "4kg 고양이 사료량" },
+  { href: "/고양이-건식-습식-급여량", label: "건식·습식 급여량" },
+  { href: "/고양이-간식-칼로리", label: "고양이 간식 칼로리" },
 ] as const;
 
 export const INFO_GUIDE_PATHS = ["/feeding-guide", "/calorie-guide"] as const;
@@ -38,9 +42,9 @@ export const INFO_GUIDE_PATHS = ["/feeding-guide", "/calorie-guide"] as const;
 export const INFO_GUIDE_PAGES: InfoGuidePageData[] = [
   {
     path: "/feeding-guide",
-    title: "고양이 급여 가이드 — 사료량·간식·습식 급여 기준 | 우리냥이맘마",
+    title: "고양이 하루 사료량 기준 | 급여량 조정 가이드",
     description:
-      "고양이 급여량이 중요한 이유, 건식과 습식 차이, 간식 칼로리와 급여량 조정 방법을 쉽게 확인해보세요.",
+      "우리 아이 사료량이 적당한지 궁금할 때 참고할 하루 급여 기준, 건식·습식·간식 조절 방법을 쉽게 확인해보세요.",
     keywords: [
       "고양이 급여 가이드",
       "고양이 사료 급여량",
@@ -113,12 +117,29 @@ export const INFO_GUIDE_PAGES: InfoGuidePageData[] = [
       buttonLabel: "우리 아이 급여량 계산하기",
       href: "/step1",
     },
+    faqs: [
+      {
+        question: "고양이 사료량은 매일 같아도 되나요?",
+        answer:
+          "체중, 활동량, 간식량, 사료 변경 여부에 따라 달라질 수 있어요. 같은 그램을 유지하더라도 간식이 늘면 과급여가 될 수 있으니 2~4주마다 체형과 함께 확인하는 것이 좋습니다.",
+      },
+      {
+        question: "건식과 습식을 같이 줄 때는 어떻게 계산하나요?",
+        answer:
+          "각 사료의 100g당 칼로리를 기준으로 하루 총량을 나눠야 합니다. 그램 수만 맞추면 칼로리는 크게 달라질 수 있어요.",
+      },
+      {
+        question: "급여량을 줄일 때 주의할 점은?",
+        answer:
+          "한 번에 크게 줄이기보다 간식부터 정리하고, 본식은 5~10%씩 단계적으로 조정하는 것이 안전합니다.",
+      },
+    ],
   },
   {
     path: "/calorie-guide",
-    title: "고양이 칼로리 가이드 — 사료·습식·간식 칼로리 계산 | 우리냥이맘마",
+    title: "고양이 칼로리 계산법 | 건식·습식·간식 칼로리 기준",
     description:
-      "고양이 사료 칼로리, 건식과 습식 칼로리 차이, 간식 칼로리 계산 기준을 쉽게 확인해보세요.",
+      "사료 그램 수보다 중요한 하루 칼로리 예산. 건식·습식·간식 칼로리를 합산해 우리 아이에게 맞는 급여량을 잡는 방법을 알아보세요.",
     keywords: [
       "고양이 칼로리 계산",
       "고양이 사료 칼로리",
@@ -201,6 +222,23 @@ export const INFO_GUIDE_PAGES: InfoGuidePageData[] = [
       buttonLabel: "우리 아이 하루 칼로리 계산하기",
       href: "/step1",
     },
+    faqs: [
+      {
+        question: "100g당 kcal은 왜 중요한가요?",
+        answer:
+          "같은 50g이라도 사료마다 칼로리가 다릅니다. 그램 수만 보고 급여하면 과하거나 부족할 수 있어요.",
+      },
+      {
+        question: "간식 칼로리도 꼭 포함해야 하나요?",
+        answer:
+          "네. 간식·토핑을 빼고 계산하면 본식이 과해질 수 있습니다. 하루 총 칼로리로 맞추는 것이 좋아요.",
+      },
+      {
+        question: "사료를 바꾸면 칼로리도 다시 계산해야 하나요?",
+        answer:
+          "맞습니다. 제품마다 100g당 칼로리가 달라 같은 그램이라도 섭취량이 달라질 수 있어요.",
+      },
+    ],
   },
 ];
 

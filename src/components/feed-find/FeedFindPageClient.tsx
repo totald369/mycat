@@ -7,6 +7,7 @@ import { FeedFindPageView } from "@/components/feed-find/FeedFindPageView";
 import { WizardHeader } from "@/components/design/WizardHeader";
 import { wizardHeaderOffsetClass } from "@/components/design/wizardLayoutClasses";
 import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
+import { getFoodDetailPathSegment } from "@/lib/feedSafeValues";
 
 type Props = {
   intro?: ReactNode;
@@ -18,7 +19,9 @@ export function FeedFindPageClient({ intro, initialCatalog }: Props) {
   const router = useRouter();
 
   const goToFeedDetail = (item: CatalogItem) => {
-    router.push(`/foods/${encodeURIComponent(item.slug ?? item.id)}`);
+    const path = getFoodDetailPathSegment(item);
+    if (!path) return;
+    router.push(`/foods/${encodeURIComponent(path)}`);
   };
 
   return (

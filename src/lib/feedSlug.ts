@@ -1,3 +1,5 @@
+import { safeString } from "@/lib/feedSafeValues";
+
 /** 브랜드·제품명 → SEO slug (영문 소문자·숫자·하이픈) */
 
 const BRAND_SLUGS: Record<string, string> = {
@@ -175,8 +177,8 @@ function slugifySegment(text: string): string {
     .replace(/-{2,}/g, "-");
 }
 
-export function romanizeBrand(brand: string): string {
-  const trimmed = brand.trim();
+export function romanizeBrand(brand: unknown): string {
+  const trimmed = safeString(brand).trim();
   if (BRAND_SLUGS[trimmed]) return BRAND_SLUGS[trimmed];
   const ascii = slugifySegment(trimmed);
   if (ascii) return ascii;
@@ -202,9 +204,9 @@ function extractAsciiTokens(text: string): string[] {
   return tokens.filter(Boolean);
 }
 
-function romanizeNameTokens(name: string): string[] {
+function romanizeNameTokens(name: unknown): string[] {
   const parts: string[] = [];
-  let remaining = name.trim();
+  let remaining = safeString(name).trim();
 
   for (const [ko, en] of SORTED_TERMS) {
     if (remaining.includes(ko)) {
@@ -224,7 +226,7 @@ function romanizeNameTokens(name: string): string[] {
   return parts.filter((p) => p.length > 1);
 }
 
-export function buildBaseFeedSlug(brand: string, name: string): string {
+export function buildBaseFeedSlug(brand: unknown, name: unknown): string {
   const brandPart = romanizeBrand(brand);
   const nameParts = romanizeNameTokens(name);
   const combined = [brandPart, ...nameParts].filter(Boolean).join("-");
@@ -233,8 +235,8 @@ export function buildBaseFeedSlug(brand: string, name: string): string {
   return slugifySegment(`${brandPart}-food`) || "cat-food";
 }
 
-function shortApiSuffix(apiId: string): string {
-  const clean = apiId.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+function shortApiSuffix(apiId: unknown): string {
+  const clean = safeString(apiId).replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
   return clean.slice(-6) || "item";
 }
 

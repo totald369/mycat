@@ -20,6 +20,7 @@ import {
   buildNutritionInterpretations,
   parseNutritionMetrics,
 } from "@/lib/feedNutritionInterpretation";
+import { safeNumber, safeString } from "@/lib/feedSafeValues";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -65,7 +66,7 @@ export default async function FoodDetailPage({ params }: PageProps) {
 
   const { feed } = resolved;
   const pagePath = getFeedDetailPath(feed);
-  const productName = `${feed.brand} ${feed.name}`;
+  const productName = `${safeString(feed.brand).trim() || "—"} ${safeString(feed.name).trim() || "이름 없음"}`;
   const pageDescription = `${productName}의 칼로리, 조단백, 조지방, 원재료 정보와 급여 기준량`;
 
   const metrics = parseNutritionMetrics(feed.nutritionAnalysis);
@@ -73,14 +74,14 @@ export default async function FoodDetailPage({ params }: PageProps) {
   const fat = metrics.find((m) => m.label === "조지방")?.value ?? null;
   const fiber = metrics.find((m) => m.label === "조섬유")?.value ?? null;
 
-  const pageHeadline = `${productName} 성분 분석`;
+  const pageHeadline = `${productName} 칼로리 정보`;
   const jsonLd = buildFeedDetailJsonLdGraph({
     path: pagePath,
     headline: pageHeadline,
     name: productName,
     brand: feed.brand,
     description: pageDescription,
-    kcalPer100g: feed.kcalPer100g,
+    kcalPer100g: safeNumber(feed.kcalPer100g) ?? feed.kcalPer100g,
     proteinPercent: protein,
     fatPercent: fat,
     fiberPercent: fiber,

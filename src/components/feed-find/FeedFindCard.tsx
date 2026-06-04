@@ -2,6 +2,11 @@
 
 import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
 import {
+  formatKcalPer100gLabel,
+  safeNumber,
+  safeString,
+} from "@/lib/feedSafeValues";
+import {
   categoryShortLabel,
   conditionShortLabel,
   feedTypeLabel,
@@ -22,13 +27,12 @@ function CardBadge({ children }: { children: string }) {
 }
 
 export function FeedFindCard({ item, onOpenDetail }: Props) {
-  const brand = item.brand?.trim() || "—";
-  const name = item.name?.trim() || item.label;
-  const typeLabel = feedTypeLabel(item.rawType ?? "", item.feedKind);
-  const kcal =
-    item.kcalPer100g != null && Number.isFinite(item.kcalPer100g)
-      ? Math.round(item.kcalPer100g)
-      : null;
+  const brand = safeString(item.brand).trim() || "—";
+  const name = safeString(item.name).trim() || safeString(item.label).trim() || "이름 없음";
+  const typeLabel = feedTypeLabel(item.rawType, item.feedKind);
+  const kcalNum = safeNumber(item.kcalPer100g);
+  const kcalLabel =
+    kcalNum != null ? formatKcalPer100gLabel(kcalNum) : null;
 
   const badges = [
     typeLabel,
@@ -65,10 +69,8 @@ export function FeedFindCard({ item, onOpenDetail }: Props) {
         </div>
       ) : null}
 
-      {kcal != null ? (
-        <p className="mt-2.5 text-sm font-medium text-[#333]">
-          100g당 {kcal}kcal
-        </p>
+      {kcalLabel ? (
+        <p className="mt-2.5 text-sm font-medium text-[#333]">{kcalLabel}</p>
       ) : null}
 
       <div className="mt-3">
@@ -95,12 +97,9 @@ export function FeedFindPopularChip({
   item: CatalogItem;
   onOpenDetail: (item: CatalogItem) => void;
 }) {
-  const brand = item.brand?.trim();
-  const name = item.name?.trim() || item.label;
-  const kcal =
-    item.kcalPer100g != null && Number.isFinite(item.kcalPer100g)
-      ? Math.round(item.kcalPer100g)
-      : null;
+  const brand = safeString(item.brand).trim();
+  const name = safeString(item.name).trim() || safeString(item.label).trim() || "이름 없음";
+  const kcalNum = safeNumber(item.kcalPer100g);
 
   return (
     <button
@@ -111,8 +110,10 @@ export function FeedFindPopularChip({
       <span className="block text-xs font-medium text-[#171717]">
         {brand ? `${brand} ${name}` : name}
       </span>
-      {kcal != null ? (
-        <span className="mt-0.5 block text-xs text-[#888]">{kcal}kcal/100g</span>
+      {kcalNum != null ? (
+        <span className="mt-0.5 block text-xs text-[#888]">
+          {Math.round(kcalNum)}kcal/100g
+        </span>
       ) : null}
     </button>
   );

@@ -12,6 +12,7 @@ import {
   formatServingGrams,
   lifeStageLabel,
 } from "@/lib/feedDetailLabels";
+import { formatKcalPer100gLabel, safeString } from "@/lib/feedSafeValues";
 import type { NutritionInterpretation } from "@/lib/feedNutritionInterpretation";
 import { IconBack } from "@/components/wireframe/icons";
 
@@ -81,12 +82,23 @@ export function FeedDetailView({
   relatedByKcal = [],
   relatedByLifeStage = [],
 }: Props) {
+  const brand = safeString(feed.brand).trim() || "—";
+  const name = safeString(feed.name).trim() || "이름 없음";
   const typeLabel = feedTypeLabel(feed.rawType, feed.feedKind);
   const lifeLabel = lifeStageLabel(feed.lifeStage);
   const categoryLabel = feedCategoryLabel(feed.category);
   const conditionLabel = feedConditionLabel(feed.feedCondition);
-  const servingLabel = formatServingGrams(feed.servingGrams, feed.feedKind);
+  const servingLabel = formatServingGrams(feed.servingGrams);
+  const kcalLabel = formatKcalPer100gLabel(feed.kcalPer100g);
   const pagePath = getFeedDetailPath(feed);
+
+  const badgeLabels = [typeLabel, lifeLabel, categoryLabel, conditionLabel].filter(
+    (label) => label && label !== "—",
+  );
+
+  const hasNutritionAnalysis = Boolean(safeString(feed.nutritionAnalysis).trim());
+  const hasIngredients = Boolean(safeString(feed.ingredients).trim());
+  const hasNutritionContent = hasNutritionAnalysis || hasIngredients;
 
   return (
     <main className="relative z-10 mx-auto min-h-[100dvh] w-full max-w-[min(100%,375px)] bg-white">
@@ -105,29 +117,35 @@ export function FeedDetailView({
       </div>
 
       <div className="px-6 pb-[max(2rem,env(safe-area-inset-bottom))] pt-2">
-        <header className="space-y-1">
-          <p className="text-sm font-normal text-[#555]">{feed.brand}</p>
+        <header className="space-y-2">
+          <p className="text-sm font-normal text-[#555]">{brand}</p>
           <h1 className="text-xl font-bold leading-tight text-[#171717]">
-            {feed.brand} {feed.name}
+            {brand} {name} 칼로리 정보
           </h1>
         </header>
 
-        <div className="mt-4 flex flex-wrap gap-2">
-          <Badge>{typeLabel}</Badge>
-          <Badge>{lifeLabel}</Badge>
-          <Badge>{categoryLabel}</Badge>
-          <Badge>{conditionLabel}</Badge>
-        </div>
+        {badgeLabels.length > 0 ? (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {badgeLabels.map((label) => (
+              <Badge key={label}>{label}</Badge>
+            ))}
+          </div>
+        ) : null}
 
-        <div className="mt-6 grid grid-cols-2 gap-3">
-          <InfoCard
-            label="100g당 칼로리"
-            value={`${feed.kcalPer100g} kcal`}
-          />
-          <InfoCard label="기준 급여량" value={servingLabel} />
-          <InfoCard label="사료 유형" value={typeLabel} />
-          <InfoCard label="급여 대상" value={lifeLabel} />
-        </div>
+        <section className="mt-6 space-y-3" aria-labelledby="feed-kcal-heading">
+          <h2
+            id="feed-kcal-heading"
+            className="text-base font-semibold text-[#171717]"
+          >
+            칼로리·급여 기준
+          </h2>
+          <div className="grid grid-cols-2 gap-3">
+            <InfoCard label="100g당 칼로리" value={kcalLabel} />
+            <InfoCard label="기준 급여량" value={servingLabel} />
+            <InfoCard label="사료 유형" value={typeLabel} />
+            <InfoCard label="급여 대상" value={lifeLabel} />
+          </div>
+        </section>
 
         <section className="mt-8 rounded-xl bg-[#f8f5f2] p-4">
           <p className="text-sm leading-relaxed text-[#555]">
@@ -145,27 +163,27 @@ export function FeedDetailView({
 
         <section className="mt-6 space-y-3">
           <h2 className="text-base font-semibold text-[#171717]">성분 정보</h2>
-          {feed.nutritionAnalysis ? (
+          {hasNutritionAnalysis ? (
             <div className="rounded-xl bg-[#f8f5f2] p-4">
               <p className="text-xs font-semibold text-[#666]">등록성분량</p>
               <p className="mt-1 text-sm leading-relaxed text-[#171717]">
-                {feed.nutritionAnalysis}
+                {safeString(feed.nutritionAnalysis).trim()}
               </p>
             </div>
           ) : null}
-          {feed.ingredients ? (
+          {hasIngredients ? (
             <div className="rounded-xl border border-[#eee] bg-white p-4">
               <p className="text-xs font-semibold text-[#666]">원재료</p>
               <p className="mt-1 text-sm leading-relaxed text-[#555]">
-                {feed.ingredients}
+                {safeString(feed.ingredients).trim()}
               </p>
             </div>
-          ) : (
+          ) : null}
+          {!hasNutritionContent ? (
             <p className="text-sm leading-relaxed text-[#555]">
-              상세 성분 정보는 준비 중이에요. 우선 칼로리와 급여 기준량을
-              기준으로 계산할 수 있어요.
+              상세 성분 정보는 준비 중이에요.
             </p>
-          )}
+          ) : null}
         </section>
 
         {nutritionInterpretations.length > 0 ? (
@@ -203,11 +221,12 @@ export function FeedDetailView({
           currentPath={pagePath}
           title="관련 가이드"
           links={[
-            { href: "/foods", label: "전체 사료 목록" },
-            { href: "/feed-find", label: "사료 찾기" },
             { href: "/step1", label: "급여량 계산하기" },
-            { href: "/calorie-guide", label: "칼로리 가이드" },
+            { href: "/feed-find", label: "사료 찾기" },
             { href: "/feeding-guide", label: "급여 가이드" },
+            { href: "/calorie-guide", label: "칼로리 가이드" },
+            { href: "/고양이-건식-습식-급여량", label: "건식·습식 급여량" },
+            { href: "/고양이-사료-바꿀때-급여량", label: "사료 바꿀 때 급여량" },
           ]}
           className="mt-8"
         />

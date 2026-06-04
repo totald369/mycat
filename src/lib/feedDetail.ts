@@ -2,6 +2,7 @@ import {
   loadFeedDetailItemsFromCatFoodCsv,
   type FeedDetailItem,
 } from "@/lib/catFoodCsv";
+import { safeNumber, safeString } from "@/lib/feedSafeValues";
 import {
   assignUniqueFeedSlugs,
   feedDetailPath,
@@ -32,18 +33,20 @@ function mapDbRowToFeedDetail(row: {
     return null;
   }
 
-  const feedKind = row.feedKind.trim();
+  const feedKind = safeString(row.feedKind).trim() || "기타";
   const rawType =
     feedKind === "습식" ? "wet" : feedKind === "건식" ? "dry" : feedKind;
+  const kcal = safeNumber(row.kcalPer100g);
+  if (kcal == null) return null;
 
   return {
     id: row.id,
     apiId: row.apiId,
-    brand: row.brand?.trim() || "—",
-    name: row.name.trim(),
+    brand: safeString(row.brand).trim() || "—",
+    name: safeString(row.name).trim() || "이름 없음",
     displayLabel: row.displayLabel,
     label: row.displayLabel,
-    kcalPer100g: row.kcalPer100g,
+    kcalPer100g: kcal,
     feedKind,
     servingGrams: row.servingGrams,
     category: row.category,
@@ -205,22 +208,26 @@ export function getRelatedFeedsBySimilarKcal(
   feed: FeedDetailItemWithSlug,
   limit = RELATED_LIMIT,
 ): RelatedFeedLink[] {
-  const tolerance = Math.max(15, feed.kcalPer100g * 0.12);
+  const baseKcal = safeNumber(feed.kcalPer100g);
+  if (baseKcal == null) return [];
+
+  const tolerance = Math.max(15, baseKcal * 0.12);
   return getAllFeedDetails()
-    .filter(
-      (f) =>
-        f.slug !== feed.slug &&
-        Math.abs(f.kcalPer100g - feed.kcalPer100g) <= tolerance,
-    )
-    .sort(
-      (a, b) =>
-        Math.abs(a.kcalPer100g - feed.kcalPer100g) -
-        Math.abs(b.kcalPer100g - feed.kcalPer100g),
-    )
+    .filter((f) => {
+      if (f.slug === feed.slug) return false;
+      const kcal = safeNumber(f.kcalPer100g);
+      if (kcal == null) return false;
+      return Math.abs(kcal - baseKcal) <= tolerance;
+    })
+    .sort((a, b) => {
+      const aKcal = safeNumber(a.kcalPer100g) ?? 0;
+      const bKcal = safeNumber(b.kcalPer100g) ?? 0;
+      return Math.abs(aKcal - baseKcal) - Math.abs(bKcal - baseKcal);
+    })
     .slice(0, limit)
     .map((f) => ({
       href: getFeedDetailPath(f),
-      label: `${f.brand} ${f.name} (${f.kcalPer100g} kcal/100g)`,
-      kcalPer100g: f.kcalPer100g,
+      label: `${safeString(f.brand).trim() || "—"} ${safeString(f.name).trim() || "이름 없음"} (${safeNumber(f.kcalPer100g) ?? "—"} kcal/100g)`,
+      kcalPer100g: safeNumber(f.kcalPer100g) ?? 0,
     }));
 }

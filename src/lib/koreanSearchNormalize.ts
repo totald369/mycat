@@ -1,9 +1,11 @@
+import { safeString } from "@/lib/feedSafeValues";
+
 /**
  * CSV·DB에 적힌 표기와 달라도 검색이 되도록, 흔한 동음·유사 표기를 하나로 맞춤.
  * (예: Royal — 「로열」「로얄」→「로얄」 / Fancy Feast — 「펜시」「팬시」→「팬시」)
  */
-export function canonicalizeKoreanSearchSpelling(input: string): string {
-  let s = input;
+export function canonicalizeKoreanSearchSpelling(input: unknown): string {
+  let s = safeString(input);
   for (const { pattern, to } of KO_SEARCH_SPELLING_ALIASES) {
     s = s.replace(pattern, to);
   }

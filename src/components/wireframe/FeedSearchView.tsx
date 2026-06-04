@@ -12,9 +12,9 @@ import { FEED_REQUEST_HREF } from "@/constants/feedRequest";
 import { IMAGE_ALT } from "@/constants/imageAlt";
 import { IconBack, IconSearch } from "@/components/wireframe/icons";
 import {
-  catalogSearchBlob,
   compactForSearch,
   FEED_MODAL_PLACEHOLDER,
+  filterCatalogByQuery,
 } from "@/lib/feedSearchUtils";
 import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
 
@@ -401,15 +401,12 @@ export function FeedSearchView({
   }, [draft]);
 
   const textMatches = useMemo(() => {
-    const needle = compactForSearch(activeQuery);
-    if (showCatalogListByDefault && (!searched || !needle)) {
+    if (showCatalogListByDefault && (!searched || !compactForSearch(activeQuery))) {
       return catalog;
     }
     if (!searched) return [];
-    if (!needle) return [];
-    return catalog.filter((row) =>
-      compactForSearch(catalogSearchBlob(row)).includes(needle),
-    );
+    if (!compactForSearch(activeQuery)) return [];
+    return filterCatalogByQuery(catalog, activeQuery);
   }, [showCatalogListByDefault, searched, activeQuery, catalog]);
 
   const results = useMemo(

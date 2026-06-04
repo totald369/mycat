@@ -1,9 +1,11 @@
 import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
+import { safeLower } from "@/lib/feedSafeValues";
 
 export const FEED_FIND_CHIPS = [
   "전체",
   "건식",
   "습식",
+  "전연령",
   "키튼",
   "성묘",
   "체중관리",
@@ -13,16 +15,21 @@ export const FEED_FIND_CHIPS = [
 
 export type FeedFindChip = (typeof FEED_FIND_CHIPS)[number];
 
-function norm(value: string | null | undefined): string {
-  return (value ?? "").trim().toLowerCase();
+function norm(value: unknown): string {
+  return safeLower(value);
+}
+
+function isCatalogItem(value: unknown): value is CatalogItem {
+  return value != null && typeof value === "object";
 }
 
 /** 사료 찾기 페이지 필터 — CSV type/life_stage/category/condition 기준 */
 export function matchesFeedFindChip(
-  item: CatalogItem,
+  item: unknown,
   chip: FeedFindChip,
 ): boolean {
   if (chip === "전체") return true;
+  if (!isCatalogItem(item)) return false;
 
   const feedKind = norm(item.feedKind);
   const rawType = norm(item.rawType);
@@ -35,6 +42,8 @@ export function matchesFeedFindChip(
       return feedKind.includes("건") || rawType === "dry";
     case "습식":
       return feedKind.includes("습") || rawType === "wet";
+    case "전연령":
+      return lifeStage.includes("all_life");
     case "키튼":
       return lifeStage.includes("kitten");
     case "성묘":
@@ -59,8 +68,17 @@ export function matchesFeedFindChip(
 }
 
 export function filterCatalogByChip(
-  items: CatalogItem[],
+  items: unknown,
   chip: FeedFindChip,
 ): CatalogItem[] {
-  return items.filter((item) => matchesFeedFindChip(item, chip));
+  try {
+    if (!Array.isArray(items)) return [];
+    return items.filter(
+      (item): item is CatalogItem =>
+        isCatalogItem(item) && matchesFeedFindChip(item, chip),
+    );
+  } catch (error) {
+    console.warn("[feedSearch] filterCatalogByChip failed:", error);
+    return [];
+  }
 }

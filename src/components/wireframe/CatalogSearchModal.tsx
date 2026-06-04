@@ -26,6 +26,11 @@ export type CatalogItem = {
   feedCondition?: string | null;
   lifeStage?: string | null;
   rawType?: string | null;
+  /** CSV ingredients — 검색·유사 추천용 */
+  ingredients?: string | null;
+  /** 선택 필드 — 데이터에 있을 때만 검색 */
+  features?: string | null;
+  nutritionAnalysis?: string | null;
 };
 
 function compactForSearch(s: string): string {

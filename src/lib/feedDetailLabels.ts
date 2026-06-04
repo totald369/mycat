@@ -1,3 +1,9 @@
+import {
+  formatServingGramsLabel,
+  safeLower,
+  safeString,
+} from "@/lib/feedSafeValues";
+
 const FEED_TYPE_LABELS: Record<string, string> = {
   dry: "건식",
   wet: "습식",
@@ -59,37 +65,45 @@ const CONDITION_LABELS: Record<string, string> = {
   kitten: "키튼",
 };
 
-function humanizeToken(raw: string): string {
-  return raw
+function humanizeToken(raw: unknown): string {
+  return safeString(raw)
     .replace(/_/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
 
-export function feedTypeLabel(rawType: string, feedKind?: string): string {
-  const key = rawType.trim().toLowerCase();
-  if (FEED_TYPE_LABELS[key]) return FEED_TYPE_LABELS[key];
-  if (feedKind?.trim()) return feedKind.trim();
-  return humanizeToken(rawType) || "—";
+export function feedTypeLabel(
+  rawType: string | null | undefined,
+  feedKind?: string | null,
+): string {
+  const key = safeLower(rawType);
+  if (key && FEED_TYPE_LABELS[key]) return FEED_TYPE_LABELS[key];
+  const kind = safeString(feedKind).trim();
+  if (kind) return kind;
+  const token = humanizeToken(rawType);
+  return token || "—";
 }
 
 export function lifeStageLabel(lifeStage: string | null | undefined): string {
-  if (!lifeStage?.trim()) return "—";
-  const key = lifeStage.trim().toLowerCase();
+  const trimmed = safeString(lifeStage).trim();
+  if (!trimmed) return "—";
+  const key = trimmed.toLowerCase();
   return LIFE_STAGE_LABELS[key] ?? humanizeToken(key);
 }
 
 export function feedCategoryLabel(category: string | null | undefined): string {
-  if (!category?.trim()) return "—";
-  const key = category.trim().toLowerCase();
+  const trimmed = safeString(category).trim();
+  if (!trimmed) return "—";
+  const key = trimmed.toLowerCase();
   return CATEGORY_LABELS[key] ?? humanizeToken(key);
 }
 
 export function feedConditionLabel(
   condition: string | null | undefined,
 ): string {
-  if (!condition?.trim()) return "—";
-  const key = condition.trim().toLowerCase();
+  const trimmed = safeString(condition).trim();
+  if (!trimmed) return "—";
+  const key = trimmed.toLowerCase();
   return CONDITION_LABELS[key] ?? humanizeToken(key);
 }
 
@@ -97,8 +111,8 @@ export function feedConditionLabel(
 export function lifeStageShortLabel(
   lifeStage: string | null | undefined,
 ): string | null {
-  if (!lifeStage?.trim()) return null;
-  const key = lifeStage.trim().toLowerCase();
+  const key = safeLower(lifeStage);
+  if (!key) return null;
   if (key.includes("kitten")) return "키튼";
   if (key.includes("senior")) return "노묘";
   if (key.includes("adult")) return "성묘";
@@ -109,8 +123,8 @@ export function lifeStageShortLabel(
 export function conditionShortLabel(
   condition: string | null | undefined,
 ): string | null {
-  if (!condition?.trim()) return null;
-  const key = condition.trim().toLowerCase();
+  const key = safeLower(condition);
+  if (!key) return null;
   if (key === "none") return null;
   if (key === "hairball") return "헤어볼";
   if (key === "weight" || key === "diet") return "체중관리";
@@ -120,8 +134,8 @@ export function conditionShortLabel(
 export function categoryShortLabel(
   category: string | null | undefined,
 ): string | null {
-  if (!category?.trim()) return null;
-  const key = category.trim().toLowerCase();
+  const key = safeLower(category);
+  if (!key) return null;
   if (key === "general") return null;
   if (key === "prescription" || key === "medical") return "처방식";
   return CATEGORY_LABELS[key] ?? null;
@@ -129,11 +143,6 @@ export function categoryShortLabel(
 
 export function formatServingGrams(
   servingGrams: number | null | undefined,
-  feedKind: string,
 ): string {
-  if (servingGrams == null || !Number.isFinite(servingGrams)) {
-    return feedKind === "습식" ? "—" : "해당 없음";
-  }
-  const n = servingGrams;
-  return Number.isInteger(n) ? `${n}g` : `${n}g`;
+  return formatServingGramsLabel(servingGrams);
 }

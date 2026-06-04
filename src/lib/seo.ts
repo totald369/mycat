@@ -31,9 +31,8 @@ export const CORE_KEYWORDS = [
 export const NAVER_OG_DESCRIPTION =
   "고양이 체중·활동량·사료 칼로리로 하루 급여량을 계산해보세요.";
 
-/** 사이트 기본 meta description */
 export const DEFAULT_DESCRIPTION =
-  "고양이 체중·활동량·사료 칼로리로 하루 급여량을 계산하고, 사료 칼로리 정보를 확인해보세요.";
+  "우리 아이 사료량이 적당한지 궁금하다면 체중, 활동량, 체형, 사료 칼로리 기준으로 하루 급여량을 확인해보세요.";
 
 export type FaqItem = {
   question: string;
@@ -473,9 +472,9 @@ export function buildFeedDetailMetadata(feed: {
   kcalPer100g: number;
   feedKind: string;
 }) {
-  const productName = `${feed.brand} ${feed.name}`;
-  const title = `${productName} 성분 분석 | 칼로리·원재료·급여량 | ${SITE_BRAND}`;
-  const description = `${productName}의 칼로리, 조단백, 조지방, 원재료 정보를 확인하고 우리냥이 급여량을 계산해보세요. 100g당 ${feed.kcalPer100g}kcal (${feed.feedKind}).`;
+  const productName = `${feed.brand} ${feed.name}`.trim();
+  const title = `${productName} 칼로리 정보 | 100g당 ${feed.kcalPer100g}kcal | ${SITE_BRAND}`;
+  const description = `${productName}의 100g당 칼로리(${feed.kcalPer100g}kcal, ${feed.feedKind})와 급여 기준을 확인하고, 우리 아이 체중·활동량에 맞는 하루 급여량을 계산해보세요.`;
   const path = `/foods/${feed.slug}`;
 
   return buildPageMetadata({
@@ -484,13 +483,12 @@ export function buildFeedDetailMetadata(feed: {
     path,
     keywords: [
       productName,
+      `${feed.brand} ${feed.name} 칼로리`,
       `${feed.brand} 사료`,
-      `${feed.brand} ${feed.name} 성분`,
       "고양이 사료 칼로리",
-      "고양이 사료 성분",
-      "고양이 급여량",
+      "고양이 사료 급여량",
     ],
-    ogDescription: `${productName} — 100g당 ${feed.kcalPer100g}kcal, 성분·급여량 정보`,
+    ogDescription: `${productName} — 100g당 ${feed.kcalPer100g}kcal`,
   });
 }
 
@@ -525,6 +523,11 @@ export function buildLandingJsonLdGraph(options: {
 
 export function buildLandingFaqs(keyword: string): FaqItem[] {
   return [
+    {
+      question: "고양이 사료량은 매일 같아도 되나요?",
+      answer:
+        "체중, 활동량, 간식량, 사료 변경 여부에 따라 달라질 수 있어요. 같은 그램을 유지하더라도 간식이 늘거나 활동량이 줄면 과급여가 될 수 있으니, 2~4주마다 체형과 함께 재확인하는 것이 좋습니다.",
+    },
     {
       question: `${keyword}은 어떻게 계산하나요?`,
       answer: `체중, 활동량, 체형, 중성화 여부와 급여 사료·간식 정보를 입력하면 하루 권장 칼로리와 현재 섭취 칼로리를 비교해 ${keyword}을 확인할 수 있습니다.`,

@@ -2,6 +2,24 @@
 
 ## 2026-06-04
 
+### Google SEO — 메타·롱테일·내부링크
+
+- **메타 title·description**: 메인·사료 찾기·급여/칼로리 가이드 클릭 지향 문구로 개선.
+- **롱테일 랜딩 3페이지**: `/고양이-5kg-사료량`, `/고양이-건식-습식-급여량`, `/고양이-사료-바꿀때-급여량` — H1·H2·FAQ·계산기·가이드 내부링크.
+- **사료 상세**: H1 `{brand} {name} 칼로리 정보`, 칼로리·급여 H2, metadata·JSON-LD headline 보강.
+- **`seoInternalLinks.ts`**: 계산기·가이드·롱테일 허브 링크 확장. sitemap 자동 반영(349 URL).
+
+### Food Search — 검색·필터·no-result
+
+- **`feedSearchNormalize.ts`**: 한글 키워드 정규화(건식·전연령·치킨 등), 붙여 쓴 검색어 토큰 분리.
+- **`feedSearchUtils.ts`**: brand·ingredients 등 확장 검색, 유사 결과 추천, no-result CTA·「전체 사료 보기」.
+- **칩 필터**: `전연령` 추가. `buildFeedRequestHref()` — 검색어 CTA 표시(Google Form prefill TODO).
+
+### Stability — Food Search·Detail
+
+- **`feedSafeValues.ts`**: `safeString`·`safeNumber` 등 optional 필드 방어.
+- **검색·필터·상세·slug**: null/undefined·NaN 크래시 방지, 404·error boundary(`/feed-find`, `/foods/[slug]`).
+
 ### SEO — 이미지 alt 속성
 
 - **`imageAlt.ts`**: 공통 alt 상수·`bcsIconAlt`·`resultHeroAlt`·`featureIconAlt` 헬퍼 추가.

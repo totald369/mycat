@@ -4,6 +4,7 @@ import { WizardHeader } from "@/components/design/WizardHeader";
 import { SiteFooter } from "@/components/design/SiteFooter";
 import { wizardHeaderOffsetClass } from "@/components/design/wizardLayoutClasses";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SeoFaqSection } from "@/components/seo/SeoFaqSection";
 import {
   INFO_GUIDE_INTERNAL_LINKS,
   type InfoGuidePageData,
@@ -125,6 +126,10 @@ export function InfoGuidePage({ page }: Props) {
               {page.cta.buttonLabel}
             </Link>
           </section>
+
+          {page.faqs && page.faqs.length > 0 ? (
+            <SeoFaqSection faqs={page.faqs} className="mt-8" />
+          ) : null}
 
           <section
             className="mt-8 space-y-3"
