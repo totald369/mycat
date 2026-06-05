@@ -2,6 +2,11 @@
 
 ## 2026-06-04
 
+### Google AdSense — 사이트 검토용 head 스크립트
+
+- **`layout.tsx`**: AdSense 스크립트를 루트 `<head>`에 네이티브 `<script async>`로 단일 삽입(body `lazyOnload` 제거). Google 사이트 검토·전 페이지 로드 대응.
+- **`googleAdSense.ts`**: Publisher ID `ca-pub-7804546387826763` — SEO `metadata`·GA·Clarity와 분리 유지.
+
 ### Google SEO — 메타·롱테일·내부링크
 
 - **메타 title·description**: 메인·사료 찾기·급여/칼로리 가이드 클릭 지향 문구로 개선.

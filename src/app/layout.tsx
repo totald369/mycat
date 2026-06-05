@@ -65,16 +65,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={pretendard.variable}>
+      <head>
+        {/* Google AdSense — 사이트 검토용 head 스크립트 (루트 layout 단일 삽입) */}
+        <script
+          async
+          src={ADSENSE_SCRIPT_SRC}
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="font-sans antialiased">
         <WizardShellBackground />
         <ScrollToTopOnNavigate />
         {children}
-        {/* Google AdSense — 상호작용 구간 main thread 부담을 줄이기 위해 idle 시 로드 */}
-        <Script
-          src={ADSENSE_SCRIPT_SRC}
-          strategy="lazyOnload"
-          crossOrigin="anonymous"
-        />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="lazyOnload"
