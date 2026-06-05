@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-06-05
+
+### 로얄캐닌 처방식 17종 상세 보강
+
+- **[로얄캐닌 KR 고양이 처방식](https://www.royalcanin.com/kr/cats/products/vet-products)** 공식 페이지 기준 레거시 id `73`–`89` 17건 원재료·칼로리 반영. 건식은 `density`→kcal/100g, 습식 파우치는 대사에너지·85g 기준.
+- **등록성분**: KR 처방식 건식 페이지에 % 미표기 — 유리너리 파우치(id `79`)만 등록성분 보강. 아날러제닉·뉴터드 세타이어티 밸런스는 UK 폴백 대신 KR 페이지 한글 원재료로 정정.
+- **스크립트**: `scripts/scrape-royalcanin-vet.mjs`, `scripts/apply-rc-vet-csv.mjs`, `scripts/rc-vet-scraped.json` 추가.
+
 ## 2026-06-04
 
 ### Google AdSense — 사이트 검토용 head 스크립트
@@ -39,6 +47,7 @@
 - **힐스** ([hillspet.co.kr](https://www.hillspet.co.kr/) 공식몰 기준): 키튼 센서티브 스토막 & 스킨 연어 & 현미·유리너리 헤어볼 컨트롤·어덜트 7+ 헤어볼 컨트롤·퍼펙트 다이제스천·인도어 치킨 1.58kg 5종(`HP1584-*`) 신규. 유리너리 헤어볼은 공식 페이지 원재료 미표기로 성분만 등록.
 - **힐스 추가 6종** ([c/d 멀티케어 스트레스](https://www.hillspet.co.kr/cat-food/prescription-diet-cd-multicare-stress-chicken-urinary-care-dry)·[GI 바이옴 스트레스](https://www.hillspet.co.kr/cat-food/prescription-diet-gastrointestinal-biome-stress-digestive-care-dry)·[c/d 멀티케어](https://www.hillspet.co.kr/cat-food/prescription-diet-cd-multicare-chicken-urinary-care-dry)·[i/d](https://www.hillspet.co.kr/cat-food/prescription-diet-id-digestive-care-dry)·[어덜트 인도어](https://www.hillspet.co.kr/cat-food/science-diet-adult-indoor-dry)·[c/d 멀티케어+메타볼릭](https://www.hillspet.co.kr/cat-food/prescription-diet-cd-multicare-metabolic-urinary-care-dry)): `HP1500-*`, `HP1810-*`, `HP1584-ADT-IND`, `HP2880-CD-META` 6건 신규. 공식 페이지 칼로리·원재료·건조물 기준 영양성분 반영.
 - **힐스 사이언스 다이어트 5종 상세 보강** ([어덜트 11+ 치킨](https://www.hillspet.co.kr/cat-food/science-diet-senior-11-dry)·[어덜트 라이트](https://www.hillspet.co.kr/cat-food/science-diet-adult-light-dry)·[키튼 치킨](https://www.hillspet.co.kr/cat-food/science-diet-kitten-original-dry)·[퍼펙트 웨이트](https://www.hillspet.co.kr/cat-food/science-diet-adult-perfect-weight-dry)·[퍼펙트 다이제스천](https://www.hillspet.co.kr/cat-food/science-diet-adult-perfect-digestion-chicken-barley-whole-oats-recipe-dry)): `HP1584-SNR11-CHK`, `HP2000-ADT-LGT`, `HP1584-KTN-ORG`, `HP6800-ADT-PW`, `HP1584-ADT-PD` 신규. 공식몰 원재료·건조물 기준 등록성분·ME 반영(퍼펙트 웨이트·유리너리 헤어볼은 원재료 미표기).
+- **힐스 공식몰 27종 추가** ([hillspet.co.kr/cat-food](https://www.hillspet.co.kr/cat-food) 목록 대조): 사이언스 다이어트 건식(어덜트 치킨·헤어볼·헤어볼 라이트·퍼펙트 다이제스천 연어·퍼펙트 웨이트 스튜 등)·프리스크립션 건식(GI 바이옴·k/d·t/d·w/d·y/d·z/d·메타볼릭)·습식/스튜(i/d·k/d·c/d 스트레스·GI·a/d·ONC 등) `HP1810-*`·`HP1500-*`·`HP-WET-*` 27건 신규. 공식 페이지 건조물 기준 등록성분·ME·캔 serving_g 반영(원재료 미표기 품목은 성분만).
 
 ## 2026-05-26
 
