@@ -1,0 +1,92 @@
+{
+  "source": "https://aboutpet.co.kr",
+  "scrapedAt": "2026-06-06T17:39:50.089Z",
+  "count": 10,
+  "items": [
+    {
+      "goodsId": "GP251100269",
+      "goodsName": "퍼시캣 프리미엄 참치&실꼬리돔 80g 모아보기",
+      "detailImages": [
+        "https://prd-main-cdn.aboutpet.co.kr/aboutPet/images/editor/goods_desc/202408/c9710400-18b2-4cdd-af3b-5070fdb1152f.jpg",
+        "https://prd-main-cdn.aboutpet.co.kr/aboutPet/images/editor/goods_desc/202408/b4ac23f7-9f0c-487e-a6cb-9feeccabba0f.jpg",
+        "https://prd-main-cdn.aboutpet.co.kr/aboutPet/images/editor/goods_desc/202408/18b4a631-3e22-4c80-a147-f3bd1a91c875.jpg",
+        "https://prd-main-cdn.aboutpet.co.kr/aboutPet/images/editor/goods_desc/202408/f89cec9e-0490-4386-b652-ae95bc1559af.jpg",
+        "https://prd-main-cdn.aboutpet.co.kr/aboutPet/images/editor/goods_desc/202408/b40c542a-43f4-4b1c-8e2b-640408f4e56d.jpg",
+        "https://prd-main-cdn.aboutpet.co.kr/aboutPet/images/editor/goods_desc/202408/edcba908-553e-4a7d-a579-ad8394fbaa8b.jpg"
+      ],
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GP251100269"
+    },
+    {
+      "goodsId": "GP251028762",
+      "goodsName": "쓰라이브 컴플리트 그레인프리 치킨 캔 75g 모아보기",
+      "detailImages": [
+        "https://prd-main-cdn.aboutpet.co.kr/aboutPet/images/editor/goods_desc/202409/5e82bece-90c0-4a40-887c-a4863bbc2b8f.jpg"
+      ],
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GP251028762"
+    },
+    {
+      "goodsId": "GP251028759",
+      "goodsName": "쓰라이브 컴플리트 그레인프리 키튼 치킨 캔 75g 모아보기",
+      "detailImages": [
+        "https://prd-main-cdn.aboutpet.co.kr/aboutPet/images/editor/goods_desc/202409/5e82bece-90c0-4a40-887c-a4863bbc2b8f.jpg"
+      ],
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GP251028759"
+    },
+    {
+      "goodsId": "GP251028766",
+      "goodsName": "쓰라이브 컴플리트 그레인프리 치킨&치킨간 캔 75g 모아보기",
+      "detailImages": [
+        "https://prd-main-cdn.aboutpet.co.kr/aboutPet/images/editor/goods_desc/202409/5e82bece-90c0-4a40-887c-a4863bbc2b8f.jpg"
+      ],
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GP251028766"
+    },
+    {
+      "goodsId": "GS251136481",
+      "goodsName": "[1+1] 쓰라이브 프리미엄 플러스 치킨&칠면조 1.5kg",
+      "detailImages": [
+        "https://prd-main-cdn.aboutpet.co.kr/aboutPet/images/editor/goods_desc/202512/5203ff7e-d302-43e5-82be-386c4ce636ad.jpg"
+      ],
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GS251136481"
+    },
+    {
+      "goodsId": "GS251136480",
+      "goodsName": "[1+1] 쓰라이브 프리미엄 플러스 치킨 1.5kg",
+      "detailImages": [
+        "https://prd-main-cdn.aboutpet.co.kr/aboutPet/images/editor/goods_desc/202512/5203ff7e-d302-43e5-82be-386c4ce636ad.jpg"
+      ],
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GS251136480"
+    },
+    {
+      "goodsId": "GS251018666",
+      "goodsName": "[12개 세트] 쓰라이브 컴플리트 그레인프리 키튼 치킨 캔 75g",
+      "detailImages": [
+        "https://prd-main-cdn.aboutpet.co.kr/aboutPet/images/editor/goods_desc/202409/5e82bece-90c0-4a40-887c-a4863bbc2b8f.jpg"
+      ],
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GS251018666"
+    },
+    {
+      "goodsId": "GP251025416",
+      "goodsName": "아보덤 캣 그레인프리 참치&새우 85g 모아보기",
+      "detailImages": [
+        "https://prd-main-cdn.aboutpet.co.kr/aboutPet/images/editor/goods_desc/202407/80664949-6e81-489f-9c39-8a6017fa2818.jpg"
+      ],
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GP251025416"
+    },
+    {
+      "goodsId": "GS251018660",
+      "goodsName": "[12개 세트] 쓰라이브 컴플리트 그레인프리 치킨 캔 75g",
+      "detailImages": [
+        "https://prd-main-cdn.aboutpet.co.kr/aboutPet/images/editor/goods_desc/202409/5e82bece-90c0-4a40-887c-a4863bbc2b8f.jpg"
+      ],
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GS251018660"
+    },
+    {
+      "goodsId": "GS251017614",
+      "goodsName": "[12개 세트] 쓰라이브 컴플리트 그레인프리 치킨&치킨간 캔 75g",
+      "detailImages": [
+        "https://prd-main-cdn.aboutpet.co.kr/aboutPet/images/editor/goods_desc/202409/5e82bece-90c0-4a40-887c-a4863bbc2b8f.jpg"
+      ],
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GS251017614"
+    }
+  ]
+}

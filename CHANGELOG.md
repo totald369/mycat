@@ -2,6 +2,13 @@
 
 ## 2026-06-06
 
+### 어바웃펫 쓰라이브·퍼시캣 SKU 10종 상세 보강
+
+- **[어바웃펫](https://aboutpet.co.kr)** 상품 상세 이미지 기준: 쓰라이브 컴플리트 그레인프리 캔·프리미엄 플러스 건식, 퍼시캣 프리미엄 참치&실꼬리돔 원재료·등록성분·kcal 반영.
+- **레거시** 3종(id `188`, `190`, `193`): 그레인프리 컴플리트 캔 75g 라인으로 in-place 갱신.
+- **신규·갱신** GP/GS id 9건 append·GP251028759 보정(아보덤 GP251025416은 기등록).
+- **스크립트**: `scrape-aboutpet.mjs`, `apply-aboutpet-csv.mjs`, `aboutpet-scraped.json` 추가.
+
 ### 풀무원몰 아미오 고양이 주식 14종 상세 보강
 
 - **[풀무원몰 고양이 주식](https://shop.pulmuone.co.kr/shop/goodsList?itemId=5736)** 카테고리 14종: 상품 상세 이미지(등록성분·원재료) 기준 반영. API `nutrition` 필드는 비어 있어 `detailDescription` BOS 라벨 이미지에서 추출.

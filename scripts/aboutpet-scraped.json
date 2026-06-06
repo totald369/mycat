@@ -1,0 +1,151 @@
+{
+  "source": "https://aboutpet.co.kr",
+  "legacy": [
+    {
+      "id": "188",
+      "ingredients": "닭가슴살(75%), 닭 육수, 해바라기유, 비타민·미네랄",
+      "nutrition": "단백질 16%, 지방 2%, 조섬유 0.1%, 조회분 1.5%, 수분 80%, ME 74 kcal/100g",
+      "kcalPer100g": 74,
+      "serving_g": 75
+    },
+    {
+      "id": "190",
+      "ingredients": "닭가슴살(70%), 닭간(5%), 닭 육수, 해바라기유, 비타민·미네랄",
+      "nutrition": "단백질 16%, 지방 2%, 조섬유 0.1%, 조회분 1.5%, 수분 80%, ME 74 kcal/100g",
+      "kcalPer100g": 74,
+      "serving_g": 75
+    },
+    {
+      "id": "193",
+      "ingredients": "닭가슴살(70%), 닭 육수, 해바라기유, 비타민·미네랄",
+      "nutrition": "단백질 15.5%, 지방 2%, 조섬유 0.1%, 조회분 1.5%, 수분 81%, ME 74 kcal/100g",
+      "kcalPer100g": 74,
+      "serving_g": 75
+    }
+  ],
+  "products": [
+    {
+      "id": "GP251100269",
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GP251100269",
+      "brand": "퍼시캣",
+      "name": "프리미엄 참치&실꼬리돔 80g",
+      "type": "wet",
+      "life_stage": "all_life_stage",
+      "category": "general",
+      "condition": "none",
+      "serving_g": 80,
+      "ingredients": "참치, 정제수, 실꼬리돔, 해바라기유, 카시아검, 제삼인산칼슘, 구아검, 콜린염화물, 황산아연, 타우린, 황산철, 비타민 E, 비타민·미네랄",
+      "nutrition": "단백질 14%, 지방 1%, 조섬유 0.5%, 조회분 2%, 수분 84%, 55 kcal/80g",
+      "kcalPer100g": 69
+    },
+    {
+      "id": "GP251028762",
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GP251028762",
+      "brand": "쓰라이브",
+      "name": "컴플리트 그레인프리 치킨 캔 75g",
+      "type": "wet",
+      "life_stage": "all_life_stage",
+      "category": "general",
+      "condition": "none",
+      "serving_g": 75,
+      "ingredients": "닭가슴살(75%), 닭 육수, 해바라기유, 비타민·미네랄",
+      "nutrition": "단백질 16%, 지방 2%, 조섬유 0.1%, 조회분 1.5%, 수분 80%, ME 74 kcal/100g",
+      "kcalPer100g": 74
+    },
+    {
+      "id": "GP251028759",
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GP251028759",
+      "brand": "쓰라이브",
+      "name": "컴플리트 그레인프리 키튼 치킨 캔 75g",
+      "type": "wet",
+      "life_stage": "kitten_0_12m",
+      "category": "general",
+      "condition": "none",
+      "serving_g": 75,
+      "ingredients": "닭가슴살(70%), 닭 육수, 해바라기유, 비타민·미네랄",
+      "nutrition": "단백질 15.5%, 지방 2%, 조섬유 0.1%, 조회분 1.5%, 수분 81%, ME 74 kcal/100g",
+      "kcalPer100g": 74
+    },
+    {
+      "id": "GP251028766",
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GP251028766",
+      "brand": "쓰라이브",
+      "name": "컴플리트 그레인프리 치킨&치킨간 캔 75g",
+      "type": "wet",
+      "life_stage": "all_life_stage",
+      "category": "general",
+      "condition": "none",
+      "serving_g": 75,
+      "ingredients": "닭가슴살(70%), 닭간(5%), 닭 육수, 해바라기유, 비타민·미네랄",
+      "nutrition": "단백질 16%, 지방 2%, 조섬유 0.1%, 조회분 1.5%, 수분 80%, ME 74 kcal/100g",
+      "kcalPer100g": 74
+    },
+    {
+      "id": "GS251136480",
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GS251136480",
+      "brand": "쓰라이브",
+      "name": "프리미엄 플러스 치킨 1.5kg",
+      "type": "dry",
+      "life_stage": "all_life_stage",
+      "category": "general",
+      "condition": "none",
+      "serving_g": 55,
+      "ingredients": "닭고기(90%), 고구마, 감자, 닭기름, 닭 그레이비, 연어유, 비타민·미네랄",
+      "nutrition": "조단백 46%, 조지방 18%, 조섬유 1.5%, 조회분 10%, ME 395 kcal/100g",
+      "kcalPer100g": 395
+    },
+    {
+      "id": "GS251136481",
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GS251136481",
+      "brand": "쓰라이브",
+      "name": "프리미엄 플러스 치킨&칠면조 1.5kg",
+      "type": "dry",
+      "life_stage": "all_life_stage",
+      "category": "general",
+      "condition": "none",
+      "serving_g": 55,
+      "ingredients": "닭고기(70%), 칠면조(20%), 고구마, 감자, 닭기름, 닭 그레이비, 연어유, 비타민·미네랄",
+      "nutrition": "조단백 46%, 조지방 18%, 조섬유 1.5%, 조회분 10%, ME 395 kcal/100g",
+      "kcalPer100g": 395
+    },
+    {
+      "id": "GS251018660",
+      "copyFrom": "GP251028762",
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GS251018660",
+      "brand": "쓰라이브",
+      "name": "컴플리트 그레인프리 치킨 캔 75g (12개 세트)",
+      "type": "wet",
+      "life_stage": "all_life_stage",
+      "category": "general",
+      "condition": "none",
+      "serving_g": 75,
+      "kcalPer100g": 74
+    },
+    {
+      "id": "GS251018666",
+      "copyFrom": "GP251028759",
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GS251018666",
+      "brand": "쓰라이브",
+      "name": "컴플리트 그레인프리 키튼 치킨 캔 75g (12개 세트)",
+      "type": "wet",
+      "life_stage": "kitten_0_12m",
+      "category": "general",
+      "condition": "none",
+      "serving_g": 75,
+      "kcalPer100g": 74
+    },
+    {
+      "id": "GS251017614",
+      "copyFrom": "GP251028766",
+      "url": "https://aboutpet.co.kr/goods/indexGoodsDetail?goodsId=GS251017614",
+      "brand": "쓰라이브",
+      "name": "컴플리트 그레인프리 치킨&치킨간 캔 75g (12개 세트)",
+      "type": "wet",
+      "life_stage": "all_life_stage",
+      "category": "general",
+      "condition": "none",
+      "serving_g": 75,
+      "kcalPer100g": 74
+    }
+  ]
+}
