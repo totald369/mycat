@@ -1,0 +1,164 @@
+[
+  {
+    "id": "45",
+    "code": "5020h",
+    "locale": "en",
+    "url": "https://www.almonature.com/en/cat-products/5020h",
+    "ingredients": "Atlantic Ocean tuna 75%, fish broth 24%, rice 1%.",
+    "nutrition": "단백질 18 %, 지방 0.5 %, 조섬유 0.1 %, 수분 77 %, 조회분 1 %, ME 936 kcal/kg",
+    "kcalPer100g": 94
+  },
+  {
+    "id": "46",
+    "code": "5022h",
+    "locale": "en",
+    "url": "https://www.almonature.com/en/cat-products/5022h",
+    "ingredients": "Chicken breast 75%, chicken broth 24%, rice 1%.",
+    "nutrition": "단백질 17 %, 지방 0.5 %, 조섬유 0.1 %, 수분 77 %, 조회분 1 %, ME 925 kcal/kg",
+    "kcalPer100g": 93
+  },
+  {
+    "id": "47",
+    "code": "5825",
+    "locale": "en",
+    "url": "https://www.almonature.com/en/cat-products/5825",
+    "ingredients": "Chicken fillet* 50%, chicken broth 42%, ham* 5%, rice 3%.&nbsp;*Natural source of omega 6.",
+    "nutrition": "단백질 15 %, 지방 0.5 %, 조섬유 0.5 %, 수분 82 %, 조회분 2 %, ME 672 kcal/kg",
+    "kcalPer100g": 67
+  },
+  {
+    "id": "48",
+    "code": "153",
+    "locale": "en",
+    "url": "https://www.almonature.com/en/cat-products/153",
+    "ingredients": "Meat and animal derivatives 51% (chicken* 4%), fish and fish derivatives* 8%, minerals. *Natural ingredients.",
+    "nutrition": "단백질 10 %, 지방 5 %, 조섬유 0.4 %, 수분 82 %, 조회분 2 %, ME 852 kcal/kg",
+    "kcalPer100g": 85
+  },
+  {
+    "id": "49",
+    "code": "143",
+    "locale": "en",
+    "url": "https://www.almonature.com/en/cat-products/143",
+    "ingredients": "Meat and animal derivatives 51%, fish and fish derivatives* 9% (tuna* 4%), minerals. *Natural ingredients.",
+    "nutrition": "단백질 10 %, 지방 5 %, 조섬유 0.4 %, 수분 82 %, 조회분 2 %, ME 852 kcal/kg",
+    "kcalPer100g": 85
+  },
+  {
+    "id": "50",
+    "code": "704",
+    "locale": "en",
+    "url": "https://www.almonature.com/en/cat-products/704",
+    "ingredients": "Chicken 32,7% (fresh chicken 26%, dried chicken 6,7%), maize*, rice, dried beef 9,6%, brown rice flour, hydrolysed animal proteins, chicken fat, beet pulp, yeast, minerals, mannanoligosaccharides 0,1%, inulin from chicory - a source of FOS- 0,1%, yucca schidigera 0,01%.&nbsp;*No GMO.",
+    "nutrition": "단백질 26 %, 지방 16 %, 조섬유 2.5 %, 수분 9 %, 조회분 7.8 %, 칼슘 1.5 %, 인 1 %, 마그네슘 0.12 %, ME 3865 kcal/kg",
+    "kcalPer100g": 387
+  },
+  {
+    "id": "120",
+    "code": "5812",
+    "locale": "en",
+    "url": "https://www.almonature.com/en/cat-products/5812",
+    "ingredients": "Atlantic Ocean tuna 50%, tuna broth 49%, rice 1%.",
+    "nutrition": "단백질 11.5 %, 지방 0.3 %, 조섬유 0.1 %, 수분 86 %, 조회분 0.8 %, ME 490 kcal/kg",
+    "kcalPer100g": 49
+  },
+  {
+    "id": "121",
+    "code": "5810",
+    "locale": "en",
+    "url": "https://www.almonature.com/en/cat-products/5810",
+    "ingredients": "Chicken fillet 50%, chicken broth 49%, rice 1%.",
+    "nutrition": "단백질 11 %, 지방 0.9 %, 조섬유 0.1 %, 수분 86 %, 조회분 0.4 %, ME 520 kcal/kg",
+    "kcalPer100g": 52
+  },
+  {
+    "id": "122",
+    "code": "9134",
+    "locale": "en",
+    "url": "https://www.almonature.com/en/cat-products/9134",
+    "ingredients": "Fresh sea bass* 25%, fresh sea bream* 25%, rice 11,7%, white sorghum 6,5%, yeasts, potato protein, peas 5,2%, beet pulp 4,1%, hydrolysed animal proteins, brown rice flour, chicken fat**, dried cranberries 0,92%, minerals, inulin from chicory (a source of FOS) 0,1%, mannanoligosaccharides 0,1%, Mojave yucca 0,01%. *Natural source of omega 3. **Does not contain chicken proteins.",
+    "nutrition": "단백질 33.5 %, 지방 11 %, 조섬유 2.9 %, 수분 9 %, 조회분 7.1 %, 칼슘 0.9 %, 인 0.8 %, 마그네슘 0.1 %, ME 3658 kcal/kg",
+    "kcalPer100g": 366
+  },
+  {
+    "id": "123",
+    "code": "9132",
+    "locale": "en",
+    "url": "https://www.almonature.com/en/cat-products/9132",
+    "ingredients": "Fresh pork 50%, rice 10,4%, hydrolysed animal proteins, white sorghum 6,9%, peas 5,5%, yeasts, potato protein, beet pulp 2,4%, minerals, chicken fat*, dried cranberries 0,92%, inulin from chicory (a source of FOS) 0,1%, mannanoligosaccharides 0,1%, Mojave yucca 0,01%. *Does not contain chicken proteins.",
+    "nutrition": "단백질 33 %, 지방 13 %, 조섬유 2.3 %, 수분 9 %, 조회분 6.5 %, 칼슘 0.7 %, 인 0.6 %, 마그네슘 0.09 %, ME 3793 kcal/kg",
+    "kcalPer100g": 379
+  },
+  {
+    "id": "124",
+    "code": "812",
+    "locale": "en",
+    "url": "https://www.almonature.com/en/cat-products/812",
+    "ingredients": "Pork 35%, chicken 26%, minerals, fish oil 0,2%, chicory 0,1%, rosemary 0,1%.",
+    "nutrition": "단백질 11 %, 지방 4 %, 조섬유 0.5 %, 수분 80 %, 조회분 2 %, ME 870 kcal/kg",
+    "kcalPer100g": 87
+  },
+  {
+    "id": "125",
+    "code": "5434h",
+    "locale": "en",
+    "url": "https://www.almonature.com/en/cat-products/5434h",
+    "ingredients": "Fish broth, salmon 27,5%, tuna 27,5%, carrots 4%, tapioca starch, sunflower oil,minerals.",
+    "nutrition": "단백질 11.5 %, 지방 1.5 %, 조섬유 1 %, 수분 84 %, 조회분 2 %, 칼슘 0.07 %, 인 0.05 %, ME 601 kcal/kg",
+    "kcalPer100g": 60
+  },
+  {
+    "id": "126",
+    "code": "801",
+    "locale": "en",
+    "url": "https://www.almonature.com/en/cat-products/801",
+    "ingredients": "Irish angus Beef 26%, chicken, pork, turkey, green beans 4%, minerals, fish oil, chicory.",
+    "nutrition": "단백질 9.5 %, 지방 5 %, 조섬유 0.4 %, 수분 82 %, 조회분 2 %, ME 812 kcal/kg",
+    "kcalPer100g": 81
+  },
+  {
+    "id": "127",
+    "code": "5274",
+    "locale": "en",
+    "url": "https://www.almonature.com/en/cat-products/5274",
+    "ingredients": "Meat and animal derivatives*, fish and fish derivatives* (tuna* 4%, salmon* 4%), derivatives of vegetable origin, vegetable protein extracts*, vegetables*, minerals.&nbsp;*Natural ingredients.",
+    "nutrition": "단백질 9 %, 지방 5 %, 조섬유 0.8 %, 수분 82 %, 조회분 2.5 %, ME 808 kcal/kg",
+    "kcalPer100g": 81
+  },
+  {
+    "id": "128",
+    "code": "1012h",
+    "locale": "en-us",
+    "url": "https://www.almonature.com/en-us/cat-products/1012h",
+    "ingredients": "Tuna 48%, Chicken 28%, Water Sufficient For Processing 24%.",
+    "nutrition": "단백질 18, 지방 0.3, 조섬유 1, 수분 83, 조회분 2",
+    "kcalPer100g": null
+  },
+  {
+    "id": "129",
+    "code": "5825",
+    "locale": "en",
+    "url": "https://www.almonature.com/en/cat-products/5825",
+    "ingredients": "Chicken fillet* 50%, chicken broth 42%, ham* 5%, rice 3%.&nbsp;*Natural source of omega 6.",
+    "nutrition": "단백질 15 %, 지방 0.5 %, 조섬유 0.5 %, 수분 82 %, 조회분 2 %, ME 672 kcal/kg",
+    "kcalPer100g": 67
+  },
+  {
+    "id": "130",
+    "code": "165",
+    "locale": "en",
+    "url": "https://www.almonature.com/en/cat-products/165",
+    "ingredients": "Meat and animal derivatives* 60% (chicken* 4%), minerals. *Natural ingredients.",
+    "nutrition": "단백질 7 %, 지방 5 %, 조섬유 0.4 %, 수분 82 %, 조회분 2.5 %, ME 816 kcal/kg",
+    "kcalPer100g": 82
+  },
+  {
+    "id": "131",
+    "code": "167",
+    "locale": "en",
+    "url": "https://www.almonature.com/en/cat-products/167",
+    "ingredients": "Meat and animal derivatives* 50%, fish and fish derivatives* 8% (tuna* 4%), minerals. *Natural ingredients.",
+    "nutrition": "단백질 9.5 %, 지방 5 %, 조섬유 0.4 %, 수분 81 %, 조회분 3 %, ME 850 kcal/kg",
+    "kcalPer100g": 85
+  }
+]

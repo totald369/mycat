@@ -2,6 +2,13 @@
 
 ## 2026-06-06
 
+### 지위픽·로우즈·알모네이처 레거시 상세 보강
+
+- **지위픽** 10종(id `90`–`99`): [ZIWI US](https://us.ziwipets.com) 에어드라이·캔 공식 페이지 원재료·등록성분·ME 반영(건식 kcal 공식값 기준 갱신).
+- **로우즈** 17종(id `30`–`35`, `100`–`110`): [RAWZ](https://rawznaturalpetfood.com) 96% 파테·슈레드·키튼·시니어 공식 페이지. 비프 파테·인도어는 US 미판매 SKU → `beef-and-beef-liver-cat-food`, `immune-support-chicken-chicken-liver-cat-food`로 대체.
+- **알모네이처** 18종(id `45`–`50`, `120`–`131`): [Almo Nature](https://www.almonature.com) HFC·Daily·Legend(en-us)·Complete 공식 코드 매핑. 롱제비티 2종(id `122`–`123`)은 공식 건식 레시피 성분만 반영(kcal·ME는 습식 CSV 추정값 유지).
+- **스크립트**: `scrape-ziwi.mjs`, `scrape-rawz.mjs`, `scrape-almo.mjs` 및 각 `apply-*-csv.mjs`, `*-scraped.json` 추가.
+
 ### 유한양행 레시피브이 반려묘 13종 상세 보강
 
 - **[레시피브이 공식몰](https://recipe-v.co.kr/cat/prescription/)** 처방식·기능성·연령별·코숏 묘종 페이지 제품 상세 이미지 기준 id `9993727576` 등 13건 원재료·등록성분·ME 반영. 인도어 C(id `10786596088`)는 공식몰 미게재로 kcal만 유지.
