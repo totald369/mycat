@@ -1,0 +1,154 @@
+{
+  "source": "https://shop.pulmuone.co.kr/shop/goodsList?itemId=5736",
+  "legacy": [
+    {
+      "id": "173",
+      "ilGoodsId": 38376,
+      "ingredients": "계육분(국내산), 옥수수글루텐, 닭고기(국내산), 닭기름, 유기농비트펄프, 유기농현미, 유기농옥수수, 유도단백질, 유기농귀리, 쌀, 유기농해바라기박, 유기농보리, 유기농쌀, 유기농참깨박, 유기농아마씨, 콜린염화물, DL-메티오닌, L-라이신, 유기농 녹두·메밀, 비타민·미네랄 혼합제, 타우린, 이눌린, 효모, 유산균(Lactobacillus plantarum-PMO08), 로즈마리 추출물",
+      "nutrition": "조단백 34%, 조지방 12%, 조섬유 6%, 조회분 12%, ME 3590 kcal/kg",
+      "kcalPer100g": 359
+    },
+    {
+      "id": "174",
+      "ilGoodsId": 38377,
+      "ingredients": "연어 분(칠레산), 옥수수글루텐, 연어(칠레산), 닭기름(국내산), 유기농비트펄프, 쌀, 유기농현미, 유기농옥수수, 가수분해 단백, 유기농귀리, 유기농해바라기박, 유기농보리, 유기농참깨박, 유기농아마씨, 유기농 고구마·당근·호박, 타우린, 이눌린, 유산균(Lactobacillus plantarum-PMO08), 비타민·미네랄 혼합제, 로즈마리 추출물",
+      "nutrition": "조단백 33%, 조지방 12%, 조섬유 6%, 조회분 12%, ME 3580 kcal/kg",
+      "kcalPer100g": 358
+    },
+    {
+      "id": "175",
+      "ilGoodsId": 39251,
+      "ingredients": "계육분(국내산), 닭고기(국내산), 닭기름, 완두, 고구마, 유기농비트펄프, 유기농아마씨, 셀룰로오스, 차전자피, 연어유, L-카르니틴, CLA, 유산균(Lactobacillus plantarum-PMO08), 타우린, 이눌린, 녹차·로즈마리 추출물, 비타민·미네랄 혼합제",
+      "nutrition": "조단백 33%, 조지방 10%, 조섬유 8%, 조회분 10%, ME 2985 kcal/kg",
+      "kcalPer100g": 299
+    },
+    {
+      "id": "177",
+      "ilGoodsId": 38354,
+      "ingredients": "닭고기, 건조닭고기, 병아리콩, 연어, 사탕무박, 어분, 가수분해닭단백, 닭기름, 카사바, 완두, 렌틸콩, 셀룰로오스, 아마씨, 생선유, 타우린, L-카르니틴, 글루코사민, 콘드로이틴, 유산균(Lactobacillus plantarum-PMO08), 비타민·미네랄 혼합제",
+      "nutrition": "조단백 37%, 조지방 14%, 조섬유 8%, 조회분 10%, 344 kcal/100g",
+      "kcalPer100g": 344
+    },
+    {
+      "id": "178",
+      "ilGoodsId": 38356,
+      "ingredients": "닭고기, 건조닭고기, 병아리콩, 사탕무박, 어분, 가수분해닭단백, 닭기름, 카사바, 완두, 렌틸콩, 셀룰로오스, 아마씨, 생선유, 크랜베리, 타우린, 글루코사민, 콘드로이틴, 유산균(Lactobacillus plantarum-PMO08), 비타민·미네랄 혼합제",
+      "nutrition": "조단백 38%, 조지방 19%, 조섬유 5%, 조회분 9%, 412 kcal/100g",
+      "kcalPer100g": 412
+    }
+  ],
+  "products": [
+    {
+      "id": "PM43259",
+      "ilGoodsId": 43259,
+      "name": "날씬하냥 1.5kg",
+      "type": "dry",
+      "life_stage": "adult_1y_plus",
+      "category": "general",
+      "condition": "weight",
+      "serving_g": 55,
+      "ingredients": "계육분, 계유, 가수분해 단백, 쌀, 현미, 비트펄프, 셀룰로오스, 유기농 현미·귀리·보리·쌀, L-라이신, DL-메티오닌, L-카르니틴, CLA, 차전자피, 타우린, 이눌린, 유카 추출물, 프락토올리고당, 유산균(PMO08), 비타민·미네랄 혼합제",
+      "nutrition": "조단백 33%, 조지방 10%, 조섬유 8%, 조회분 10%, ME 3015 kcal/kg",
+      "kcalPer100g": 302
+    },
+    {
+      "id": "PM39680",
+      "ilGoodsId": 39680,
+      "name": "시원하냥 1.5kg",
+      "type": "dry",
+      "life_stage": "adult_1y_plus",
+      "category": "general",
+      "condition": "digestive",
+      "serving_g": 55,
+      "ingredients": "계육분(국내산), 계유, 가수분해닭단백, 쌀(국내산), 옥수수글루텐, 유기농 현미·귀리·보리·쌀, 유기농비트펄프, 유기농 고구마·당근·호박, 유산균(Lactobacillus plantarum-PMO08), 프락토올리고당, 이눌린, 유카 추출물, 타우린, 비타민·미네랄 혼합제",
+      "nutrition": "조단백 31%, 조지방 11%, 조섬유 4%, 조회분 12%, ME 2965 kcal/kg",
+      "kcalPer100g": 297
+    },
+    {
+      "id": "PM39252",
+      "ilGoodsId": 39252,
+      "name": "건강담은식단 유리너리케어 6.4kg",
+      "type": "dry",
+      "life_stage": "adult_1y_plus",
+      "category": "general",
+      "condition": "urinary",
+      "serving_g": 55,
+      "ingredients": "계육분(국내산), 완두, 닭기름, 고구마, 닭고기(국내산), 유기농비트펄프, 완두단백, 셀룰로오스, 연어유, 크랜베리, DL-메티오닌, L-라이신, 유산균(Lactobacillus plantarum-PMO08), 타우린, 이눌린, 비타민·미네랄 혼합제",
+      "nutrition": "조단백 31%, 조지방 16%, 조섬유 6%, 조회분 10%, ME 3355 kcal/kg",
+      "kcalPer100g": 336
+    },
+    {
+      "id": "PM39250",
+      "ilGoodsId": 39250,
+      "name": "건강담은식단 헤어볼케어 6.4kg",
+      "type": "dry",
+      "life_stage": "adult_1y_plus",
+      "category": "general",
+      "condition": "hairball",
+      "serving_g": 55,
+      "ingredients": "계육분(국내산), 닭기름, 닭고기(국내산), 완두, 고구마, 셀룰로오스, 차전자피, 연어유, 생선유, 유기농비트펄프, DL-메티오닌, L-라이신, 유산균(Lactobacillus plantarum-PMO08), 타우린, 이눌린, 비타민·미네랄 혼합제",
+      "nutrition": "조단백 33%, 조지방 16%, 조섬유 8%, 조회분 10%, ME 3285 kcal/kg",
+      "kcalPer100g": 329
+    },
+    {
+      "id": "PM38705",
+      "ilGoodsId": 38705,
+      "copyFrom": "175",
+      "name": "건강담은식단 체중케어 1.8kg",
+      "type": "dry",
+      "life_stage": "adult_1y_plus",
+      "category": "general",
+      "condition": "weight",
+      "serving_g": 55,
+      "kcalPer100g": 299
+    },
+    {
+      "id": "PM38704",
+      "ilGoodsId": 38704,
+      "copyFrom": "PM39252",
+      "name": "건강담은식단 유리너리케어 1.8kg",
+      "type": "dry",
+      "life_stage": "adult_1y_plus",
+      "category": "general",
+      "condition": "urinary",
+      "serving_g": 55,
+      "kcalPer100g": 336
+    },
+    {
+      "id": "PM38703",
+      "ilGoodsId": 38703,
+      "copyFrom": "PM39250",
+      "name": "건강담은식단 헤어볼케어 1.8kg",
+      "type": "dry",
+      "life_stage": "adult_1y_plus",
+      "category": "general",
+      "condition": "hairball",
+      "serving_g": 55,
+      "kcalPer100g": 329
+    },
+    {
+      "id": "PM38361",
+      "ilGoodsId": 38361,
+      "copyFrom": "173",
+      "name": "자연담은식단 바르게기른닭 1.8kg",
+      "type": "dry",
+      "life_stage": "adult_1y_plus",
+      "category": "general",
+      "condition": "none",
+      "serving_g": 55,
+      "kcalPer100g": 359
+    },
+    {
+      "id": "PM38367",
+      "ilGoodsId": 38367,
+      "copyFrom": "174",
+      "name": "자연담은식단 힘찬연어 1.8kg",
+      "type": "dry",
+      "life_stage": "adult_1y_plus",
+      "category": "general",
+      "condition": "none",
+      "serving_g": 55,
+      "kcalPer100g": 358
+    }
+  ]
+}

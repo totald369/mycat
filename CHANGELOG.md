@@ -2,6 +2,13 @@
 
 ## 2026-06-06
 
+### 풀무원몰 아미오 고양이 주식 14종 상세 보강
+
+- **[풀무원몰 고양이 주식](https://shop.pulmuone.co.kr/shop/goodsList?itemId=5736)** 카테고리 14종: 상품 상세 이미지(등록성분·원재료) 기준 반영. API `nutrition` 필드는 비어 있어 `detailDescription` BOS 라벨 이미지에서 추출.
+- **레거시** 5종(id `173`–`175`, `177`–`178`): 자연담은·건강담은·그레인프리 라인 원재료·등록성분·kcal in-place 갱신.
+- **신규** 9종(id `PM43259` 등): 날씬하냥·시원하냥, 건강담은 헤어볼·유리너리(6.4/1.8kg), 자연담은 1.8kg SKU append.
+- **스크립트**: `scrape-pulmuone.mjs`, `apply-pulmuone-amio-csv.mjs`, `pulmuone-amio-scraped.json` 추가.
+
 ### 힐스·퓨리나·캐츠랑 레거시 상세 보강
 
 - **힐스** 22종(id `11`–`20`, `61`–`72`): [hillspet.co.kr](https://www.hillspet.co.kr) Science Diet·Prescription Diet 공식 slug 매핑. 헤어볼·k/d 캔·a/d 등 원재료 미표기 페이지는 동일 라인 HP SKU·공식 US 성분으로 보완.

@@ -1,0 +1,178 @@
+{
+  "source": "https://shop.pulmuone.co.kr/shop/goodsList?itemId=5736",
+  "scrapedAt": "2026-06-06T17:25:11.192Z",
+  "count": 14,
+  "items": [
+    {
+      "ilGoodsId": 43259,
+      "goodsName": "[반려묘] 날씬하냥 (1.5kg)",
+      "goodsDesc": "급여대상 : 생후 12개월 이상",
+      "brandName": "풀무원아미오",
+      "salePrice": 11680,
+      "nutrition": [],
+      "detailImages": [
+        "https://s.pulmuone.app/BOS/il/2025/09/23/684E5B25C308421F9591.jpg",
+        "https://s.pulmuone.app/BOS/il/2025/09/23/E8AF8056A6014DCFB84A.jpg",
+        "https://s.pulmuone.app/BOS/il/2025/09/23/0D073567A2A7444BB0A3.png"
+      ],
+      "url": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=43259"
+    },
+    {
+      "ilGoodsId": 39680,
+      "goodsName": "시원하냥 (튼튼한 장에 도움을 주는 식단) (1.5kg)",
+      "goodsDesc": "급여대상 : 2개월 이상 전연령",
+      "brandName": "풀무원아미오",
+      "salePrice": 11680,
+      "nutrition": [],
+      "detailImages": [
+        "https://s.pulmuone.app/BOS/il/2024/02/28/19121F67E51A4010A4A5.JPG",
+        "https://s.pulmuone.app/BOS/il/2024/02/28/CFC285DA2A90478AAB23.JPG"
+      ],
+      "url": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=39680"
+    },
+    {
+      "ilGoodsId": 39252,
+      "goodsName": "건강담은식단 고양이 유리너리케어 6.4kg (400gx16개)",
+      "goodsDesc": "급여대상 : 2개월 이상 전연령",
+      "brandName": "풀무원아미오",
+      "salePrice": 86400,
+      "nutrition": [],
+      "detailImages": [
+        "https://s.pulmuone.app/BOS/il/2024/01/05/85282CDC43B040D59139.jpg"
+      ],
+      "url": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=39252"
+    },
+    {
+      "ilGoodsId": 39251,
+      "goodsName": "건강담은식단 고양이 체중케어 6.4kg (400gx16개)",
+      "goodsDesc": "급여대상 : 2개월 이상 전연령",
+      "brandName": "풀무원아미오",
+      "salePrice": 86400,
+      "nutrition": [],
+      "detailImages": [
+        "https://s.pulmuone.app/BOS/il/2024/01/05/512CAEAAA5C54DFEA6A1.jpg"
+      ],
+      "url": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=39251"
+    },
+    {
+      "ilGoodsId": 39250,
+      "goodsName": "건강담은식단 고양이 헤어볼케어 6.4kg (400gx16개)",
+      "goodsDesc": "급여대상 : 2개월 이상 전연령",
+      "brandName": "풀무원아미오",
+      "salePrice": 86400,
+      "nutrition": [],
+      "detailImages": [
+        "https://s.pulmuone.app/BOS/il/2024/01/05/209BD66CD2B4459D943A.jpg"
+      ],
+      "url": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=39250"
+    },
+    {
+      "ilGoodsId": 38705,
+      "goodsName": "건강담은식단 고양이 체중케어 1.8kg (200gx9개)",
+      "goodsDesc": "급여대상 : 2개월 이상 전연령",
+      "brandName": "풀무원아미오",
+      "salePrice": 28800,
+      "nutrition": [],
+      "detailImages": [
+        "https://s.pulmuone.app/BOS/il/2023/10/26/657DAD3E6598489D98DC.jpg"
+      ],
+      "url": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=38705"
+    },
+    {
+      "ilGoodsId": 38704,
+      "goodsName": "건강담은식단 고양이 유리너리케어 1.8kg (200gx9개)",
+      "goodsDesc": "급여대상 : 2개월 이상 전연령",
+      "brandName": "풀무원아미오",
+      "salePrice": 28800,
+      "nutrition": [],
+      "detailImages": [
+        "https://s.pulmuone.app/BOS/il/2023/10/26/B323AB1EB92741D0ACD8.jpg"
+      ],
+      "url": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=38704"
+    },
+    {
+      "ilGoodsId": 38703,
+      "goodsName": "건강담은식단 고양이 헤어볼케어 1.8kg (200gx9개)",
+      "goodsDesc": "급여대상 : 2개월 이상 전연령",
+      "brandName": "풀무원아미오",
+      "salePrice": 28800,
+      "nutrition": [],
+      "detailImages": [
+        "https://s.pulmuone.app/BOS/il/2023/10/26/68AF366BD19D4D4EB426.jpg"
+      ],
+      "url": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=38703"
+    },
+    {
+      "ilGoodsId": 38377,
+      "goodsName": "자연담은식단 고양이 힘찬연어 6.4kg (400gx16개)",
+      "goodsDesc": "급여대상 : 2개월 이상 전연령",
+      "brandName": "풀무원아미오",
+      "salePrice": 86400,
+      "nutrition": [],
+      "detailImages": [
+        "https://s.pulmuone.app/BOS/il/2023/10/26/225E60BA78694F73ACF7.jpg"
+      ],
+      "url": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=38377"
+    },
+    {
+      "ilGoodsId": 38376,
+      "goodsName": "자연담은식단 고양이 바르게기른닭 6.4kg (400gx16개)",
+      "goodsDesc": "급여대상 : 2개월 이상 전연령",
+      "brandName": "풀무원아미오",
+      "salePrice": 86400,
+      "nutrition": [],
+      "detailImages": [
+        "https://s.pulmuone.app/BOS/il/2023/10/26/5AFD0B1F60B546AABE8B.jpg"
+      ],
+      "url": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=38376"
+    },
+    {
+      "ilGoodsId": 38367,
+      "goodsName": "자연담은식단 고양이 힘찬연어 1.8kg (200gx9개)",
+      "goodsDesc": "급여대상 : 2개월 이상 전연령",
+      "brandName": "풀무원아미오",
+      "salePrice": 28800,
+      "nutrition": [],
+      "detailImages": [
+        "https://s.pulmuone.app/BOS/il/2023/10/26/7681C75323574410B7D1.jpg"
+      ],
+      "url": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=38367"
+    },
+    {
+      "ilGoodsId": 38361,
+      "goodsName": "자연담은식단 고양이 바르게기른닭 1.8kg (200gx9개)",
+      "goodsDesc": "급여대상 : 2개월 이상 전연령",
+      "brandName": "풀무원아미오",
+      "salePrice": 28800,
+      "nutrition": [],
+      "detailImages": [
+        "https://s.pulmuone.app/BOS/il/2023/06/21/54AA96C9065A4D5BA56D.jpg"
+      ],
+      "url": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=38361"
+    },
+    {
+      "ilGoodsId": 38356,
+      "goodsName": "그레인프리 고양이 유리너리  5.4kg (300gx18개)",
+      "goodsDesc": "급여대상 : 생후 1년 이상",
+      "brandName": "풀무원아미오",
+      "salePrice": 72900,
+      "nutrition": [],
+      "detailImages": [
+        "https://s.pulmuone.app/BOS/il/2023/06/21/3917542F2F184611AB64.jpg"
+      ],
+      "url": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=38356"
+    },
+    {
+      "ilGoodsId": 38354,
+      "goodsName": "그레인프리 고양이 슬림업 5.4kg (300gx18개)",
+      "goodsDesc": "급여대상 : 생후 1년 이상",
+      "brandName": "풀무원아미오",
+      "salePrice": 72900,
+      "nutrition": [],
+      "detailImages": [
+        "https://s.pulmuone.app/BOS/il/2023/06/21/3AB848243B8C4B1CB628.jpg"
+      ],
+      "url": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=38354"
+    }
+  ]
+}
