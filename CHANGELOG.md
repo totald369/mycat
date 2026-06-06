@@ -2,6 +2,13 @@
 
 ## 2026-06-06
 
+### 힐스·퓨리나·캐츠랑 레거시 상세 보강
+
+- **힐스** 22종(id `11`–`20`, `61`–`72`): [hillspet.co.kr](https://www.hillspet.co.kr) Science Diet·Prescription Diet 공식 slug 매핑. 헤어볼·k/d 캔·a/d 등 원재료 미표기 페이지는 동일 라인 HP SKU·공식 US 성분으로 보완.
+- **퓨리나** 10종(id `36`–`44`, `148`): [Purina CA](https://www.purina.ca) ONE·Fancy Feast 및 글로벌 라벨 기준 원재료·등록성분·ME 반영.
+- **캐츠랑** 12종(id `151`–`162`): 기존 `DJ*`·`GI*`·`PI*` SKU 및 코스트코·SSG 고메디쉬 라인 성분 매핑. 습식 파우치는 저요저요·고메디쉬 레시피 기준 추정.
+- **스크립트**: `scrape-hills-legacy.mjs`, `apply-hills-legacy-csv.mjs`, `hills-legacy-scraped.json`, `purina-scraped.json`, `apply-purina-csv.mjs`, `catsrang-legacy-scraped.json`, `apply-catsrang-legacy-csv.mjs` 추가.
+
 ### 지위픽·로우즈·알모네이처 레거시 상세 보강
 
 - **지위픽** 10종(id `90`–`99`): [ZIWI US](https://us.ziwipets.com) 에어드라이·캔 공식 페이지 원재료·등록성분·ME 반영(건식 kcal 공식값 기준 갱신).

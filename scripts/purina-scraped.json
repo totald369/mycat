@@ -1,0 +1,72 @@
+[
+  {
+    "id": "36",
+    "url": "https://www.purina.ca/purina-one/cats/dry-cat-food/healthy-kitten-food",
+    "ingredients": "닭고기, 닭 부산물 밀, 옥수수글루텐밀, 쌀가루, 대두밀, 소고기 지방, 닭고기 밀, 통곡물 옥수수, 대두단백 농축, 간 향, 대두단백 격리, 인산, 소금, L-라이신, 캐러멜 색소, 생선유, 건조 당근, 건조 완두, 콜린염화물, 타우린, 미네랄, 비타민, DL-메티오닌",
+    "nutrition": "단백질 40%, 지방 18%, 조섬유 2.5%, 수분 12%, ME 4364 kcal/kg",
+    "kcalPer100g": 436
+  },
+  {
+    "id": "37",
+    "url": "https://www.purina.ca/purina-one/cats/dry-cat-food/chicken-rice",
+    "ingredients": "닭고기, 가금류 단백, 옥수수, 대두밀, 밀글루텐, 동물성 지방, 옥수수단백, 건조 치커리 뿌리, 옥수수 식미, 미네랄, 소화효소, 건조 효모",
+    "nutrition": "단백질 34%, 지방 15%, 조섬유 2%, 수분 12%, ME 3942 kcal/kg",
+    "kcalPer100g": 394
+  },
+  {
+    "id": "38",
+    "url": "https://www.purina.com/one/cat/dry/indoor-advantage",
+    "ingredients": "칠면조, 가금류 부산물 밀, 옥수수글루텐밀, 대두밀, 분말 셀룰로오스, 동물성 지방, 대두밀, 통곡물 옥수수, 대두단백 농축, 간 향, 생선유, 건조 당근, 건조 완두, 타우린, 미네랄, 비타민",
+    "nutrition": "단백질 38%, 지방 14%, 조섬유 4%, 수분 12%, ME 3600 kcal/kg",
+    "kcalPer100g": 360
+  },
+  {
+    "id": "39",
+    "url": "https://www.purina.com/one/cat/dry/healthy-weight",
+    "ingredients": "칠면조, 가금류 부산물 밀, 분말 셀룰로오스, 옥수수글루텐밀, 대두밀, 동물성 지방, 대두백, 통곡물 옥수수, 대두단백 농축, 간 향, L-카르니틴, 타우린, 미네랄, 비타민",
+    "nutrition": "단백질 41%, 지방 12%, 조섬유 6%, 수분 12%, ME 3300 kcal/kg",
+    "kcalPer100g": 330
+  },
+  {
+    "id": "40",
+    "url": "https://www.purina.ca/fancy-feast/wet-cat-food/pate-chicken-feast",
+    "ingredients": "닭고기, 닭고기 육수, 육류 부산물, 간, 생선, 천연·인공 향료, 삼인산칼슘, 구아검, 미네랄, 콜린염화물, 타우린, 비타민, 소금",
+    "nutrition": "단백질 10%, 지방 5%, 조섬유 1.5%, 수분 78%, 조회분 3.25%, ME 1080 kcal/kg",
+    "kcalPer100g": 108
+  },
+  {
+    "id": "41",
+    "url": "https://www.purina.com.sg/food/cat/purina-fancy-feast-classic-pate-tuna-feast-gourmet-cat-food-85g-can",
+    "ingredients": "참치, 닭뼈, 정어리, 양고기 간, 아미노산, 미네랄, 비타민, 가금유, 증점제, 설탕",
+    "nutrition": "단백질 11%, 지방 4%, 조섬유 1.5%, 수분 78%, 조회분 3.5%, ME 1100 kcal/kg",
+    "kcalPer100g": 110
+  },
+  {
+    "id": "42",
+    "url": "https://www.purina.ca/fancy-feast/wet-cat-food/pate-salmon-feast",
+    "ingredients": "연어, 연어 육수, 육류 부산물, 간, 생선, 천연·인공 향료, 삼인산칼슘, 구아검, 미네랄, 콜린염화물, 타우린, 비타민, 소금",
+    "nutrition": "단백질 11%, 지방 4%, 조섬유 1.5%, 수분 78%, 조회분 3.25%, ME 1046 kcal/kg",
+    "kcalPer100g": 105
+  },
+  {
+    "id": "43",
+    "url": "https://www.purina.com/friskies/wet/pate-chicken-turkey",
+    "ingredients": "물, 닭고기, 칠면조, 간, 육류 부산물, 생선, 대두, 밀, 인산, 소금, 타우린, 미네랄, 비타민",
+    "nutrition": "단백질 10%, 지방 5%, 조섬유 1.5%, 수분 78%, 조회분 3%",
+    "kcalPer100g": 100
+  },
+  {
+    "id": "44",
+    "url": "https://www.purina.com/friskies/wet/shreds-chicken-salmon",
+    "ingredients": "물, 닭고기, 연어, 간, 육류 부산물, 밀, 대두, 수정전분, 인산, 소금, 타우린, 미네랄, 비타민",
+    "nutrition": "단백질 9%, 지방 2.5%, 조섬유 1%, 수분 82%, 조회분 3%",
+    "kcalPer100g": 88
+  },
+  {
+    "id": "148",
+    "url": "https://www.purina.com/one/cat/wet/kitten-formula",
+    "ingredients": "닭고기, 닭고기 육수, 간, 육류 부산물, 생선, 계유, 건조계란, 인삼삼인산, 구아검, 미네랄, 소금, 비타민, 타우린",
+    "nutrition": "단백질 12%, 지방 4%, 조섬유 1.5%, 수분 78%, 조회분 3.5%",
+    "kcalPer100g": 106
+  }
+]
