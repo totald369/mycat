@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-06-06
+
+### 유한양행 레시피브이 반려묘 13종 상세 보강
+
+- **[레시피브이 공식몰](https://recipe-v.co.kr/cat/prescription/)** 처방식·기능성·연령별·코숏 묘종 페이지 제품 상세 이미지 기준 id `9993727576` 등 13건 원재료·등록성분·ME 반영. 인도어 C(id `10786596088`)는 공식몰 미게재로 kcal만 유지.
+- **스크립트**: `scripts/scrape-recipev.mjs`, `scripts/apply-recipev-csv.mjs`, `scripts/recipev-scraped.json` 추가.
+
 ## 2026-06-05
 
 ### 로얄캐닌 처방식 17종 상세 보강
