@@ -1,0 +1,21 @@
+{
+  "source": "https://www.coupang.com/vp/products/1288790820",
+  "refs": [
+    "https://prod.danawa.com/info/?pcode=7573558",
+    "https://www.dongwonmall.com/product/detail.do?productId=003781744"
+  ],
+  "products": [
+    {
+      "id": "CP1288790820",
+      "brand": "CA코리아",
+      "name": "뉴블루캣 15kg",
+      "type": "dry",
+      "life_stage": "all_life_stage",
+      "category": "general",
+      "condition": "none",
+      "kcalPer100g": 315,
+      "ingredients": "닭고기분, 옥수수, 쌀, 동물성 지방(계유), 식물성 단백, 어분, 비트펄프, 타우린, 비타민·미네랄",
+      "nutrition": "조단백 28%, 조지방 9%, 조섬유 3%, 조회분 8%, 칼슘 0.85%, 인 0.6%, 수분 12%"
+    }
+  ]
+}

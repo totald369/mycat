@@ -2,6 +2,11 @@
 
 ## 2026-06-06
 
+### 쿠팡 CA코리아 뉴블루캣 15kg 등록
+
+- **[쿠팡 뉴블루캣 15kg](https://www.coupang.com/vp/products/1288790820)** (`CP1288790820`): [다나와](https://prod.danawa.com/info/?pcode=7573558) 등록성분·단백질원(닭고기·쌀·옥수수) 반영. ME 미표기로 성분 기반 추정(315 kcal/100g).
+- **스크립트**: `coupang-scraped.json`, `apply-coupang-csv.mjs` 추가.
+
 ### 어바웃펫 쓰라이브·퍼시캣 SKU 10종 상세 보강
 
 - **[어바웃펫](https://aboutpet.co.kr)** 상품 상세 이미지 기준: 쓰라이브 컴플리트 그레인프리 캔·프리미엄 플러스 건식, 퍼시캣 프리미엄 참치&실꼬리돔 원재료·등록성분·kcal 반영.
