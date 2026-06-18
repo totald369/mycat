@@ -1,0 +1,150 @@
+[
+  {
+    "id": "132",
+    "brand": "프린세스",
+    "ingredients": "닭고기 25.5%, 참치 25.5%, 알로에베라 3%, 쌀 1%, 소스(물, 변성전분, 증점제, 비타민E) 45%",
+    "nutrition": "단백질 11%, 지방 0.2%, 조섬유 1%, 조회분 2%, 수분 85.8%",
+    "source": "https://petprinces.com/pet-food/princess-excellence-chicken-tuna-with-rice-aloe-vera/"
+  },
+  {
+    "id": "133",
+    "brand": "프린세스",
+    "ingredients": "닭고기 25.5%, 참치 25.5%, 새우 3%, 쌀 1%, 소스(물, 변성전분, 증점제, 비타민E) 45%",
+    "nutrition": "단백질 11%, 지방 0.2%, 조섬유 1%, 조회분 2%, 수분 85.8%",
+    "source": "https://petprinces.com/pet-food/princess-excellence-chicken-tuna-with-rice-shrimp/"
+  },
+  {
+    "id": "134",
+    "brand": "프린세스",
+    "ingredients": "닭고기 25.5%, 참치 25.5%, 연어 3%, 쌀 1%, 소스(물, 변성전분, 증점제, 비타민E) 45%",
+    "nutrition": "단백질 11%, 지방 0.2%, 조섬유 1%, 조회분 2%, 수분 85.8%",
+    "source": "https://petprinces.com/pet-food/princess-excellence-chicken-tuna-with-rice-salmon/"
+  },
+  {
+    "id": "135",
+    "brand": "프린세스",
+    "ingredients": "닭 가슴살 40%, 칠면토 3%, 쌀 1%, 소스(물, 변성전분, 증점제, 비타민E) 59%",
+    "nutrition": "단백질 11%, 지방 0.1%, 조섬유 1%, 조회분 2%, 수분 85.9%",
+    "source": "https://petprinces.com/pet-food/princess-excellence-chicken-breast-with-rice-turkey/"
+  },
+  {
+    "id": "136",
+    "brand": "프린세스",
+    "ingredients": "퍼시픽 참치 54%, 쌀 1%, 소스(물, 변성전분, 증점제, 비타민E) 45%",
+    "nutrition": "단백질 14%, 지방 0.3%, 조섬유 1%, 조회분 2%, 수분 82.7%",
+    "source": "https://petprinces.com/pet-food/princess-excellence-pacific-tuna-with-rice/"
+  },
+  {
+    "id": "137",
+    "brand": "프린세스",
+    "ingredients": "닭고기 25.5%, 참치 25.5%, 흰살생선 3%, 쌀 1%, 소스(물, 변성전분, 증점제, 비타민E) 45%",
+    "nutrition": "단백질 14%, 지방 0.3%, 조섬유 1%, 조회분 2%, 수분 82.7%",
+    "source": "https://petprinces.com/pet-food/princess-excellence-chicken-tuna-with-rice-white-bait/"
+  },
+  {
+    "id": "138",
+    "brand": "프린세스",
+    "ingredients": "닭고기 25.5%, 참치 25.5%, 호박 3%, 쌀 1%, 소스(물, 변성전분, 증점제, 비타민E) 45%",
+    "nutrition": "단백질 11%, 지방 0.2%, 조섬유 1%, 조회분 2%, 수분 85.8%",
+    "source": "https://petprinces.com/pet-food/princess-excellence-chicken-tuna-with-rice-pumpkin/"
+  },
+  {
+    "id": "139",
+    "brand": "프린세스",
+    "ingredients": "닭 가슴살 40%, 셀룰로오스 3%, 쌀 1%, 소스(물, 변성전분, 증점제, 비타민E, 올리고당) 56%",
+    "nutrition": "단백질 12%, 지방 0.2%, 조섬유 2%, 조회분 2%, 수분 84%",
+    "source": "https://dogsworld.com.cy/en/product/princess-premium-excellence-gold-chicken-breast-with-fos-cellulose-hairball-control/"
+  },
+  {
+    "id": "140",
+    "brand": "레오나르도",
+    "ingredients": "육류 및 동물성 부산물 (40%), 육수 (34%), 생선 및 생선 부산물(해산어) (25%), 미네랄 (0.5%), 건조 달걀껍질 (0.5%)",
+    "nutrition": "단백질 10%, 지방 5%, 조섬유 0.3%, 조회분 2%, 수분 80%",
+    "source": "https://www.leonardo-catfood.com/leonardo-quality-selection-rich-in-ocean-fish-6-x-200-g"
+  },
+  {
+    "id": "141",
+    "brand": "레오나르도",
+    "ingredients": "육류 및 동물성 부산물 (가금류 25%) (65%), 육수 (34%), 미네랄 (0.5%), 건조 달걀껍질 (0.5%)",
+    "nutrition": "단백질 10%, 지방 5%, 조섬유 0.3%, 조회분 2%, 수분 80%",
+    "source": "https://www.leonardo-catfood.com/leonardo-rich-in-poultry"
+  },
+  {
+    "id": "142",
+    "brand": "레오나르도",
+    "ingredients": "육류 및 동물성 부산물 (소고기 25%) (65%), 육수 (34%), 미네랄 (0.5%), 건조 달걀껍질 (0.5%)",
+    "nutrition": "단백질 10%, 지방 5%, 조섬유 0.3%, 조회분 2%, 수분 80%",
+    "source": "https://www.leonardo-catfood.com/leonardo-quality-selection-rich-in-beef-6-x-200-g"
+  },
+  {
+    "id": "143",
+    "brand": "레오나르도",
+    "ingredients": "육류 및 동물성 부산물 (가금류 25%) (40%), 육수 (34%), 생선 및 생선 부산물(연어) (25%), 미네랄 (0.5%), 건조 달걀껍질 (0.5%)",
+    "nutrition": "단백질 10%, 지방 5%, 조섬유 0.3%, 조회분 2%, 수분 80%",
+    "source": "https://www.leonardo-catfood.com/leonardo-rich-in-poultry-and-salmon"
+  },
+  {
+    "id": "144",
+    "brand": "레오나르도",
+    "ingredients": "육류 및 동물성 부산물 (가금류 25%, 토끼고기 25%) (65%), 육수 (34%), 미네랄 (0.5%), 건조 달걀껍질 (0.5%)",
+    "nutrition": "단백질 10%, 지방 5%, 조섬유 0.3%, 조회분 2%, 수분 80%",
+    "source": "https://www.leonardo-catfood.com/leonardo-rich-in-poultry-and-rabbit"
+  },
+  {
+    "id": "145",
+    "brand": "레오나르도",
+    "ingredients": "육류 및 동물성 부산물 (가금류 25%, 오리고기 25%) (65%), 육수 (34%), 미네랄 (0.5%), 건조 달걀껍질 (0.5%)",
+    "nutrition": "단백질 10%, 지방 5%, 조섬유 0.3%, 조회분 2%, 수분 80%",
+    "source": "https://www.leonardo-catfood.com/leonardo-rich-in-poultry-and-duck"
+  },
+  {
+    "id": "146",
+    "brand": "레오나르도",
+    "ingredients": "육류 및 동물성 부산물 (가금류 25%) (65%), 육수 (34%), 미네랄 (0.5%), 건조 달걀껍질 (0.5%)",
+    "nutrition": "단백질 9.5%, 지방 4.5%, 조섬유 0.3%, 조회분 2%, 수분 80%",
+    "source": "https://www.leonardo-catfood.com/leonardo-sensitive-poultry"
+  },
+  {
+    "id": "21",
+    "brand": "아카나",
+    "ingredients": "닭고기, 닭고기밀, 청어밀, 귀리, 통완두콩, 닭지방, 칠면토밀, 통녹색렌틸콩, 통병아리콩, 통청어, 계란, 어류유, 천연닭고기향, 렌틸콩섬유, 메추라기, 닭간, 닭심장, 통크랜베리, 건조켈프, 비타민·미네랄·프로바이오틱스",
+    "nutrition": "단백질 36%, 지방 18%, 조섬유 4%, 조회분 10%, 수분 10%, ME 3850 kcal/kg (건조물 기준)",
+    "source": "https://www.acana.com/en-US/cats/cat-food/first-feast-kitten/ds-aca-first-feast-cat.html"
+  },
+  {
+    "id": "25",
+    "brand": "아카나",
+    "ingredients": "닭고기, 닭고기밀, 청어밀, 귀리, 통완두콩, 닭지방, 분쇄억새, 칠면토, 통녹색렌틸콩, 통병아리콩, 통청어, 천연닭고기향, 렌틸콩섬유, 토끼고기, 닭간, 닭심장, 통크랜베리, 건조켈프, L-카르니틴, 비타민·미네랄·프로바이오틱스",
+    "nutrition": "단백질 36%, 지방 14%, 조섬유 5%, 조회분 10%, 수분 10%, ME 3670 kcal/kg (건조물 기준)",
+    "source": "https://www.acana.com/en-US/cats/cat-food/indoor-entr%C3%A9e-recipe-with-poultry-and-fish/ds-aca-indoor-entree-cat.html"
+  },
+  {
+    "id": "26",
+    "brand": "아카나",
+    "ingredients": "닭고기, 송어, 연어, 닭고기밀, 명태밀, 청어밀, 통적색렌틸콩, 통강낭콩, 닭간, 통녹색렌틸콩, 통병아리콩, 완두전분, 분쇄억새, 닭지방, 칠면토, 계란, 완두섬유, 어류유, 닭심장, 건조대구, 통크랜베리, 통호박, 건조켈프, 비타민·미네랄·프로바이오틱스",
+    "nutrition": "단백질 38%, 지방 15%, 조섬유 5%, 조회분 10%, 수분 10%, ME 3755 kcal/kg (건조물 기준)",
+    "source": "https://www.acana.com/en-US/cats/cat-food/highest-protein%2C-indoor-cat-recipe/ds-aca-highest-protein-indoor-cat.html",
+    "note": "레거시 SKU명 '라이트 앤 피트' — 공식 고양이 Light & Fit SKU 없음, 체중관리용 Highest Protein Indoor 기준"
+  },
+  {
+    "id": "27",
+    "brand": "아카나",
+    "ingredients": "닭고기, 닭고기밀, 칠면토밀, 귀리, 통완두콩, 통녹색렌틸콩, 통병아리콩, 닭지방, 계란, 칠면토, 렌틸콩섬유, 천연닭고기향, 어류유, 오리고기, 닭간, 닭심장, 통크랜베리, 건조켈프, L-카르니틴, 비타민·미네랄·프로바이오틱스",
+    "nutrition": "단백질 33%, 지방 14%, 조섬유 4%, 조회분 10%, 수분 10%, ME 3670 kcal/kg (건조물 기준)",
+    "source": "https://alaskamillandfeed.com/pet-center/webac30/"
+  },
+  {
+    "id": "28",
+    "brand": "아카나",
+    "ingredients": "닭고기(51%), 닭 뼈육수(18%), 참치(9%), 닭심장(3%), 닭간(3%), 건조호박, 연어유(1%), 미네랄",
+    "nutrition": "단백질 11%, 지방 9%, 조섬유 0.1%, 조회분 1.7%, 수분 75%",
+    "source": "https://www.vetsend.co.uk/acana-premium-pate"
+  },
+  {
+    "id": "29",
+    "brand": "아카나",
+    "ingredients": "연어(26%), 닭고기(17%), 참치(15%), 닭 뼈육수(13%), 생선 뼈육수(13%), 건조호박, 연어유(1%), 미네랄",
+    "nutrition": "단백질 12%, 지방 6%, 조섬유 0.1%, 조회분 2.5%, 수분 75%",
+    "source": "https://www.vetsend.co.uk/acana-premium-pate"
+  }
+]

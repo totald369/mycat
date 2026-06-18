@@ -2,6 +2,13 @@
 
 ## 2026-06-06
 
+### 프린세스·레오나르도·아카나 레거시 21건 원재료·등록성분 보강
+
+- **프린세스** 8건(id `132`–`139`): [petprinces.com](https://petprinces.com) 엑설런스 라인 Composition·Analytical constituents 기준. 헤어볼(id `139`)은 FOS·셀룰로오스 Gold 라인([dogsworld.com.cy](https://dogsworld.com.cy)) 참고.
+- **레오나르도** 7건(id `140`–`146`): [leonardo-catfood.com](https://www.leonardo-catfood.com) Composition·Analytical constituents 기준.
+- **아카나** 6건(id `21`, `25`–`29`): 건식 4건 [acana.com](https://www.acana.com) US·[alaskamillandfeed.com](https://alaskamillandfeed.com) GA, 습식 2건 [vetsend.co.uk](https://www.vetsend.co.uk/acana-premium-pate) Premium Pâté 기준. id `26` 라이트 앤 피트는 공식 고양이 SKU 없어 체중관리용 Highest Protein Indoor 레시피로 매핑.
+- **스크립트**: `legacy-wet-dry-scraped.json`, `apply-legacy-wet-dry-csv.mjs` 추가.
+
 ### 힐스 10종 원재료 보강
 
 - `HP1584-ADT-UR-HB`·`HP6800-ADT-PW`·`HP1584-ADT-HB`·`HP1584-ADT-HB-LGT`·`HP1810-KD-FISH` 5건: [hillspet.co.kr](https://www.hillspet.co.kr/cat-food) 성분 아코디언 재파싱.
