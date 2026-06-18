@@ -1,0 +1,199 @@
+[
+  {
+    "id": "185",
+    "brand": "쓰라이브",
+    "ingredients": "참치살(75%), 참치 육수, 해바라기유, 비타민·미네랄",
+    "nutrition": "단백질 16%, 지방 2%, 조섬유 0.1%, 조회분 1.5%, 수분 80%",
+    "source": "https://www.vetsend.co.uk/thrive-complete-cat-food"
+  },
+  {
+    "id": "186",
+    "brand": "쓰라이브",
+    "ingredients": "참치(71%), 참치 육수, 연어(4%), 해바라기유, 비타민·미네랄",
+    "nutrition": "단백질 14.5%, 지방 2%, 조섬유 0.1%, 조회분 2%, 수분 81%",
+    "source": "https://www.vetsend.co.uk/thrive-complete-cat-food"
+  },
+  {
+    "id": "187",
+    "brand": "쓰라이브",
+    "ingredients": "참치살(67.75%), 참치 육수, 당근(4%), 완두(4%), 비타민·미네랄",
+    "nutrition": "단백질 16%, 지방 2%, 조섬유 0.1%, 조회분 1.5%, 수분 80%",
+    "source": "https://www.vetsend.co.uk/thrive-complete-cat-food"
+  },
+  {
+    "id": "189",
+    "brand": "쓰라이브",
+    "ingredients": "닭가슴살(70%), 닭 육수, 칠면조(5%), 해바라기유, 비타민·미네랄",
+    "nutrition": "단백질 14.5%, 지방 2%, 조섬유 0.1%, 조회분 2%, 수분 81%",
+    "source": "https://www.vetsend.co.uk/thrive-complete-cat-food"
+  },
+  {
+    "id": "191",
+    "brand": "쓰라이브",
+    "ingredients": "닭가슴살(44%), 물, 완두(4%), 당근(4%), 비타민·미네랄",
+    "nutrition": "단백질 9.5%, 지방 2%, 조섬유 0.2%, 조회분 1.5%, 수분 82%",
+    "source": "https://www.vetsend.co.uk/thrive-complete-cat-food"
+  },
+  {
+    "id": "192",
+    "brand": "쓰라이브",
+    "ingredients": "고등어(71%), 고등어 육수, 흰살생선(4%), 새우(3%), 해바라기유, 비타민·미네랄",
+    "nutrition": "단백질 13.6%, 지방 2%, 조섬유 0.1%, 조회분 1.3%, 수분 83%",
+    "source": "https://www.thrivepetfoods.com.au/ocean-fish/",
+    "note": "공식 Ocean Fish 레시피를 고등어&흰살생선 SKU에 매핑"
+  },
+  {
+    "id": "51",
+    "brand": "오리젠",
+    "ingredients": "생닭고기, 생칠면토, 생청어, 생닭 내장(간·심장), 생칠면토간, 생고등어, 생란, 건조닭고기, 건조칠면토, 건조청어, 건조닭간, 건조란, 통렌틸콩, 통완두, 대구유, 통병아리콩, 통녹색렌틸콩, 통강낭콩, 완두전분, 닭지방, 호박, 버터넛스쿼시, 건조켈프, 건조치커리뿌리, 사과, 당근, 배, 호박잎, 케일, 시금치, 블루베리, 크랜베리, 비타민·미네랄",
+    "nutrition": "단백질 40%, 지방 20%, 조섬유 3%, 조회분 8%, 수분 10%, ME 4120 kcal/kg",
+    "source": "https://www.orijenpetfoods.com/en-US/cats/cat-food/orijen-original-cat-kitten/ds-ori-cat-kitten.html"
+  },
+  {
+    "id": "52",
+    "brand": "오리젠",
+    "ingredients": "생고등어, 생청어, 생넙치, 아카디안 레드피시, 몽크피시, 생대구, 고등어밀, 청어밀, 블루화이팅밀, 폴락유, 통적색렌틸콩, 통병아리콩, 연어밀, 폴락밀, 통녹색완두, 통녹색렌틸콩, 통병아리콩, 통강낭콩, 해바라기유, 완두전분, 천연연어향, 렌틸콩섬유, 통노란완두, 콜린염화물, 비타민 E, 혼합토코페롤, 건조켈프, 호박, 버터넷스쿼시, 콜라드그린, 사과, 배, 아연 프로테이네이트, 티아민, 리보플라빈, 나이아신, 피리독신, 엽산, 구리 프로테이네이트, 건조 치커리뿌리, 강황, 사스파릴라, 알테아, 로즈힙, 주니퍼베리, 로즈마리 추출물, 구아검산, 유산균, 비타민·미네랄",
+    "nutrition": "단백질 40%, 지방 20%, 조섬유 3%, 조회분 9%, 수분 10%, ME 4120 kcal/kg",
+    "source": "https://www.orijenpetfoods.com/en-US/cats/cat-food/six-fish/ds-ori-six-fish-cat.html"
+  },
+  {
+    "id": "53",
+    "brand": "오리젠",
+    "ingredients": "생닭고기(20%), 생닭 내장(간·심장)(11%), 생청어(8%), 생칠면토(6%), 생대구(5%), 생란(5%), 생고등어(4%), 건조닭고기(4%), 건조칠면토(4%), 건조고등어(4%), 건조정어리(3%), 건조청어(3%), 건조흰살생선(3%), 생칠면토간(3%), 렌틸콩섬유, 통적색렌틸콩, 통녹색렌틸콩, 통완두, 통병아리콩, 통강낭콩, 완두전분, 건조블루화이팅(1%), 닭지방(1%), 사과섬유, 건조켈프, 조류(DHA), 호박, 버터넛스쿼시, 주키니, 당근, 사과, 비타민·미네랄",
+    "nutrition": "단백질 42%, 지방 15%, 조섬유 6%, 조회분 10%, 수분 10%, ME 3710 kcal/kg",
+    "source": "https://www.orijenpetfoods.co.uk/product/orijen-fit-trim-cat/"
+  },
+  {
+    "id": "54",
+    "brand": "오리젠",
+    "ingredients": "생닭고기(32%), 생연어(5%), 생칠면토(5%), 생청어(5%), 생고등어(5%), 생닭 내장(간·심장)(4.5%), 생칠면토간(4%), 생란(4%), 건조닭고기(4%), 건조칠면토(4%), 건조청어(4%), 건조닭간(4%), 건조란(4%), 생토끼(4%), 통적색렌틸콩, 통병아리콩, 통녹색렌틸콩, 통병아리콩, 통완두, 완두전분, 갈대풀, 폴락유(1%), 닭지방(0.5%), 호박, 버터넛스쿼시, 건조켈프, 건조 치커리뿌리, 사과, 당근, 배, 주키니, 맥주효모, 가수분해효모, 비트그린, 케일, 시금치, 순무잎, 크랜베리, 블루베리, 서스캐툰베리, 우엉뿌리, 라벤더, 마시멜로뿌리, 밀크씨슬, 로즈힙, 강황, 비타민·미네랄",
+    "nutrition": "단백질 40%, 지방 18%, 조섬유 4%, 조회분 9%, 수분 10%, ME 3980 kcal/kg",
+    "source": "https://www.orijenpetfoods.co.uk/product/orijen-guardian-8/"
+  },
+  {
+    "id": "55",
+    "brand": "오리젠",
+    "ingredients": "닭고기, 닭간, 생고등어, 닭 뼈 육수, 생선 뼈 육수, 닭심장, 생정어리, 계란, 타우린, 소금, 비타민·미네랄, 콜린염화물",
+    "nutrition": "단백질 12%, 지방 6%, 조섬유 0.5%, 조회분 3%, 수분 80%",
+    "source": "https://www.orijenpetfoods.com/en-US/cats/cat-food/original-entr%C3%A9e-wet-cat-food/ds-wet-cat-food-original.html"
+  },
+  {
+    "id": "56",
+    "brand": "퍼시캣",
+    "ingredients": "닭고기, 닭고기분, 완두, 칠면토분, 완두분, 병아리콩, 닭지방(혼합토코페롤 보존), 칠면조, 천연향미, 아마씨, 알팔파밀, 소금, 염화칼륨, 비타민(나이아신, 비타민 E·A·D3·B군, 엽산, 비오틴), 프락토올리고당, 콜린염화물, 연어유, 타우린, 미네랄(아연·철·구리·망간 프로테이네이트, 셀레늄, 요오드), 건조크랜베리, 건조블루베리, 건조켈프, 로즈마리 추출물",
+    "nutrition": "단백질 34%, 지방 16%, 조섬유 4.5% 이하, 수분 10% 이하",
+    "source": "https://fussiecat.com/product/market-fresh-dry-food-chicken-and-turkey-meal-recipe/",
+    "note": "국내 퍼시캣 = Fussie Cat Market Fresh 치킨&터키"
+  },
+  {
+    "id": "57",
+    "brand": "퍼시캣",
+    "ingredients": "연어, 닭고기분, 완두, 병아리콩, 닭지방(혼합토코페롤 보존), 닭고기, 천연향미, 메기분, 아마씨, 알팔파밀, 소금, 콜린염화물, 연어분, 프락토올리고당, 비타민(나이아신, 비타민 E·A·D3·B군, 엽산, 비오틴), 타우린, 미네랄, 건들레잎, 비타민·미네랄",
+    "nutrition": "단백질 35%, 지방 15%, 조섬유 4% 이하, 수분 10% 이하",
+    "source": "https://fussiecat.com/product/market-fresh-dry-food-salmon-recipe/"
+  },
+  {
+    "id": "58",
+    "brand": "퍼시캣",
+    "ingredients": "닭고기, 닭고기분, 병아리콩, 렌틸콩, 닭지방(혼합토코페롤 보존), 호박, 염소유, 천연향미, 소금, 비타민(나이아신, 비타민 E·A·D3·B군, 엽산, 비오틴), 연어유, 프락토올리고당, 미네랄(아연·철·구리·망간 프로테이네이트, 셀레늄, 요오드), 비타민·미네랄",
+    "nutrition": "단백질 31.5%, 지방 17%, 조섬유 6.5% 이하, 수분 10% 이하",
+    "source": "https://fussiecat.com/product/market-fresh-chicken/",
+    "note": "인도어 전용 SKU 없어 Market Fresh 치킨 레시피로 매핑"
+  },
+  {
+    "id": "59",
+    "brand": "퍼시캣",
+    "ingredients": "닭고기, 닭고기분, 완두, 칠면토분, 완두분, 병아리콩, 닭지방(혼합토코페롤 보존), 칠면조, 천연향미, 아마씨, 알팔파밀, 소금, 염화칼륨, 비타민, 프락토올리고당, 콜린염화물, 연어유, 타우린, 미네랄, 건조크랜베리, 건조블루베리, 건조켈프, 로즈마리 추출물",
+    "nutrition": "단백질 34%, 지방 16%, 조섬유 4.5% 이하, 수분 10% 이하",
+    "source": "https://fussiecat.com/product/market-fresh-dry-food-chicken-and-turkey-meal-recipe/",
+    "note": "체중관리 전용 SKU 없어 Market Fresh 치킨&터키 레시피로 매핑"
+  },
+  {
+    "id": "60",
+    "brand": "퍼시캣",
+    "ingredients": "닭고기, 타피오카 전분, 건조계란, 천연향미, 해바라기유, 제삼인산칼슘, 삼인산나트륨, 미네랄(황산철, 산화아연, 황산망간, 글리신구리, 셀레늄, 요오드화칼륨), 황산마그네슘, 염화칼륨, 프락토올리고당, 황산칼슘, 비타민(비타민 E·A·B군, 엽산, 비오틴), 타우린",
+    "nutrition": "단백질 7%, 지방 4%, 조섬유 1% 이하, 수분 82%",
+    "source": "https://fussiecat.com/product/fine-dining-pate-chicken-entree-in-gravy-recipe/",
+    "note": "국내 퍼시캣 치킨 파테 = Fussie Cat Fine Dining Pâté 치킨"
+  },
+  {
+    "id": "147",
+    "brand": "요라",
+    "ingredients": "곤충(곤충밀 40%, 신선 곤충 19.5%, 곤충유 3.3%), 오트, 완두, 감자단백, 당근, 해조류, 파슬리, 글루코사민, 콘드로이틴, 비타민·미네랄",
+    "nutrition": "조단백 37%, 조지방 15%, 조섬유 8%, 조회분 7.5%, ME 3590 kcal/kg",
+    "source": "https://yorapets.com/uk/cat-food/insect-protein-adult-dry-cat-food/"
+  },
+  {
+    "id": "149",
+    "brand": "SUMMIT",
+    "ingredients": "닭고기분, 오트밀, 통현미, 호밀, 닭지방(혼합토코페롤 보존), 칠면토분, 천연향미, 아마씨, 소금, 염화칼륨, 인산, 콜린염화물, DL-메티오닌, 호박, 스쿼시, 고구마, 건조알팔파, 당근, 렌틸콩, 브로콜리, 블루베리, 석류, 바나나, 크랜베리, 비타민·미네랄, 타우린, 건조로즈마리",
+    "nutrition": "단백질 30%, 지방 12%, 조섬유 3.5% 이하, 조회분 8% 이하, 수분 10% 이하, ME 3485 kcal/kg",
+    "source": "https://summitpetfood.com/en-us/cat-food/range-rotisserie-chicken-meal-turkey-meal-recipe"
+  },
+  {
+    "id": "150",
+    "brand": "SUMMIT",
+    "ingredients": "닭고기분, 오트밀, 통현미, 호밀, 닭지방(혼합토코페롤 보존), 오리분, 천연향미, 아마씨, 소금, 염화칼륨, 인산, 콜린염화물, DL-메티오닌, 호박, 스쿼시, 고구마, 건조알팔파, 당근, 렌틸콩, 브로콜리, 블루베리, 석류, 바나나, 크랜베리, 비타민·미네랄, 타우린, 건조로즈마리",
+    "nutrition": "단백질 30%, 지방 12%, 조섬유 3.5% 이하, 조회분 8% 이하, 수분 10% 이하, ME 3485 kcal/kg",
+    "source": "https://summitpetfood.com/en-us/cat-food/meadow-roast-chicken-meal-duck-meal-recipe"
+  },
+  {
+    "id": "176",
+    "brand": "아미오",
+    "ingredients": "계육분(국내산), 완두, 닭기름, 고구마, 닭고기(국내산), 유기농비트펄프, 완두단백, 셀룰로오스, 연어유, 크랜베리, DL-메티오닌, L-라이신, 유산균(Lactobacillus plantarum-PMO08), 타우린, 이눌린, 비타민·미네랄 혼합제",
+    "nutrition": "조단백 31%, 조지방 16%, 조섬유 6%, 조회분 10%, ME 3400 kcal/kg",
+    "source": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=39252",
+    "note": "단종 SKU·공식몰 미게재. 건강담은 유리너리케어(PM39252) 라벨 근사"
+  },
+  {
+    "id": "179",
+    "brand": "아미오",
+    "ingredients": "계육분(국내산), 옥수수글루텐, 닭고기(국내산), 닭기름, 유기농비트펄프, 유기농현미, 유기농옥수수, 유도단백질, 유기농귀리, 쌀, 유기농해바라기박, 유기농보리, 유기농쌀, 유기농참깨박, 유기농아마씨, 콜린염화물, DL-메티오닌, L-라이신, 유기농 녹두·메밀, 비타민·미네랄 혼합제, 타우린, 이눌린, 효모, 유산균(Lactobacillus plantarum-PMO08), 로즈마리 추출물",
+    "nutrition": "조단백 34%, 조지방 18%, 조섬유 5%, 조회분 12%, ME 3800 kcal/kg",
+    "source": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=38376",
+    "note": "단종 SKU·공식몰 미게재. 자연담은 바르게기른닭(id 173) 키튼급 ME로 근사"
+  },
+  {
+    "id": "180",
+    "brand": "아미오",
+    "ingredients": "닭고기, 건조닭고기, 병아리콩, 연어, 사탕무박, 어분, 가수분해닭단백, 닭기름, 카사바, 완두, 렌틸콩, 셀룰로오스, 아마씨, 생선유, 타우린, L-카르니틴, 글루코사민, 콘드로이틴, 유산균(Lactobacillus plantarum-PMO08), 비타민·미네랄 혼합제",
+    "nutrition": "조단백 37%, 조지방 14%, 조섬유 8%, 조회분 10%, ME 3300 kcal/kg",
+    "source": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=38354",
+    "note": "단종 SKU·공식몰 미게재. 그레인프리 슬림업(id 177) 인도어·체중 근사"
+  },
+  {
+    "id": "181",
+    "brand": "아미오",
+    "ingredients": "닭고기, 건조닭고기, 병아리콩, 사탕무박, 어분, 가수분해닭단백, 닭기름, 카사바, 완두, 렌틸콩, 셀룰로오스, 아마씨, 생선유, 크랜베리, 타우린, 글루코사민, 콘드로이틴, 유산균(Lactobacillus plantarum-PMO08), 비타민·미네랄 혼합제",
+    "nutrition": "조단백 38%, 조지방 12%, 조섬유 6%, 조회분 9%, ME 3200 kcal/kg",
+    "source": "https://shop.pulmuone.co.kr/shop/goodsDetail?ilGoodsId=38356",
+    "note": "단종 SKU·공식몰 미게재. 그레인프리 유리너리(id 178) 시니어급 ME로 근사"
+  },
+  {
+    "id": "184",
+    "brand": "아보덤",
+    "ingredients": "닭고기분, 통현미, 백미, 닭지방(혼합토코페롤 보존), 건조토마토 펄프, 청어분(오메가3), 아보카도, 천연향미, 소금, 건조계란, 건조 치커리뿌리, 이눌린, 염화칼륨, 비타민·미네랄, 아보카도 오일, 타우린, 파슬리, 켈프, DL-메티오닌, 유카 추출물, 이노시톨",
+    "nutrition": "단백질 32%, 지방 20%, 조섬유 3.5% 이하, 수분 10% 이하, ME 3753 kcal/kg",
+    "source": "https://avodermnatural.com/products/chicken-herring-meal-formula/"
+  },
+  {
+    "id": "10786596088",
+    "brand": "유한양행",
+    "ingredients": "고구마, 닭고기분, 닭기름, 오리분, 가수분해닭고기분, 닭간, 정제어유, 계란분, 비트펄프, 가수분해효모, 셀룰로오스, 천연향미제(닭향), 프락토올리고당, 갈락토올리고당, 정제소금, 맥주효모, 염화칼륨, DL-메티오닌, 타우린, 미량광물질류, 비타민제, 유카추출물, 유기농 아마·보리·메밀, 천연추출물, 제올라이트, 로즈마리 추출물",
+    "nutrition": "단백질 28%, 지방 11%, 조섬유 4%, 조회분 8.5%, 수분 12%, ME 3125 kcal/kg",
+    "source": "https://recipe-v.co.kr/cat/functional/diet/",
+    "note": "인도어 C 공식몰 미게재. 다이어트캣(9993688522) 저칼로리 레시피 근사, kcal 312.5 유지"
+  },
+  {
+    "id": "GI251060046",
+    "kcalPer100g": 335
+  },
+  {
+    "id": "GI251059523",
+    "kcalPer100g": 335
+  },
+  {
+    "id": "GI251119612",
+    "kcalPer100g": 330
+  }
+]

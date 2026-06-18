@@ -2,6 +2,19 @@
 
 ## 2026-06-06
 
+### 레거시 25건·kcal 오입력 3건 상세 보강
+
+- **쓰라이브** 6건(id `185`–`187`, `189`, `191`, `192`): [vetsend.co.uk](https://www.vetsend.co.uk/thrive-complete-cat-food) Complete 라인 Composition·GA. id `192`는 [thrivepetfoods.com.au](https://www.thrivepetfoods.com.au/ocean-fish/) Ocean Fish 매핑.
+- **오리젠** 5건(id `51`–`55`): [orijenpetfoods.com](https://www.orijenpetfoods.com) US·UK 공식 GA·원재료. id `55` 습식은 Original Entrée.
+- **퍼시캣** 5건(id `56`–`60`): 국내 퍼시캣 = [Fussie Cat](https://fussiecat.com) Market Fresh·Fine Dining Pâté. id `58`·`59`는 인도어·체중관리 전용 SKU 없어 근접 레시피 매핑.
+- **요라** id `147`: [yorapets.com](https://yorapets.com/uk/cat-food/insect-protein-adult-dry-cat-food/) 인섹트 프로틴 GA.
+- **SUMMIT** 2건(id `149`, `150`): [summitpetfood.com](https://summitpetfood.com) Range Rotisserie·Meadow Roast.
+- **아보덤** id `184`: [avodermnatural.com](https://avodermnatural.com/products/chicken-herring-meal-formula/) 치킨&헤링 밀.
+- **아미오** 4건(id `176`, `179`–`181`): 단종 SKU·풀무원몰 미게재. 건강담은·자연담은·그레인프리 현행 라벨 근사.
+- **레시피브이 인도어 C** id `10786596088`: 공식몰 미게재. [다이어트캣](https://recipe-v.co.kr/cat/functional/diet/) 저칼로리 레시피 근사, kcal 312.5 유지.
+- **kcal 오입력** 3건: `GI251060046`·`GI251059523` → 335, `GI251119612` → 330.
+- **스크립트**: `remaining-details-scraped.json`, `apply-remaining-details-csv.mjs` 추가.
+
 ### 프린세스·레오나르도·아카나 레거시 21건 원재료·등록성분 보강
 
 - **프린세스** 8건(id `132`–`139`): [petprinces.com](https://petprinces.com) 엑설런스 라인 Composition·Analytical constituents 기준. 헤어볼(id `139`)은 FOS·셀룰로오스 Gold 라인([dogsworld.com.cy](https://dogsworld.com.cy)) 참고.
