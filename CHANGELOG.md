@@ -2,6 +2,17 @@
 
 ## 2026-06-06
 
+### 힐스 10종 원재료 보강
+
+- `HP1584-ADT-UR-HB`·`HP6800-ADT-PW`·`HP1584-ADT-HB`·`HP1584-ADT-HB-LGT`·`HP1810-KD-FISH` 5건: [hillspet.co.kr](https://www.hillspet.co.kr/cat-food) 성분 아코디언 재파싱.
+- `HP-WET-AD`·`HP-WET-KD-PATE`·`HP-WET-GI-STEW`·`HP-WET-GI-STRESS-STEW`·`HP-WET-SNR7-STEW` 5건: KR 페이지 원재료 미표기 → 레거시·[hillspet.com](https://www.hillspet.com) 영문 성분 한글화.
+- **스크립트**: `apply-hills-ingredients-csv.mjs`, `scrape-hills.mjs` 성분 파서(급여 안내 문구 필터) 개선.
+
+### 로얄캐닌 처방식 17종 등록성분 보강
+
+- 레거시 id `73`–`89` 처방식 17건: KR 페이지에 등록성분 미표기 → [로얄캐닌 UK vet](https://www.royalcanin.com/uk/cats/products/vet-products) Analytical constituents 기준 단백질·조지방·조섬유·조회분 등 반영.
+- **스크립트**: `scrape-royalcanin-vet.mjs` UK fallback·영문 성분 파서 추가.
+
 ### 쿠팡 CA코리아 뉴블루캣 15kg 등록
 
 - **[쿠팡 뉴블루캣 15kg](https://www.coupang.com/vp/products/1288790820)** (`CP1288790820`): [다나와](https://prod.danawa.com/info/?pcode=7573558) 등록성분·단백질원(닭고기·쌀·옥수수) 반영. ME 미표기로 성분 기반 추정(315 kcal/100g).

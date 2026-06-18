@@ -130,13 +130,42 @@ function parseProduct(url, html) {
   const sizeM = html.match(/사이즈[\s\S]{0,300}?(\d[\d.,\s]*(kg|g|ml|oz)[^\n<]{0,40})/i);
   if (sizeM) size = stripTags(sizeM[1]);
 
+  const BAD_ING = /급여|유용한정보|주치의|반려동물을|임신|환불|몸무게를유지/;
+  function cleanIngredientText(raw) {
+    return raw.replace(/<[^>]+>/g, "").replace(/\s+/g, "").trim();
+  }
+  function isIngredientList(s) {
+    return (
+      s.includes(",") &&
+      s.length > 30 &&
+      !BAD_ING.test(s) &&
+      /닭|물|돼지|쌀|옥수수|현미|생선|연어|참치|칠면조|정제수|닭고기육수/.test(s)
+    );
+  }
+
   let ingredients = "";
-  const ingAccordion = html.match(
-    /cmp-accordion__title">성분<[\s\S]*?<div class="segment[^"]*">\s*([\s\S]*?)\s*<\/div>/,
-  );
-  if (ingAccordion) {
-    const s = ingAccordion[1].replace(/<[^>]+>/g, "").replace(/\s+/g, "").trim();
-    if (s.includes(",") && s.length > 30) ingredients = s;
+  const ingBlocks = [
+    ...html.matchAll(
+      /cmp-accordion__title">([^<]*성분[^<]*)<[\s\S]*?<div class="segment[^"]*">\s*([\s\S]*?)\s*<\/div>/g,
+    ),
+  ];
+  for (const m of ingBlocks) {
+    const s = cleanIngredientText(m[2]);
+    if (isIngredientList(s)) {
+      ingredients = s;
+      break;
+    }
+  }
+  if (!ingredients) {
+    for (const seg of html.matchAll(
+      /<div class="segment[^"]*">\s*([\s\S]*?)\s*<\/div>/g,
+    )) {
+      const s = cleanIngredientText(seg[1]);
+      if (isIngredientList(s)) {
+        ingredients = s;
+        break;
+      }
+    }
   }
 
   let kcalKg = null;

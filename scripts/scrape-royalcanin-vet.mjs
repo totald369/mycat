@@ -85,19 +85,34 @@ function formatAnalytical(desc, technology, servingG) {
   const text = cleanDisclaimer(desc);
   if (!text) return "";
 
+  const isWet = technology === "wet";
+  const fatLabel = isWet ? "지방" : "조지방";
+
   if (/%/.test(text)) {
     const parts = [];
     const map = [
+      [/Protein:\s*([\d.]+)\s*%/i, "단백질"],
+      [/Fat content:\s*([\d.]+)\s*%/i, fatLabel],
+      [/Crude fibres?:\s*([\d.]+)\s*%/i, "조섬유"],
+      [/Crude ash:\s*([\d.]+)\s*%/i, "조회분"],
+      [/Calcium:\s*([\d.]+)\s*%/i, "칼슘"],
+      [/Phosphorus:\s*([\d.]+)\s*%/i, "인"],
+      [/Moisture:\s*([\d.]+)\s*%/i, "수분"],
       [/조?단백질\s*([\d.]+)\s*%/i, "단백질"],
       [/단백질\s*([\d.]+)\s*%/i, "단백질"],
-      [/조?지방\s*([\d.]+)\s*%/i, "지방"],
-      [/지방\s*([\d.]+)\s*%/i, "지방"],
+      [/조?지방\s*([\d.]+)\s*%/i, fatLabel],
+      [/지방\s*([\d.]+)\s*%/i, fatLabel],
       [/조?섬유\s*([\d.]+)\s*%/i, "조섬유"],
       [/조?회분\s*([\d.]+)\s*%/i, "조회분"],
+      [/칼슘\s*([\d.]+)\s*%/i, "칼슘"],
+      [/인\s*([\d.]+)\s*%/i, "인"],
+      [/수분\s*([\d.]+)\s*%/i, "수분"],
     ];
     for (const [re, label] of map) {
       const m = text.match(re);
-      if (m) parts.push(`${label} ${m[1]}%`);
+      if (m && !parts.some((p) => p.startsWith(`${label} `))) {
+        parts.push(`${label} ${m[1]}%`);
+      }
     }
     if (parts.length) return parts.join(", ");
   }
@@ -171,12 +186,39 @@ function getKcal(r) {
   return null;
 }
 
+function getAnalyticalRaw(r) {
+  return (
+    r.nutritionalInfo?.find((n) => /analytical/i.test(n.title ?? ""))
+      ?.description ??
+    r.original_product?.composition?.find((c) => c.analytical_constituants)
+      ?.analytical_constituants ??
+    ""
+  );
+}
+
 async function scrapeOne(item) {
-  const base = item.locale === "uk" ? LOCALE_FALLBACK : BASE;
-  const url = `${base}/${item.slug}`;
-  const html = await fetchHtml(url);
-  const r = parseResponse(html);
+  let locale = "kr";
+  let base = BASE;
+  let url = `${base}/${item.slug}`;
+  let html = await fetchHtml(url);
+  let r = parseResponse(html);
   if (!r) throw new Error(`no product data ${item.slug}`);
+
+  let analyt = getAnalyticalRaw(r);
+  if (!analyt) {
+    locale = "uk";
+    base = LOCALE_FALLBACK;
+    url = `${base}/${item.slug}`;
+    html = await fetchHtml(url);
+    r = parseResponse(html);
+    if (!r) throw new Error(`no product data ${item.slug}`);
+    analyt = getAnalyticalRaw(r);
+  }
+
+  const servingG =
+    r.technology === "wet"
+      ? (r.original_product?.packs?.[0]?.weight_in_grams ?? 85)
+      : null;
 
   return {
     id: item.id,
@@ -185,12 +227,10 @@ async function scrapeOne(item) {
     title: r.title,
     technology: r.technology,
     ingredients: getIngredients(r),
-    nutrition: getNutrition(r),
+    nutrition: formatAnalytical(analyt, r.technology, servingG),
     kcalPer100g: getKcal(r),
-    servingG:
-      r.technology === "wet"
-        ? r.original_product?.packs?.[0]?.weight_in_grams ?? 85
-        : null,
+    servingG,
+    locale,
   };
 }
 
