@@ -48,3 +48,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 스크래핑 중간 산출물 (OCR·상품 라벨 이미지 — CSV/JSON에 반영 후 불필요)
+*.traineddata
+/scripts/*-images/
