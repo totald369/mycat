@@ -4,13 +4,20 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { FeedDetailView } from "@/components/feed-detail/FeedDetailView";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
+  buildFeedRelatedInternalLinks,
   getFeedDetailPath,
   getRelatedFeedsByBrand,
   getRelatedFeedsByLifeStage,
+  getRelatedFeedsByPurpose,
   getRelatedFeedsBySimilarKcal,
   listFeedDetailSlugs,
   resolveFeedRouteParam,
 } from "@/lib/feedDetail";
+import {
+  buildFeedDetailFaqs,
+  buildFeedRecommendedTargets,
+  buildFeedSeoDescription,
+} from "@/lib/feedDetailSeo";
 import {
   buildFeedDetailJsonLdGraph,
   buildFeedDetailMetadata,
@@ -45,11 +52,17 @@ export async function generateMetadata({
     });
   }
 
+  const seoDescription = buildFeedSeoDescription(resolved.feed);
+  const metadataFeed = {
+    ...resolved.feed,
+    seoDescription,
+  };
+
   if (resolved.isLegacyRedirect) {
-    return buildFeedDetailMetadata(resolved.feed);
+    return buildFeedDetailMetadata(metadataFeed);
   }
 
-  return buildFeedDetailMetadata(resolved.feed);
+  return buildFeedDetailMetadata(metadataFeed);
 }
 
 export default async function FoodDetailPage({ params }: PageProps) {
@@ -67,7 +80,9 @@ export default async function FoodDetailPage({ params }: PageProps) {
   const { feed } = resolved;
   const pagePath = getFeedDetailPath(feed);
   const productName = `${safeString(feed.brand).trim() || "—"} ${safeString(feed.name).trim() || "이름 없음"}`;
-  const pageDescription = `${productName}의 칼로리, 조단백, 조지방, 원재료 정보와 급여 기준량`;
+  const seoDescription = buildFeedSeoDescription(feed);
+  const recommendedTargets = buildFeedRecommendedTargets(feed);
+  const faqs = buildFeedDetailFaqs(feed);
 
   const metrics = parseNutritionMetrics(feed.nutritionAnalysis);
   const protein = metrics.find((m) => m.label === "조단백")?.value ?? null;
@@ -75,18 +90,21 @@ export default async function FoodDetailPage({ params }: PageProps) {
   const fiber = metrics.find((m) => m.label === "조섬유")?.value ?? null;
 
   const pageHeadline = `${productName} 칼로리 정보`;
-  const jsonLd = buildFeedDetailJsonLdGraph({
-    path: pagePath,
-    headline: pageHeadline,
-    name: productName,
-    brand: feed.brand,
-    description: pageDescription,
-    kcalPer100g: safeNumber(feed.kcalPer100g) ?? feed.kcalPer100g,
-    proteinPercent: protein,
-    fatPercent: fat,
-    fiberPercent: fiber,
-    feedKind: feed.feedKind,
-  });
+  const jsonLd = buildFeedDetailJsonLdGraph(
+    {
+      path: pagePath,
+      headline: pageHeadline,
+      name: productName,
+      brand: feed.brand,
+      description: seoDescription,
+      kcalPer100g: safeNumber(feed.kcalPer100g) ?? feed.kcalPer100g,
+      proteinPercent: protein,
+      fatPercent: fat,
+      fiberPercent: fiber,
+      feedKind: feed.feedKind,
+    },
+    faqs,
+  );
 
   const isWet = feed.rawType === "wet" || feed.feedKind === "습식";
   const nutritionInterpretations = buildNutritionInterpretations(
@@ -94,19 +112,31 @@ export default async function FoodDetailPage({ params }: PageProps) {
     isWet,
   );
 
-  const relatedByBrand = getRelatedFeedsByBrand(feed);
-  const relatedByKcal = getRelatedFeedsBySimilarKcal(feed);
-  const relatedByLifeStage = getRelatedFeedsByLifeStage(feed);
+  const relatedByBrand = getRelatedFeedsByBrand(feed, 4);
+  const relatedByPurpose = getRelatedFeedsByPurpose(feed, 4);
+  const relatedByKcal = getRelatedFeedsBySimilarKcal(feed, 3);
+  const relatedByLifeStage = getRelatedFeedsByLifeStage(feed, 3);
+  const relatedFeedLinks = buildFeedRelatedInternalLinks(feed, {
+    byPurpose: relatedByPurpose,
+    byBrand: relatedByBrand,
+    byLifeStage: relatedByLifeStage,
+    byKcal: relatedByKcal,
+  });
 
   return (
     <>
       <JsonLd id={`food-detail-jsonld-${feed.slug}`} data={jsonLd} />
       <FeedDetailView
         feed={feed}
+        seoDescription={seoDescription}
+        recommendedTargets={recommendedTargets}
         nutritionInterpretations={nutritionInterpretations}
         relatedByBrand={relatedByBrand}
+        relatedByPurpose={relatedByPurpose}
         relatedByKcal={relatedByKcal}
         relatedByLifeStage={relatedByLifeStage}
+        relatedFeedLinks={relatedFeedLinks}
+        faqs={faqs}
       />
     </>
   );

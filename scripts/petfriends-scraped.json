@@ -1,0 +1,20 @@
+{
+  "source": "https://m.pet-friends.co.kr/product/detail/207950?productId=207950",
+  "refs": [
+    "https://www.josera.de/josicat-kitten.html"
+  ],
+  "products": [
+    {
+      "id": "PF207950",
+      "brand": "요세라",
+      "name": "요시캣 키튼 1.9kg",
+      "type": "dry",
+      "life_stage": "kitten_0_12m",
+      "category": "general",
+      "condition": "none",
+      "kcalPer100g": 397,
+      "ingredients": "건조닭고기, 건조칠면조고기, 건조오리고기, 건조거위고기, 옥수수, 보리, 닭지방, 칠면조지방, 오리지방, 거위지방, 가수분해 닭고기, 가수분해 연어, 비트, 연어오일, 염화나트륨, 염화칼륨",
+      "nutrition": "조단백 29.0% 이상, 조지방 15.8% 이상, 수분 10.0% 이하, 조섬유 3.9% 이하, 조회분 8.1% 이하, 칼슘 1.0% 이상, 인 0.75% 이상, ME 3966 kcal/kg"
+    }
+  ]
+}

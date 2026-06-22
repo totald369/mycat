@@ -2,7 +2,7 @@ import {
   loadFeedDetailItemsFromCatFoodCsv,
   type FeedDetailItem,
 } from "@/lib/catFoodCsv";
-import { safeNumber, safeString } from "@/lib/feedSafeValues";
+import { safeLower, safeNumber, safeString } from "@/lib/feedSafeValues";
 import {
   assignUniqueFeedSlugs,
   feedDetailPath,
@@ -163,6 +163,7 @@ export function getFeedDetailPath(feed: Pick<FeedDetailItemWithSlug, "slug">): s
 }
 
 const RELATED_LIMIT = 6;
+const RELATED_LINK_MAX = 8;
 
 export type RelatedFeedLink = {
   href: string;
@@ -204,6 +205,51 @@ export function getRelatedFeedsByLifeStage(
     }));
 }
 
+/** 같은 목적(기능·condition·lifeStage) 사료 */
+export function getRelatedFeedsByPurpose(
+  feed: FeedDetailItemWithSlug,
+  limit = RELATED_LIMIT,
+): RelatedFeedLink[] {
+  const cond = safeLower(feed.feedCondition);
+  const ls = safeLower(feed.lifeStage);
+  const name = safeLower(feed.name);
+
+  const purposeKeywords: string[] = [];
+  if (cond === "weight" || cond === "diet" || ls === "weight_control")
+    purposeKeywords.push("체중", "라이트", "다이어트", "weight");
+  if (cond === "urinary") purposeKeywords.push("유리너리", "비뇨", "urinary");
+  if (cond === "hairball") purposeKeywords.push("헤어볼", "hairball");
+  if (cond === "kidney" || cond === "renal")
+    purposeKeywords.push("신장", "kidney", "renal");
+  if (ls.includes("indoor") || cond === "indoor")
+    purposeKeywords.push("인도어", "indoor", "실내");
+  if (ls.includes("kitten")) purposeKeywords.push("키튼", "kitten");
+  if (ls.includes("senior")) purposeKeywords.push("7세", "11세", "노령", "senior");
+
+  return getAllFeedDetails()
+    .filter((f) => {
+      if (f.slug === feed.slug || f.brand === feed.brand) return false;
+
+      const fCond = safeLower(f.feedCondition);
+      const fLs = safeLower(f.lifeStage);
+      const fName = safeLower(f.name);
+
+      if (cond && cond !== "none" && fCond === cond) return true;
+      if (ls && fLs === ls && ls !== "all_life_stage" && ls !== "all") return true;
+      if (purposeKeywords.length > 0) {
+        const hay = `${fName} ${fCond} ${fLs}`;
+        return purposeKeywords.some((kw) => hay.includes(kw));
+      }
+      return false;
+    })
+    .slice(0, limit)
+    .map((f) => ({
+      href: getFeedDetailPath(f),
+      label: `${f.brand} ${f.name}`,
+      kcalPer100g: f.kcalPer100g,
+    }));
+}
+
 export function getRelatedFeedsBySimilarKcal(
   feed: FeedDetailItemWithSlug,
   limit = RELATED_LIMIT,
@@ -230,4 +276,36 @@ export function getRelatedFeedsBySimilarKcal(
       label: `${safeString(f.brand).trim() || "—"} ${safeString(f.name).trim() || "이름 없음"} (${safeNumber(f.kcalPer100g) ?? "—"} kcal/100g)`,
       kcalPer100g: safeNumber(f.kcalPer100g) ?? 0,
     }));
+}
+
+
+/** 브랜드·목적·연령·칼로리 기준 내부 링크 4~8개 (중복 제거) */
+export function buildFeedRelatedInternalLinks(
+  feed: FeedDetailItemWithSlug,
+  sections: {
+    byPurpose?: RelatedFeedLink[];
+    byBrand?: RelatedFeedLink[];
+    byLifeStage?: RelatedFeedLink[];
+    byKcal?: RelatedFeedLink[];
+  },
+): RelatedFeedLink[] {
+  const seen = new Set<string>();
+  const merged: RelatedFeedLink[] = [];
+
+  const add = (links: RelatedFeedLink[] | undefined) => {
+    for (const link of links ?? []) {
+      if (seen.has(link.href)) continue;
+      seen.add(link.href);
+      merged.push(link);
+      if (merged.length >= RELATED_LINK_MAX) return;
+    }
+  };
+
+  add(sections.byPurpose);
+  add(sections.byBrand);
+  add(sections.byLifeStage);
+  add(sections.byKcal);
+
+  if (merged.length >= RELATED_LINK_MAX) return merged.slice(0, RELATED_LINK_MAX);
+  return merged;
 }

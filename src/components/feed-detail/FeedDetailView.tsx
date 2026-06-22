@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { SeoFaqSection } from "@/components/seo/SeoFaqSection";
 import { SeoInternalLinksSection } from "@/components/seo/SeoInternalLinksSection";
 import type { FeedDetailItem } from "@/lib/catFoodCsv";
 import type { RelatedFeedLink } from "@/lib/feedDetail";
@@ -14,19 +15,33 @@ import {
 } from "@/lib/feedDetailLabels";
 import { formatKcalPer100gLabel, safeString } from "@/lib/feedSafeValues";
 import type { NutritionInterpretation } from "@/lib/feedNutritionInterpretation";
+import type { FaqItem } from "@/lib/seo";
 import { IconBack } from "@/components/wireframe/icons";
 
 type Props = {
   feed: FeedDetailItem;
+  seoDescription?: string;
+  recommendedTargets?: string[];
   nutritionInterpretations?: NutritionInterpretation[];
   relatedByBrand?: RelatedFeedLink[];
+  relatedByPurpose?: RelatedFeedLink[];
   relatedByKcal?: RelatedFeedLink[];
   relatedByLifeStage?: RelatedFeedLink[];
+  relatedFeedLinks?: RelatedFeedLink[];
+  faqs?: FaqItem[];
 };
 
 function Badge({ children }: { children: ReactNode }) {
   return (
     <span className="inline-flex shrink-0 rounded-lg border border-solid border-[#eee] bg-white px-3 py-1.5 text-sm font-semibold leading-normal tracking-[0.1px] text-[#333]">
+      {children}
+    </span>
+  );
+}
+
+function TargetBadge({ children }: { children: ReactNode }) {
+  return (
+    <span className="inline-flex shrink-0 rounded-full bg-[#fff3eb] px-3 py-1 text-sm font-medium text-[#c44a00]">
       {children}
     </span>
   );
@@ -77,10 +92,15 @@ function RelatedFeedList({
 
 export function FeedDetailView({
   feed,
+  seoDescription,
+  recommendedTargets = [],
   nutritionInterpretations = [],
   relatedByBrand = [],
+  relatedByPurpose = [],
   relatedByKcal = [],
   relatedByLifeStage = [],
+  relatedFeedLinks = [],
+  faqs = [],
 }: Props) {
   const brand = safeString(feed.brand).trim() || "—";
   const name = safeString(feed.name).trim() || "이름 없음";
@@ -99,6 +119,13 @@ export function FeedDetailView({
   const hasNutritionAnalysis = Boolean(safeString(feed.nutritionAnalysis).trim());
   const hasIngredients = Boolean(safeString(feed.ingredients).trim());
   const hasNutritionContent = hasNutritionAnalysis || hasIngredients;
+
+  const internalFeedLinks =
+    relatedFeedLinks.length > 0
+      ? relatedFeedLinks
+      : [...relatedByPurpose, ...relatedByBrand, ...relatedByLifeStage, ...relatedByKcal].filter(
+          (link, i, arr) => arr.findIndex((l) => l.href === link.href) === i,
+        );
 
   return (
     <main className="relative z-10 mx-auto min-h-[100dvh] w-full max-w-[min(100%,375px)] bg-white">
@@ -124,12 +151,32 @@ export function FeedDetailView({
           </h1>
         </header>
 
+        {seoDescription ? (
+          <p className="mt-4 text-sm leading-relaxed text-[#444]">{seoDescription}</p>
+        ) : null}
+
         {badgeLabels.length > 0 ? (
           <div className="mt-4 flex flex-wrap gap-2">
             {badgeLabels.map((label) => (
               <Badge key={label}>{label}</Badge>
             ))}
           </div>
+        ) : null}
+
+        {recommendedTargets.length > 0 ? (
+          <section className="mt-5 space-y-2" aria-labelledby="feed-targets-heading">
+            <h2
+              id="feed-targets-heading"
+              className="text-base font-semibold text-[#171717]"
+            >
+              추천 대상
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {recommendedTargets.map((target) => (
+                <TargetBadge key={target}>{target}</TargetBadge>
+              ))}
+            </div>
+          </section>
         ) : null}
 
         <section className="mt-6 space-y-3" aria-labelledby="feed-kcal-heading">
@@ -213,9 +260,18 @@ export function FeedDetailView({
           </section>
         ) : null}
 
+        {internalFeedLinks.length > 0 ? (
+          <RelatedFeedList title="관련 사료" links={internalFeedLinks} />
+        ) : null}
+
         <RelatedFeedList title="같은 브랜드 사료" links={relatedByBrand} />
+        <RelatedFeedList title="같은 목적·기능 사료" links={relatedByPurpose} />
         <RelatedFeedList title="비슷한 칼로리 사료" links={relatedByKcal} />
         <RelatedFeedList title="같은 연령대 사료" links={relatedByLifeStage} />
+
+        {faqs.length > 0 ? (
+          <SeoFaqSection faqs={faqs} className="mt-8" title="자주 묻는 질문" />
+        ) : null}
 
         <SeoInternalLinksSection
           currentPath={pagePath}

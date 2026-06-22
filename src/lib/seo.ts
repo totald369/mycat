@@ -408,60 +408,68 @@ function buildFeedNutritionProperties(
   return props;
 }
 
-/** 사료 상세 — 정보 제공 페이지용 WebPage + Article (Product Rich Result 미대상) */
+/** 사료 상세 — 정보 제공 페이지용 WebPage + Article + FAQ (Product Rich Result 미대상) */
 export function buildFeedDetailJsonLdGraph(
   input: FeedDetailJsonLdInput,
+  faqs?: FaqItem[],
 ): Record<string, unknown> {
   const pageUrl = absoluteUrl(input.path);
   const pageId = `${pageUrl}#webpage`;
   const articleId = `${pageUrl}#article`;
 
+  const graph: Record<string, unknown>[] = [
+    {
+      "@type": "Organization",
+      "@id": ORGANIZATION_ID,
+      name: SITE_BRAND,
+      url: SITE_URL,
+    },
+    {
+      "@type": "WebPage",
+      "@id": pageId,
+      url: pageUrl,
+      name: input.headline,
+      description: input.description,
+      inLanguage: "ko-KR",
+      isPartOf: { "@id": WEBSITE_ID },
+      publisher: { "@id": ORGANIZATION_ID },
+      mainEntity: { "@id": articleId },
+    },
+    {
+      "@type": "Article",
+      "@id": articleId,
+      headline: input.headline,
+      description: input.description,
+      articleBody: input.description,
+      inLanguage: "ko-KR",
+      author: { "@id": ORGANIZATION_ID },
+      publisher: { "@id": ORGANIZATION_ID },
+      mainEntityOfPage: { "@id": pageId },
+      about: {
+        "@type": "Thing",
+        name: input.name,
+        brand: {
+          "@type": "Brand",
+          name: input.brand,
+        },
+        additionalProperty: buildFeedNutritionProperties(input),
+      },
+    },
+    buildBreadcrumbJsonLd([
+      { name: "홈", path: "/" },
+      { name: "사료 목록", path: "/foods" },
+      { name: input.brand, path: "/foods" },
+      { name: input.name, path: input.path },
+    ]),
+  ];
+
+  if (faqs && faqs.length > 0) {
+    graph.push(buildFaqPageJsonLd(faqs));
+  }
+
   return {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": ORGANIZATION_ID,
-        name: SITE_BRAND,
-        url: SITE_URL,
-      },
-      {
-        "@type": "WebPage",
-        "@id": pageId,
-        url: pageUrl,
-        name: input.headline,
-        description: input.description,
-        inLanguage: "ko-KR",
-        isPartOf: { "@id": WEBSITE_ID },
-        publisher: { "@id": ORGANIZATION_ID },
-        mainEntity: { "@id": articleId },
-      },
-      {
-        "@type": "Article",
-        "@id": articleId,
-        headline: input.headline,
-        description: input.description,
-        inLanguage: "ko-KR",
-        author: { "@id": ORGANIZATION_ID },
-        publisher: { "@id": ORGANIZATION_ID },
-        mainEntityOfPage: { "@id": pageId },
-        about: {
-          "@type": "Thing",
-          name: input.name,
-          brand: {
-            "@type": "Brand",
-            name: input.brand,
-          },
-          additionalProperty: buildFeedNutritionProperties(input),
-        },
-      },
-      buildBreadcrumbJsonLd([
-        { name: "홈", path: "/" },
-        { name: "사료 목록", path: "/foods" },
-        { name: input.brand, path: "/foods" },
-        { name: input.name, path: input.path },
-      ]),
-    ],
+    "@graph": graph,
   };
 }
 
@@ -471,10 +479,13 @@ export function buildFeedDetailMetadata(feed: {
   slug: string;
   kcalPer100g: number;
   feedKind: string;
+  seoDescription?: string;
 }) {
   const productName = `${feed.brand} ${feed.name}`.trim();
   const title = `${productName} 칼로리 정보 | 100g당 ${feed.kcalPer100g}kcal | ${SITE_BRAND}`;
-  const description = `${productName}의 100g당 칼로리(${feed.kcalPer100g}kcal, ${feed.feedKind})와 급여 기준을 확인하고, 우리 아이 체중·활동량에 맞는 하루 급여량을 계산해보세요.`;
+  const description =
+    feed.seoDescription?.trim() ||
+    `${productName}의 100g당 칼로리(${feed.kcalPer100g}kcal, ${feed.feedKind})와 급여 기준을 확인하고, 우리 아이 체중·활동량에 맞는 하루 급여량을 계산해보세요.`;
   const path = `/foods/${feed.slug}`;
 
   return buildPageMetadata({
@@ -488,7 +499,7 @@ export function buildFeedDetailMetadata(feed: {
       "고양이 사료 칼로리",
       "고양이 사료 급여량",
     ],
-    ogDescription: `${productName} — 100g당 ${feed.kcalPer100g}kcal`,
+    ogDescription: description.slice(0, 80),
   });
 }
 

@@ -2,6 +2,18 @@
 
 ## 2026-06-06
 
+### 사료 상세페이지 SEO 강화
+
+- **고유 설명**: 사료명·kcal·라이프스테이지·주요 원료 기반 150~300자 설명(`feedDetailSeo.ts`) — meta description·JSON-LD·본문 노출.
+- **추천 대상**: 실내묘·중성화묘·체중관리·키튼·노령묘 등 condition·lifeStage·제품명 키워드 태그.
+- **관련 사료**: 같은 브랜드·목적·연령·칼로리 내부링크 4~8개(`getRelatedFeedsByPurpose`, `buildFeedRelatedInternalLinks`).
+- **FAQ**: 급여 개월·체중 관리·100g당 kcal 등 자동 생성 + FAQPage JSON-LD.
+
+### 펫프렌즈 요세라 요시캣 키튼 1.9kg 등록
+
+- **[펫프렌즈 요시캣 키튼 1.9kg](https://m.pet-friends.co.kr/product/detail/207950?productId=207950)** (`PF207950`): 펫프렌즈 상품 속성(attr10·attr11) 원재료·등록성분 반영. ME 3,966 kcal/kg는 [Josera 공식](https://www.josera.de/josicat-kitten.html) 기준(397 kcal/100g).
+- **스크립트**: `petfriends-scraped.json`, `apply-petfriends-csv.mjs` 추가.
+
 ### 레거시 25건·kcal 오입력 3건 상세 보강
 
 - **쓰라이브** 6건(id `185`–`187`, `189`, `191`, `192`): [vetsend.co.uk](https://www.vetsend.co.uk/thrive-complete-cat-food) Complete 라인 Composition·GA. id `192`는 [thrivepetfoods.com.au](https://www.thrivepetfoods.com.au/ocean-fish/) Ocean Fish 매핑.
