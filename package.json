@@ -9,13 +9,15 @@
     "dev:turbo": "next dev --turbopack --hostname 0.0.0.0 --port 3000",
     "dev:lan": "next dev --turbopack --hostname 0.0.0.0 --port 3000",
     "dev:lan:turbo": "next dev --turbopack --hostname 0.0.0.0 --port 3000",
-    "build": "prisma generate && next build",
+    "build": "prisma generate && npx tsx scripts/sync-feed-seo-boost-cache.ts && next build",
     "start": "next start",
     "lint": "eslint",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:seed": "prisma db seed",
     "db:seed:csv": "npx tsx prisma/seedCatFoodCsv.ts",
+    "seo-boost:generate": "npx tsx scripts/generate-feed-seo-boost.ts",
+    "seo-boost:sync": "npx tsx scripts/sync-feed-seo-boost-cache.ts",
     "postinstall": "prisma generate"
   },
   "prisma": {

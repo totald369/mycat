@@ -43,6 +43,26 @@ model FeedProduct {
   updatedAt    DateTime @updatedAt
 }
 
+/// SEO 파일럿(상위 20) 대상 사료 — GSC 조회수 기준 수동 지정
+model SeoBoostPilotFeed {
+  feedApiId String   @id
+  sortOrder Int      @default(0)
+  gscNote   String?
+  createdAt DateTime @default(now())
+}
+
+/// OpenAI로 생성한 사료 상세 SEO 부스트 콘텐츠 (빌드 시 JSON 캐시로 동기화)
+model FeedSeoBoostContent {
+  feedApiId        String   @id
+  recommendedFor   String
+  feedingNotes     String
+  comparisonPoints String
+  openaiModel      String?
+  promptVersion    String   @default("1")
+  generatedAt      DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
 /// 공유 결과 단축 링크 저장소
 model SharedResult {
   id        String   @id @default(cuid())

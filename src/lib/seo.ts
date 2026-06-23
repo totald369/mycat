@@ -558,6 +558,7 @@ export function buildLandingFaqs(keyword: string): FaqItem[] {
 
 export const ROBOTS_DISALLOW = [
   "/api/",
+  "/admin/",
   "/step1",
   "/step2",
   "/step3",

@@ -27,6 +27,7 @@ import {
   buildNutritionInterpretations,
   parseNutritionMetrics,
 } from "@/lib/feedNutritionInterpretation";
+import { getFeedSeoBoostContent } from "@/lib/feedSeoBoostStore";
 import { safeNumber, safeString } from "@/lib/feedSafeValues";
 
 type PageProps = {
@@ -122,6 +123,7 @@ export default async function FoodDetailPage({ params }: PageProps) {
     byLifeStage: relatedByLifeStage,
     byKcal: relatedByKcal,
   });
+  const seoBoostContent = getFeedSeoBoostContent(feed.apiId);
 
   return (
     <>
@@ -137,6 +139,7 @@ export default async function FoodDetailPage({ params }: PageProps) {
         relatedByLifeStage={relatedByLifeStage}
         relatedFeedLinks={relatedFeedLinks}
         faqs={faqs}
+        seoBoostContent={seoBoostContent}
       />
     </>
   );

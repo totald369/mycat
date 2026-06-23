@@ -16,6 +16,7 @@ import {
 import { formatKcalPer100gLabel, safeString } from "@/lib/feedSafeValues";
 import type { NutritionInterpretation } from "@/lib/feedNutritionInterpretation";
 import type { FaqItem } from "@/lib/seo";
+import type { FeedSeoBoostContentData } from "@/lib/feedSeoBoostTypes";
 import { IconBack } from "@/components/wireframe/icons";
 
 type Props = {
@@ -29,6 +30,7 @@ type Props = {
   relatedByLifeStage?: RelatedFeedLink[];
   relatedFeedLinks?: RelatedFeedLink[];
   faqs?: FaqItem[];
+  seoBoostContent?: FeedSeoBoostContentData | null;
 };
 
 function Badge({ children }: { children: ReactNode }) {
@@ -101,6 +103,7 @@ export function FeedDetailView({
   relatedByLifeStage = [],
   relatedFeedLinks = [],
   faqs = [],
+  seoBoostContent = null,
 }: Props) {
   const brand = safeString(feed.brand).trim() || "—";
   const name = safeString(feed.name).trim() || "이름 없음";
@@ -177,6 +180,59 @@ export function FeedDetailView({
               ))}
             </div>
           </section>
+        ) : null}
+
+        {seoBoostContent ? (
+          <>
+            <section
+              className="mt-6 space-y-3"
+              aria-labelledby="seo-boost-recommended"
+            >
+              <h2
+                id="seo-boost-recommended"
+                className="text-base font-semibold text-[#171717]"
+              >
+                이 사료는 이런 고양이에게 추천해요
+              </h2>
+              <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-[#444]">
+                {seoBoostContent.recommendedFor.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </section>
+
+            <section
+              className="mt-6 space-y-3"
+              aria-labelledby="seo-boost-feeding-notes"
+            >
+              <h2
+                id="seo-boost-feeding-notes"
+                className="text-base font-semibold text-[#171717]"
+              >
+                급여 전 참고할 점
+              </h2>
+              <p className="text-sm leading-relaxed text-[#444]">
+                {seoBoostContent.feedingNotes}
+              </p>
+            </section>
+
+            <section
+              className="mt-6 space-y-3"
+              aria-labelledby="seo-boost-comparison"
+            >
+              <h2
+                id="seo-boost-comparison"
+                className="text-base font-semibold text-[#171717]"
+              >
+                비슷한 사료와 비교 포인트
+              </h2>
+              <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-[#444]">
+                {seoBoostContent.comparisonPoints.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </section>
+          </>
         ) : null}
 
         <section className="mt-6 space-y-3" aria-labelledby="feed-kcal-heading">

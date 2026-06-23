@@ -2,6 +2,13 @@
 
 ## 2026-06-06
 
+### SEO 부스트 파일럿 (OpenAI + DB, 상위 20개)
+
+- **대상**: GSC 조회수 상위 사료 최대 20개 — `/admin/seo-boost`에서 `feedApiId` 지정·일괄 생성.
+- **추가 섹션**: 「이 사료는 이런 고양이에게 추천해요」「급여 전 참고할 점」「비슷한 사료와 비교 포인트」— OpenAI 생성 후 DB·`prisma/feedSeoBoost.json` 저장, 상세 페이지는 빌드 캐시만 사용(런타임 API 호출 없음).
+- **CLI**: `npm run seo-boost:generate` (`--force`, `--id=36,37`). 빌드 시 `npm run seo-boost:sync`로 DB→JSON 동기화.
+- **환경 변수**: `OPENAI_API_KEY`, `ADMIN_SECRET`, 선택 `OPENAI_MODEL`.
+
 ### 사료 상세페이지 SEO 강화
 
 - **고유 설명**: 사료명·kcal·라이프스테이지·주요 원료 기반 150~300자 설명(`feedDetailSeo.ts`) — meta description·JSON-LD·본문 노출.
