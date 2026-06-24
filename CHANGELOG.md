@@ -2,6 +2,11 @@
 
 ## 2026-06-24
 
+### SEO 부스트 콘텐츠 72건 생성·배포
+
+- OpenAI 키 없이 **규칙 기반 생성기**(`feedSeoBoostRules.ts`)로 파일럿 72건 콘텐츠 생성 — `prisma/feedSeoBoost.json` `contents` 반영.
+- `OPENAI_API_KEY` 설정 시 OpenAI 우선, 미설정 시 규칙 기반 자동 폴백.
+
 ### SEO 부스트 파일럿 대상 72건 등록
 
 - **GSC 노출 상위** 10 URL + **아보덤 85g 3종** + **로얄캐닌 전체 63종** → `prisma/feedSeoBoost.json` `pilotFeedApiIds` 72건.

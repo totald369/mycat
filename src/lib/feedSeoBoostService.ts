@@ -11,6 +11,10 @@ import {
   type SimilarFeedSummary,
 } from "@/lib/feedSeoBoostPrompt";
 import {
+  buildRuleBasedSeoBoostContent,
+  RULE_BASED_MODEL,
+} from "@/lib/feedSeoBoostRules";
+import {
   writeFeedSeoBoostCache,
   loadFeedSeoBoostCache,
 } from "@/lib/feedSeoBoostStore";
@@ -37,6 +41,31 @@ function toSimilarSummaries(
     });
   }
   return out.slice(0, 5);
+}
+
+async function upsertSeoBoostContent(
+  feedApiId: string,
+  data: FeedSeoBoostContentData,
+  model: string,
+): Promise<void> {
+  await prisma.feedSeoBoostContent.upsert({
+    where: { feedApiId },
+    create: {
+      feedApiId,
+      recommendedFor: JSON.stringify(data.recommendedFor),
+      feedingNotes: data.feedingNotes,
+      comparisonPoints: JSON.stringify(data.comparisonPoints),
+      openaiModel: model,
+      promptVersion: SEO_BOOST_PROMPT_VERSION,
+    },
+    update: {
+      recommendedFor: JSON.stringify(data.recommendedFor),
+      feedingNotes: data.feedingNotes,
+      comparisonPoints: JSON.stringify(data.comparisonPoints),
+      openaiModel: model,
+      promptVersion: SEO_BOOST_PROMPT_VERSION,
+    },
+  });
 }
 
 export async function listPilotFeedApiIds(): Promise<string[]> {
@@ -158,6 +187,14 @@ export async function generateSeoBoostForFeed(
   }
 
   const similar = toSimilarSummaries(feed);
+
+  const apiKey = process.env.OPENAI_API_KEY?.trim();
+  if (!apiKey) {
+    const normalized = buildRuleBasedSeoBoostContent(feed, similar);
+    await upsertSeoBoostContent(feed.apiId, normalized, RULE_BASED_MODEL);
+    return normalized;
+  }
+
   const prompt = buildSeoBoostPrompt(feed, similar);
   let lastError: Error | null = null;
 
@@ -172,26 +209,7 @@ export async function generateSeoBoostForFeed(
       const normalized = normalizeSeoBoostContent(parsed);
       const model = process.env.OPENAI_MODEL?.trim() || DEFAULT_MODEL;
 
-      await prisma.feedSeoBoostContent.upsert({
-        where: { feedApiId: feed.apiId },
-        create: {
-          feedApiId: feed.apiId,
-          recommendedFor: JSON.stringify(normalized.recommendedFor),
-          feedingNotes: normalized.feedingNotes,
-          comparisonPoints: JSON.stringify(normalized.comparisonPoints),
-          openaiModel: model,
-          promptVersion: SEO_BOOST_PROMPT_VERSION,
-        },
-        update: {
-          recommendedFor: JSON.stringify(normalized.recommendedFor),
-          feedingNotes: normalized.feedingNotes,
-          comparisonPoints: JSON.stringify(normalized.comparisonPoints),
-          openaiModel: model,
-          promptVersion: SEO_BOOST_PROMPT_VERSION,
-        },
-      });
-
-      await syncCacheFromDb();
+      await upsertSeoBoostContent(feed.apiId, normalized, model);
       return normalized;
     } catch (e) {
       lastError = e instanceof Error ? e : new Error(String(e));
@@ -240,6 +258,7 @@ export async function generateSeoBoostForPilot(options?: {
     }
   }
 
+  await syncCacheFromDb();
   return { ok, failed };
 }
 
