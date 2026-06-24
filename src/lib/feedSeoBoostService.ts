@@ -18,11 +18,19 @@ import {
   writeFeedSeoBoostCache,
   loadFeedSeoBoostCache,
 } from "@/lib/feedSeoBoostStore";
-import type { FeedSeoBoostContentData } from "@/lib/feedSeoBoostTypes";
+import type {
+  FeedSeoBoostContentData,
+  FeedSeoBoostSource,
+} from "@/lib/feedSeoBoostTypes";
 import { SEO_BOOST_PILOT_MAX, SEO_BOOST_PROMPT_VERSION } from "@/lib/feedSeoBoostTypes";
 
 const DEFAULT_MODEL = "gpt-4o-mini";
 const OPENAI_CALL_DELAY_MS = 7000;
+
+function boostSourceFromModel(model: string | null | undefined): FeedSeoBoostSource {
+  if (!model || model === RULE_BASED_MODEL) return "rule";
+  return "openai";
+}
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -132,6 +140,7 @@ export async function syncCacheFromDb(): Promise<void> {
       recommendedFor: JSON.parse(row.recommendedFor) as string[],
       feedingNotes: row.feedingNotes,
       comparisonPoints: JSON.parse(row.comparisonPoints) as string[],
+      source: boostSourceFromModel(row.openaiModel),
     };
   }
 

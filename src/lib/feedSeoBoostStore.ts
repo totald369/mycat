@@ -32,7 +32,12 @@ export function loadFeedSeoBoostCache(): FeedSeoBoostCacheFile {
       version: parsed.version ?? 1,
       exportedAt: parsed.exportedAt ?? new Date(0).toISOString(),
       pilotFeedApiIds: parsed.pilotFeedApiIds ?? [],
-      contents: parsed.contents ?? {},
+      contents: Object.fromEntries(
+        Object.entries(parsed.contents ?? {}).map(([id, item]) => [
+          id,
+          { ...item, source: item.source ?? "rule" },
+        ]),
+      ),
     };
     return memoryCache;
   } catch {

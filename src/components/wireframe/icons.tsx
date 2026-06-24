@@ -151,6 +151,41 @@ export function IconShare({ className }: { className?: string }) {
   );
 }
 
+/** SEO 부스트 — OpenAI 생성 콘텐츠 */
+export function IconSparkles({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden
+    >
+      <path d="M12 2l1.2 4.2L17.5 7.5 13.2 8.7 12 13l-1.2-4.3L6.5 7.5l4.3-1.3L12 2zM5 14l.8 2.8L8.5 17.5 5.8 18.3 5 21l-.8-2.7L1.5 17.5l2.7-.7L5 14zm14 0l.8 2.8 2.7.7-2.7.8L19 21l-.8-2.7-2.7-.8 2.7-.7L19 14z" />
+    </svg>
+  );
+}
+
+/** SEO 부스트 — 규칙 기반 자동 작성 */
+export function IconAutoText({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      aria-hidden
+    >
+      <path d="M7 7h10M7 12h6M7 17h8" strokeLinecap="round" />
+      <rect x="4" y="4" width="16" height="16" rx="2" />
+    </svg>
+  );
+}
+
 export function CatSilhouette({ className }: { className?: string }) {
   return (
     <svg

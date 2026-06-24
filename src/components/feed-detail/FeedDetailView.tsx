@@ -17,7 +17,7 @@ import { formatKcalPer100gLabel, safeString } from "@/lib/feedSafeValues";
 import type { NutritionInterpretation } from "@/lib/feedNutritionInterpretation";
 import type { FaqItem } from "@/lib/seo";
 import type { FeedSeoBoostContentData } from "@/lib/feedSeoBoostTypes";
-import { IconBack } from "@/components/wireframe/icons";
+import { IconAutoText, IconBack, IconSparkles } from "@/components/wireframe/icons";
 
 type Props = {
   feed: FeedDetailItem;
@@ -89,6 +89,35 @@ function RelatedFeedList({
         ))}
       </ul>
     </section>
+  );
+}
+
+function SeoBoostSectionHeading({
+  id,
+  title,
+  source,
+}: {
+  id: string;
+  title: string;
+  source?: FeedSeoBoostContentData["source"];
+}) {
+  const isOpenAi = source === "openai";
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      {isOpenAi ? (
+        <IconSparkles className="size-4 shrink-0 text-[#f8620c]" />
+      ) : (
+        <IconAutoText className="size-4 shrink-0 text-[#999]" />
+      )}
+      <h2 id={id} className="text-base font-semibold text-[#171717]">
+        {title}
+      </h2>
+      {isOpenAi ? (
+        <span className="rounded-full bg-[#fff3eb] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#c44a00]">
+          AI
+        </span>
+      ) : null}
+    </div>
   );
 }
 
@@ -188,12 +217,11 @@ export function FeedDetailView({
               className="mt-6 space-y-3"
               aria-labelledby="seo-boost-recommended"
             >
-              <h2
+              <SeoBoostSectionHeading
                 id="seo-boost-recommended"
-                className="text-base font-semibold text-[#171717]"
-              >
-                이 사료는 이런 고양이에게 추천해요
-              </h2>
+                title="이 사료는 이런 고양이에게 추천해요"
+                source={seoBoostContent.source}
+              />
               <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-[#444]">
                 {seoBoostContent.recommendedFor.map((item) => (
                   <li key={item}>{item}</li>
@@ -205,12 +233,11 @@ export function FeedDetailView({
               className="mt-6 space-y-3"
               aria-labelledby="seo-boost-feeding-notes"
             >
-              <h2
+              <SeoBoostSectionHeading
                 id="seo-boost-feeding-notes"
-                className="text-base font-semibold text-[#171717]"
-              >
-                급여 전 참고할 점
-              </h2>
+                title="급여 전 참고할 점"
+                source={seoBoostContent.source}
+              />
               <p className="text-sm leading-relaxed text-[#444]">
                 {seoBoostContent.feedingNotes}
               </p>
@@ -220,12 +247,11 @@ export function FeedDetailView({
               className="mt-6 space-y-3"
               aria-labelledby="seo-boost-comparison"
             >
-              <h2
+              <SeoBoostSectionHeading
                 id="seo-boost-comparison"
-                className="text-base font-semibold text-[#171717]"
-              >
-                비슷한 사료와 비교 포인트
-              </h2>
+                title="비슷한 사료와 비교 포인트"
+                source={seoBoostContent.source}
+              />
               <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-[#444]">
                 {seoBoostContent.comparisonPoints.map((item) => (
                   <li key={item}>{item}</li>
