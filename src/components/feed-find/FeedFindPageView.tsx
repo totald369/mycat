@@ -35,17 +35,8 @@ const FEED_FETCH_URL = "/api/feeds";
 const FEED_LOAD_ERROR = "급여(사료) 목록을 불러오지 못했습니다.";
 const POPULAR_COUNT = 8;
 
-function FeedRequestWoodAnchor({
-  href,
-  searchKeyword,
-}: {
-  href: string;
-  searchKeyword?: string;
-}) {
-  const keyword = searchKeyword?.trim();
-  const label = keyword
-    ? `「${keyword}」 사료 추가 요청하기`
-    : "사료 추가 요청하기";
+function FeedRequestWoodAnchor({ href }: { href: string }) {
+  const label = "사료 추가 요청하기";
 
   return (
     <a
@@ -321,10 +312,7 @@ export function FeedFindPageView({ onOpenDetail, initialCatalog }: Props) {
                 </div>
                 <div className="flex w-full max-w-[320px] flex-col items-stretch gap-3">
                   {FEED_REQUEST_HREF ? (
-                    <FeedRequestWoodAnchor
-                      href={requestHref}
-                      searchKeyword={activeQuery || draft}
-                    />
+                    <FeedRequestWoodAnchor href={requestHref} />
                   ) : null}
                   <button
                     type="button"
@@ -354,10 +342,7 @@ export function FeedFindPageView({ onOpenDetail, initialCatalog }: Props) {
                 </ul>
                 {showSimilarHint && FEED_REQUEST_HREF ? (
                   <div className="flex justify-center px-4 pb-28">
-                    <FeedRequestWoodAnchor
-                      href={requestHref}
-                      searchKeyword={activeQuery || draft}
-                    />
+                    <FeedRequestWoodAnchor href={requestHref} />
                   </div>
                 ) : null}
               </>
