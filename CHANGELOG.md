@@ -2,6 +2,11 @@
 
 ## 2026-06-24
 
+### SEO 부스트 OpenAI 12건 부분 반영
+
+- 파일럿 72건 중 **12건** OpenAI(`gpt-4o-mini`) 콘텐츠로 갱신, 나머지 60건은 규칙 기반 유지.
+- 생성기: `feedingNotes` 길이 자동 보정, API 속도 제한 대기·429 재시도, OpenAI 완료분만 스킵.
+
 ### SEO 부스트 콘텐츠 72건 생성·배포
 
 - OpenAI 키 없이 **규칙 기반 생성기**(`feedSeoBoostRules.ts`)로 파일럿 72건 콘텐츠 생성 — `prisma/feedSeoBoost.json` `contents` 반영.

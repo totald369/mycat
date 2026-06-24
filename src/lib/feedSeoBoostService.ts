@@ -22,6 +22,21 @@ import type { FeedSeoBoostContentData } from "@/lib/feedSeoBoostTypes";
 import { SEO_BOOST_PILOT_MAX, SEO_BOOST_PROMPT_VERSION } from "@/lib/feedSeoBoostTypes";
 
 const DEFAULT_MODEL = "gpt-4o-mini";
+const OPENAI_CALL_DELAY_MS = 7000;
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function parseRetryAfterMs(message: string): number {
+  const minMatch = message.match(/try again in (\d+)m(\d+)s/i);
+  if (minMatch) {
+    return (Number(minMatch[1]) * 60 + Number(minMatch[2]) + 5) * 1000;
+  }
+  const secMatch = message.match(/try again in (\d+)s/i);
+  if (secMatch) return (Number(secMatch[1]) + 2) * 1000;
+  return 60_000;
+}
 
 function toSimilarSummaries(
   feed: FeedDetailItemWithSlug,
@@ -135,38 +150,46 @@ async function callOpenAi(prompt: string): Promise<string> {
   }
   const model = process.env.OPENAI_MODEL?.trim() || DEFAULT_MODEL;
 
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      model,
-      temperature: 0.6,
-      response_format: { type: "json_object" },
-      messages: [
-        {
-          role: "system",
-          content:
-            "반려묘 사료 SEO 콘텐츠를 JSON만으로 출력합니다. 의료·치료·예방 단정 표현은 사용하지 않습니다.",
-        },
-        { role: "user", content: prompt },
-      ],
-    }),
-  });
+  for (let attempt = 0; attempt < 6; attempt++) {
+    const res = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model,
+        temperature: 0.6,
+        response_format: { type: "json_object" },
+        messages: [
+          {
+            role: "system",
+            content:
+              "반려묘 사료 SEO 콘텐츠를 JSON만으로 출력합니다. 의료·치료·예방 단정 표현은 사용하지 않습니다.",
+          },
+          { role: "user", content: prompt },
+        ],
+      }),
+    });
 
-  if (!res.ok) {
+    if (res.ok) {
+      const json = (await res.json()) as {
+        choices?: { message?: { content?: string } }[];
+      };
+      const content = json.choices?.[0]?.message?.content;
+      if (!content?.trim()) throw new Error("OpenAI 응답이 비어 있습니다.");
+      return content;
+    }
+
     const errText = await res.text();
+    if (res.status === 429 && attempt < 5) {
+      await sleep(parseRetryAfterMs(errText));
+      continue;
+    }
     throw new Error(`OpenAI API ${res.status}: ${errText.slice(0, 300)}`);
   }
 
-  const json = (await res.json()) as {
-    choices?: { message?: { content?: string } }[];
-  };
-  const content = json.choices?.[0]?.message?.content;
-  if (!content?.trim()) throw new Error("OpenAI 응답이 비어 있습니다.");
-  return content;
+  throw new Error("OpenAI API 재시도 초과");
 }
 
 export async function generateSeoBoostForFeed(
@@ -177,7 +200,10 @@ export async function generateSeoBoostForFeed(
     const existing = await prisma.feedSeoBoostContent.findUnique({
       where: { feedApiId: feed.apiId },
     });
-    if (existing) {
+    if (
+      existing?.openaiModel &&
+      existing.openaiModel !== RULE_BASED_MODEL
+    ) {
       return {
         recommendedFor: JSON.parse(existing.recommendedFor) as string[],
         feedingNotes: existing.feedingNotes,
@@ -250,6 +276,9 @@ export async function generateSeoBoostForPilot(options?: {
     try {
       await generateSeoBoostForFeed(feed, { force: options?.force });
       ok.push(apiId);
+      if (process.env.OPENAI_API_KEY?.trim()) {
+        await sleep(OPENAI_CALL_DELAY_MS);
+      }
     } catch (e) {
       failed.push({
         feedApiId: apiId,

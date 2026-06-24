@@ -86,11 +86,28 @@ ${similarBlock}
 
 ## 규칙
 1. recommendedFor: 3~5개 bullet. 각 항목은 한 문장, 「~한 고양이」 형태 권장.
-2. feedingNotes: 150~300자(공백 포함). 급여 전 참고 사항. 수의사 상담 권장 표현 포함 가능.
+2. feedingNotes: **180~280자**(공백 포함, 150자 미만 금지). 급여 전 참고 사항. 수의사 상담 권장 표현 포함.
 3. comparisonPoints: 3~5개 bullet. 위 비교 사료 또는 일반 사료 대비 칼로리·단백·목적 차이를 수치로 언급 가능.
 4. 금지 단어: 치료, 완치, 예방, 효과가 있다/있
 5. 권장 표현: 추천, 적합할 수 있음, 참고 가능, 수의사 상담 권장
 6. 과장·허위 정보 금지. 데이터에 없는 성분·효능 창작 금지.`;
+}
+
+const FEEDING_NOTES_PAD =
+  " 실제 급여량은 체중·활동량·간식에 따라 달라질 수 있으며, 건강 관리가 필요하면 수의사 상담 후 급여를 권장합니다.";
+
+function ensureFeedingNotesLength(text: string): string {
+  let notes = text.trim();
+  if (notes.length > 320) {
+    return `${notes.slice(0, 297).trim()}…`;
+  }
+  while (notes.length < 150) {
+    notes += FEEDING_NOTES_PAD;
+    if (notes.length > 320) {
+      return `${notes.slice(0, 297).trim()}…`;
+    }
+  }
+  return notes;
 }
 
 export function parseSeoBoostJson(raw: string): FeedSeoBoostContentData {
@@ -101,7 +118,9 @@ export function parseSeoBoostJson(raw: string): FeedSeoBoostContentData {
   const comparisonPoints = Array.isArray(parsed.comparisonPoints)
     ? parsed.comparisonPoints.map((s) => String(s).trim()).filter(Boolean)
     : [];
-  const feedingNotes = String(parsed.feedingNotes ?? "").trim();
+  const feedingNotes = ensureFeedingNotesLength(
+    String(parsed.feedingNotes ?? "").trim(),
+  );
 
   if (recommendedFor.length < 3 || recommendedFor.length > 5) {
     throw new Error(`recommendedFor must be 3~5 items, got ${recommendedFor.length}`);
