@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-06-24
+
+### SEO 부스트 파일럿 대상 72건 등록
+
+- **GSC 노출 상위** 10 URL + **아보덤 85g 3종** + **로얄캐닌 전체 63종** → `prisma/feedSeoBoost.json` `pilotFeedApiIds` 72건.
+- 파일럿 상한 20 → **100**, 일괄 등록 스크립트 `npm run seo-boost:register` 추가.
+- OpenAI 콘텐츠는 `npm run seo-boost:generate`로 별도 생성(아직 `contents` 비어 있음).
+
 ## 2026-06-06
 
 ### SEO 부스트 파일럿 (OpenAI + DB, 상위 20개)

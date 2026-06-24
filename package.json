@@ -16,6 +16,7 @@
     "db:push": "prisma db push",
     "db:seed": "prisma db seed",
     "db:seed:csv": "npx tsx prisma/seedCatFoodCsv.ts",
+    "seo-boost:register": "npx tsx scripts/register-seo-boost-pilot.ts",
     "seo-boost:generate": "npx tsx scripts/generate-feed-seo-boost.ts",
     "seo-boost:sync": "npx tsx scripts/sync-feed-seo-boost-cache.ts",
     "postinstall": "prisma generate"
