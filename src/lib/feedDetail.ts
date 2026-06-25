@@ -26,6 +26,8 @@ function mapDbRowToFeedDetail(row: {
   lifeStage: string | null;
   kcalPer100g: number | null;
   servingGrams: number | null;
+  servingGuideGrams: number | null;
+  servingGuideWeightKg: number | null;
   category: string | null;
   feedCondition: string | null;
 }): Omit<FeedDetailItem, "slug"> | null {
@@ -49,6 +51,8 @@ function mapDbRowToFeedDetail(row: {
     kcalPer100g: kcal,
     feedKind,
     servingGrams: row.servingGrams,
+    servingGuideGrams: row.servingGuideGrams,
+    servingGuideWeightKg: row.servingGuideWeightKg,
     category: row.category,
     feedCondition: row.feedCondition,
     rawType,
@@ -135,6 +139,8 @@ export async function getFeedById(id: string): Promise<FeedDetailItem | null> {
         lifeStage: true,
         kcalPer100g: true,
         servingGrams: true,
+        servingGuideGrams: true,
+        servingGuideWeightKg: true,
         category: true,
         feedCondition: true,
       },

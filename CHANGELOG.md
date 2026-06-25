@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-06-05
+
+### 건식 브랜드 급여 가이드 참고값
+
+- `cat_food.csv`에 `guide_daily_g`, `guide_weight_kg` 컬럼 추가 — 건식은 제조사 급여표 기준 **하루 권장 그램**·**기준 체중(kg)**.
+- 습식 `serving_g`는 1팩 용량 유지. 상세 페이지 카드 라벨을 유형별로 분리(습식 「1팩·1캔 기준」, 건식 「브랜드 급여 가이드」).
+- 일괄 채우기: `npm run feed-guides:fill` — 로얄캐닌(공식몰 급여표)·힐스(hillspet.co.kr) 스크래핑 후 CSV 반영. `--dry-run`, `--brand=로얄캐닌`, `--force` 지원.
+- 로얄캐닌 retail: probe 확인 slug·CSV id 매핑(`feedServingGuideRoyalCanin.ts`), 급여표 파서(헤더열·체중범위·키튼 월령·vet 표) 보강.
+- 로얄캐닌 처방식(vet): `<th/>` 빈 열 파싱·숫자-only g 셀·세타이어티 유지 단계 표 지원. 하이포/아날러제닉 5g 오입력 수정, GI 파이버·세타이어티 등 미채움 15종 보강.
+- 로얄캐닌 retail 잔여 8종: slug 발견(`sterilised-37-2537`, `ageing-15+-8075`, `aroma/protein-exigent-2543/2542` 등), 전치형·FUSSY·키튼 월령범위 파서 추가. **로얄캐닌 건식 41/41종 전량 채움.**
+- 로얄캐닌 vet 스크래핑: locale 순서 `kr` 우선·fetch 재시도(403/429·빈 응답)로 네트워크 오류 시 스킵되던 처방 건식 12종 캐시 복구. 습식 전용 slug 3건(`renal-1246`, `urinary-so-1254`, `gastrointestinal-4039`)은 정상 스킵.
+
 ## 2026-06-24
 
 ## 2026-06-24

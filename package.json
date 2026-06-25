@@ -19,6 +19,7 @@
     "seo-boost:register": "npx tsx scripts/register-seo-boost-pilot.ts",
     "seo-boost:generate": "npx tsx scripts/generate-feed-seo-boost.ts",
     "seo-boost:sync": "npx tsx scripts/sync-feed-seo-boost-cache.ts",
+    "feed-guides:fill": "npx tsx scripts/fill-feed-serving-guides.ts",
     "postinstall": "prisma generate"
   },
   "prisma": {

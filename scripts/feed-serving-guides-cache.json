@@ -1,0 +1,672 @@
+{
+  "updatedAt": "2026-06-25T05:43:17.433Z",
+  "entries": [
+    {
+      "feedId": "01tdJ000003UzCPQA0",
+      "brand": "로얄캐닌",
+      "name": "에이징 15",
+      "guideDailyG": 69,
+      "guideWeightKg": 5,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/ageing-15+-8075",
+      "scrapedTitle": "캣 에이징 15+"
+    },
+    {
+      "feedId": "01tdJ000003UyOQQA0",
+      "brand": "로얄캐닌",
+      "name": "에이징 11",
+      "guideDailyG": 41,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/uk/cats/products/retail-products/aging-11+-2561",
+      "scrapedTitle": "AGEING 11+"
+    },
+    {
+      "feedId": "85",
+      "brand": "로얄캐닌",
+      "name": "아날러제닉",
+      "guideDailyG": 53,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/vet-products/anallergenic-1950",
+      "scrapedTitle": "캣 아날러제닉"
+    },
+    {
+      "feedId": "01tdJ000002FJKjQAO",
+      "brand": "로얄캐닌",
+      "name": "아로마 엑시전트",
+      "guideDailyG": 54,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/aroma-exigent-2543",
+      "scrapedTitle": "아로마 엑시전트"
+    },
+    {
+      "feedId": "01tdJ000002FJL6QAO",
+      "brand": "로얄캐닌",
+      "name": "벵갈 어덜트",
+      "guideDailyG": 36,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/uk/cats/products/retail-products/bengal-adult-4370",
+      "scrapedTitle": "Bengal Adult"
+    },
+    {
+      "feedId": "01tdJ000002FJL7QAO",
+      "brand": "로얄캐닌",
+      "name": "브리티쉬 숏헤어 어덜트",
+      "guideDailyG": 38,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/british-shorthair--adult-2557",
+      "scrapedTitle": "브리티쉬 숏헤어 어덜트"
+    },
+    {
+      "feedId": "01tdJ000002FJL4QAO",
+      "brand": "로얄캐닌",
+      "name": "노령웨이숏",
+      "guideDailyG": 52,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/british-shorthair-aging-11+-2561",
+      "scrapedTitle": "캣 에이징 11+"
+    },
+    {
+      "feedId": "01tdJ000002FJL0QAO",
+      "brand": "로얄캐닌",
+      "name": "덴탈 케어",
+      "guideDailyG": 45,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/dental-care-2532",
+      "scrapedTitle": "덴탈케어"
+    },
+    {
+      "feedId": "88",
+      "brand": "로얄캐닌",
+      "name": "다이아베틱",
+      "guideDailyG": 54,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/vet-products/diabetic-3906",
+      "scrapedTitle": "캣 다이아베틱"
+    },
+    {
+      "feedId": "01tdJ000002FJKzQAO",
+      "brand": "로얄캐닌",
+      "name": "다이제스티브 케어",
+      "guideDailyG": 53,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/digestive-care-2555",
+      "scrapedTitle": "다이제스티브 케어"
+    },
+    {
+      "feedId": "75",
+      "brand": "로얄캐닌",
+      "name": "얼리 레날",
+      "guideDailyG": 55,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/vet-products/early-renal-1242",
+      "scrapedTitle": "캣 얼리 레날"
+    },
+    {
+      "feedId": "01tdJ000002FJKhQAO",
+      "brand": "로얄캐닌",
+      "name": "피트",
+      "guideDailyG": 54,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/fit-and-active-2520",
+      "scrapedTitle": "피트"
+    },
+    {
+      "feedId": "01tdJ000002FJKiQAO",
+      "brand": "로얄캐닌",
+      "name": "세이버 엑시전트",
+      "guideDailyG": 53,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/fussy-2531",
+      "scrapedTitle": "세이버 엑시전트"
+    },
+    {
+      "feedId": "80",
+      "brand": "로얄캐닌",
+      "name": "가스트로인테스티널",
+      "guideDailyG": 51,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/vet-products/gastrointestinal-3905",
+      "scrapedTitle": "캣 가스트로인테스티널"
+    },
+    {
+      "feedId": "82",
+      "brand": "로얄캐닌",
+      "name": "가스트로인테스티널 파이버",
+      "guideDailyG": 53,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/vet-products/gastrointestinal-fibre-response-4007",
+      "scrapedTitle": "캣 가스트로인테스티널 화이버 리스폰스"
+    },
+    {
+      "feedId": "81",
+      "brand": "로얄캐닌",
+      "name": "가스트로인테스티널 모더레이트",
+      "guideDailyG": 56,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/vet-products/gastrointestinal-moderate-calorie-4008",
+      "scrapedTitle": "캣 가스트로인테스티널 모더레이트 칼로리 "
+    },
+    {
+      "feedId": "01tdJ000002FJL1QAO",
+      "brand": "로얄캐닌",
+      "name": "헤어앤스킨 케어",
+      "guideDailyG": 50,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/hair&skin-care-2526",
+      "scrapedTitle": "헤어 앤 스킨 케어"
+    },
+    {
+      "feedId": "01tdJ000002FJKtQAO",
+      "brand": "로얄캐닌",
+      "name": "헤어볼 케어",
+      "guideDailyG": 55,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/hairball-care-2534",
+      "scrapedTitle": "헤어볼 케어"
+    },
+    {
+      "feedId": "89",
+      "brand": "로얄캐닌",
+      "name": "헤파틱",
+      "guideDailyG": 50,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/vet-products/hepatic-4012",
+      "scrapedTitle": "캣 헤파틱"
+    },
+    {
+      "feedId": "84",
+      "brand": "로얄캐닌",
+      "name": "하이포알러제닉",
+      "guideDailyG": 51,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/vet-products/hypoallergenic-3902",
+      "scrapedTitle": "캣 하이포알러제닉"
+    },
+    {
+      "feedId": "01tdJ000002FJKoQAO",
+      "brand": "로얄캐닌",
+      "name": "인도어 7+",
+      "guideDailyG": 44,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/us/cats/products/retail-products/indoor-7+-2548",
+      "scrapedTitle": "Indoor 7+ Dry Cat Food"
+    },
+    {
+      "feedId": "01tdJ000002FJKcQAO",
+      "brand": "로얄캐닌",
+      "name": "인도어",
+      "guideDailyG": 45,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/us/cats/products/retail-products/indoor-adult-2529",
+      "scrapedTitle": "Indoor Adult Dry Cat Food"
+    },
+    {
+      "feedId": "01tdJ000002FJKfQAO",
+      "brand": "로얄캐닌",
+      "name": "인도어 롱헤어",
+      "guideDailyG": 44,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/us/cats/products/retail-products/indoor-long-hair-usa-only-2549",
+      "scrapedTitle": "Indoor Long Hair Dry Cat Food"
+    },
+    {
+      "feedId": "01tdJ000002FJKZQA4",
+      "brand": "로얄캐닌",
+      "name": "키튼",
+      "guideDailyG": 66,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/uk/cats/products/retail-products/kitten-2522",
+      "scrapedTitle": "Kitten"
+    },
+    {
+      "feedId": "01tdJ000002FJKbQAO",
+      "brand": "로얄캐닌",
+      "name": "키튼 스테럴라이즈드",
+      "guideDailyG": 79,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/uk/cats/products/retail-products/kitten-spayed--neutered-2562",
+      "scrapedTitle": "Kitten Sterilised"
+    },
+    {
+      "feedId": "01tdJ000002FJKXQA4",
+      "brand": "로얄캐닌",
+      "name": "마더앤베이비캣",
+      "guideDailyG": 45,
+      "guideWeightKg": 2,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/mother-&-babycat-2544",
+      "scrapedTitle": "마더 앤   베이비캣"
+    },
+    {
+      "feedId": "87",
+      "brand": "로얄캐닌",
+      "name": "세타이어티 밸런스",
+      "guideDailyG": 62,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/uk/cats/products/vet-products/neutered-satiety-balance-2721",
+      "scrapedTitle": "Neutered Satiety Balance"
+    },
+    {
+      "feedId": "01tdJ000002FJL3QAO",
+      "brand": "로얄캐닌",
+      "name": "페르시안 어덜트",
+      "guideDailyG": 40,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/persian-adult-2552",
+      "scrapedTitle": "페르시안 어덜트"
+    },
+    {
+      "feedId": "01tdJ000002FJL2QAO",
+      "brand": "로얄캐닌",
+      "name": "페르시안 키튼",
+      "guideDailyG": 66,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/uk/cats/products/retail-products/persian-kitten-2554",
+      "scrapedTitle": "Persian Kitten"
+    },
+    {
+      "feedId": "01tdJ000002FJKkQAO",
+      "brand": "로얄캐닌",
+      "name": "프로틴 엑시전트",
+      "guideDailyG": 53,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/protein-exigent-2542",
+      "scrapedTitle": "프로틴 엑시전트"
+    },
+    {
+      "feedId": "01tdJ000002FJL5QAO",
+      "brand": "로얄캐닌",
+      "name": "랙돌 어덜트",
+      "guideDailyG": 38,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/ragdoll-adult-2515",
+      "scrapedTitle": "랙돌 어덜트"
+    },
+    {
+      "feedId": "74",
+      "brand": "로얄캐닌",
+      "name": "레날 셀렉트",
+      "guideDailyG": 51,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/uk/cats/products/vet-products/renal-select-4160",
+      "scrapedTitle": "Renal Select"
+    },
+    {
+      "feedId": "73",
+      "brand": "로얄캐닌",
+      "name": "레날 스페셜",
+      "guideDailyG": 53,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/vet-products/renal-special-3949",
+      "scrapedTitle": "캣 레날 스페셜"
+    },
+    {
+      "feedId": "86",
+      "brand": "로얄캐닌",
+      "name": "세타이어티",
+      "guideDailyG": 49,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/vet-products/satiety-weight-management-3943",
+      "scrapedTitle": "캣 세타이어티 웨이트 매니지먼트"
+    },
+    {
+      "feedId": "01tdJ000002FJKgQAO",
+      "brand": "로얄캐닌",
+      "name": "센서블",
+      "guideDailyG": 48,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/sensitive-digestion-2521",
+      "scrapedTitle": "센서블"
+    },
+    {
+      "feedId": "01tdJ000002FJL8QAO",
+      "brand": "로얄캐닌",
+      "name": "샴 어덜트",
+      "guideDailyG": 41,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/siamese-adult-2551",
+      "scrapedTitle": "샴 어덜트"
+    },
+    {
+      "feedId": "01tdJ000002FJLyQAO",
+      "brand": "로얄캐닌",
+      "name": "스테럴라이즈드",
+      "guideDailyG": 57,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/sterilised-37-2537",
+      "scrapedTitle": "스테럴라이즈드"
+    },
+    {
+      "feedId": "01tdJ000002FJKvQAO",
+      "brand": "로얄캐닌",
+      "name": "유리너리 케어",
+      "guideDailyG": 55,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/urinary-care-1800",
+      "scrapedTitle": "유리너리 케어"
+    },
+    {
+      "feedId": "77",
+      "brand": "로얄캐닌",
+      "name": "유리너리 S/O",
+      "guideDailyG": 54,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/vet-products/urinary-so-3901",
+      "scrapedTitle": "캣 유리너리 S/O"
+    },
+    {
+      "feedId": "78",
+      "brand": "로얄캐닌",
+      "name": "유리너리 S/O 모더레이트",
+      "guideDailyG": 59,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/vet-products/urinary-so-moderate-calorie-3954",
+      "scrapedTitle": "캣 유리너리 S/O 모더레이트 칼로리"
+    },
+    {
+      "feedId": "01tdJ000002FJKxQAO",
+      "brand": "로얄캐닌",
+      "name": "라이트 웨이트 케어",
+      "guideDailyG": 43,
+      "guideWeightKg": 4,
+      "source": "royalcanin.com",
+      "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/weight-care-2524",
+      "scrapedTitle": "라이트 웨이트케어"
+    },
+    {
+      "feedId": "HP1810-ID-DIG",
+      "brand": "힐스",
+      "name": "i/d 반려묘용 건사료 (치킨) 1.81kg",
+      "guideDailyG": 65,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-id-feline-dry",
+      "scrapedTitle": "i/d 반려묘용 건사료 (치킨)"
+    },
+    {
+      "feedId": "61",
+      "brand": "힐스",
+      "name": "k/d Kidney Care",
+      "guideDailyG": 50,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-kd-feline-dry",
+      "scrapedTitle": "힐스 프리스크립션 다이어트 k/d 반려묘용 건사료(치킨)"
+    },
+    {
+      "feedId": "HP1500-META",
+      "brand": "힐스",
+      "name": "메타볼릭 반려묘용 건사료(치킨) 1.5kg",
+      "guideDailyG": 45,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-metabolic-feline-dry",
+      "scrapedTitle": "메타볼릭 반려묘용 건사료(치킨)"
+    },
+    {
+      "feedId": "70",
+      "brand": "힐스",
+      "name": "t/d",
+      "guideDailyG": 60,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-td-feline-dry",
+      "scrapedTitle": "t/d 반려묘용 건사료(치킨 플레이버)"
+    },
+    {
+      "feedId": "69",
+      "brand": "힐스",
+      "name": "w/d",
+      "guideDailyG": 55,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-wd-feline-dry",
+      "scrapedTitle": "w/d 멀티베네핏 반려묘용 건사료(치킨 플레이버)"
+    },
+    {
+      "feedId": "HP1810-YD",
+      "brand": "힐스",
+      "name": "y/d 반려묘용 건사료(치킨) 1.81kg",
+      "guideDailyG": 65,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-yd-feline-dry",
+      "scrapedTitle": "y/d 반려묘용 건사료(치킨)"
+    },
+    {
+      "feedId": "67",
+      "brand": "힐스",
+      "name": "z/d",
+      "guideDailyG": 60,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-zd-feline-dry",
+      "scrapedTitle": "z/d 반려묘용 건사료"
+    },
+    {
+      "feedId": "HP1500-CD-UR",
+      "brand": "힐스",
+      "name": "c/d 멀티케어 반려묘용 건사료(치킨) 1.5kg",
+      "guideDailyG": 55,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/prescription-diet-cd-multicare-chicken-urinary-care-dry",
+      "scrapedTitle": "c/d 멀티케어 반려묘용 건사료(치킨)"
+    },
+    {
+      "feedId": "HP1500-CD-STRESS",
+      "brand": "힐스",
+      "name": "c/d 멀티케어 스트레스 반려묘용 건사료(치킨) 1.5kg",
+      "guideDailyG": 55,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/prescription-diet-cd-multicare-stress-chicken-urinary-care-dry",
+      "scrapedTitle": "c/d 멀티케어 스트레스 반려묘용 건사료(치킨)"
+    },
+    {
+      "feedId": "HP1810-GI-STRESS",
+      "brand": "힐스",
+      "name": "GI 바이옴 스트레스 반려묘용 사료 (치킨) 1.81kg",
+      "guideDailyG": 55,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/prescription-diet-gastrointestinal-biome-stress-digestive-care-dry",
+      "scrapedTitle": "GI 바이옴 스트레스 반려묘용 사료 (치킨)"
+    },
+    {
+      "feedId": "HP1810-KD-FISH",
+      "brand": "힐스",
+      "name": "k/d 반려묘용 건식사료(오션피쉬) 1.81kg",
+      "guideDailyG": 60,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/prescription-diet-kd-ocean-fish-tuna-kidney-care-dry",
+      "scrapedTitle": "k/d 반려묘용 건식사료(오션피쉬)"
+    },
+    {
+      "feedId": "HP1584-ADT-HB",
+      "brand": "힐스",
+      "name": "어덜트 헤어볼 컨트롤 치킨 레시피 1.58kg",
+      "guideDailyG": 60,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-hairball-dry",
+      "scrapedTitle": "어덜트 헤어볼 컨트롤 치킨 레시피"
+    },
+    {
+      "feedId": "HP1584-ADT-HB-LGT",
+      "brand": "힐스",
+      "name": "어덜트 헤어볼 컨트롤 라이트 치킨 레시피 1.58kg",
+      "guideDailyG": 45,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-hairball-light-dry",
+      "scrapedTitle": "어덜트 헤어볼 컨트롤 라이트 치킨 레시피"
+    },
+    {
+      "feedId": "HP1584-ADT-IND",
+      "brand": "힐스",
+      "name": "어덜트 인도어 치킨 레시피 1.58kg",
+      "guideDailyG": 60,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-indoor-dry",
+      "scrapedTitle": "어덜트 인도어 치킨 레시피"
+    },
+    {
+      "feedId": "HP2000-ADT-LGT",
+      "brand": "힐스",
+      "name": "어덜트 라이트 치킨 레시피 2kg",
+      "guideDailyG": 45,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-light-dry",
+      "scrapedTitle": "어덜트 라이트 치킨 레시피"
+    },
+    {
+      "feedId": "HP2000-ADT-CHK",
+      "brand": "힐스",
+      "name": "어덜트 치킨 레시피 2kg",
+      "guideDailyG": 65,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-original-dry",
+      "scrapedTitle": "어덜트 치킨 레시피"
+    },
+    {
+      "feedId": "HP1584-ADT-PD-SAL",
+      "brand": "힐스",
+      "name": "어덜트 퍼펙트 다이제스천 연어 1.58kg",
+      "guideDailyG": 60,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-perfect-digestion-chicken-barley-whole-oats-recipe-dry",
+      "scrapedTitle": "어덜트 퍼펙트 다이제스천"
+    },
+    {
+      "feedId": "HP6800-ADT-PW",
+      "brand": "힐스",
+      "name": "어덜트 퍼펙트 웨이트 치킨 레시피 6.8kg",
+      "guideDailyG": 45,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-perfect-weight-dry",
+      "scrapedTitle": "어덜트 퍼펙트 웨이트 치킨 레시피"
+    },
+    {
+      "feedId": "16",
+      "brand": "힐스",
+      "name": "헤어볼 컨트롤",
+      "guideDailyG": 55,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-urinary-hairball-control-dry",
+      "scrapedTitle": "유리너리 헤어볼 컨트롤 치킨 &amp; 라이스 레시피"
+    },
+    {
+      "feedId": "HP1584-KTN-ORG",
+      "brand": "힐스",
+      "name": "키튼 치킨 레시피 1.58kg",
+      "guideDailyG": 85,
+      "guideWeightKg": 2,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-kitten-original-dry",
+      "scrapedTitle": "키튼 치킨 레시피"
+    },
+    {
+      "feedId": "17",
+      "brand": "힐스",
+      "name": "센서티브 스토막",
+      "guideDailyG": 110,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-kitten-sensitive-stomach-skin-salmon-brown-rice-dry",
+      "scrapedTitle": "키튼 센서티브 스토막 &amp; 스킨, 연어 &amp; 현미 레시피"
+    },
+    {
+      "feedId": "HP1584-SNR7-PD",
+      "brand": "힐스",
+      "name": "어덜트 7+ 퍼펙트 다이제스천 1.58kg",
+      "guideDailyG": 45,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-mature-adult-7-perfect-digestion-dry",
+      "scrapedTitle": "어덜트 7+ 퍼펙트 다이제스천"
+    },
+    {
+      "feedId": "13",
+      "brand": "힐스",
+      "name": "어덜트 7+",
+      "guideDailyG": 55,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-mature-adult-indoor-dry",
+      "scrapedTitle": "어덜트 7+ 인도어 치킨 레시피"
+    },
+    {
+      "feedId": "HP1584-SNR11-CHK",
+      "brand": "힐스",
+      "name": "어덜트 11+ 치킨 레시피 1.58kg",
+      "guideDailyG": 80,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-senior-11-dry",
+      "scrapedTitle": "어덜트 11+ 치킨 레시피"
+    }
+  ],
+  "unmatched": [
+    {
+      "brand": "로얄캐닌",
+      "title": "gastrointestinal-4039",
+      "reason": "페이지 없음/건식 아님"
+    },
+    {
+      "brand": "로얄캐닌",
+      "title": "renal-1246",
+      "reason": "페이지 없음/건식 아님"
+    },
+    {
+      "brand": "로얄캐닌",
+      "title": "urinary-so-1254",
+      "reason": "페이지 없음/건식 아님"
+    }
+  ]
+}

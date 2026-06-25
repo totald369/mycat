@@ -1,5 +1,7 @@
 import {
+  formatFeedServingDisplay,
   formatServingGramsLabel,
+  type FeedServingDisplay,
   safeLower,
   safeString,
 } from "@/lib/feedSafeValues";
@@ -145,4 +147,15 @@ export function formatServingGrams(
   servingGrams: number | null | undefined,
 ): string {
   return formatServingGramsLabel(servingGrams);
+}
+
+export function formatFeedServing(
+  feed: {
+    feedKind: string;
+    servingGrams?: number | null;
+    servingGuideGrams?: number | null;
+    servingGuideWeightKg?: number | null;
+  },
+): FeedServingDisplay {
+  return formatFeedServingDisplay(feed);
 }

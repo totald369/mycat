@@ -10,7 +10,7 @@ import {
   feedCategoryLabel,
   feedConditionLabel,
   feedTypeLabel,
-  formatServingGrams,
+  formatFeedServing,
   lifeStageLabel,
 } from "@/lib/feedDetailLabels";
 import { formatKcalPer100gLabel, safeString } from "@/lib/feedSafeValues";
@@ -140,7 +140,7 @@ export function FeedDetailView({
   const lifeLabel = lifeStageLabel(feed.lifeStage);
   const categoryLabel = feedCategoryLabel(feed.category);
   const conditionLabel = feedConditionLabel(feed.feedCondition);
-  const servingLabel = formatServingGrams(feed.servingGrams);
+  const servingDisplay = formatFeedServing(feed);
   const kcalLabel = formatKcalPer100gLabel(feed.kcalPer100g);
   const pagePath = getFeedDetailPath(feed);
 
@@ -270,7 +270,7 @@ export function FeedDetailView({
           </h2>
           <div className="grid grid-cols-2 gap-3">
             <InfoCard label="100g당 칼로리" value={kcalLabel} />
-            <InfoCard label="기준 급여량" value={servingLabel} />
+            <InfoCard label={servingDisplay.label} value={servingDisplay.value} />
             <InfoCard label="사료 유형" value={typeLabel} />
             <InfoCard label="급여 대상" value={lifeLabel} />
           </div>
@@ -278,7 +278,8 @@ export function FeedDetailView({
 
         <section className="mt-8 rounded-xl bg-[#f8f5f2] p-4">
           <p className="text-sm leading-relaxed text-[#555]">
-            이 사료는 100g당 칼로리 기준으로 급여량 계산에 사용됩니다. 실제
+            이 사료는 100g당 칼로리 기준으로 급여량 계산에 사용됩니다. 건식
+            사료의 브랜드 급여 가이드는 제조사 표기를 참고한 값이며, 실제
             급여량은 고양이의 체중, 활동량, 체형에 따라 달라질 수 있어요.
           </p>
           <Link

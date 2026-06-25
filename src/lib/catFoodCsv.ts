@@ -16,6 +16,8 @@ export type FeedCatalogItem = {
   kcalPer100g: number;
   feedKind: string;
   servingGrams: number | null;
+  servingGuideGrams: number | null;
+  servingGuideWeightKg: number | null;
   category?: string | null;
   feedCondition?: string | null;
 };
@@ -142,6 +144,9 @@ export function loadFeedDetailItemsFromCatFoodCsv(): FeedDetailItem[] {
     .map((k) => headerCells.indexOf(k))
     .find((i) => i >= 0) ?? -1;
 
+  const guideDailyCol = headerCells.indexOf("guide_daily_g");
+  const guideWeightCol = headerCells.indexOf("guide_weight_kg");
+
   const categoryI = idx("category");
   const conditionI = idx("condition");
   const lifeStageI = idx("life_stage");
@@ -183,6 +188,25 @@ export function loadFeedDetailItemsFromCatFoodCsv(): FeedDetailItem[] {
       }
     }
 
+    let servingGuideGrams: number | null = null;
+    let servingGuideWeightKg: number | null = null;
+    if (feedKind === "건식") {
+      if (guideDailyCol >= 0) {
+        const raw = (cells[guideDailyCol] ?? "").trim();
+        if (raw !== "") {
+          const parsed = Number.parseFloat(raw);
+          servingGuideGrams = Number.isFinite(parsed) ? parsed : null;
+        }
+      }
+      if (guideWeightCol >= 0) {
+        const raw = (cells[guideWeightCol] ?? "").trim();
+        if (raw !== "") {
+          const parsed = Number.parseFloat(raw);
+          servingGuideWeightKg = Number.isFinite(parsed) ? parsed : null;
+        }
+      }
+    }
+
     const displayLabel = buildDisplayLabel(feedKind, brand, name);
 
     const category =
@@ -208,6 +232,8 @@ export function loadFeedDetailItemsFromCatFoodCsv(): FeedDetailItem[] {
       kcalPer100g,
       feedKind,
       servingGrams,
+      servingGuideGrams,
+      servingGuideWeightKg,
       category,
       feedCondition,
       rawType,

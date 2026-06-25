@@ -35,6 +35,10 @@ model FeedProduct {
   kcalPer100g  Float?
   /// 습식 1캔(1팩) 기준 무게(g). 건식은 null
   servingGrams Float?
+  /// 건식 브랜드 급여 가이드 — 하루 권장 그램 (guide_weight_kg 체중 기준)
+  servingGuideGrams Float?
+  /// 브랜드 급여 가이드 기준 체중(kg). 비우면 4kg
+  servingGuideWeightKg Float?
   /// cat_food.csv `category` (예: general)
   category      String?
   /// cat_food.csv `condition` (예: none, urinary, weight)
