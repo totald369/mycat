@@ -42,6 +42,7 @@ const BRAND_SLUGS: Record<string, string> = {
   ANF: "anf",
   뉴트로: "nutro",
   게더: "gather",
+  카나간: "canagan",
   케어캣: "carecat",
   "CP클래식": "cp-classic",
   데일리딜라이트: "daily-delight",
@@ -52,6 +53,10 @@ const BRAND_SLUGS: Record<string, string> = {
 
 /** 제품명 토큰 — 긴 구문 우선 매칭 */
 const PRODUCT_TERM_SLUGS = [
+  ["스코티쉬 살몬", "scottish-salmon"],
+  ["스코티쉬", "scottish"],
+  ["살몬", "salmon"],
+  ["포 캣", "for-cats"],
   ["마더앤베이비캣", "mother-and-babycat"],
   ["마더 앤 베이비캣", "mother-and-babycat"],
   ["키튼 스테럴라이즈드", "kitten-sterilized"],

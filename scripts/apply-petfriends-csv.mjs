@@ -71,6 +71,8 @@ for (const p of data.products ?? []) {
       p.life_stage ?? "all_life_stage",
       p.kcalPer100g ?? "",
       p.serving_g ?? "",
+      p.guide_daily_g ?? "",
+      p.guide_weight_kg ?? "",
       p.category ?? "general",
       p.condition ?? "none",
       p.ingredients ?? "",

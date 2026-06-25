@@ -1,20 +1,22 @@
 {
-  "source": "https://m.pet-friends.co.kr/product/detail/207950?productId=207950",
+  "source": "https://m.pet-friends.co.kr/product/detail/244859?productId=244859",
   "refs": [
-    "https://www.josera.de/josicat-kitten.html"
+    "https://canagan.com/uk/cat-food/scottish-salmon-dry-cat-food/"
   ],
   "products": [
     {
-      "id": "PF207950",
-      "brand": "요세라",
-      "name": "요시캣 키튼 1.9kg",
+      "id": "PF244859",
+      "brand": "카나간",
+      "name": "스코티쉬 살몬 포 캣 1.5kg",
       "type": "dry",
-      "life_stage": "kitten_0_12m",
+      "life_stage": "all_life_stage",
       "category": "general",
       "condition": "none",
-      "kcalPer100g": 397,
-      "ingredients": "건조닭고기, 건조칠면조고기, 건조오리고기, 건조거위고기, 옥수수, 보리, 닭지방, 칠면조지방, 오리지방, 거위지방, 가수분해 닭고기, 가수분해 연어, 비트, 연어오일, 염화나트륨, 염화칼륨",
-      "nutrition": "조단백 29.0% 이상, 조지방 15.8% 이상, 수분 10.0% 이하, 조섬유 3.9% 이하, 조회분 8.1% 이하, 칼슘 1.0% 이상, 인 0.75% 이상, ME 3966 kcal/kg"
+      "kcalPer100g": 407,
+      "guide_daily_g": 52,
+      "guide_weight_kg": 4,
+      "ingredients": "뼈를 제거한 신선한 스코틀랜드 연어(31.5%), 수분을 제거한 연어(15%), 수분을 제거한 청어(15%), 수분을 제거한 흰살 생선(14%), 고구마, 연어 오일(5%), 감자, 뼈를 제거한 신선한 송어(2.5%), 감자 단백질, 연어 육수(2%), 미네랄, 알팔파, 크랜베리, 만난올리고당, 프락토올리고당, 사과, 당근, 시금치, 해초, 카모마일, 페퍼민트, 마리골드, 아니스열매 & 호로파씨",
+      "nutrition": "조단백 37% 이상, 조지방 15% 이상, 조섬유 1.5% 이하, 조회분 9% 이하, 칼슘 1.4% 이상, 인 1% 이상, 수분 7% 이하, 오메가6 0.8%, 오메가3 3.1%, ME 4070 kcal/kg"
     }
   ]
 }

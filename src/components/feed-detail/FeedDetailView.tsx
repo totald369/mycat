@@ -30,10 +30,7 @@ type Props = {
   seoDescription?: string;
   recommendedTargets?: string[];
   nutritionInterpretations?: NutritionInterpretation[];
-  relatedByBrand?: RelatedFeedLink[];
-  relatedByPurpose?: RelatedFeedLink[];
-  relatedByKcal?: RelatedFeedLink[];
-  relatedByLifeStage?: RelatedFeedLink[];
+  relatedFeedLinks?: RelatedFeedLink[];
   faqs?: FaqItem[];
   seoBoostContent?: FeedSeoBoostContentData | null;
 };
@@ -210,9 +207,16 @@ function RelatedFeedList({
             <Link
               href={link.href}
               prefetch={false}
-              className="block rounded-xl border border-[#eee] bg-white px-[17px] py-[13px] text-sm font-medium leading-5 text-[#171717] active:bg-[#f9f9f9]"
+              className="flex items-center justify-between gap-3 rounded-xl border border-[#eee] bg-white px-[17px] py-[13px] active:bg-[#f9f9f9]"
             >
-              {link.label}
+              <span className="min-w-0 text-sm font-medium leading-5 text-[#171717]">
+                {link.label}
+              </span>
+              {link.reasonLabel ? (
+                <span className="shrink-0 rounded-full bg-[#f5f5f5] px-2 py-0.5 text-xs font-medium text-[#666]">
+                  {link.reasonLabel}
+                </span>
+              ) : null}
             </Link>
           </li>
         ))}
@@ -225,10 +229,7 @@ export function FeedDetailView({
   feed,
   recommendedTargets = [],
   nutritionInterpretations = [],
-  relatedByBrand = [],
-  relatedByPurpose = [],
-  relatedByKcal = [],
-  relatedByLifeStage = [],
+  relatedFeedLinks = [],
   faqs = [],
   seoBoostContent = null,
 }: Props) {
@@ -407,26 +408,7 @@ export function FeedDetailView({
           </section>
         ) : null}
 
-        <RelatedFeedList
-          title="같은 브랜드 사료"
-          links={relatedByBrand}
-          variant="secondary"
-        />
-        <RelatedFeedList
-          title="같은 목적·기능 사료"
-          links={relatedByPurpose}
-          variant="secondary"
-        />
-        <RelatedFeedList
-          title="비슷한 칼로리 사료"
-          links={relatedByKcal}
-          variant="secondary"
-        />
-        <RelatedFeedList
-          title="같은 연령대 사료"
-          links={relatedByLifeStage}
-          variant="secondary"
-        />
+        <RelatedFeedList title="관련 사료" links={relatedFeedLinks} />
 
         {faqs.length > 0 ? (
           <SeoFaqSection faqs={faqs} className="pt-4" title="자주 묻는 질문" />
