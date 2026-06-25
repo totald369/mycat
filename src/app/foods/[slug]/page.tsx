@@ -4,7 +4,6 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { FeedDetailView } from "@/components/feed-detail/FeedDetailView";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
-  buildFeedRelatedInternalLinks,
   getFeedDetailPath,
   getRelatedFeedsByBrand,
   getRelatedFeedsByLifeStage,
@@ -117,12 +116,6 @@ export default async function FoodDetailPage({ params }: PageProps) {
   const relatedByPurpose = getRelatedFeedsByPurpose(feed, 4);
   const relatedByKcal = getRelatedFeedsBySimilarKcal(feed, 3);
   const relatedByLifeStage = getRelatedFeedsByLifeStage(feed, 3);
-  const relatedFeedLinks = buildFeedRelatedInternalLinks(feed, {
-    byPurpose: relatedByPurpose,
-    byBrand: relatedByBrand,
-    byLifeStage: relatedByLifeStage,
-    byKcal: relatedByKcal,
-  });
   const seoBoostContent = getFeedSeoBoostContent(feed.apiId);
 
   return (
@@ -133,7 +126,10 @@ export default async function FoodDetailPage({ params }: PageProps) {
         seoDescription={seoDescription}
         recommendedTargets={recommendedTargets}
         nutritionInterpretations={nutritionInterpretations}
-        relatedFeedLinks={relatedFeedLinks}
+        relatedByBrand={relatedByBrand}
+        relatedByPurpose={relatedByPurpose}
+        relatedByKcal={relatedByKcal}
+        relatedByLifeStage={relatedByLifeStage}
         faqs={faqs}
         seoBoostContent={seoBoostContent}
       />
