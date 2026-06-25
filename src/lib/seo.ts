@@ -5,6 +5,16 @@ export const SITE_NAME = "우리냥이" as const;
 export const SITE_BRAND = "우리냥이맘마" as const;
 export const SITE_NAME_FULL = "우리냥이 고양이 급여량 계산기" as const;
 
+/**
+ * 사이트맵 lastModified·JSON-LD dateModified에 사용.
+ * 의미 있는 콘텐츠·구조화 데이터·내부 링크 변경 시에만 갱신하고, 빌드마다 올리지 않는다.
+ */
+export const SITE_CONTENT_MODIFIED_DATE = "2026-06-25" as const;
+
+export function siteContentModifiedDate(): Date {
+  return new Date(`${SITE_CONTENT_MODIFIED_DATE}T00:00:00.000Z`);
+}
+
 export const OG_IMAGE = {
   url: "/og-brown.png",
   width: 1200,
@@ -298,7 +308,7 @@ export function buildArticleJsonLd(options: {
     author: { "@id": ORGANIZATION_ID },
     publisher: { "@id": ORGANIZATION_ID },
     datePublished: options.datePublished ?? "2026-01-01",
-    dateModified: new Date().toISOString().slice(0, 10),
+    dateModified: SITE_CONTENT_MODIFIED_DATE,
   };
 }
 

@@ -19,6 +19,7 @@
 - 중복 제거: 배지와 겹치던 InfoCard(유형·연령)·화면용 seoDescription·관련 사료 4중 섹션 삭제. SEO부스트 있을 때 추천 대상 칩 숨김.
 - 위계: 핵심 수치(칼로리·급여) → CTA → 사료 안내/추천 → 성분(해석 포함) → 관련 사료(라벨) → FAQ.
 - 관련 사료 통합 목록에 `같은 브랜드`·`비슷한 칼로리` 등 출처 라벨 표시.
+- 사이트맵·JSON-LD `dateModified`/`lastModified`를 `SITE_CONTENT_MODIFIED_DATE` 상수로 고정(빌드마다 날짜 변동 방지).
 
 ### 사료 찾기 빈 결과 CTA 문구 단순화
 
