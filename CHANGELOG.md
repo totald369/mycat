@@ -32,6 +32,11 @@
 
 ## 2026-06-25
 
+### 사료 찾기 UI 보정
+
+- 타이틀: `List_title.svg` 단일 이미지로 교체(고양이 아이콘+텍스트 분리 제거).
+- 필터 칩셋 간격: 1px → 4px.
+
 ### 사료 데이터 레이어 Phase 1 (slug 단일화·캐시 통합)
 
 - `catFoodCsv`: CSV 파싱만 담당(`FeedDetailRow`), slug 부여 제거.

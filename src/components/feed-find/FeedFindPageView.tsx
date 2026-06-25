@@ -107,8 +107,8 @@ function FeedFindChipFilters({
   onChipFilterChange: (chip: FeedFindChip) => void;
 }) {
   return (
-    <div className="flex w-full gap-px overflow-x-auto pt-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-      <div className="flex shrink-0 gap-px">
+    <div className="flex w-full gap-1 overflow-x-auto pt-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="flex shrink-0 gap-1">
         {FEED_FIND_CHIPS.map((chip) => {
           const selected = chipFilter === chip;
           return (

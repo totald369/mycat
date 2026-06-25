@@ -1,21 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 
-/** 사료 찾기 페이지 타이틀 — Figma 306:12238 */
+/** 사료 찾기 페이지 타이틀 — Figma List_title.svg */
 export function FeedFindSeoIntro() {
   return (
     <header className="flex w-full max-w-[min(327px,100%)] shrink-0 flex-col gap-2">
-      <div className="flex items-center gap-1">
+      <h1 className="m-0">
         <Image
-          src="/icons/feed-find/title-cat.svg"
-          alt=""
-          width={50}
+          src="/icons/List_title.svg"
+          alt="사료 찾기"
+          width={157}
           height={50}
-          className="size-[50px] shrink-0"
+          className="h-[50px] w-auto max-w-full"
           unoptimized
+          priority
         />
-        <h1 className="text-[32px] font-bold leading-[1.2] text-[#111]">사료 찾기</h1>
-      </div>
+      </h1>
       <p className="text-base leading-[1.4] text-[#555]">
         사료마다 칼로리와 급여 기준량이 달라요.
         <br />
