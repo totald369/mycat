@@ -1,11 +1,9 @@
 "use client";
 
+import Image from "next/image";
+
 import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
-import {
-  formatKcalPer100gLabel,
-  safeNumber,
-  safeString,
-} from "@/lib/feedSafeValues";
+import { safeNumber, safeString } from "@/lib/feedSafeValues";
 import {
   categoryShortLabel,
   conditionShortLabel,
@@ -18,28 +16,120 @@ type Props = {
   onOpenDetail: (item: CatalogItem) => void;
 };
 
-function CardBadge({ children }: { children: string }) {
+const FEED_FIND_BADGE_ICONS = {
+  dry: "/icons/feed-find/badge-dry.svg",
+  wet: "/icons/feed-find/badge-wet.svg",
+  life: "/icons/feed-find/badge-cat.svg",
+  prescription: "/icons/feed-find/badge-prescription.svg",
+  weight: "/icons/feed-find/badge-scale.svg",
+} as const;
+
+type BadgeTone = keyof typeof FEED_FIND_BADGE_ICONS | "neutral";
+
+const BADGE_TONE_CLASS: Record<
+  BadgeTone,
+  { wrap: string; text: string; icon?: string; iconSize?: number }
+> = {
+  dry: {
+    wrap: "bg-[#ffe9e5]",
+    text: "text-[#81324d]",
+    icon: FEED_FIND_BADGE_ICONS.dry,
+    iconSize: 15,
+  },
+  wet: {
+    wrap: "bg-[#e6e9fe]",
+    text: "text-[#2a37ab]",
+    icon: FEED_FIND_BADGE_ICONS.wet,
+    iconSize: 16,
+  },
+  life: {
+    wrap: "bg-[#f1f1f0]",
+    text: "text-[#181616]",
+    icon: FEED_FIND_BADGE_ICONS.life,
+    iconSize: 16,
+  },
+  prescription: {
+    wrap: "bg-[#ebfae8]",
+    text: "text-[#389112]",
+    icon: FEED_FIND_BADGE_ICONS.prescription,
+    iconSize: 16,
+  },
+  weight: {
+    wrap: "bg-[#faf4b6]",
+    text: "text-[#181616]",
+    icon: FEED_FIND_BADGE_ICONS.weight,
+    iconSize: 16,
+  },
+  neutral: {
+    wrap: "bg-[#f1f1f0]",
+    text: "text-[#181616]",
+  },
+};
+
+function FeedFindBadge({
+  label,
+  tone,
+}: {
+  label: string;
+  tone: BadgeTone;
+}) {
+  const style = BADGE_TONE_CLASS[tone];
   return (
-    <span className="inline-flex shrink-0 rounded-md border border-[#eee] bg-[#f8f5f2] px-2 py-0.5 text-xs font-medium text-[#555]">
-      {children}
+    <span
+      className={`inline-flex shrink-0 items-center gap-0.5 rounded-md py-1 pl-1 pr-2 ${style.wrap}`}
+    >
+      {style.icon ? (
+        <Image
+          src={style.icon}
+          alt=""
+          width={style.iconSize ?? 16}
+          height={style.iconSize ?? 16}
+          className="shrink-0"
+          style={{ width: style.iconSize ?? 16, height: style.iconSize ?? 16 }}
+          unoptimized
+        />
+      ) : null}
+      <span className={`text-sm font-medium leading-4 ${style.text}`}>{label}</span>
     </span>
   );
 }
 
+function buildCardBadges(item: CatalogItem) {
+  const badges: { key: string; label: string; tone: BadgeTone }[] = [];
+
+  const typeLabel = feedTypeLabel(item.rawType, item.feedKind);
+  if (typeLabel === "건식") {
+    badges.push({ key: "type", label: "건식", tone: "dry" });
+  } else if (typeLabel === "습식") {
+    badges.push({ key: "type", label: "습식", tone: "wet" });
+  }
+
+  const life = lifeStageShortLabel(item.lifeStage);
+  if (life) {
+    badges.push({ key: "life", label: life, tone: "life" });
+  }
+
+  const category = categoryShortLabel(item.category);
+  if (category) {
+    badges.push({ key: "category", label: category, tone: "prescription" });
+  }
+
+  const condition = conditionShortLabel(item.feedCondition);
+  if (condition === "체중관리") {
+    badges.push({ key: "weight", label: "체중관리", tone: "weight" });
+  } else if (condition === "헤어볼") {
+    badges.push({ key: "hairball", label: "헤어볼", tone: "neutral" });
+  }
+
+  return badges;
+}
+
 export function FeedFindCard({ item, onOpenDetail }: Props) {
   const brand = safeString(item.brand).trim() || "—";
-  const name = safeString(item.name).trim() || safeString(item.label).trim() || "이름 없음";
-  const typeLabel = feedTypeLabel(item.rawType, item.feedKind);
+  const name =
+    safeString(item.name).trim() || safeString(item.label).trim() || "이름 없음";
   const kcalNum = safeNumber(item.kcalPer100g);
-  const kcalLabel =
-    kcalNum != null ? formatKcalPer100gLabel(kcalNum) : null;
-
-  const badges = [
-    typeLabel,
-    lifeStageShortLabel(item.lifeStage),
-    conditionShortLabel(item.feedCondition),
-    categoryShortLabel(item.category),
-  ].filter((b): b is string => !!b && b !== "—");
+  const badges = buildCardBadges(item);
 
   const openDetail = () => onOpenDetail(item);
 
@@ -54,67 +144,36 @@ export function FeedFindCard({ item, onOpenDetail }: Props) {
           openDetail();
         }
       }}
-      className="cursor-pointer rounded-xl border border-[#eee] bg-white p-4 text-left active:bg-[#fafafa]"
+      className="w-full max-w-[343px] cursor-pointer rounded-2xl bg-white px-6 py-8 text-left shadow-[0px_8px_16px_rgba(17,17,17,0.06)] active:bg-[#fafafa]"
     >
-      <p className="text-xs font-normal text-[#888]">{brand}</p>
-      <h2 className="mt-0.5 text-base font-semibold leading-snug text-[#171717]">
-        {name}
-      </h2>
-
       {badges.length > 0 ? (
-        <div className="mt-2 flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-1">
           {badges.map((badge) => (
-            <CardBadge key={badge}>{badge}</CardBadge>
+            <FeedFindBadge key={badge.key} label={badge.label} tone={badge.tone} />
           ))}
         </div>
       ) : null}
 
-      {kcalLabel ? (
-        <p className="mt-2.5 text-sm font-medium text-[#333]">{kcalLabel}</p>
-      ) : null}
-
-      <div className="mt-3">
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            openDetail();
-          }}
-          className="flex h-10 w-full items-center justify-center rounded-lg border border-[#dedee0] bg-white text-sm font-medium text-[#171717] active:bg-[#f5f1ed]"
-        >
-          상세 보기
-        </button>
+      <div className={`flex flex-col gap-1 ${badges.length > 0 ? "mt-3" : ""}`}>
+        <h2 className="text-lg font-semibold leading-[1.2] text-[#171717]">{name}</h2>
+        <div className="flex items-center gap-2">
+          {kcalNum != null ? (
+            <p className="text-sm font-medium text-[#333]">
+              100g당{" "}
+              <span className="font-bold text-[#f8620c]">
+                {Number.isInteger(kcalNum)
+                  ? String(kcalNum)
+                  : String(Math.round(kcalNum * 10) / 10)}
+              </span>
+              kcal
+            </p>
+          ) : null}
+          {kcalNum != null ? (
+            <span className="size-0.5 shrink-0 rounded-full bg-[#171717]" aria-hidden />
+          ) : null}
+          <p className="text-sm leading-none text-[#666]">{brand}</p>
+        </div>
       </div>
     </article>
-  );
-}
-
-/** 인기 사료 칩 */
-export function FeedFindPopularChip({
-  item,
-  onOpenDetail,
-}: {
-  item: CatalogItem;
-  onOpenDetail: (item: CatalogItem) => void;
-}) {
-  const brand = safeString(item.brand).trim();
-  const name = safeString(item.name).trim() || safeString(item.label).trim() || "이름 없음";
-  const kcalNum = safeNumber(item.kcalPer100g);
-
-  return (
-    <button
-      type="button"
-      onClick={() => onOpenDetail(item)}
-      className="shrink-0 rounded-xl border border-[#eee] bg-[#f8f5f2] px-3 py-2 text-left active:bg-[#f0ebe6]"
-    >
-      <span className="block text-xs font-medium text-[#171717]">
-        {brand ? `${brand} ${name}` : name}
-      </span>
-      {kcalNum != null ? (
-        <span className="mt-0.5 block text-xs text-[#888]">
-          {Math.round(kcalNum)}kcal/100g
-        </span>
-      ) : null}
-    </button>
   );
 }

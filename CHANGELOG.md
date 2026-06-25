@@ -41,6 +41,10 @@
 - [펫프렌즈 244859](https://m.pet-friends.co.kr/product/detail/244859) (`PF244859`): 원재료·등록성분 반영, ME 407 kcal/100g는 [Canagan 공식](https://canagan.com/uk/cat-food/scottish-salmon-dry-cat-food/) 기준.
 - `feedSlug`: `카나간`·스코티쉬/살몬 매핑. `apply-petfriends-csv.mjs` 급여 가이드 컬럼 누락 수정.
 
+### 사료 찾기 페이지 Figma 디자인 반영
+
+- [Figma 사료 찾기](https://www.figma.com/design/xYm8i5QKVjyWWWlA6nLfIW/?node-id=306-12129) 기준 UI: 타이틀·검색·필터 칩·컬러 배지 카드·칼로리 강조.
+
 ### 사료 찾기 빈 결과 CTA 문구 단순화
 
 - 검색어 없을 때와 동일하게 **「사료 추가 요청하기」** 고정 — `「키워드」` 특수문자 제거.

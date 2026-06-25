@@ -3,17 +3,10 @@
 import Image from "next/image";
 import { startTransition, useCallback, useEffect, useMemo, useState } from "react";
 
-import {
-  FeedFindCard,
-  FeedFindPopularChip,
-} from "@/components/feed-find/FeedFindCard";
-import {
-  FeedFindListSkeleton,
-  FeedFindPopularSkeleton,
-} from "@/components/feed-find/FeedFindSkeletons";
+import { FeedFindCard } from "@/components/feed-find/FeedFindCard";
+import { FeedFindListSkeleton } from "@/components/feed-find/FeedFindSkeletons";
 import { designResource } from "@/components/design/designResourcePaths";
 import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
-import { IconSearch } from "@/components/wireframe/icons";
 import {
   buildFeedRequestHref,
   FEED_REQUEST_HREF,
@@ -33,7 +26,6 @@ import {
 
 const FEED_FETCH_URL = "/api/feeds";
 const FEED_LOAD_ERROR = "급여(사료) 목록을 불러오지 못했습니다.";
-const POPULAR_COUNT = 8;
 
 function FeedRequestWoodAnchor({ href }: { href: string }) {
   const label = "사료 추가 요청하기";
@@ -73,7 +65,7 @@ function FeedSearchField({
   onSearch: () => void;
 }) {
   return (
-    <div className="flex h-12 min-w-0 flex-1 items-center gap-2 overflow-hidden rounded-xl border border-transparent bg-[#f5f1ed] px-4 focus-within:border-[#f8620c]">
+    <div className="flex h-14 w-full items-center gap-2 overflow-hidden rounded-xl bg-[#f5f1ed] px-4 focus-within:ring-2 focus-within:ring-[#f8620c]/35">
       <input
         type="search"
         value={draft}
@@ -86,15 +78,22 @@ function FeedSearchField({
         }}
         placeholder={FEED_PAGE_PLACEHOLDER}
         autoComplete="off"
-        className="min-h-0 min-w-0 flex-1 bg-transparent text-base leading-normal text-[#111] outline-none placeholder:text-[#afb4a6]"
+        className="min-h-0 min-w-0 flex-1 bg-transparent text-base leading-[1.4] text-[#111] outline-none placeholder:text-[#6b7280]"
       />
       <button
         type="button"
         aria-label="검색"
-        className="relative size-6 shrink-0 text-[#555]"
+        className="relative size-6 shrink-0"
         onClick={onSearch}
       >
-        <IconSearch className="size-6" />
+        <Image
+          src={designResource.iconSearch}
+          alt=""
+          width={24}
+          height={24}
+          className="size-6"
+          unoptimized
+        />
       </button>
     </div>
   );
@@ -108,26 +107,26 @@ function FeedFindChipFilters({
   onChipFilterChange: (chip: FeedFindChip) => void;
 }) {
   return (
-    <div className="mt-3 flex shrink-0 gap-1.5 overflow-x-auto px-4 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-      {FEED_FIND_CHIPS.map((chip) => {
-        const selected = chipFilter === chip;
-        return (
-          <button
-            key={chip}
-            type="button"
-            onClick={() =>
-              startTransition(() => onChipFilterChange(chip))
-            }
-            className={
-              selected
-                ? "shrink-0 rounded-lg bg-[#171717] px-3 py-2 text-sm font-semibold text-white"
-                : "shrink-0 rounded-lg border border-solid border-[#eee] bg-white px-3 py-2 text-sm font-semibold text-[#333]"
-            }
-          >
-            {chip}
-          </button>
-        );
-      })}
+    <div className="flex w-full gap-px overflow-x-auto pt-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="flex shrink-0 gap-px">
+        {FEED_FIND_CHIPS.map((chip) => {
+          const selected = chipFilter === chip;
+          return (
+            <button
+              key={chip}
+              type="button"
+              onClick={() => startTransition(() => onChipFilterChange(chip))}
+              className={
+                selected
+                  ? "shrink-0 rounded-lg bg-[#171717] px-3 py-[9px] text-sm font-semibold leading-5 text-white"
+                  : "shrink-0 rounded-lg border border-[#eee] bg-white px-[13px] py-[9px] text-sm font-semibold leading-5 text-[#333]"
+              }
+            >
+              {chip}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -137,7 +136,7 @@ type Props = {
   initialCatalog?: CatalogItem[];
 };
 
-/** 사료 찾기 독립 페이지 — 탐색·상세·계산 연결 (팝업과 분리) */
+/** 사료 찾기 독립 페이지 — Figma 306:12129 */
 export function FeedFindPageView({ onOpenDetail, initialCatalog }: Props) {
   const hasServerCatalog =
     initialCatalog !== undefined && initialCatalog.length > 0;
@@ -214,17 +213,6 @@ export function FeedFindPageView({ onOpenDetail, initialCatalog }: Props) {
   const showSimilarHint =
     hasSearchQuery && exactResults.length === 0 && similarResults.length > 0;
 
-  const popularItems = useMemo(
-    () => catalog.slice(0, POPULAR_COUNT),
-    [catalog],
-  );
-
-  const showPopular =
-    !loading &&
-    !loadError &&
-    catalog.length > 0 &&
-    !hasSearchQuery &&
-    chipFilter === "전체";
   const showEmpty =
     !loading &&
     !loadError &&
@@ -237,18 +225,16 @@ export function FeedFindPageView({ onOpenDetail, initialCatalog }: Props) {
   const requestHref = buildFeedRequestHref(activeQuery || draft);
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col bg-white font-sans">
-      <div className="flex shrink-0 px-4 pt-2">
-        <FeedSearchField
-          draft={draft}
-          onDraftChange={setDraft}
-          onSearch={runSearch}
-        />
-      </div>
+    <div className="flex min-h-0 w-full max-w-[min(343px,100%)] flex-1 flex-col gap-3">
+      <FeedSearchField
+        draft={draft}
+        onDraftChange={setDraft}
+        onSearch={runSearch}
+      />
 
-      <div className="flex min-h-0 flex-1 flex-col overflow-y-auto">
+      <div className="flex min-h-0 flex-1 flex-col">
         {loadError ? (
-          <p className="mt-4 px-4 text-sm text-red-600" role="alert">
+          <p className="text-sm text-red-600" role="alert">
             {loadError}
           </p>
         ) : null}
@@ -260,39 +246,10 @@ export function FeedFindPageView({ onOpenDetail, initialCatalog }: Props) {
               onChipFilterChange={setChipFilter}
             />
 
-            {showLoadingSkeleton && !hasSearchQuery ? (
-              <FeedFindPopularSkeleton />
-            ) : null}
-
-            {showPopular ? (
-              <section
-                className="mt-4 px-4"
-                aria-labelledby="feed-find-popular-heading"
-              >
-                <h2
-                  id="feed-find-popular-heading"
-                  className="text-sm font-semibold text-[#171717]"
-                >
-                  많이 찾는 사료
-                </h2>
-                <div className="mt-2 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                  {popularItems.map((item) => (
-                    <FeedFindPopularChip
-                      key={item.id}
-                      item={item}
-                      onOpenDetail={onOpenDetail}
-                    />
-                  ))}
-                </div>
-              </section>
-            ) : null}
-
-            {showLoadingSkeleton ? (
-              <FeedFindListSkeleton />
-            ) : null}
+            {showLoadingSkeleton ? <FeedFindListSkeleton /> : null}
 
             {showEmpty ? (
-              <div className="flex flex-col items-center gap-5 px-6 py-10">
+              <div className="flex flex-col items-center gap-5 px-2 py-10">
                 <Image
                   src="/design-resource/icon/Ic_88_empty.svg"
                   alt={IMAGE_ALT.emptySearch}
@@ -317,7 +274,7 @@ export function FeedFindPageView({ onOpenDetail, initialCatalog }: Props) {
                   <button
                     type="button"
                     onClick={clearSearchAndFilters}
-                    className="h-12 rounded-xl border border-solid border-[#eee] bg-white text-base font-semibold text-[#333]"
+                    className="h-12 rounded-xl border border-[#eee] bg-white text-base font-semibold text-[#333]"
                   >
                     전체 사료 보기
                   </button>
@@ -328,20 +285,20 @@ export function FeedFindPageView({ onOpenDetail, initialCatalog }: Props) {
             {showList ? (
               <>
                 {showSimilarHint ? (
-                  <p className="mt-4 px-4 text-sm leading-relaxed text-[#666]">
+                  <p className="pt-3 text-sm leading-relaxed text-[#666]">
                     정확히 일치하는 사료는 없지만, 입력하신 조건과 비슷한
                     사료예요.
                   </p>
                 ) : null}
-                <ul className="mt-4 flex flex-col gap-3 px-4 pb-28">
+                <ul className="flex flex-col items-center gap-3 pb-8 pt-3">
                   {displayResults.map((item) => (
-                    <li key={item.id}>
+                    <li key={item.id} className="w-full">
                       <FeedFindCard item={item} onOpenDetail={onOpenDetail} />
                     </li>
                   ))}
                 </ul>
                 {showSimilarHint && FEED_REQUEST_HREF ? (
-                  <div className="flex justify-center px-4 pb-28">
+                  <div className="flex justify-center pb-8">
                     <FeedRequestWoodAnchor href={requestHref} />
                   </div>
                 ) : null}
@@ -351,9 +308,7 @@ export function FeedFindPageView({ onOpenDetail, initialCatalog }: Props) {
         ) : null}
 
         {!loading && !loadError && catalog.length === 0 ? (
-          <p className="mt-4 px-4 text-sm text-neutral-500">
-            등록된 사료가 없습니다.
-          </p>
+          <p className="pt-3 text-sm text-neutral-500">등록된 사료가 없습니다.</p>
         ) : null}
       </div>
     </div>

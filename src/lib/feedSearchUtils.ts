@@ -10,7 +10,7 @@ import {
 
 export { compactForSearch } from "@/lib/feedSearchNormalize";
 
-export const FEED_PAGE_PLACEHOLDER = "사료명, 브랜드, 건식·전연령·치킨 등으로 검색";
+export const FEED_PAGE_PLACEHOLDER = "사료명, 브랜드 등 으로 검색";
 export const FEED_MODAL_PLACEHOLDER = "예: 아카나";
 
 const SIMILAR_RESULTS_LIMIT = 24;

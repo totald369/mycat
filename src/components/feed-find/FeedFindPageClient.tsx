@@ -14,7 +14,7 @@ type Props = {
   initialCatalog?: CatalogItem[];
 };
 
-/** 피그마 사료 찾기(321:91) — 공통 헤더 + 탐색형 사료 목록 */
+/** Figma 306:12129 — 공통 헤더 + 사료 찾기 리스트 */
 export function FeedFindPageClient({ intro, initialCatalog }: Props) {
   const router = useRouter();
 
@@ -28,7 +28,7 @@ export function FeedFindPageClient({ intro, initialCatalog }: Props) {
     <main className="relative z-10 mx-auto flex min-h-[100dvh] w-full max-w-[min(100%,375px)] flex-col overflow-hidden bg-white">
       <WizardHeader />
       <div
-        className={`flex min-h-0 flex-1 flex-col ${wizardHeaderOffsetClass}`}
+        className={`flex min-h-0 flex-1 flex-col items-center gap-6 overflow-y-auto px-6 pb-[max(2rem,env(safe-area-inset-bottom))] ${wizardHeaderOffsetClass}`}
       >
         {intro}
         <FeedFindPageView

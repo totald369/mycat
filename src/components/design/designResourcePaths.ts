@@ -20,6 +20,7 @@ export const designResource = {
   catImg: `${DESIGN_RESOURCE_IMG}/cat_img.webp`,
   logo: `${DESIGN_RESOURCE_ICON}/Logo.svg`,
   iconMenu: `${DESIGN_RESOURCE_ICON}/Ic_Menu.svg`,
+  iconSearch: `${DESIGN_RESOURCE_ICON}/Ic_Search.svg`,
   pawPrimaryFull: `${DESIGN_RESOURCE_ICON}/PP_BTN_Container_100.svg`,
   pawPrimaryLeading: `${DESIGN_RESOURCE_ICON}/PP_BTN_Container_50_L.svg`,
   pawPrimaryTrailing: `${DESIGN_RESOURCE_ICON}/PP_BTN_Container_50_R.svg`,
