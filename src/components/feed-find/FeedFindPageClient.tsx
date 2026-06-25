@@ -3,8 +3,8 @@
 import { useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 
+import { FeedFindHeader } from "@/components/feed-find/FeedFindHeader";
 import { FeedFindPageView } from "@/components/feed-find/FeedFindPageView";
-import { WizardHeader } from "@/components/design/WizardHeader";
 import { wizardHeaderOffsetClass } from "@/components/design/wizardLayoutClasses";
 import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
 import { getFoodDetailPathSegment } from "@/lib/feedSafeValues";
@@ -26,7 +26,7 @@ export function FeedFindPageClient({ intro, initialCatalog }: Props) {
 
   return (
     <main className="relative z-10 mx-auto flex min-h-[100dvh] w-full max-w-[min(100%,375px)] flex-col overflow-hidden bg-white">
-      <WizardHeader />
+      <FeedFindHeader />
       <div
         className={`flex min-h-0 flex-1 flex-col items-center gap-6 overflow-y-auto px-6 pb-[max(2rem,env(safe-area-inset-bottom))] ${wizardHeaderOffsetClass}`}
       >

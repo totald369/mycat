@@ -36,6 +36,7 @@
 
 - 타이틀: `List_title.svg` 단일 이미지로 교체(고양이 아이콘+텍스트 분리 제거).
 - 필터 칩셋 간격: 1px → 4px.
+- 헤더: [Figma 306:12222](https://www.figma.com/design/xYm8i5QKVjyWWWlA6nLfIW/?node-id=306-12222) — `FeedFindHeader`(로고 좌·메뉴 우·backdrop blur), 전용 메뉴 아이콘.
 
 ### 사료 데이터 레이어 Phase 1 (slug 단일화·캐시 통합)
 
