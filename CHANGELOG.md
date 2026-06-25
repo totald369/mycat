@@ -32,6 +32,18 @@
 
 ## 2026-06-25
 
+### 사료 데이터 레이어 Phase 1 (slug 단일화·캐시 통합)
+
+- `catFoodCsv`: CSV 파싱만 담당(`FeedDetailRow`), slug 부여 제거.
+- `feedDetail.getAllFeedDetails()`: slug 1회 부여·캐시·인덱스 단일 진입점.
+- `getFeedCatalogItems()`: `getAllFeedDetails()` 위임 — 카탈로그·상세 동일 캐시, CSV 이중 로드 제거.
+- 검증: `scripts/snapshot-feed-data-phase1.ts`, slug·related·catalog 스냅샷 diff 0.
+
+### 사료 상세 관련 사료 조회 최적화
+
+- `feedDetail`: `byBrand`·`byLifeStage`·`kcalSorted` 내부 인덱스, 목적 매칭 헬퍼 분리.
+- related 링크 href·label·reasonLabel·순서 동일 유지.
+
 ### 사료 상세 FAQ 생성 품질 개선
 
 - `koreanParticles`: 은/는·이/가·을/를 조사 헬퍼(한글 받침·영문 상품명 꼬리 처리).

@@ -16,6 +16,15 @@ let cachedFeeds: FeedDetailItemWithSlug[] | null = null;
 let slugIndex: Map<string, FeedDetailItemWithSlug> | null = null;
 let legacyIdIndex: Map<string, FeedDetailItemWithSlug> | null = null;
 
+type FeedDetailIndexes = {
+  all: FeedDetailItemWithSlug[];
+  byBrand: Map<string, FeedDetailItemWithSlug[]>;
+  byLifeStage: Map<string, FeedDetailItemWithSlug[]>;
+  kcalSorted: FeedDetailItemWithSlug[];
+};
+
+let feedIndexes: FeedDetailIndexes | null = null;
+
 function mapDbRowToFeedDetail(row: {
   id: string;
   apiId: string;
@@ -63,6 +72,34 @@ function mapDbRowToFeedDetail(row: {
 function buildIndexes(feeds: FeedDetailItemWithSlug[]) {
   slugIndex = new Map(feeds.map((f) => [f.slug, f]));
   legacyIdIndex = new Map(feeds.map((f) => [f.id, f]));
+
+  const byBrand = new Map<string, FeedDetailItemWithSlug[]>();
+  const byLifeStage = new Map<string, FeedDetailItemWithSlug[]>();
+
+  for (const feed of feeds) {
+    const brandList = byBrand.get(feed.brand);
+    if (brandList) brandList.push(feed);
+    else byBrand.set(feed.brand, [feed]);
+
+    if (feed.lifeStage) {
+      const lifeStageList = byLifeStage.get(feed.lifeStage);
+      if (lifeStageList) lifeStageList.push(feed);
+      else byLifeStage.set(feed.lifeStage, [feed]);
+    }
+  }
+
+  const kcalSorted = [...feeds].sort((a, b) => {
+    const aKcal = safeNumber(a.kcalPer100g) ?? 0;
+    const bKcal = safeNumber(b.kcalPer100g) ?? 0;
+    return aKcal - bKcal;
+  });
+
+  feedIndexes = { all: feeds, byBrand, byLifeStage, kcalSorted };
+}
+
+function getFeedIndexes(): FeedDetailIndexes {
+  getAllFeedDetails();
+  return feedIndexes!;
 }
 
 /** CSV 로드 + slug 부여 (빌드·런타임 공용 캐시) */
@@ -178,18 +215,77 @@ export type RelatedFeedLink = {
   reasonLabel?: string;
 };
 
+function toBasicRelatedLink(feed: FeedDetailItemWithSlug): RelatedFeedLink {
+  return {
+    href: getFeedDetailPath(feed),
+    label: `${feed.brand} ${feed.name}`,
+    kcalPer100g: feed.kcalPer100g,
+  };
+}
+
+function toKcalRelatedLink(feed: FeedDetailItemWithSlug): RelatedFeedLink {
+  return {
+    href: getFeedDetailPath(feed),
+    label: `${safeString(feed.brand).trim() || "—"} ${safeString(feed.name).trim() || "이름 없음"} (${safeNumber(feed.kcalPer100g) ?? "—"} kcal/100g)`,
+    kcalPer100g: safeNumber(feed.kcalPer100g) ?? 0,
+  };
+}
+
+function purposeKeywordsFor(feed: FeedDetailItemWithSlug): string[] {
+  const cond = safeLower(feed.feedCondition);
+  const ls = safeLower(feed.lifeStage);
+  const keywords: string[] = [];
+
+  if (cond === "weight" || cond === "diet" || ls === "weight_control")
+    keywords.push("체중", "라이트", "다이어트", "weight");
+  if (cond === "urinary") keywords.push("유리너리", "비뇨", "urinary");
+  if (cond === "hairball") keywords.push("헤어볼", "hairball");
+  if (cond === "kidney" || cond === "renal")
+    keywords.push("신장", "kidney", "renal");
+  if (ls.includes("indoor") || cond === "indoor")
+    keywords.push("인도어", "indoor", "실내");
+  if (ls.includes("kitten")) keywords.push("키튼", "kitten");
+  if (ls.includes("senior")) keywords.push("7세", "11세", "노령", "senior");
+
+  return keywords;
+}
+
+function feedMatchesPurpose(
+  candidate: FeedDetailItemWithSlug,
+  feed: FeedDetailItemWithSlug,
+  purposeKeywords: string[],
+): boolean {
+  if (candidate.slug === feed.slug || candidate.brand === feed.brand) return false;
+
+  const cond = safeLower(feed.feedCondition);
+  const ls = safeLower(feed.lifeStage);
+  const fCond = safeLower(candidate.feedCondition);
+  const fLs = safeLower(candidate.lifeStage);
+  const fName = safeLower(candidate.name);
+
+  if (cond && cond !== "none" && fCond === cond) return true;
+  if (ls && fLs === ls && ls !== "all_life_stage" && ls !== "all") return true;
+  if (purposeKeywords.length > 0) {
+    const hay = `${fName} ${fCond} ${fLs}`;
+    return purposeKeywords.some((kw) => hay.includes(kw));
+  }
+  return false;
+}
+
 export function getRelatedFeedsByBrand(
   feed: FeedDetailItemWithSlug,
   limit = RELATED_LIMIT,
 ): RelatedFeedLink[] {
-  return getAllFeedDetails()
-    .filter((f) => f.slug !== feed.slug && f.brand === feed.brand)
-    .slice(0, limit)
-    .map((f) => ({
-      href: getFeedDetailPath(f),
-      label: `${f.brand} ${f.name}`,
-      kcalPer100g: f.kcalPer100g,
-    }));
+  const { byBrand } = getFeedIndexes();
+  const result: RelatedFeedLink[] = [];
+
+  for (const candidate of byBrand.get(feed.brand) ?? []) {
+    if (candidate.slug === feed.slug) continue;
+    result.push(toBasicRelatedLink(candidate));
+    if (result.length >= limit) break;
+  }
+
+  return result;
 }
 
 export function getRelatedFeedsByLifeStage(
@@ -197,19 +293,17 @@ export function getRelatedFeedsByLifeStage(
   limit = RELATED_LIMIT,
 ): RelatedFeedLink[] {
   if (!feed.lifeStage) return [];
-  return getAllFeedDetails()
-    .filter(
-      (f) =>
-        f.slug !== feed.slug &&
-        f.lifeStage === feed.lifeStage &&
-        f.brand !== feed.brand,
-    )
-    .slice(0, limit)
-    .map((f) => ({
-      href: getFeedDetailPath(f),
-      label: `${f.brand} ${f.name}`,
-      kcalPer100g: f.kcalPer100g,
-    }));
+
+  const { byLifeStage } = getFeedIndexes();
+  const result: RelatedFeedLink[] = [];
+
+  for (const candidate of byLifeStage.get(feed.lifeStage) ?? []) {
+    if (candidate.slug === feed.slug || candidate.brand === feed.brand) continue;
+    result.push(toBasicRelatedLink(candidate));
+    if (result.length >= limit) break;
+  }
+
+  return result;
 }
 
 /** 같은 목적(기능·condition·lifeStage) 사료 */
@@ -217,44 +311,17 @@ export function getRelatedFeedsByPurpose(
   feed: FeedDetailItemWithSlug,
   limit = RELATED_LIMIT,
 ): RelatedFeedLink[] {
-  const cond = safeLower(feed.feedCondition);
-  const ls = safeLower(feed.lifeStage);
-  const name = safeLower(feed.name);
+  const { all } = getFeedIndexes();
+  const purposeKeywords = purposeKeywordsFor(feed);
+  const result: RelatedFeedLink[] = [];
 
-  const purposeKeywords: string[] = [];
-  if (cond === "weight" || cond === "diet" || ls === "weight_control")
-    purposeKeywords.push("체중", "라이트", "다이어트", "weight");
-  if (cond === "urinary") purposeKeywords.push("유리너리", "비뇨", "urinary");
-  if (cond === "hairball") purposeKeywords.push("헤어볼", "hairball");
-  if (cond === "kidney" || cond === "renal")
-    purposeKeywords.push("신장", "kidney", "renal");
-  if (ls.includes("indoor") || cond === "indoor")
-    purposeKeywords.push("인도어", "indoor", "실내");
-  if (ls.includes("kitten")) purposeKeywords.push("키튼", "kitten");
-  if (ls.includes("senior")) purposeKeywords.push("7세", "11세", "노령", "senior");
+  for (const candidate of all) {
+    if (!feedMatchesPurpose(candidate, feed, purposeKeywords)) continue;
+    result.push(toBasicRelatedLink(candidate));
+    if (result.length >= limit) break;
+  }
 
-  return getAllFeedDetails()
-    .filter((f) => {
-      if (f.slug === feed.slug || f.brand === feed.brand) return false;
-
-      const fCond = safeLower(f.feedCondition);
-      const fLs = safeLower(f.lifeStage);
-      const fName = safeLower(f.name);
-
-      if (cond && cond !== "none" && fCond === cond) return true;
-      if (ls && fLs === ls && ls !== "all_life_stage" && ls !== "all") return true;
-      if (purposeKeywords.length > 0) {
-        const hay = `${fName} ${fCond} ${fLs}`;
-        return purposeKeywords.some((kw) => hay.includes(kw));
-      }
-      return false;
-    })
-    .slice(0, limit)
-    .map((f) => ({
-      href: getFeedDetailPath(f),
-      label: `${f.brand} ${f.name}`,
-      kcalPer100g: f.kcalPer100g,
-    }));
+  return result;
 }
 
 export function getRelatedFeedsBySimilarKcal(
@@ -265,24 +332,31 @@ export function getRelatedFeedsBySimilarKcal(
   if (baseKcal == null) return [];
 
   const tolerance = Math.max(15, baseKcal * 0.12);
-  return getAllFeedDetails()
-    .filter((f) => {
-      if (f.slug === feed.slug) return false;
-      const kcal = safeNumber(f.kcalPer100g);
-      if (kcal == null) return false;
-      return Math.abs(kcal - baseKcal) <= tolerance;
-    })
+  const { all, kcalSorted } = getFeedIndexes();
+  const csvOrder = new Map(all.map((f, index) => [f.slug, index]));
+  const minKcal = baseKcal - tolerance;
+  const maxKcal = baseKcal + tolerance;
+  const matches: FeedDetailItemWithSlug[] = [];
+
+  for (const candidate of kcalSorted) {
+    const kcal = safeNumber(candidate.kcalPer100g);
+    if (kcal == null) continue;
+    if (kcal < minKcal) continue;
+    if (kcal > maxKcal) break;
+    if (candidate.slug === feed.slug) continue;
+    matches.push(candidate);
+  }
+
+  return matches
     .sort((a, b) => {
       const aKcal = safeNumber(a.kcalPer100g) ?? 0;
       const bKcal = safeNumber(b.kcalPer100g) ?? 0;
-      return Math.abs(aKcal - baseKcal) - Math.abs(bKcal - baseKcal);
+      const distDiff = Math.abs(aKcal - baseKcal) - Math.abs(bKcal - baseKcal);
+      if (distDiff !== 0) return distDiff;
+      return (csvOrder.get(a.slug) ?? 0) - (csvOrder.get(b.slug) ?? 0);
     })
     .slice(0, limit)
-    .map((f) => ({
-      href: getFeedDetailPath(f),
-      label: `${safeString(f.brand).trim() || "—"} ${safeString(f.name).trim() || "이름 없음"} (${safeNumber(f.kcalPer100g) ?? "—"} kcal/100g)`,
-      kcalPer100g: safeNumber(f.kcalPer100g) ?? 0,
-    }));
+    .map(toKcalRelatedLink);
 }
 
 

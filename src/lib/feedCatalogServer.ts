@@ -1,4 +1,4 @@
-import { loadFeedCatalogFromCatFoodCsv } from "@/lib/catFoodCsv";
+import { getAllFeedDetails } from "@/lib/feedDetail";
 import { prisma } from "@/lib/prisma";
 import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
 
@@ -54,7 +54,7 @@ async function feedsFromDb(): Promise<CatalogItem[]> {
 
 /** `/api/feeds`와 동일한 카탈로그 — 서버 컴포넌트·API 공용 */
 export async function getFeedCatalogItems(): Promise<CatalogItem[]> {
-  const fromCsv = loadFeedCatalogFromCatFoodCsv();
+  const fromCsv = getAllFeedDetails();
   if (fromCsv.length > 0) {
     return fromCsv;
   }

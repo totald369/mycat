@@ -1,8 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
-import { assignUniqueFeedSlugs } from "@/lib/feedSlug";
-
 /** `/api/feeds` 한 행과 동일한 형태 */
 export type FeedCatalogItem = {
   id: string;
@@ -101,16 +99,18 @@ function buildDisplayLabel(kind: string, brand: string, name: string): string {
   return core.length > 400 ? `${core.slice(0, 397)}…` : core;
 }
 
+/** CSV 파싱 결과 — slug는 `feedDetail.getAllFeedDetails()`에서 부여 */
+export type FeedDetailRow = Omit<FeedDetailItem, "slug">;
+
 /**
- * DB 없이 `prisma/cat_food.csv`에서 칼로리가 있는 급여만 읽습니다.
- * (로컬 db:seed:csv 와 동일 데이터 소스)
+ * @deprecated `getAllFeedDetails()` 또는 `getFeedCatalogItems()` 사용
  */
-export function loadFeedCatalogFromCatFoodCsv(): FeedCatalogItem[] {
+export function loadFeedCatalogFromCatFoodCsv(): FeedDetailRow[] {
   return loadFeedDetailItemsFromCatFoodCsv();
 }
 
-/** 상세 페이지 — life_stage·raw type 포함 */
-export function loadFeedDetailItemsFromCatFoodCsv(): FeedDetailItem[] {
+/** 상세 페이지 — life_stage·raw type 포함 (slug 미부여) */
+export function loadFeedDetailItemsFromCatFoodCsv(): FeedDetailRow[] {
   const csvPath = resolveCsvPath();
   if (!existsSync(csvPath)) {
     return [];
@@ -153,7 +153,6 @@ export function loadFeedDetailItemsFromCatFoodCsv(): FeedDetailItem[] {
   const ingredientsI = idx("ingredients");
   const nutritionAnalysisI = idx("nutrition_analysis");
 
-  type FeedDetailRow = Omit<FeedDetailItem, "slug">;
   const out: FeedDetailRow[] = [];
 
   for (let r = 1; r < rows.length; r++) {
@@ -244,5 +243,5 @@ export function loadFeedDetailItemsFromCatFoodCsv(): FeedDetailItem[] {
   }
 
   out.sort((a, b) => a.displayLabel.localeCompare(b.displayLabel, "ko"));
-  return assignUniqueFeedSlugs(out);
+  return out;
 }
