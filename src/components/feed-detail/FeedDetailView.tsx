@@ -21,13 +21,10 @@ import { IconAutoText, IconBack, IconSparkles } from "@/components/wireframe/ico
 
 type Props = {
   feed: FeedDetailItem;
+  /** 메타·JSON-LD 전용 — 화면에는 렌더하지 않음 */
   seoDescription?: string;
   recommendedTargets?: string[];
   nutritionInterpretations?: NutritionInterpretation[];
-  relatedByBrand?: RelatedFeedLink[];
-  relatedByPurpose?: RelatedFeedLink[];
-  relatedByKcal?: RelatedFeedLink[];
-  relatedByLifeStage?: RelatedFeedLink[];
   relatedFeedLinks?: RelatedFeedLink[];
   faqs?: FaqItem[];
   seoBoostContent?: FeedSeoBoostContentData | null;
@@ -81,9 +78,16 @@ function RelatedFeedList({
             <Link
               href={link.href}
               prefetch={false}
-              className="block rounded-xl border border-[#eee] bg-white px-4 py-3 text-sm font-medium text-[#171717] active:bg-[#f5f1ed]"
+              className="flex items-center justify-between gap-3 rounded-xl border border-[#eee] bg-white px-4 py-3 active:bg-[#f5f1ed]"
             >
-              {link.label}
+              <span className="min-w-0 text-sm font-medium text-[#171717]">
+                {link.label}
+              </span>
+              {link.reasonLabel ? (
+                <span className="shrink-0 text-xs text-[#999]">
+                  {link.reasonLabel}
+                </span>
+              ) : null}
             </Link>
           </li>
         ))}
@@ -92,44 +96,74 @@ function RelatedFeedList({
   );
 }
 
-function SeoBoostSectionHeading({
-  id,
-  title,
-  source,
+function FeedGuideSection({
+  content,
 }: {
-  id: string;
-  title: string;
-  source?: FeedSeoBoostContentData["source"];
+  content: FeedSeoBoostContentData;
 }) {
-  const isOpenAi = source === "openai";
+  const isOpenAi = content.source === "openai";
+
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      {isOpenAi ? (
-        <IconSparkles className="size-4 shrink-0 text-[#f8620c]" />
-      ) : (
-        <IconAutoText className="size-4 shrink-0 text-[#999]" />
-      )}
-      <h2 id={id} className="text-base font-semibold text-[#171717]">
-        {title}
-      </h2>
-      {isOpenAi ? (
-        <span className="rounded-full bg-[#fff3eb] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#c44a00]">
-          AI
-        </span>
-      ) : null}
-    </div>
+    <section className="mt-6 space-y-5" aria-labelledby="feed-guide-heading">
+      <div className="flex flex-wrap items-center gap-2">
+        {isOpenAi ? (
+          <IconSparkles className="size-4 shrink-0 text-[#f8620c]" />
+        ) : (
+          <IconAutoText className="size-4 shrink-0 text-[#999]" />
+        )}
+        <h2
+          id="feed-guide-heading"
+          className="text-base font-semibold text-[#171717]"
+        >
+          사료 안내
+        </h2>
+        {isOpenAi ? (
+          <span className="rounded-full bg-[#fff3eb] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#c44a00]">
+            AI
+          </span>
+        ) : null}
+      </div>
+
+      <div className="space-y-4">
+        <div className="space-y-2">
+          <h3 className="text-sm font-semibold text-[#171717]">
+            이 사료는 이런 고양이에게 추천해요
+          </h3>
+          <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-[#444]">
+            {content.recommendedFor.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="space-y-2">
+          <h3 className="text-sm font-semibold text-[#171717]">
+            급여 전 참고할 점
+          </h3>
+          <p className="text-sm leading-relaxed text-[#444]">
+            {content.feedingNotes}
+          </p>
+        </div>
+
+        <div className="space-y-2">
+          <h3 className="text-sm font-semibold text-[#171717]">
+            비슷한 사료와 비교 포인트
+          </h3>
+          <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-[#444]">
+            {content.comparisonPoints.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
   );
 }
 
 export function FeedDetailView({
   feed,
-  seoDescription,
   recommendedTargets = [],
   nutritionInterpretations = [],
-  relatedByBrand = [],
-  relatedByPurpose = [],
-  relatedByKcal = [],
-  relatedByLifeStage = [],
   relatedFeedLinks = [],
   faqs = [],
   seoBoostContent = null,
@@ -152,12 +186,8 @@ export function FeedDetailView({
   const hasIngredients = Boolean(safeString(feed.ingredients).trim());
   const hasNutritionContent = hasNutritionAnalysis || hasIngredients;
 
-  const internalFeedLinks =
-    relatedFeedLinks.length > 0
-      ? relatedFeedLinks
-      : [...relatedByPurpose, ...relatedByBrand, ...relatedByLifeStage, ...relatedByKcal].filter(
-          (link, i, arr) => arr.findIndex((l) => l.href === link.href) === i,
-        );
+  const showRecommendedTargets =
+    !seoBoostContent && recommendedTargets.length > 0;
 
   return (
     <main className="relative z-10 mx-auto min-h-[100dvh] w-full max-w-[min(100%,375px)] bg-white">
@@ -179,13 +209,9 @@ export function FeedDetailView({
         <header className="space-y-2">
           <p className="text-sm font-normal text-[#555]">{brand}</p>
           <h1 className="text-xl font-bold leading-tight text-[#171717]">
-            {brand} {name} 칼로리 정보
+            {name}
           </h1>
         </header>
-
-        {seoDescription ? (
-          <p className="mt-4 text-sm leading-relaxed text-[#444]">{seoDescription}</p>
-        ) : null}
 
         {badgeLabels.length > 0 ? (
           <div className="mt-4 flex flex-wrap gap-2">
@@ -195,8 +221,34 @@ export function FeedDetailView({
           </div>
         ) : null}
 
-        {recommendedTargets.length > 0 ? (
-          <section className="mt-5 space-y-2" aria-labelledby="feed-targets-heading">
+        <section className="mt-5 space-y-3" aria-labelledby="feed-kcal-heading">
+          <h2
+            id="feed-kcal-heading"
+            className="text-base font-semibold text-[#171717]"
+          >
+            칼로리·급여 기준
+          </h2>
+          <div className="grid grid-cols-2 gap-3">
+            <InfoCard label="100g당 칼로리" value={kcalLabel} />
+            <InfoCard label={servingDisplay.label} value={servingDisplay.value} />
+          </div>
+        </section>
+
+        <section className="mt-5 rounded-xl bg-[#f8f5f2] p-4">
+          <p className="text-sm leading-relaxed text-[#555]">
+            표기된 급여량은 참고값이며, 체중·활동량에 따라 달라질 수 있어요.
+          </p>
+          <Link
+            href="/step1"
+            prefetch={false}
+            className="mt-4 flex h-12 items-center justify-center rounded-xl bg-[#f8620c] text-sm font-semibold text-white"
+          >
+            이 사료로 급여량 계산하기
+          </Link>
+        </section>
+
+        {showRecommendedTargets ? (
+          <section className="mt-6 space-y-2" aria-labelledby="feed-targets-heading">
             <h2
               id="feed-targets-heading"
               className="text-base font-semibold text-[#171717]"
@@ -212,87 +264,16 @@ export function FeedDetailView({
         ) : null}
 
         {seoBoostContent ? (
-          <>
-            <section
-              className="mt-6 space-y-3"
-              aria-labelledby="seo-boost-recommended"
-            >
-              <SeoBoostSectionHeading
-                id="seo-boost-recommended"
-                title="이 사료는 이런 고양이에게 추천해요"
-                source={seoBoostContent.source}
-              />
-              <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-[#444]">
-                {seoBoostContent.recommendedFor.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </section>
-
-            <section
-              className="mt-6 space-y-3"
-              aria-labelledby="seo-boost-feeding-notes"
-            >
-              <SeoBoostSectionHeading
-                id="seo-boost-feeding-notes"
-                title="급여 전 참고할 점"
-                source={seoBoostContent.source}
-              />
-              <p className="text-sm leading-relaxed text-[#444]">
-                {seoBoostContent.feedingNotes}
-              </p>
-            </section>
-
-            <section
-              className="mt-6 space-y-3"
-              aria-labelledby="seo-boost-comparison"
-            >
-              <SeoBoostSectionHeading
-                id="seo-boost-comparison"
-                title="비슷한 사료와 비교 포인트"
-                source={seoBoostContent.source}
-              />
-              <ul className="list-disc space-y-2 pl-5 text-sm leading-relaxed text-[#444]">
-                {seoBoostContent.comparisonPoints.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </section>
-          </>
+          <FeedGuideSection content={seoBoostContent} />
         ) : null}
 
-        <section className="mt-6 space-y-3" aria-labelledby="feed-kcal-heading">
+        <section className="mt-6 space-y-3" aria-labelledby="feed-nutrition-heading">
           <h2
-            id="feed-kcal-heading"
+            id="feed-nutrition-heading"
             className="text-base font-semibold text-[#171717]"
           >
-            칼로리·급여 기준
+            성분 정보
           </h2>
-          <div className="grid grid-cols-2 gap-3">
-            <InfoCard label="100g당 칼로리" value={kcalLabel} />
-            <InfoCard label={servingDisplay.label} value={servingDisplay.value} />
-            <InfoCard label="사료 유형" value={typeLabel} />
-            <InfoCard label="급여 대상" value={lifeLabel} />
-          </div>
-        </section>
-
-        <section className="mt-8 rounded-xl bg-[#f8f5f2] p-4">
-          <p className="text-sm leading-relaxed text-[#555]">
-            이 사료는 100g당 칼로리 기준으로 급여량 계산에 사용됩니다. 건식
-            사료의 브랜드 급여 가이드는 제조사 표기를 참고한 값이며, 실제
-            급여량은 고양이의 체중, 활동량, 체형에 따라 달라질 수 있어요.
-          </p>
-          <Link
-            href="/step1"
-            prefetch={false}
-            className="mt-4 flex h-12 items-center justify-center rounded-xl bg-[#f8620c] text-sm font-semibold text-white"
-          >
-            이 사료로 급여량 계산하기
-          </Link>
-        </section>
-
-        <section className="mt-6 space-y-3">
-          <h2 className="text-base font-semibold text-[#171717]">성분 정보</h2>
           {hasNutritionAnalysis ? (
             <div className="rounded-xl bg-[#f8f5f2] p-4">
               <p className="text-xs font-semibold text-[#666]">등록성분량</p>
@@ -314,43 +295,31 @@ export function FeedDetailView({
               상세 성분 정보는 준비 중이에요.
             </p>
           ) : null}
+
+          {nutritionInterpretations.length > 0 ? (
+            <div className="space-y-3 pt-1">
+              <h3 className="text-sm font-semibold text-[#171717]">성분 해석</h3>
+              <ul className="space-y-3">
+                {nutritionInterpretations.map((item) => (
+                  <li
+                    key={item.metric.label}
+                    className="rounded-xl border border-[#eee] bg-white p-4"
+                  >
+                    <p className="text-sm font-semibold text-[#171717]">
+                      {item.metric.label} {item.metric.value}
+                      {item.metric.unit} →
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-[#555]">
+                      {item.interpretation}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </section>
 
-        {nutritionInterpretations.length > 0 ? (
-          <section className="mt-6 space-y-3" aria-labelledby="nutrition-interpret">
-            <h2
-              id="nutrition-interpret"
-              className="text-base font-semibold text-[#171717]"
-            >
-              성분 해석
-            </h2>
-            <ul className="space-y-3">
-              {nutritionInterpretations.map((item) => (
-                <li
-                  key={item.metric.label}
-                  className="rounded-xl border border-[#eee] bg-white p-4"
-                >
-                  <p className="text-sm font-semibold text-[#171717]">
-                    {item.metric.label} {item.metric.value}
-                    {item.metric.unit} →
-                  </p>
-                  <p className="mt-1 text-sm leading-relaxed text-[#555]">
-                    {item.interpretation}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ) : null}
-
-        {internalFeedLinks.length > 0 ? (
-          <RelatedFeedList title="관련 사료" links={internalFeedLinks} />
-        ) : null}
-
-        <RelatedFeedList title="같은 브랜드 사료" links={relatedByBrand} />
-        <RelatedFeedList title="같은 목적·기능 사료" links={relatedByPurpose} />
-        <RelatedFeedList title="비슷한 칼로리 사료" links={relatedByKcal} />
-        <RelatedFeedList title="같은 연령대 사료" links={relatedByLifeStage} />
+        <RelatedFeedList title="관련 사료" links={relatedFeedLinks} />
 
         {faqs.length > 0 ? (
           <SeoFaqSection faqs={faqs} className="mt-8" title="자주 묻는 질문" />

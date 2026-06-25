@@ -175,6 +175,7 @@ export type RelatedFeedLink = {
   href: string;
   label: string;
   kcalPer100g: number;
+  reasonLabel?: string;
 };
 
 export function getRelatedFeedsByBrand(
@@ -298,19 +299,19 @@ export function buildFeedRelatedInternalLinks(
   const seen = new Set<string>();
   const merged: RelatedFeedLink[] = [];
 
-  const add = (links: RelatedFeedLink[] | undefined) => {
+  const add = (links: RelatedFeedLink[] | undefined, reasonLabel: string) => {
     for (const link of links ?? []) {
       if (seen.has(link.href)) continue;
       seen.add(link.href);
-      merged.push(link);
+      merged.push({ ...link, reasonLabel });
       if (merged.length >= RELATED_LINK_MAX) return;
     }
   };
 
-  add(sections.byPurpose);
-  add(sections.byBrand);
-  add(sections.byLifeStage);
-  add(sections.byKcal);
+  add(sections.byPurpose, "같은 목적");
+  add(sections.byBrand, "같은 브랜드");
+  add(sections.byLifeStage, "같은 연령대");
+  add(sections.byKcal, "비슷한 칼로리");
 
   if (merged.length >= RELATED_LINK_MAX) return merged.slice(0, RELATED_LINK_MAX);
   return merged;

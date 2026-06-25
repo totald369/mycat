@@ -134,8 +134,7 @@ async function fetchRoyalCaninProduct(
   feedingHtml: string;
   url: string;
 } | null> {
-  // vet KR 페이지에만 feeding_guideline_html이 채워져 있음 (US는 건식이어도 빈 경우 많음)
-  const locales = (vet ? ["kr", "uk", "us"] : ["kr", "uk", "us"]) as const;
+  const locales = ["kr", "uk", "us"] as const;
   const base = vet ? "vet-products" : "retail-products";
   const slugVariants = [slug];
   if (slug.includes("&")) slugVariants.push(slug.replace(/&/g, "%26"));

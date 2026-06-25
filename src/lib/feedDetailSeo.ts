@@ -216,7 +216,7 @@ export function buildFeedDetailFaqs(feed: FeedDetailItem): FaqItem[] {
     },
     {
       question: `${productName}의 100g당 칼로리는 얼마인가요?`,
-      answer: `${productName}의 100g당 칼로리는 ${kcal}kcal(${typeLabel})입니다. 하루 권장 급여량은 고양이 체중·활동량·간식 섭취에 따라 달라지므로, 우리냥이맘마 급여량 계산기로 맞춤 확인을 권장합니다.`,
+      answer: `상세 페이지 상단에서 100g당 ${kcal}kcal(${typeLabel})을 확인할 수 있습니다. 하루 급여량은 체중·활동량에 따라 달라지므로 우리냥이맘마 급여량 계산기로 맞춤 산출을 권장합니다.`,
     },
     {
       question: `${productName}은 어떤 고양이에게 추천되나요?`,

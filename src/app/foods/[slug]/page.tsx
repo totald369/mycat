@@ -133,10 +133,6 @@ export default async function FoodDetailPage({ params }: PageProps) {
         seoDescription={seoDescription}
         recommendedTargets={recommendedTargets}
         nutritionInterpretations={nutritionInterpretations}
-        relatedByBrand={relatedByBrand}
-        relatedByPurpose={relatedByPurpose}
-        relatedByKcal={relatedByKcal}
-        relatedByLifeStage={relatedByLifeStage}
         relatedFeedLinks={relatedFeedLinks}
         faqs={faqs}
         seoBoostContent={seoBoostContent}
