@@ -32,6 +32,11 @@
 
 ## 2026-06-25
 
+### 캐츠랑 SEO 부스트 OpenAI 적용
+
+- 캐츠랑 21종 파일럿 등록(합계 93건) 및 OpenAI(`gpt-4o-mini`) SEO 부스트 콘텐츠 생성.
+- `scripts/register-catsrang-seo-boost.ts` — 브랜드 일괄 등록·재생성 스크립트.
+
 ### 사료 찾기 UI 보정
 
 - 타이틀: `List_title.svg` 단일 이미지로 교체(고양이 아이콘+텍스트 분리 제거).
