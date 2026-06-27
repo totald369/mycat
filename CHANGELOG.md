@@ -32,6 +32,12 @@
 
 ## 2026-06-25
 
+### 캐츠랑 브랜드 급여 가이드 채움
+
+- 캐츠랑 건식 14종 `guide_daily_g`·`guide_weight_kg` 반영 — 상세 페이지 「브랜드 급여 가이드 준비 중」 해소.
+- 근거: 고양이대통령(catpre) 캐츠랑 전연령 5kg 권장급여(활동적 성묘·노령·키튼·체중관리 구간). 키튼은 2kg·105g/일, 리브레(310 kcal)는 칼로리 비율 환산 99g/일.
+- 일괄 채우기: `npm run feed-guides:catsrang` (`scripts/fill-catsrang-serving-guides.ts`).
+
 ### 캐츠랑 SEO 부스트 OpenAI 적용
 
 - 캐츠랑 21종 파일럿 등록(합계 93건) 및 OpenAI(`gpt-4o-mini`) SEO 부스트 콘텐츠 생성.
