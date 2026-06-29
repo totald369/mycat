@@ -1,5 +1,11 @@
 import type { CsvFeedRow } from "./feedServingGuideCsv";
 import {
+  normalizeHillsCsvName,
+  normalizeHillsTitle,
+  propagateHillsLegacyGuides,
+  resolveHillsFeedId,
+} from "./feedServingGuideHills";
+import {
   RC_SLUG_FEED_ID,
   RC_TITLE_FEED_ID,
 } from "./feedServingGuideRoyalCanin";
@@ -163,13 +169,10 @@ export function matchHillsCsvRow(
   rows: CsvFeedRow[],
   hillsTitle: string,
 ): CsvFeedRow | null {
-  const title = hillsTitle
-    .replace(/&amp;/g, "&")
-    .replace(/\d+(?:\.\d+)?\s*kg/gi, "")
-    .replace(/힐스\s*프리스크립션\s*다이어트/gi, "")
-    .replace(/사이언스\s*다이어트/gi, "")
-    .trim();
-  const titleNorm = normalizeMatchKey(title);
+  const byMap = resolveHillsFeedId(rows, hillsTitle);
+  if (byMap) return byMap;
+
+  const titleNorm = normalizeHillsTitle(hillsTitle);
 
   const hillsRows = rows.filter(
     (r) => r.type === "dry" && normalizeMatchKey(r.brand).includes("힐스"),
@@ -179,14 +182,27 @@ export function matchHillsCsvRow(
   let bestScore = 0;
 
   for (const row of hillsRows) {
-    const nameNorm = normalizeMatchKey(row.name);
-    const labelNorm = normalizeMatchKey(`건식/${row.brand} ${row.name}`);
+    const nameNorm = normalizeHillsCsvName(row.name);
 
-    const candidates = [nameNorm, labelNorm];
-    for (const c of candidates) {
-      if (!c) continue;
-      if (titleNorm.includes(c) || c.includes(titleNorm)) {
-        const score = c.length;
+    if (!nameNorm) continue;
+
+    if (titleNorm === nameNorm) {
+      return row;
+    }
+
+    if (titleNorm.includes(nameNorm)) {
+      const score = 5000 + nameNorm.length;
+      if (score > bestScore) {
+        bestScore = score;
+        best = row;
+      }
+      continue;
+    }
+
+    if (nameNorm.includes(titleNorm) && titleNorm.length >= 4) {
+      const extra = nameNorm.length - titleNorm.length;
+      if (extra <= 8) {
+        const score = 1000 + titleNorm.length;
         if (score > bestScore) {
           bestScore = score;
           best = row;
@@ -194,11 +210,10 @@ export function matchHillsCsvRow(
       }
     }
 
-    // k/d, i/d 등 처방 라인
-    const codeMatch = titleNorm.match(/([a-z]{1,3}d|gi바이옴|메타볼릭)/i);
-    const nameCode = nameNorm.match(/([a-z]{1,3}d|gi바이옴|메타볼릭)/i);
+    const codeMatch = titleNorm.match(/([a-z]{1,3}d|gib바이옴|메타볼릭|멀티케어\+메타볼릭)/i);
+    const nameCode = nameNorm.match(/([a-z]{1,3}d|gib바이옴|메타볼릭|멀티케어\+메타볼릭)/i);
     if (codeMatch && nameCode && codeMatch[1] === nameCode[1]) {
-      const score = 20 + codeMatch[1].length;
+      const score = 2000 + codeMatch[1].length;
       if (score > bestScore) {
         bestScore = score;
         best = row;
@@ -206,5 +221,7 @@ export function matchHillsCsvRow(
     }
   }
 
-  return bestScore >= 3 ? best : null;
+  return bestScore >= 1000 ? best : null;
 }
+
+export { propagateHillsLegacyGuides };

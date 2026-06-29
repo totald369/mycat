@@ -32,6 +32,12 @@
 
 ## 2026-06-25
 
+### 힐스 브랜드 급여 가이드 채움
+
+- 힐스 건식 42종 `guide_daily_g`·`guide_weight_kg` 전량 반영 — hillspet.co.kr 공식 급여표 스크래핑.
+- CSV 매칭 보강(`feedServingGuideHills.ts`): title→SKU 매핑, 레거시 id(`11` 키튼 등)↔HP SKU 복사, c/d+메타볼릭 URL 추가.
+- GI Biome 비스트레스 건식: KR 공식 dry 단독 페이지 없음 → 스트레스 동일 kcal 라인 가이드(55g/4kg) 적용.
+
 ### 캐츠랑 브랜드 급여 가이드 채움
 
 - 캐츠랑 건식 14종 `guide_daily_g`·`guide_weight_kg` 반영 — 상세 페이지 「브랜드 급여 가이드 준비 중」 해소.

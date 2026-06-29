@@ -19,6 +19,7 @@ import {
 } from "./lib/feedServingGuideCsv";
 import {
   matchHillsCsvRow,
+  propagateHillsLegacyGuides,
   resolveRcCsvRow,
 } from "./lib/feedServingGuideMatch";
 import {
@@ -35,6 +36,9 @@ const MIN_DAILY_GRAMS = 15;
 const MAX_DAILY_GRAMS = 250;
 const CACHE_PATH = join(process.cwd(), "scripts", "feed-serving-guides-cache.json");
 const HILLS_SCRAPED_PATH = join(process.cwd(), "scripts", "hills-scraped.json");
+const HILLS_EXTRA_DRY_URLS = [
+  "https://www.hillspet.co.kr/cat-food/prescription-diet-cd-multicare-metabolic-urinary-care-dry",
+];
 
 const RC_VET_SLUGS: { id: string; slug: string }[] = [
   { id: "73", slug: "renal-special-3949" },
@@ -311,7 +315,16 @@ async function scrapeHills(
 
   const entries: GuideCacheEntry[] = [];
   const unmatched: GuideCacheFile["unmatched"] = [];
-  const dryUrls = hillsList.filter((p) => p.form === "dry");
+  const dryUrls = [
+    ...hillsList.filter((p) => p.form === "dry"),
+    ...HILLS_EXTRA_DRY_URLS.filter(
+      (url) => !hillsList.some((p) => p.url === url),
+    ).map((url) => ({
+      url,
+      title: url.split("/").pop() ?? url,
+      form: "dry" as const,
+    })),
+  ];
   console.log(`[Hills] ${dryUrls.length}개 건식 URL 스크래핑…`);
 
   for (const item of dryUrls) {
@@ -336,7 +349,10 @@ async function scrapeHills(
     await sleep(delayMs);
 
     const parsed = parseHillsFeedingHtml(html);
-    const csvRow = matchHillsCsvRow(csvRows, item.title);
+    const pageTitle =
+      html.match(/<title>([^<|]+)/)?.[1]?.trim() ??
+      item.title.replace(/-/g, " ");
+    const csvRow = matchHillsCsvRow(csvRows, pageTitle);
     if (!csvRow) {
       unmatched.push({
         brand: "힐스",
@@ -441,6 +457,30 @@ function mergeCaches(parts: GuideCacheFile[]): GuideCacheFile {
   };
 }
 
+function copyGuideBetweenRows(
+  rows: CsvFeedRow[],
+  targetId: string,
+  sourceId: string,
+): boolean {
+  const target = rows.find((r) => r.id === targetId);
+  const source = rows.find((r) => r.id === sourceId);
+  if (!target || !source || target.type !== "dry") return false;
+  if (target.guideDailyG.trim() !== "") return false;
+  if (!source.guideDailyG.trim() || !source.guideWeightKg.trim()) return false;
+  target.guideDailyG = source.guideDailyG;
+  target.guideWeightKg = source.guideWeightKg;
+  return true;
+}
+
+function finalizeHillsGuides(rows: CsvFeedRow[]): number {
+  let updated = 0;
+  if (copyGuideBetweenRows(rows, "HP1810-GI-BIOME", "HP1810-GI-STRESS")) {
+    updated++;
+  }
+  updated += propagateHillsLegacyGuides(rows);
+  return updated;
+}
+
 function applyToCsv(
   csvRows: CsvFeedRow[],
   cache: GuideCacheFile,
@@ -541,6 +581,13 @@ async function main() {
     console.log(
       `\nCSV ${args.dryRun ? "(dry-run) " : ""}반영: ${updated}건 갱신, ${skipped}건 스킵(기존값 유지)`,
     );
+
+    const hillsFinalized = args.dryRun ? 0 : finalizeHillsGuides(csvRows);
+    if (hillsFinalized > 0 && !args.dryRun) {
+      writeCatFoodCsv(csvRows, resolveCsvPath());
+      console.log(`힐스 레거시·동일 제품 가이드 ${hillsFinalized}건 추가 반영`);
+    }
+
     if (!args.dryRun) {
       const after = loadCatFoodCsv(resolveCsvPath()).filter(
         (r) => r.type === "dry" && r.guideDailyG.trim() !== "",

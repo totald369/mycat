@@ -1,6 +1,266 @@
 {
-  "updatedAt": "2026-06-25T05:43:17.433Z",
+  "updatedAt": "2026-06-29T04:22:05.817Z",
   "entries": [
+    {
+      "feedId": "HP1810-ID-DIG",
+      "brand": "힐스",
+      "name": "i/d 반려묘용 건사료 (치킨) 1.81kg",
+      "guideDailyG": 65,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-id-feline-dry",
+      "scrapedTitle": "i/d 반려묘용 건사료 (치킨)"
+    },
+    {
+      "feedId": "HP1810-KD-CHK",
+      "brand": "힐스",
+      "name": "k/d 반려묘용 건사료(치킨) 1.81kg",
+      "guideDailyG": 50,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-kd-feline-dry",
+      "scrapedTitle": "힐스 프리스크립션 다이어트 k/d 반려묘용 건사료(치킨)"
+    },
+    {
+      "feedId": "HP1500-META",
+      "brand": "힐스",
+      "name": "메타볼릭 반려묘용 건사료(치킨) 1.5kg",
+      "guideDailyG": 45,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-metabolic-feline-dry",
+      "scrapedTitle": "메타볼릭 반려묘용 건사료(치킨)"
+    },
+    {
+      "feedId": "HP1500-TD",
+      "brand": "힐스",
+      "name": "t/d 반려묘용 건사료(치킨) 1.5kg",
+      "guideDailyG": 60,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-td-feline-dry",
+      "scrapedTitle": "t/d 반려묘용 건사료(치킨 플레이버)"
+    },
+    {
+      "feedId": "HP1500-WD",
+      "brand": "힐스",
+      "name": "w/d 멀티베네핏 반려묘용 건사료(치킨) 1.5kg",
+      "guideDailyG": 55,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-wd-feline-dry",
+      "scrapedTitle": "w/d 멀티베네핏 반려묘용 건사료(치킨 플레이버)"
+    },
+    {
+      "feedId": "HP1810-YD",
+      "brand": "힐스",
+      "name": "y/d 반려묘용 건사료(치킨) 1.81kg",
+      "guideDailyG": 65,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-yd-feline-dry",
+      "scrapedTitle": "y/d 반려묘용 건사료(치킨)"
+    },
+    {
+      "feedId": "HP1810-ZD",
+      "brand": "힐스",
+      "name": "z/d 반려묘용 건사료 1.81kg",
+      "guideDailyG": 60,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-zd-feline-dry",
+      "scrapedTitle": "z/d 반려묘용 건사료"
+    },
+    {
+      "feedId": "HP1500-CD-UR",
+      "brand": "힐스",
+      "name": "c/d 멀티케어 반려묘용 건사료(치킨) 1.5kg",
+      "guideDailyG": 55,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/prescription-diet-cd-multicare-chicken-urinary-care-dry",
+      "scrapedTitle": "c/d 멀티케어 반려묘용 건사료(치킨)"
+    },
+    {
+      "feedId": "HP1500-CD-STRESS",
+      "brand": "힐스",
+      "name": "c/d 멀티케어 스트레스 반려묘용 건사료(치킨) 1.5kg",
+      "guideDailyG": 55,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/prescription-diet-cd-multicare-stress-chicken-urinary-care-dry",
+      "scrapedTitle": "c/d 멀티케어 스트레스 반려묘용 건사료(치킨)"
+    },
+    {
+      "feedId": "HP1810-GI-STRESS",
+      "brand": "힐스",
+      "name": "GI 바이옴 스트레스 반려묘용 사료 (치킨) 1.81kg",
+      "guideDailyG": 55,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/prescription-diet-gastrointestinal-biome-stress-digestive-care-dry",
+      "scrapedTitle": "GI 바이옴 스트레스 반려묘용 사료 (치킨)"
+    },
+    {
+      "feedId": "HP1810-KD-FISH",
+      "brand": "힐스",
+      "name": "k/d 반려묘용 건식사료(오션피쉬) 1.81kg",
+      "guideDailyG": 60,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/prescription-diet-kd-ocean-fish-tuna-kidney-care-dry",
+      "scrapedTitle": "k/d 반려묘용 건식사료(오션피쉬)"
+    },
+    {
+      "feedId": "HP1584-ADT-HB",
+      "brand": "힐스",
+      "name": "어덜트 헤어볼 컨트롤 치킨 레시피 1.58kg",
+      "guideDailyG": 60,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-hairball-dry",
+      "scrapedTitle": "어덜트 헤어볼 컨트롤 치킨 레시피"
+    },
+    {
+      "feedId": "HP1584-ADT-HB-LGT",
+      "brand": "힐스",
+      "name": "어덜트 헤어볼 컨트롤 라이트 치킨 레시피 1.58kg",
+      "guideDailyG": 45,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-hairball-light-dry",
+      "scrapedTitle": "어덜트 헤어볼 컨트롤 라이트 치킨 레시피"
+    },
+    {
+      "feedId": "HP1584-ADT-IND",
+      "brand": "힐스",
+      "name": "어덜트 인도어 치킨 레시피 1.58kg",
+      "guideDailyG": 60,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-indoor-dry",
+      "scrapedTitle": "어덜트 인도어 치킨 레시피"
+    },
+    {
+      "feedId": "HP2000-ADT-LGT",
+      "brand": "힐스",
+      "name": "어덜트 라이트 치킨 레시피 2kg",
+      "guideDailyG": 45,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-light-dry",
+      "scrapedTitle": "어덜트 라이트 치킨 레시피"
+    },
+    {
+      "feedId": "HP2000-ADT-CHK",
+      "brand": "힐스",
+      "name": "어덜트 치킨 레시피 2kg",
+      "guideDailyG": 65,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-original-dry",
+      "scrapedTitle": "어덜트 치킨 레시피"
+    },
+    {
+      "feedId": "HP1584-ADT-PD",
+      "brand": "힐스",
+      "name": "어덜트 퍼펙트 다이제스천 1.58kg",
+      "guideDailyG": 60,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-perfect-digestion-chicken-barley-whole-oats-recipe-dry",
+      "scrapedTitle": "어덜트 퍼펙트 다이제스천"
+    },
+    {
+      "feedId": "HP6800-ADT-PW",
+      "brand": "힐스",
+      "name": "어덜트 퍼펙트 웨이트 치킨 레시피 6.8kg",
+      "guideDailyG": 45,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-perfect-weight-dry",
+      "scrapedTitle": "어덜트 퍼펙트 웨이트 치킨 레시피"
+    },
+    {
+      "feedId": "HP1584-ADT-UR-HB",
+      "brand": "힐스",
+      "name": "유리너리 헤어볼 컨트롤 치킨 & 라이스 1.58kg",
+      "guideDailyG": 55,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-urinary-hairball-control-dry",
+      "scrapedTitle": "유리너리 헤어볼 컨트롤 치킨 &amp; 라이스 레시피"
+    },
+    {
+      "feedId": "HP1584-KTN-ORG",
+      "brand": "힐스",
+      "name": "키튼 치킨 레시피 1.58kg",
+      "guideDailyG": 85,
+      "guideWeightKg": 2,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-kitten-original-dry",
+      "scrapedTitle": "키튼 치킨 레시피"
+    },
+    {
+      "feedId": "HP1584-KTN-SENS-SAL",
+      "brand": "힐스",
+      "name": "키튼 센서티브 스토막 & 스킨 연어 & 현미 1.58kg",
+      "guideDailyG": 80,
+      "guideWeightKg": 2,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-kitten-sensitive-stomach-skin-salmon-brown-rice-dry",
+      "scrapedTitle": "키튼 센서티브 스토막 &amp; 스킨, 연어 &amp; 현미 레시피"
+    },
+    {
+      "feedId": "HP1584-SNR7-PD",
+      "brand": "힐스",
+      "name": "어덜트 7+ 퍼펙트 다이제스천 1.58kg",
+      "guideDailyG": 45,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-mature-adult-7-perfect-digestion-dry",
+      "scrapedTitle": "어덜트 7+ 퍼펙트 다이제스천"
+    },
+    {
+      "feedId": "HP1584-SNR7-HB",
+      "brand": "힐스",
+      "name": "어덜트 7+ 헤어볼 컨트롤 치킨 1.58kg",
+      "guideDailyG": 55,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-mature-adult-hairball-dry",
+      "scrapedTitle": "어덜트 7+ 헤어볼 컨트롤 치킨 레시피"
+    },
+    {
+      "feedId": "HP1584-SNR7-IND",
+      "brand": "힐스",
+      "name": "어덜트 7+ 인도어 치킨 1.58kg",
+      "guideDailyG": 55,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-mature-adult-indoor-dry",
+      "scrapedTitle": "어덜트 7+ 인도어 치킨 레시피"
+    },
+    {
+      "feedId": "HP1584-SNR11-CHK",
+      "brand": "힐스",
+      "name": "어덜트 11+ 치킨 레시피 1.58kg",
+      "guideDailyG": 80,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-senior-11-dry",
+      "scrapedTitle": "어덜트 11+ 치킨 레시피"
+    },
+    {
+      "feedId": "HP2880-CD-META",
+      "brand": "힐스",
+      "name": "c/d 멀티케어+메타볼릭 반려묘용 건사료 2.88kg",
+      "guideDailyG": 45,
+      "guideWeightKg": 4,
+      "source": "hillspet.co.kr",
+      "sourceUrl": "https://www.hillspet.co.kr/cat-food/prescription-diet-cd-multicare-metabolic-urinary-care-dry",
+      "scrapedTitle": "prescription-diet-cd-multicare-metabolic-urinary-care-dry"
+    },
     {
       "feedId": "01tdJ000003UzCPQA0",
       "brand": "로얄캐닌",
@@ -410,263 +670,7 @@
       "source": "royalcanin.com",
       "sourceUrl": "https://www.royalcanin.com/kr/cats/products/retail-products/weight-care-2524",
       "scrapedTitle": "라이트 웨이트케어"
-    },
-    {
-      "feedId": "HP1810-ID-DIG",
-      "brand": "힐스",
-      "name": "i/d 반려묘용 건사료 (치킨) 1.81kg",
-      "guideDailyG": 65,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-id-feline-dry",
-      "scrapedTitle": "i/d 반려묘용 건사료 (치킨)"
-    },
-    {
-      "feedId": "61",
-      "brand": "힐스",
-      "name": "k/d Kidney Care",
-      "guideDailyG": 50,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-kd-feline-dry",
-      "scrapedTitle": "힐스 프리스크립션 다이어트 k/d 반려묘용 건사료(치킨)"
-    },
-    {
-      "feedId": "HP1500-META",
-      "brand": "힐스",
-      "name": "메타볼릭 반려묘용 건사료(치킨) 1.5kg",
-      "guideDailyG": 45,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-metabolic-feline-dry",
-      "scrapedTitle": "메타볼릭 반려묘용 건사료(치킨)"
-    },
-    {
-      "feedId": "70",
-      "brand": "힐스",
-      "name": "t/d",
-      "guideDailyG": 60,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-td-feline-dry",
-      "scrapedTitle": "t/d 반려묘용 건사료(치킨 플레이버)"
-    },
-    {
-      "feedId": "69",
-      "brand": "힐스",
-      "name": "w/d",
-      "guideDailyG": 55,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-wd-feline-dry",
-      "scrapedTitle": "w/d 멀티베네핏 반려묘용 건사료(치킨 플레이버)"
-    },
-    {
-      "feedId": "HP1810-YD",
-      "brand": "힐스",
-      "name": "y/d 반려묘용 건사료(치킨) 1.81kg",
-      "guideDailyG": 65,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-yd-feline-dry",
-      "scrapedTitle": "y/d 반려묘용 건사료(치킨)"
-    },
-    {
-      "feedId": "67",
-      "brand": "힐스",
-      "name": "z/d",
-      "guideDailyG": 60,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/pd-zd-feline-dry",
-      "scrapedTitle": "z/d 반려묘용 건사료"
-    },
-    {
-      "feedId": "HP1500-CD-UR",
-      "brand": "힐스",
-      "name": "c/d 멀티케어 반려묘용 건사료(치킨) 1.5kg",
-      "guideDailyG": 55,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/prescription-diet-cd-multicare-chicken-urinary-care-dry",
-      "scrapedTitle": "c/d 멀티케어 반려묘용 건사료(치킨)"
-    },
-    {
-      "feedId": "HP1500-CD-STRESS",
-      "brand": "힐스",
-      "name": "c/d 멀티케어 스트레스 반려묘용 건사료(치킨) 1.5kg",
-      "guideDailyG": 55,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/prescription-diet-cd-multicare-stress-chicken-urinary-care-dry",
-      "scrapedTitle": "c/d 멀티케어 스트레스 반려묘용 건사료(치킨)"
-    },
-    {
-      "feedId": "HP1810-GI-STRESS",
-      "brand": "힐스",
-      "name": "GI 바이옴 스트레스 반려묘용 사료 (치킨) 1.81kg",
-      "guideDailyG": 55,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/prescription-diet-gastrointestinal-biome-stress-digestive-care-dry",
-      "scrapedTitle": "GI 바이옴 스트레스 반려묘용 사료 (치킨)"
-    },
-    {
-      "feedId": "HP1810-KD-FISH",
-      "brand": "힐스",
-      "name": "k/d 반려묘용 건식사료(오션피쉬) 1.81kg",
-      "guideDailyG": 60,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/prescription-diet-kd-ocean-fish-tuna-kidney-care-dry",
-      "scrapedTitle": "k/d 반려묘용 건식사료(오션피쉬)"
-    },
-    {
-      "feedId": "HP1584-ADT-HB",
-      "brand": "힐스",
-      "name": "어덜트 헤어볼 컨트롤 치킨 레시피 1.58kg",
-      "guideDailyG": 60,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-hairball-dry",
-      "scrapedTitle": "어덜트 헤어볼 컨트롤 치킨 레시피"
-    },
-    {
-      "feedId": "HP1584-ADT-HB-LGT",
-      "brand": "힐스",
-      "name": "어덜트 헤어볼 컨트롤 라이트 치킨 레시피 1.58kg",
-      "guideDailyG": 45,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-hairball-light-dry",
-      "scrapedTitle": "어덜트 헤어볼 컨트롤 라이트 치킨 레시피"
-    },
-    {
-      "feedId": "HP1584-ADT-IND",
-      "brand": "힐스",
-      "name": "어덜트 인도어 치킨 레시피 1.58kg",
-      "guideDailyG": 60,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-indoor-dry",
-      "scrapedTitle": "어덜트 인도어 치킨 레시피"
-    },
-    {
-      "feedId": "HP2000-ADT-LGT",
-      "brand": "힐스",
-      "name": "어덜트 라이트 치킨 레시피 2kg",
-      "guideDailyG": 45,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-light-dry",
-      "scrapedTitle": "어덜트 라이트 치킨 레시피"
-    },
-    {
-      "feedId": "HP2000-ADT-CHK",
-      "brand": "힐스",
-      "name": "어덜트 치킨 레시피 2kg",
-      "guideDailyG": 65,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-original-dry",
-      "scrapedTitle": "어덜트 치킨 레시피"
-    },
-    {
-      "feedId": "HP1584-ADT-PD-SAL",
-      "brand": "힐스",
-      "name": "어덜트 퍼펙트 다이제스천 연어 1.58kg",
-      "guideDailyG": 60,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-perfect-digestion-chicken-barley-whole-oats-recipe-dry",
-      "scrapedTitle": "어덜트 퍼펙트 다이제스천"
-    },
-    {
-      "feedId": "HP6800-ADT-PW",
-      "brand": "힐스",
-      "name": "어덜트 퍼펙트 웨이트 치킨 레시피 6.8kg",
-      "guideDailyG": 45,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-perfect-weight-dry",
-      "scrapedTitle": "어덜트 퍼펙트 웨이트 치킨 레시피"
-    },
-    {
-      "feedId": "16",
-      "brand": "힐스",
-      "name": "헤어볼 컨트롤",
-      "guideDailyG": 55,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-adult-urinary-hairball-control-dry",
-      "scrapedTitle": "유리너리 헤어볼 컨트롤 치킨 &amp; 라이스 레시피"
-    },
-    {
-      "feedId": "HP1584-KTN-ORG",
-      "brand": "힐스",
-      "name": "키튼 치킨 레시피 1.58kg",
-      "guideDailyG": 85,
-      "guideWeightKg": 2,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-kitten-original-dry",
-      "scrapedTitle": "키튼 치킨 레시피"
-    },
-    {
-      "feedId": "17",
-      "brand": "힐스",
-      "name": "센서티브 스토막",
-      "guideDailyG": 110,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-kitten-sensitive-stomach-skin-salmon-brown-rice-dry",
-      "scrapedTitle": "키튼 센서티브 스토막 &amp; 스킨, 연어 &amp; 현미 레시피"
-    },
-    {
-      "feedId": "HP1584-SNR7-PD",
-      "brand": "힐스",
-      "name": "어덜트 7+ 퍼펙트 다이제스천 1.58kg",
-      "guideDailyG": 45,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-mature-adult-7-perfect-digestion-dry",
-      "scrapedTitle": "어덜트 7+ 퍼펙트 다이제스천"
-    },
-    {
-      "feedId": "13",
-      "brand": "힐스",
-      "name": "어덜트 7+",
-      "guideDailyG": 55,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-mature-adult-indoor-dry",
-      "scrapedTitle": "어덜트 7+ 인도어 치킨 레시피"
-    },
-    {
-      "feedId": "HP1584-SNR11-CHK",
-      "brand": "힐스",
-      "name": "어덜트 11+ 치킨 레시피 1.58kg",
-      "guideDailyG": 80,
-      "guideWeightKg": 4,
-      "source": "hillspet.co.kr",
-      "sourceUrl": "https://www.hillspet.co.kr/cat-food/science-diet-senior-11-dry",
-      "scrapedTitle": "어덜트 11+ 치킨 레시피"
     }
   ],
-  "unmatched": [
-    {
-      "brand": "로얄캐닌",
-      "title": "gastrointestinal-4039",
-      "reason": "페이지 없음/건식 아님"
-    },
-    {
-      "brand": "로얄캐닌",
-      "title": "renal-1246",
-      "reason": "페이지 없음/건식 아님"
-    },
-    {
-      "brand": "로얄캐닌",
-      "title": "urinary-so-1254",
-      "reason": "페이지 없음/건식 아님"
-    }
-  ]
+  "unmatched": []
 }
