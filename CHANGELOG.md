@@ -32,6 +32,12 @@
 
 ## 2026-06-25
 
+### 아미오 브랜드 급여 가이드 채움
+
+- 아미오 건식 18종 `guide_daily_g`·`guide_weight_kg` 반영 — 풀무원몰 포장 권장급여(`serving_g`) 기준, 4kg(키튼 2kg) 하루 g.
+- 체중케어·슬림업 등 60g, 일반 55g. PM SKU는 동일 레시피 legacy id에서 guide 복사.
+- 일괄 채우기: `npm run feed-guides:amio` (`scripts/fill-amio-serving-guides.ts`).
+
 ### 힐스 브랜드 급여 가이드 채움
 
 - 힐스 건식 42종 `guide_daily_g`·`guide_weight_kg` 전량 반영 — hillspet.co.kr 공식 급여표 스크래핑.

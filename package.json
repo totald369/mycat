@@ -21,6 +21,7 @@
     "seo-boost:sync": "npx tsx scripts/sync-feed-seo-boost-cache.ts",
     "feed-guides:fill": "npx tsx scripts/fill-feed-serving-guides.ts",
     "feed-guides:catsrang": "npx tsx scripts/fill-catsrang-serving-guides.ts",
+    "feed-guides:amio": "npx tsx scripts/fill-amio-serving-guides.ts",
     "postinstall": "prisma generate"
   },
   "prisma": {
