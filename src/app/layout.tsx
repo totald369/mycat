@@ -1,10 +1,10 @@
 import type { Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
-import { ADSENSE_SCRIPT_SRC } from "@/constants/googleAdSense";
 import { GA_MEASUREMENT_ID } from "@/constants/googleAnalytics";
 import { CLARITY_PROJECT_ID } from "@/constants/microsoftClarity";
 import { buildRootMetadata } from "@/lib/seo";
+import { AdSenseScript } from "@/components/analytics/AdSenseScript";
 import { WizardShellBackground } from "@/components/design/WizardShellBackground";
 import { ScrollToTopOnNavigate } from "@/components/navigation/ScrollToTopOnNavigate";
 import "./globals.css";
@@ -65,15 +65,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={pretendard.variable}>
-      <head>
-        {/* Google AdSense — 사이트 검토용 head 스크립트 (루트 layout 단일 삽입) */}
-        <script
-          async
-          src={ADSENSE_SCRIPT_SRC}
-          crossOrigin="anonymous"
-        />
-      </head>
       <body className="font-sans antialiased">
+        <AdSenseScript />
         <WizardShellBackground />
         <ScrollToTopOnNavigate />
         {children}

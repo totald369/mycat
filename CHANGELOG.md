@@ -5,6 +5,7 @@
 ### Analytics — Clarity JS 오류 가시성
 
 - **`layout.tsx`**: GA4(gtag)·Clarity 태그 스크립트에 `crossOrigin="anonymous"` 추가 — 크로스 오리진 스크립트 오류가 Clarity에 `"Script error."`로만 잡히는 현상 완화(실제 메시지·스택 노출).
+- **`AdSenseScript`**: AdSense를 `/step*`, `/result`, `/r/`, `/admin` noindex 구간에서 미로드 — 광고 슬롯 없는 계산기·결과 화면의 서드파티 Script error 노이즈 감소. 홈·사료 상세 등 인덱스 페이지는 유지.
 
 ## 2026-06-05
 
