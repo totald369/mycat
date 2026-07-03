@@ -286,15 +286,15 @@ function FeedSearchBody({
                   ) : null}
                 </div>
               ) : showResultList ? (
-                <div className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto px-2 pb-28">
+                <div className="flex flex-col gap-1 px-2 pb-28">
                   {results.map((row, idx) => (
                     <Fragment key={row.id}>
                       <button
                         type="button"
-                        className="flex flex-col gap-1.5 rounded-lg px-4 py-4 text-left active:bg-[#fafafa]"
+                        className="flex min-h-[52px] touch-manipulation select-none flex-col justify-center gap-1.5 rounded-lg px-4 py-3 text-left active:bg-[#fafafa]"
                         onClick={() => onSelect?.(row)}
                       >
-                        <span className="text-base font-semibold tracking-[0.1px] text-[#171717]">
+                        <span className="line-clamp-2 text-base font-semibold tracking-[0.1px] text-[#171717]">
                           {row.label}
                         </span>
                         {feedKindSubtitle(row) ? (
@@ -476,7 +476,7 @@ export function FeedSearchView({
     return (
       <div className={wizardModalOverlayClass}>
         <div
-          className={`${wizardModalPanelClass} bg-white font-sans`}
+          className={`${wizardModalPanelClass} overscroll-y-contain bg-white font-sans`}
           role="dialog"
           aria-modal="true"
           aria-labelledby={titleId}

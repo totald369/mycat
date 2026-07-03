@@ -425,7 +425,7 @@ export default function Step3Page() {
                   <button
                     type="button"
                     onClick={addChip}
-                    className="flex min-w-0 flex-1 items-center justify-center gap-1 rounded-xl bg-[#f8620c] px-3 py-3 text-base font-bold text-white shadow-sm"
+                    className="flex min-h-[48px] min-w-0 flex-1 touch-manipulation items-center justify-center gap-1 rounded-xl bg-[#f8620c] px-3 py-3 text-base font-bold text-white shadow-sm"
                   >
                     {editingChipId ? null : (
                       <IconPlus className="size-5 text-white" />
@@ -471,7 +471,7 @@ export default function Step3Page() {
                             type="button"
                             aria-pressed={isEditing}
                             aria-label={`${c.text} 급여량 수정`}
-                            className="relative z-10 min-w-0 flex-1 cursor-pointer pr-1 text-left font-semibold"
+                            className="relative z-10 min-w-0 flex-1 cursor-pointer touch-manipulation select-none truncate pr-1 text-left font-semibold"
                             onClick={() => selectChipForEdit(c)}
                           >
                             {c.text}

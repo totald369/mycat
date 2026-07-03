@@ -7,6 +7,11 @@
 - **`layout.tsx`**: GA4(gtag)·Clarity 태그 스크립트에 `crossOrigin="anonymous"` 추가 — 크로스 오리진 스크립트 오류가 Clarity에 `"Script error."`로만 잡히는 현상 완화(실제 메시지·스택 노출).
 - **`AdSenseScript`**: AdSense를 `/step*`, `/result`, `/r/`, `/admin` noindex 구간에서 미로드 — 광고 슬롯 없는 계산기·결과 화면의 서드파티 Script error 노이즈 감소. 홈·사료 상세 등 인덱스 페이지는 유지.
 
+### UX (Clarity dead click — step3 사료 검색)
+
+- **`FeedSearchView`**: 검색 결과 목록 **중첩 스크롤 제거**(단일 스크롤), 행 `min-h-[52px]`·`touch-manipulation`·`select-none`·`line-clamp-2` — 모바일에서 긴 사료명(하림펫푸드 등) 탭 미반응(dead click) 완화.
+- **`step3`**: 급여 칩 수정 버튼 `truncate`·`select-none`, 「추가」 버튼 터치 영역 보강.
+
 ## 2026-06-05
 
 ### 건식 브랜드 급여 가이드 참고값
