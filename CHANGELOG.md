@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-07-03
+
+### Analytics — Clarity JS 오류 가시성
+
+- **`layout.tsx`**: GA4(gtag)·Clarity 태그 스크립트에 `crossOrigin="anonymous"` 추가 — 크로스 오리진 스크립트 오류가 Clarity에 `"Script error."`로만 잡히는 현상 완화(실제 메시지·스택 노출).
+
 ## 2026-06-05
 
 ### 건식 브랜드 급여 가이드 참고값
