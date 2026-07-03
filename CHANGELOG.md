@@ -12,6 +12,10 @@
 - **`FeedSearchView`**: 검색 결과 목록 **중첩 스크롤 제거**(단일 스크롤), 행 `min-h-[52px]`·`touch-manipulation`·`select-none`·`line-clamp-2` — 모바일에서 긴 사료명(하림펫푸드 등) 탭 미반응(dead click) 완화.
 - **`step3`**: 급여 칩 수정 버튼 `truncate`·`select-none`, 「추가」 버튼 터치 영역 보강.
 
+### 사료 카탈로그 — 닥터힐메딕스 반려묘 처방 건식
+
+- **`cat_food.csv`**: [healmedix.com/catfood](https://healmedix.com/catfood) 3필라인 6SKU 추가 — D/UT 유리너리 트랙트 플러스 캄(1.5·3.5kg), D/I 인테스티날(1.5·3.5kg), W/C 웨이트 컨트롤(1.5·3.5kg). 공식 상세(dutfeline·difeline·wcfeline) 등록성분·ME 반영.
+
 ## 2026-06-05
 
 ### 건식 브랜드 급여 가이드 참고값
