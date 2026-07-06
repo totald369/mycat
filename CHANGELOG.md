@@ -4,8 +4,10 @@
 
 ### 배포 — 사료 카탈로그 CSV 동기화
 
-- **`sync-cat-food-catalog.ts`**: `prisma/cat_food.csv`를 빌드·`postinstall` 시 `src/generated/catFoodCatalog.ts`로 임베드 — `outputFileTracingIncludes`만으로는 Vercel 서버리스에 구 CSV(401종)가 남던 이슈를 JS 번들 문자열 포함으로 해소.
-- **`catFoodCsv.ts`**: 생성 모듈 우선 로드, 미생성 시 `prisma/cat_food.csv` 폴백.
+- **`sync-cat-food-catalog.ts`**: `prisma/cat_food.csv`를 빌드·`postinstall` 시 `src/generated/catFoodCatalog.json`으로 임베드 — Vercel 서버리스에 구 CSV(401종)가 남던 이슈를 JSON 정적 import로 해소. ESLint·tsconfig에서 `src/generated` 제외(대용량 파일 빌드 타임아웃 방지).
+- **`catFoodCsv.ts`**: 생성 JSON 우선 로드, 미생성 시 `prisma/cat_food.csv` 폴백.
+- **`eslint.config.mjs`**: `src/generated/**` lint 제외.
+- **빌드 수정**: `fill-*-serving-guides.ts`의 `.ts` 확장자 import 제거 — Next.js 타입체크 실패로 Vercel 배포가 연속 실패하던 원인.
 
 ## 2026-07-03
 

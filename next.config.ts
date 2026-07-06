@@ -21,10 +21,6 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ["lottie-react", "html-to-image"],
-    /** Vercel 서버리스에서 prisma/cat_food.csv 누락 방지 */
-    outputFileTracingIncludes: {
-      "/*": ["./prisma/cat_food.csv"],
-    },
   },
 };
 

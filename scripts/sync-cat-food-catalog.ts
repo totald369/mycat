@@ -1,11 +1,11 @@
 #!/usr/bin/env npx tsx
-/** prisma/cat_food.csv → src/generated/catFoodCatalog.ts (서버리스 번들 문자열 임베드) */
+/** prisma/cat_food.csv → src/generated/catFoodCatalog.json (서버리스 번들 포함) */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 const ROOT = process.cwd();
 const SOURCE = join(ROOT, "prisma", "cat_food.csv");
-const DEST = join(ROOT, "src", "generated", "catFoodCatalog.ts");
+const DEST = join(ROOT, "src", "generated", "catFoodCatalog.json");
 
 function main() {
   if (!existsSync(SOURCE)) {
@@ -17,11 +17,10 @@ function main() {
   mkdirSync(dirname(DEST), { recursive: true });
   writeFileSync(
     DEST,
-    `/** 자동 생성 — scripts/sync-cat-food-catalog.ts */\nexport const CAT_FOOD_CSV = ${JSON.stringify(csv)};\n`,
+    JSON.stringify({ rowCount: csv.trim().split("\n").length - 1, csv }),
     "utf-8",
   );
-  const rows = csv.trim().split("\n").length - 1;
-  console.log(`src/generated/catFoodCatalog.ts synced (${rows} feeds)`);
+  console.log(`src/generated/catFoodCatalog.json synced (${csv.trim().split("\n").length - 1} feeds)`);
 }
 
 main();

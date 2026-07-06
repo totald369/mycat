@@ -12,8 +12,8 @@ import {
   loadCatFoodCsv,
   writeCatFoodCsv,
   type CsvFeedRow,
-} from "./lib/feedServingGuideCsv.ts";
-import { defaultGuideWeightKg } from "./lib/feedServingGuideParse.ts";
+} from "./lib/feedServingGuideCsv";
+import { defaultGuideWeightKg } from "./lib/feedServingGuideParse";
 
 type GuideRule = {
   match: (row: CsvFeedRow) => boolean;

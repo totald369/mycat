@@ -9,8 +9,8 @@ import {
   loadCatFoodCsv,
   writeCatFoodCsv,
   type CsvFeedRow,
-} from "./lib/feedServingGuideCsv.ts";
-import { defaultGuideWeightKg } from "./lib/feedServingGuideParse.ts";
+} from "./lib/feedServingGuideCsv";
+import { defaultGuideWeightKg } from "./lib/feedServingGuideParse";
 
 const MIN_DAILY_GRAMS = 15;
 const MAX_DAILY_GRAMS = 250;

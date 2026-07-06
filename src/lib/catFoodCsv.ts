@@ -1,6 +1,8 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { CAT_FOOD_CSV } from "@/generated/catFoodCatalog";
+import catFoodCatalog from "@/generated/catFoodCatalog.json";
+
+const CAT_FOOD_CSV = catFoodCatalog.csv;
 
 /** `/api/feeds` 한 행과 동일한 형태 */
 export type FeedCatalogItem = {
