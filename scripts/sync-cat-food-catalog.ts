@@ -1,11 +1,11 @@
 #!/usr/bin/env npx tsx
-/** prisma/cat_food.csv → src/generated/cat_food.csv (Vercel 서버리스 번들 포함 보장) */
-import { copyFileSync, existsSync, mkdirSync } from "node:fs";
+/** prisma/cat_food.csv → src/generated/catFoodCatalog.ts (서버리스 번들 문자열 임베드) */
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 const ROOT = process.cwd();
 const SOURCE = join(ROOT, "prisma", "cat_food.csv");
-const DEST = join(ROOT, "src", "generated", "cat_food.csv");
+const DEST = join(ROOT, "src", "generated", "catFoodCatalog.ts");
 
 function main() {
   if (!existsSync(SOURCE)) {
@@ -13,9 +13,15 @@ function main() {
     return;
   }
 
+  const csv = readFileSync(SOURCE, "utf-8");
   mkdirSync(dirname(DEST), { recursive: true });
-  copyFileSync(SOURCE, DEST);
-  console.log("src/generated/cat_food.csv synced from prisma/cat_food.csv");
+  writeFileSync(
+    DEST,
+    `/** 자동 생성 — scripts/sync-cat-food-catalog.ts */\nexport const CAT_FOOD_CSV = ${JSON.stringify(csv)};\n`,
+    "utf-8",
+  );
+  const rows = csv.trim().split("\n").length - 1;
+  console.log(`src/generated/catFoodCatalog.ts synced (${rows} feeds)`);
 }
 
 main();

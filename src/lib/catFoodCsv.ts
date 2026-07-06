@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { CAT_FOOD_CSV } from "@/generated/catFoodCatalog";
 
 /** `/api/feeds` 한 행과 동일한 형태 */
 export type FeedCatalogItem = {
@@ -31,13 +32,19 @@ export type FeedDetailItem = FeedCatalogItem & {
 };
 
 function resolveCsvPath(): string {
-  const inGenerated = join(process.cwd(), "src", "generated", "cat_food.csv");
   const inPrisma = join(process.cwd(), "prisma", "cat_food.csv");
   const inRoot = join(process.cwd(), "cat_food.csv");
-  if (existsSync(inGenerated)) return inGenerated;
   if (existsSync(inPrisma)) return inPrisma;
   if (existsSync(inRoot)) return inRoot;
-  return inGenerated;
+  return inPrisma;
+}
+
+function loadCsvText(): string | null {
+  if (CAT_FOOD_CSV?.trim()) return CAT_FOOD_CSV;
+
+  const csvPath = resolveCsvPath();
+  if (!existsSync(csvPath)) return null;
+  return readFileSync(csvPath, "utf-8");
 }
 
 /** RFC4180 수준: 쌍따옴표·쉼표 이스케이프 (seedCatFoodCsv.ts 와 동일) */
@@ -113,12 +120,11 @@ export function loadFeedCatalogFromCatFoodCsv(): FeedDetailRow[] {
 
 /** 상세 페이지 — life_stage·raw type 포함 (slug 미부여) */
 export function loadFeedDetailItemsFromCatFoodCsv(): FeedDetailRow[] {
-  const csvPath = resolveCsvPath();
-  if (!existsSync(csvPath)) {
+  const raw = loadCsvText();
+  if (!raw) {
     return [];
   }
 
-  const raw = readFileSync(csvPath, "utf-8");
   let rows = parseCsv(raw.replace(/^\uFEFF/, ""));
   while (
     rows.length > 0 &&

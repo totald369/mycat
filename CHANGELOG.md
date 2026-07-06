@@ -4,8 +4,8 @@
 
 ### 배포 — 사료 카탈로그 CSV 동기화
 
-- **`sync-cat-food-catalog.ts`**: `prisma/cat_food.csv`를 빌드·`postinstall` 시 `src/generated/cat_food.csv`로 복사 — `outputFileTracingIncludes`만으로는 Vercel 서버리스에 구 CSV(401종)가 남던 이슈를 빌드 산출물에 직접 포함해 해소.
-- **`catFoodCsv.ts`**: `src/generated/cat_food.csv` 우선 로드.
+- **`sync-cat-food-catalog.ts`**: `prisma/cat_food.csv`를 빌드·`postinstall` 시 `src/generated/catFoodCatalog.ts`로 임베드 — `outputFileTracingIncludes`만으로는 Vercel 서버리스에 구 CSV(401종)가 남던 이슈를 JS 번들 문자열 포함으로 해소.
+- **`catFoodCsv.ts`**: 생성 모듈 우선 로드, 미생성 시 `prisma/cat_food.csv` 폴백.
 
 ## 2026-07-03
 
