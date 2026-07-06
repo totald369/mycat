@@ -17,6 +17,10 @@
 - **`cat_food.csv`**: [healmedix.com/catfood](https://healmedix.com/catfood) 3필라인 6SKU 추가 — D/UT 유리너리 트랙트 플러스 캄(1.5·3.5kg), D/I 인테스티날(1.5·3.5kg), W/C 웨이트 컨트롤(1.5·3.5kg). 공식 상세(dutfeline·difeline·wcfeline) 등록성분·ME 반영.
 - **`next.config.ts`**: `outputFileTracingIncludes`로 배포 번들에 `prisma/cat_food.csv` 포함 보장 — 사료 찾기·`/api/feeds`가 구 CSV(401종)를 읽던 이슈 재발 방지.
 
+### 사료 카탈로그 — 퓨리나 원 캣 체중관리
+
+- **`cat_food.csv`** id `39`: [퓨리나 펫케어 pd_idx=1019](https://www.purinapetcare.co.kr/shop/product_view.php?pd_idx=1019) 공식명 **원 캣 성묘용 체중관리 1.4kg**으로 정정 — `life_stage` `adult_1y_plus`, `condition` `weight`. 「성묘용 체중관리」 검색 미매칭 해소.
+
 ## 2026-06-05
 
 ### 건식 브랜드 급여 가이드 참고값
