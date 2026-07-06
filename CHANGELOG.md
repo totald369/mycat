@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-07-06
+
+### 배포 — 사료 카탈로그 CSV 동기화
+
+- **`sync-cat-food-catalog.ts`**: `prisma/cat_food.csv`를 빌드·`postinstall` 시 `src/generated/cat_food.csv`로 복사 — `outputFileTracingIncludes`만으로는 Vercel 서버리스에 구 CSV(401종)가 남던 이슈를 빌드 산출물에 직접 포함해 해소.
+- **`catFoodCsv.ts`**: `src/generated/cat_food.csv` 우선 로드.
+
 ## 2026-07-03
 
 ### Analytics — Clarity JS 오류 가시성

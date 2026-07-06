@@ -9,7 +9,8 @@
     "dev:turbo": "next dev --turbopack --hostname 0.0.0.0 --port 3000",
     "dev:lan": "next dev --turbopack --hostname 0.0.0.0 --port 3000",
     "dev:lan:turbo": "next dev --turbopack --hostname 0.0.0.0 --port 3000",
-    "build": "prisma generate && npx tsx scripts/sync-feed-seo-boost-cache.ts && next build",
+    "build": "prisma generate && npx tsx scripts/sync-cat-food-catalog.ts && npx tsx scripts/sync-feed-seo-boost-cache.ts && next build",
+    "catalog:sync": "npx tsx scripts/sync-cat-food-catalog.ts",
     "start": "next start",
     "lint": "eslint",
     "db:generate": "prisma generate",
@@ -22,7 +23,7 @@
     "feed-guides:fill": "npx tsx scripts/fill-feed-serving-guides.ts",
     "feed-guides:catsrang": "npx tsx scripts/fill-catsrang-serving-guides.ts",
     "feed-guides:amio": "npx tsx scripts/fill-amio-serving-guides.ts",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate && npx tsx scripts/sync-cat-food-catalog.ts"
   },
   "prisma": {
     "seed": "npx tsx prisma/seed.ts"

@@ -31,11 +31,13 @@ export type FeedDetailItem = FeedCatalogItem & {
 };
 
 function resolveCsvPath(): string {
+  const inGenerated = join(process.cwd(), "src", "generated", "cat_food.csv");
   const inPrisma = join(process.cwd(), "prisma", "cat_food.csv");
   const inRoot = join(process.cwd(), "cat_food.csv");
+  if (existsSync(inGenerated)) return inGenerated;
   if (existsSync(inPrisma)) return inPrisma;
   if (existsSync(inRoot)) return inRoot;
-  return inPrisma;
+  return inGenerated;
 }
 
 /** RFC4180 수준: 쌍따옴표·쉼표 이스케이프 (seedCatFoodCsv.ts 와 동일) */
