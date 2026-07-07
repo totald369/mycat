@@ -1,6 +1,7 @@
 import { canonicalizeKoreanSearchSpelling } from "@/lib/koreanSearchNormalize";
 import { safeLower, safeString } from "@/lib/feedSafeValues";
 import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
+import { bilingualNeedleMatchesHaystack } from "@/lib/feedSearchBilingual";
 
 export function compactForSearch(value: unknown): string {
   const s = safeString(value);
@@ -199,8 +200,7 @@ export function matchesParsedQuery(
   }
 
   for (const text of parsed.textTokens) {
-    const needle = compactForSearch(text);
-    if (needle && !searchBlob.includes(needle)) return false;
+    if (!bilingualNeedleMatchesHaystack(text, searchBlob)) return false;
   }
 
   return parsed.structuredTokens.length > 0 || parsed.textTokens.length > 0;

@@ -8,7 +8,7 @@ import {
   wizardModalPanelClass,
 } from "@/components/design/wizardLayoutClasses";
 import { IconClose, IconSearch } from "@/components/wireframe/icons";
-import { canonicalizeKoreanSearchSpelling } from "@/lib/koreanSearchNormalize";
+import { filterCatalogByQuery } from "@/lib/feedSearchUtils";
 
 export type CatalogItem = {
   id: string;
@@ -32,28 +32,6 @@ export type CatalogItem = {
   features?: string | null;
   nutritionAnalysis?: string | null;
 };
-
-function compactForSearch(s: string): string {
-  return canonicalizeKoreanSearchSpelling(s)
-    .normalize("NFC")
-    .toLowerCase()
-    .replace(/[\s\-_/·.,]+/gu, "");
-}
-
-function catalogSearchBlob(row: CatalogItem): string {
-  return [
-    row.label,
-    row.nameEn,
-    row.nameKo,
-    row.displayLabel,
-    row.brand,
-    row.name,
-    row.category,
-    row.feedCondition,
-  ]
-    .filter((x): x is string => typeof x === "string" && x.trim() !== "")
-    .join(" ");
-}
 
 type Props = {
   open: boolean;
@@ -140,11 +118,7 @@ export function CatalogSearchModal({
 
   const results = useMemo(() => {
     if (!searched) return [];
-    const needle = compactForSearch(activeQuery);
-    if (!needle) return [];
-    return catalog.filter((row) =>
-      compactForSearch(catalogSearchBlob(row)).includes(needle),
-    );
+    return filterCatalogByQuery(catalog, activeQuery);
   }, [searched, activeQuery, catalog]);
 
   if (!open) return null;

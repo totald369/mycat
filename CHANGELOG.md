@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-07-07
+
+### 사료 찾기 — 한·영 양방향 검색
+
+- **`feedSearchBilingual.ts`**: 브랜드·제품 라인·힐스 처방식(k/d 등) 한↔영 별칭 그룹 — CSV에 한글만·영문만 등록된 경우에도 `hills`↔`힐스`, `royal canin`↔`로얄캐닌`, `kidney`↔`k/d` 등 양쪽 언어로 검색.
+- **`feedSearchUtils`**: 카탈로그 blob·쿼리 매칭에 별칭 확장 적용. 유사 결과·자유 텍스트 검색 동일.
+- **`feedSearchNormalize`**: 구조화 키워드+자유 텍스트 조합 검색 시 텍스트 토큰도 별칭 매칭.
+- **`CatalogSearchModal`**: 중복 검색 로직 제거, `filterCatalogByQuery` 공용.
+
 ## 2026-07-06
 
 ### 배포 — 사료 카탈로그 CSV 동기화

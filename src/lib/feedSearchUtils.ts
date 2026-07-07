@@ -1,6 +1,10 @@
 import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
 import { safeLower, safeString } from "@/lib/feedSafeValues";
 import {
+  bilingualFieldSearchTerms,
+  bilingualNeedleMatchesHaystack,
+} from "@/lib/feedSearchBilingual";
+import {
   compactForSearch,
   isIngredientToken,
   matchesParsedQuery,
@@ -75,6 +79,15 @@ function isCatalogItem(value: unknown): value is CatalogItem {
 export function catalogSearchBlob(row: unknown): string {
   if (!isCatalogItem(row)) return "";
 
+  const bilingual = bilingualFieldSearchTerms(
+    row.brand,
+    row.name,
+    row.nameKo,
+    row.nameEn,
+    row.displayLabel,
+    row.label,
+  );
+
   return [
     row.label,
     row.nameEn,
@@ -90,11 +103,23 @@ export function catalogSearchBlob(row: unknown): string {
     row.ingredients,
     row.features,
     row.nutritionAnalysis,
+    ...bilingual,
     ...fieldSynonyms(row),
   ]
     .map(safeString)
     .filter((x) => x.trim() !== "")
     .join(" ");
+}
+
+function catalogRowMatchesQuery(row: CatalogItem, query: string): boolean {
+  const blob = compactForSearch(catalogSearchBlob(row));
+  const parsed = parseSearchQuery(query);
+
+  if (parsed.structuredTokens.length === 0 && parsed.textTokens.length === 0) {
+    return bilingualNeedleMatchesHaystack(query, blob);
+  }
+
+  return matchesParsedQuery(row, parsed, blob);
 }
 
 export function filterCatalogByQuery(
@@ -113,11 +138,7 @@ export function filterCatalogByQuery(
       parsed.structuredTokens.length === 0 &&
       parsed.textTokens.length === 0
     ) {
-      const needle = compactForSearch(trimmed);
-      if (!needle) return items;
-      return items.filter((row) =>
-        compactForSearch(catalogSearchBlob(row)).includes(needle),
-      );
+      return items.filter((row) => catalogRowMatchesQuery(row, trimmed));
     }
 
     return items.filter((row) => {
@@ -171,7 +192,7 @@ export function findSimilarCatalogResults(
       const byText = items.filter((item) => {
         const blob = compactForSearch(catalogSearchBlob(item));
         return parsed.textTokens.some((text) =>
-          blob.includes(compactForSearch(text)),
+          bilingualNeedleMatchesHaystack(text, blob),
         );
       });
       if (byText.length > 0) {
@@ -182,7 +203,10 @@ export function findSimilarCatalogResults(
     const needle = compactForSearch(trimmed);
     if (needle.length >= 2) {
       const bySubstring = items.filter((item) =>
-        compactForSearch(catalogSearchBlob(item)).includes(needle),
+        bilingualNeedleMatchesHaystack(
+          trimmed,
+          compactForSearch(catalogSearchBlob(item)),
+        ),
       );
       return bySubstring.slice(0, SIMILAR_RESULTS_LIMIT);
     }
