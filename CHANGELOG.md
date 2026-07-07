@@ -517,4 +517,10 @@ Build snapshot: `/result` and `/step3` First Load JS about **205 kB → ~121 kB 
 
 ### Data
 
+- **사료 카탈로그 — 힐스 KR 미등록 제품**
+  - [hillspet.co.kr/cat-food](https://www.hillspet.co.kr/cat-food) 목록 51종 대조 후 `cat_food.csv`에 **9종** 신규 등록.
+  - **일반식**: 어덜트 연어 & 현미, 헬시 퀴진 스튜(어덜트 치킨·참치, 키튼 치킨), 유리너리 헤어볼 컨트롤 습식.
+  - **처방식**: k/d 얼리 서포트·튜나 스튜, i/d 키튼 파테, ONC 케어 건식.
+  - **스크립트**: `scripts/register-hills-kr-missing.mjs` — KR 목록 수집·slug 매핑·성분 스크래핑.
+
 - When `prisma/cat_food.csv` / `prisma/cat_food.numbers` are updated in the same commit, production feed catalog follows after deploy.
