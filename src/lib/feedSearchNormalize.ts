@@ -1,16 +1,9 @@
-import { canonicalizeKoreanSearchSpelling } from "@/lib/koreanSearchNormalize";
+import { compactForSearch } from "@/lib/feedSearchCompact";
 import { safeLower, safeString } from "@/lib/feedSafeValues";
 import type { CatalogItem } from "@/components/wireframe/CatalogSearchModal";
 import { bilingualNeedleMatchesHaystack } from "@/lib/feedSearchBilingual";
 
-export function compactForSearch(value: unknown): string {
-  const s = safeString(value);
-  if (!s) return "";
-  return canonicalizeKoreanSearchSpelling(s)
-    .normalize("NFC")
-    .toLowerCase()
-    .replace(/[\s\-_/·.,]+/gu, "");
-}
+export { compactForSearch } from "@/lib/feedSearchCompact";
 
 /** 구조화 검색 토큰 — CSV type / life_stage / condition / category / 원료 */
 export type StructuredSearchToken =

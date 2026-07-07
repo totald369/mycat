@@ -1,15 +1,5 @@
-import { canonicalizeKoreanSearchSpelling } from "@/lib/koreanSearchNormalize";
+import { compactForSearch } from "@/lib/feedSearchCompact";
 import { safeString } from "@/lib/feedSafeValues";
-
-/** 검색어·카탈로그 문자열 공통 compact (feedSearchNormalize와 동일 규칙) */
-export function compactForBilingual(value: unknown): string {
-  const s = safeString(value);
-  if (!s) return "";
-  return canonicalizeKoreanSearchSpelling(s)
-    .normalize("NFC")
-    .toLowerCase()
-    .replace(/[\s\-_/·.,'’+]+/gu, "");
-}
 
 /**
  * 한글·영문 중 한쪽만 등록된 브랜드·제품명·처방 라인도 양방향 검색되도록 별칭 그룹.
@@ -100,7 +90,7 @@ function getAliasIndex() {
   if (!aliasGroupCompacts) {
     aliasGroupCompacts = SEARCH_ALIAS_GROUPS.map((group) => ({
       group,
-      compacts: group.map(compactForBilingual).filter(Boolean),
+      compacts: group.map(compactForSearch).filter(Boolean),
     }));
   }
   return aliasGroupCompacts;
@@ -111,7 +101,7 @@ export function collectBilingualAliasTerms(text: unknown): string[] {
   const raw = safeString(text).trim();
   if (!raw) return [];
 
-  const compact = compactForBilingual(raw);
+  const compact = compactForSearch(raw);
   const found = new Set<string>([raw]);
 
   for (const { group, compacts } of getAliasIndex()) {
@@ -134,7 +124,7 @@ export function bilingualNeedleMatchesHaystack(
   if (!haystackCompact) return false;
 
   const needles = collectBilingualAliasTerms(needle)
-    .map(compactForBilingual)
+    .map(compactForSearch)
     .filter(Boolean);
 
   return needles.some((n) => haystackCompact.includes(n));

@@ -12,7 +12,7 @@ import {
   parseSearchQuery,
 } from "@/lib/feedSearchNormalize";
 
-export { compactForSearch } from "@/lib/feedSearchNormalize";
+export { compactForSearch } from "@/lib/feedSearchCompact";
 
 export const FEED_PAGE_PLACEHOLDER = "사료명, 브랜드 등 으로 검색";
 export const FEED_MODAL_PLACEHOLDER = "예: 아카나";

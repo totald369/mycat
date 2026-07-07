@@ -9,6 +9,10 @@
 - **`feedSearchNormalize`**: 구조화 키워드+자유 텍스트 조합 검색 시 텍스트 토큰도 별칭 매칭.
 - **`CatalogSearchModal`**: 중복 검색 로직 제거, `filterCatalogByQuery` 공용.
 
+### 사료 찾기 — 대소문자·전각 무시 검색
+
+- **`feedSearchCompact.ts`**: 검색 compact 단일화 — `toLocaleLowerCase`로 `HILLS`/`hills` 동일 처리, `NFKC`로 전각 `ＡＣＡＮＡ`→`acana` 정규화. 쿼리·카탈로그 blob·별칭 매칭 공용.
+
 ## 2026-07-06
 
 ### 배포 — 사료 카탈로그 CSV 동기화
