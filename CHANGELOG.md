@@ -2,6 +2,17 @@
 
 ## 2026-07-07
 
+### 사료 카탈로그 — 퓨리나 KR 공식몰 미등록 습식
+
+- 팬시피스트·프리스키·원 캣 습식·프로플랜 습식 **21종** 신규 등록.
+- **기등록 정정**: id `40`–`44` 팬시피스트·프리스키, `148` 원 캣 키튼 파우치 공식명(용량 포함) 반영.
+
+### 사료 카탈로그 — 퓨리나 KR 공식몰 미등록 건식
+
+- [purinapetcare.co.kr](https://www.purinapetcare.co.kr/shop/product_list.php?c1_idx=2) 고양이 주식(원 캣·프로플랜) **9종** 신규 등록 — 유리너리·헤어볼·노령·순살연어, 프로플랜 성묘·비뇨·실내(1.5kg)·피모·노령.
+- **기등록 정정**: id `36` 키튼·`38` 실내고양이 공식명(용량 포함) 반영.
+- **스크립트**: `scripts/register-purina-kr-missing.mjs`, `scripts/purina-kr-catalog.json` (pd_idx 매핑·봇 차단 시 정적 카탈로그).
+
 ### 사료 찾기 — 한·영 양방향 검색
 
 - **`feedSearchBilingual.ts`**: 브랜드·제품 라인·힐스 처방식(k/d 등) 한↔영 별칭 그룹 — CSV에 한글만·영문만 등록된 경우에도 `hills`↔`힐스`, `royal canin`↔`로얄캐닌`, `kidney`↔`k/d` 등 양쪽 언어로 검색.
