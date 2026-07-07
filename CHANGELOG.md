@@ -2,6 +2,12 @@
 
 ## 2026-07-07
 
+### 사료 카탈로그 — 아카나 KR 공식 사이트 동기화
+
+- [apac.acana.com/ko-KR](https://apac.acana.com/ko-KR/search?cgid=cats) 반려묘용 **3종** 전수 대조 — 신규 누락 없음.
+- **기등록 정정**: `GP251077034`·`033`·`035` 공식명(하이프로틴 와일드 프레이리·패시피카·그래스랜드) 및 KR 원재료·등록성분 반영.
+- **스크립트**: `scripts/register-acana-kr-missing.mjs`, `scripts/acana-kr-catalog.json`.
+
 ### 사료 카탈로그 — 퓨리나 KR 공식몰 미등록 습식
 
 - 팬시피스트·프리스키·원 캣 습식·프로플랜 습식 **21종** 신규 등록.
