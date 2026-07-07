@@ -13,6 +13,14 @@
 
 - **`feedSearchCompact.ts`**: 검색 compact 단일화 — `toLocaleLowerCase`로 `HILLS`/`hills` 동일 처리, `NFKC`로 전각 `ＡＣＡＮＡ`→`acana` 정규화. 쿼리·카탈로그 blob·별칭 매칭 공용.
 
+### 사료 카탈로그 — 로얄캐닌 KR 미등록 제품
+
+- [royalcanin.com/kr](https://www.royalcanin.com/kr) 카테고리·slug 전수 probe(108경로) 후 `cat_food.csv` 대조 — KR 판매 5종 신규 등록.
+- **일반식 습식**: 인텐스 뷰티 케어 파우치 그레이비·젤리, 라이트 웨이트 케어 파우치 젤리, 마더앤베이비캣 울트라 소프트 무스.
+- **처방식 습식**: 얼리 레날 파우치.
+- UK 전용·기등록 SKU(애피타이트 컨트롤 케어, 메인쿤 건식, 파우치 그레이비=기존 습식 등)는 제외.
+- **스크립트**: `scripts/register-rc-kr-missing.mjs` — 카테고리 수집·KR/UK 폴백 스크래핑·slug 별칭 중복 방지.
+
 ## 2026-07-06
 
 ### 배포 — 사료 카탈로그 CSV 동기화
