@@ -2,6 +2,18 @@
 
 ## 2026-07-07
 
+### 사료 카탈로그 — 몬지 KR 공식 사이트 신규
+
+- [mongekorea.co.kr](https://www.mongekorea.co.kr/) 고양이 카테고리(몬지·모노프로틴·비와일드·벳솔루션) **52종** 신규 등록.
+- KR 공식몰 상세는 성분 미표기 → [monge.shop](https://monge.shop/) 글로벌 페이지로 원재료·영양 보완(33종).
+- **스크립트**: `scripts/register-monge-kr-missing.mjs`, `scripts/monge-kr-catalog.json`.
+
+### 사료 카탈로그 — 파미나 KR 공식 사이트 신규
+
+- [farmina.com/kr](https://www.farmina.com/kr/eshop-c-Cat-%EB%B0%98%EB%A0%A4%EB%AC%98.html) 반려묘 N&D 퀴노아·프라임·엔세스트럴·트로피컬 **29종** 신규 등록.
+- KR 미번역 페이지는 US 공식 성분·영양 + 한글 레시피명 매핑으로 보완.
+- **스크립트**: `scripts/register-farmina-kr-missing.mjs`, `scripts/farmina-kr-catalog.json`.
+
 ### 사료 카탈로그 — 아카나 KR 공식 사이트 동기화
 
 - [apac.acana.com/ko-KR](https://apac.acana.com/ko-KR/search?cgid=cats) 반려묘용 **3종** 전수 대조 — 신규 누락 없음.
