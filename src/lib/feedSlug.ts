@@ -49,6 +49,8 @@ const BRAND_SLUGS: Record<string, string> = {
   런치: "lunch",
   사조: "sajo",
   옵티원: "opti-one",
+  플래티넘: "platinum",
+  정글키친: "jungle-kitchen",
 };
 
 /** 제품명 토큰 — 긴 구문 우선 매칭 */
@@ -83,6 +85,16 @@ const PRODUCT_TERM_SLUGS = [
   ["베이비캣", "babycat"],
   ["스테럴라이즈드", "sterilized"],
   ["스테릴라이즈드", "sterilized"],
+  ["미트크리스프", "meatcrisp"],
+  ["치킨포켓", "chicken-pocket"],
+  ["래빗포켓", "rabbit-pocket"],
+  ["램포켓", "lamb-pocket"],
+  ["더블민스", "double-minced"],
+  ["미디엄 프로틴", "medium-protein"],
+  ["본+치킨", "bone-chicken"],
+  ["튜나+치킨", "tuna-chicken"],
+  ["퀘일+치킨", "quail-chicken"],
+  ["덕 포켓", "duck-pocket"],
   ["헤어앤스킨", "hair-and-skin"],
   ["그레인프리", "grain-free"],
   ["에이징 15", "aging-15"],

@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-08-10
+
+### 사료 카탈로그 — 정글키친 고양이 생식 포켓 9종
+
+- [junglekitchen.co.kr](https://junglekitchen.co.kr/category/%EA%B3%A0%EC%96%91%EC%9D%B4-%EC%83%9D%EC%8B%9D/57/) 고양이 생식 **9종** 신규 등록 — 치킨·본+치킨·미디엄 프로틴·더블민스·덕·래빗·램·튜나+치킨·퀘일+치킨 포켓.
+- 공식 [균형잡힌 영양성분](https://junglekitchen.co.kr/shopinfo/menu01_03.html)·제품 상세 AAFCO 성분표의 GE(kcal/100g)·WM 등록성분·팩 용량(75g/55g) 반영 (`JK-107`~`JK-300`).
+- 검색·slug: `정글키친`/`jungle kitchen`, 포켓 라인 별칭 추가.
+
+### 사료 카탈로그 — 플래티넘 미트크리스프 스테럴라이즈드
+
+- [네이버 브랜드스토어](https://brand.naver.com/montraum/products/12204604380) **플래티넘 미트크리스프 캣 스테럴라이즈드 치킨 3kg** 신규 등록.
+- Platinum 공식 원재료·등록성분·ME(356 kcal/100g)·4kg 기준 급여량(45g) 반영 (`NV-12204604380`).
+- 검색·slug: `플래티넘`/`platinum`, `미트크리스프`/`meatcrisp` 별칭 추가.
+
 ## 2026-07-23
 
 ### 사료 카탈로그 — 브릿 케어 키튼 건식
