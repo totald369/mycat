@@ -2,6 +2,10 @@
 
 ## 2026-08-13
 
+### 사료 상세 SEO 부스트 — 프로뉴트리션 12종
+
+- 프레스티지·퓨어라이프 12종 OpenAI SEO 부스트 생성(추천·급여 참고·비교 포인트) → `prisma/feedSeoBoost.json` 반영.
+
 ### 사료 카탈로그 — 프로뉴트리션 고양이 건식
 
 - [네이버 브랜드스토어 고양이 사료](https://brand.naver.com/pronutrition/category/2b3ef1948b7844d4a1a6c971bb854a6e?cp=1) 카탈로그 대조 — **프레스티지 6종·퓨어라이프 6종**(레시피 단위, 용량 SKU 통합) 신규 등록.
