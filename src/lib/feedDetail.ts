@@ -7,6 +7,7 @@ import {
   assignUniqueFeedSlugs,
   feedDetailPath,
   isLegacyCsvFeedId,
+  resolveFeedSlugAlias,
 } from "@/lib/feedSlug";
 import { prisma } from "@/lib/prisma";
 
@@ -125,7 +126,7 @@ export function getFeedBySlug(slug: string): FeedDetailItemWithSlug | null {
 export type FeedRouteResolution = {
   feed: FeedDetailItemWithSlug;
   canonicalSlug: string;
-  /** csv-* 등 레거시 ID로 접근한 경우 */
+  /** csv-* 레거시 ID 또는 구 슬러그 별칭으로 접근한 경우 */
   isLegacyRedirect: boolean;
 };
 
@@ -149,6 +150,16 @@ export function resolveFeedRouteParam(
         feed: bySlug,
         canonicalSlug: bySlug.slug,
         isLegacyRedirect: false,
+      };
+    }
+    const aliased = resolveFeedSlugAlias(param);
+    if (aliased) {
+      const feed = slugIndex?.get(aliased);
+      if (!feed) return null;
+      return {
+        feed,
+        canonicalSlug: feed.slug,
+        isLegacyRedirect: true,
       };
     }
     return null;

@@ -1,4 +1,7 @@
 import { safeString } from "@/lib/feedSafeValues";
+import { FEED_SLUG_ALIASES } from "@/lib/feedSlugAliases";
+
+export { FEED_SLUG_ALIASES };
 
 /** 브랜드·제품명 → SEO slug (영문 소문자·숫자·하이픈) */
 
@@ -325,4 +328,8 @@ export function feedDetailPath(slug: string): string {
 
 export function isLegacyCsvFeedId(param: string): boolean {
   return param.startsWith("csv-");
+}
+
+export function resolveFeedSlugAlias(param: string): string | undefined {
+  return FEED_SLUG_ALIASES[param];
 }

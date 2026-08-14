@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+import { FEED_SLUG_ALIASES } from "./src/lib/feedSlugAliases";
+
 const nextConfig: NextConfig = {
   async redirects() {
     return [
@@ -8,6 +10,11 @@ const nextConfig: NextConfig = {
         destination: "/feed-find",
         permanent: true,
       },
+      ...Object.entries(FEED_SLUG_ALIASES).map(([from, to]) => ({
+        source: `/foods/${from}`,
+        destination: `/foods/${to}`,
+        permanent: true,
+      })),
     ];
   },
   images: {
