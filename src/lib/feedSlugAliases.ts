@@ -13,4 +13,13 @@ export const FEED_SLUG_ALIASES: Record<string, string> = {
   "csv-8": "royal-canin-indoor-7-plus",
   "csv-9": "royal-canin-babycat-mousse",
   "csv-10": "royal-canin-sterilized-pouch",
+  // 퓨리나 KR 명칭 정정 전 slug (원 캣 인도어 → 성묘용 실내고양이 등)
+  "purina-indoor": "purina-kg-1-4kg-dry",
+  "purina-kitten": "purina-kitten-kg-1-4kg",
+  "purina-pouch-kitten": "purina-pouch-kitten-170g",
+  "purina-fancy-feast-chicken": "purina-fancy-feast-chicken-85g-40",
+  "purina-fancy-feast-tuna": "purina-fancy-feast-tuna-85g-41",
+  "purina-fancy-feast-pate": "purina-fancy-feast-salmon-85g-wet",
+  "purina-pate": "purina-chicken-pate-85g",
+  "purina-shred": "purina-chicken-salmon-85g",
 };
