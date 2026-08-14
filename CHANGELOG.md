@@ -2,8 +2,9 @@
 
 ## 2026-08-14
 
-### 사료 상세 — 잘못된 slug 301 리다이렉트
+### 사료 상세 — 레거시 csv id·잘못된 slug 301 리다이렉트
 
+- `/foods/csv-5` 등 초기 숫자 id(`csv-1`~`csv-10`) → 현재 로얄캐닌 slug. Salesforce apiId로 id가 바뀌며 끊긴 구 URL 복구.
 - `/foods/babiboyak-adult-tuna` → 더리얼 캣 그레인프리 크런치 참치 어덜트 1kg. 밥이보약에는 참치 어덜트 제품이 없고, 같은 하림 라인의 해당 SKU로 연결.
 
 ## 2026-08-13

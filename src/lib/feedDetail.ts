@@ -137,20 +137,23 @@ export function resolveFeedRouteParam(
   if (fromCsv.length > 0) {
     if (isLegacyCsvFeedId(param)) {
       const feed = legacyIdIndex?.get(param);
-      if (!feed) return null;
-      return {
-        feed,
-        canonicalSlug: feed.slug,
-        isLegacyRedirect: true,
-      };
-    }
-    const bySlug = slugIndex?.get(param);
-    if (bySlug) {
-      return {
-        feed: bySlug,
-        canonicalSlug: bySlug.slug,
-        isLegacyRedirect: false,
-      };
+      if (feed) {
+        return {
+          feed,
+          canonicalSlug: feed.slug,
+          isLegacyRedirect: true,
+        };
+      }
+      // 구 숫자 id(csv-5 등)가 Salesforce apiId로 바뀐 경우 별칭으로 폴백
+    } else {
+      const bySlug = slugIndex?.get(param);
+      if (bySlug) {
+        return {
+          feed: bySlug,
+          canonicalSlug: bySlug.slug,
+          isLegacyRedirect: false,
+        };
+      }
     }
     const aliased = resolveFeedSlugAlias(param);
     if (aliased) {
