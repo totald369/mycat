@@ -4,7 +4,7 @@
 
 ### 정적 자산 — next/font 구 woff2 경로 301
 
-- `/_next/static/media/*-s.p.woff2` → `*-s.woff2`. Pretendard preload 네이밍 변경으로 GSC 등에 잡힌 구 URL 복구.
+- `/_next/static/media/*-s.p.woff2` → `*-s.woff2`. Pretendard preload 네이밍 변경으로 GSC 등에 잡힌 구 URL 복구(미들웨어; Vercel CDN은 next.config 리다이렉트보다 먼저 404 처리).
 
 ### 사료 상세 — 레거시 csv id·잘못된 slug 301 리다이렉트
 
