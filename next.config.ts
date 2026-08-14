@@ -10,6 +10,12 @@ const nextConfig: NextConfig = {
         destination: "/feed-find",
         permanent: true,
       },
+      // next/font 구 네이밍(*.p.woff2, preload) → 현재(*.woff2)
+      {
+        source: "/_next/static/media/:file.p.woff2",
+        destination: "/_next/static/media/:file.woff2",
+        permanent: true,
+      },
       ...Object.entries(FEED_SLUG_ALIASES).map(([from, to]) => ({
         source: `/foods/${from}`,
         destination: `/foods/${to}`,

@@ -2,6 +2,10 @@
 
 ## 2026-08-14
 
+### 정적 자산 — next/font 구 woff2 경로 301
+
+- `/_next/static/media/*-s.p.woff2` → `*-s.woff2`. Pretendard preload 네이밍 변경으로 GSC 등에 잡힌 구 URL 복구.
+
 ### 사료 상세 — 레거시 csv id·잘못된 slug 301 리다이렉트
 
 - `/foods/csv-5` 등 초기 숫자 id(`csv-1`~`csv-10`) → 현재 로얄캐닌 slug. Salesforce apiId로 id가 바뀌며 끊긴 구 URL 복구.
