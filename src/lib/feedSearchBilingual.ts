@@ -29,6 +29,7 @@ const SEARCH_ALIAS_GROUPS: readonly (readonly string[])[] = [
   ["요세라", "josera"],
   ["카나간", "canagan"],
   ["뉴트로", "nutro"],
+  ["초이스", "choice", "natural choice", "wholesome essentials"],
   ["뉴트리플랜", "nutriplan"],
   ["닥터힐메딕스", "healmedix", "hillmedix"],
   ["하림펫푸드", "harim", "harim pet"],

@@ -133,6 +133,7 @@ const PRODUCT_TERM_SLUGS = [
   ["리브레", "libre"],
   ["실내묘", "indoor"],
   ["인도어", "indoor"],
+  ["초이스", "choice"],
   ["헤어볼", "hairball"],
   ["그레이비", "gravy"],
   ["현미", "brown-rice"],

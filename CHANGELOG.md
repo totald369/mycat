@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-08-18
+
+### 사료 카탈로그 — 뉴트로 초이스 키튼 건식
+
+- [펫마트](https://www.petmart.co.kr/goods/goods_view.php?goodsNo=1000003915) **뉴트로 초이스 키튼 닭고기와 현미 2.27kg** 신규 등록 (`PM-1000003915`).
+- [Nutro 공식 키튼 닭고기·현미](https://www.nutro.com/products/dry/kitten-formula-chicken-brown-rice-recipe) 원재료·등록성분·ME(3891 kcal/kg)·급여표(1/2컵≈59g, 체중 약 4kg) 반영.
+- 검색·slug: `초이스`/`choice` 별칭 추가.
+
 ## 2026-08-14
 
 ### 정적 자산 — next/font 구 woff2 경로 301
