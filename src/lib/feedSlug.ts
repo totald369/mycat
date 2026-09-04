@@ -79,6 +79,8 @@ const PRODUCT_TERM_SLUGS = [
   ["오퍼스링크스", "opus-lynx"],
   ["밀프리", "meal-free"],
   ["화이트피쉬", "whitefish"],
+  ["레날 위드 피시", "renal-with-fish"],
+  ["위드 피시", "with-fish"],
   ["젤리", "jelly"],
   ["오징어", "squid"],
   ["새우", "shrimp"],

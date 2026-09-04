@@ -68,6 +68,8 @@ const SEARCH_ALIAS_GROUPS: readonly (readonly string[])[] = [
   ["성묘", "어덜트", "adult"],
   ["시니어", "노령", "senior"],
   ["체중관리", "weight", "light", "weight control"],
+  ["레날", "renal"],
+  ["위드 피시", "with fish", "with-fish", "renal with fish"],
   ["유리너리", "urinary"],
   ["헤어볼", "hairball"],
   ["다이제스티브", "digestive"],

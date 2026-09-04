@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-09-04
+
+### 사료 카탈로그 — 로얄캐닌 레날 위드 피시 파우치
+
+- [네이버 스마트스토어](https://smartstore.naver.com/happypet1/products/5257131805) **로얄캐닌 레날 위드 피시 파우치 85g** 신규 등록 (`RC4067`).
+- [로얄캐닌 KR](https://www.royalcanin.com/kr/cats/products/vet-products/renal-with-fish-4067)·UK 성분표 원재료·등록성분·ME(95 kcal/100g) 반영. 기존 `레날 파우치`(renal-1246)와 별도 피시 플레이버 SKU.
+
 ## 2026-08-18
 
 ### 사료 카탈로그 — 뉴트로 초이스 키튼 건식
